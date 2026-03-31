@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies | Grand Vision Perspective</title>
+    <meta name="description" content="Real results from real projects. See how we have helped businesses automate operations, organise infrastructure, and launch from scratch.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #2d2d3a;
+            background: #ffffff;
+            line-height: 1.7;
+            font-size: 17px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            color: #1a1a2e;
+            line-height: 1.25;
+            font-weight: 600;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ========== LAYOUT ========== */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== NAV ========== */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(26, 26, 46, 0.08);
+        }
+
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a2e;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-size: 15px;
+            font-weight: 500;
+            color: #2d2d3a;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #1a1a2e;
+        }
+
+        .nav-link--active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #c9a84c;
+            border-radius: 1px;
+        }
+
+        .nav-cta {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #c9a84c;
+            padding: 10px 22px;
+            border-radius: 6px;
+            transition: background 0.2s ease, transform 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            background: #b8963e;
+            transform: translateY(-1px);
+        }
+
+        /* Mobile nav toggle */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #1a1a2e;
+            border-radius: 1px;
+            transition: transform 0.25s ease, opacity 0.2s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            padding: 100px 0 80px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 52px);
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: clamp(17px, 2vw, 20px);
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ========== CASE STUDY CARDS ========== */
+        .cases-section {
+            padding: 80px 0 88px;
+        }
+
+        .cases-section--white {
+            background: #ffffff;
+        }
+
+        .cases-section--grey {
+            background: #f8f9fa;
+        }
+
+        .case-card {
+            border-top: 4px solid #c9a84c;
+            background: #ffffff;
+            border-radius: 0 0 8px 8px;
+            padding: 48px 44px;
+            box-shadow: 0 2px 20px rgba(26, 26, 46, 0.06);
+        }
+
+        .cases-section--grey .case-card {
+            box-shadow: 0 2px 20px rgba(26, 26, 46, 0.08);
+        }
+
+        .case-stat {
+            margin-bottom: 32px;
+        }
+
+        .case-stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(40px, 5vw, 56px);
+            font-weight: 700;
+            color: #c9a84c;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .case-stat-label {
+            font-size: 16px;
+            color: #555;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .case-card h2 {
+            font-size: clamp(26px, 3.2vw, 34px);
+            margin-bottom: 12px;
+            letter-spacing: -0.015em;
+        }
+
+        .case-client {
+            font-size: 16px;
+            color: #555;
+            font-style: italic;
+            margin-bottom: 36px;
+            line-height: 1.6;
+        }
+
+        .case-block {
+            margin-bottom: 28px;
+        }
+
+        .case-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-block h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #1a1a2e;
+        }
+
+        .case-block p {
+            font-size: 16px;
+            color: #2d2d3a;
+            line-height: 1.7;
+        }
+
+        .case-results {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 24px 28px;
+        }
+
+        .cases-section--grey .case-results {
+            background: #ffffff;
+        }
+
+        .case-results p {
+            font-weight: 500;
+            color: #1a1a2e;
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            background: #c9a84c;
+            padding: 14px 32px;
+            border-radius: 6px;
+            transition: background 0.2s ease, transform 0.15s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #b8963e;
+            transform: translateY(-1px);
+        }
+
+        /* ========== BOTTOM CTA ========== */
+        .bottom-cta {
+            padding: 100px 0;
+            background: #1a1a2e;
+            text-align: center;
+        }
+
+        .bottom-cta h2 {
+            font-size: clamp(26px, 3.5vw, 36px);
+            color: #ffffff;
+            margin-bottom: 16px;
+            letter-spacing: -0.015em;
+        }
+
+        .bottom-cta p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 520px;
+            margin: 0 auto 36px;
+            line-height: 1.6;
+        }
+
+        .bottom-cta .btn {
+            margin-bottom: 20px;
+        }
+
+        .bottom-cta-alt {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .bottom-cta-alt a {
+            color: #c9a84c;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            transition: color 0.2s ease;
+        }
+
+        .bottom-cta-alt a:hover {
+            color: #d4b55c;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: #1a1a2e;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 48px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 28px;
+        }
+
+        .footer-link {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-copy {
+            width: 100%;
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.35);
+            margin-top: 28px;
+            padding-top: 28px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: 32px 24px;
+                gap: 24px;
+                border-bottom: 1px solid rgba(26, 26, 46, 0.08);
+                transform: translateY(-120%);
+                opacity: 0;
+                transition: transform 0.3s ease, opacity 0.25s ease;
+                pointer-events: none;
+            }
+
+            .nav-links.open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-link--active::after {
+                display: none;
+            }
+
+            .hero {
+                padding: 72px 0 60px;
+            }
+
+            .cases-section {
+                padding: 60px 0 68px;
+            }
+
+            .case-card {
+                padding: 36px 28px;
+            }
+
+            .bottom-cta {
+                padding: 72px 0;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+
+            .nav-inner {
+                height: 64px;
+            }
+
+            .nav-logo {
+                font-size: 17px;
+            }
+
+            .hero {
+                padding: 56px 0 48px;
+            }
+
+            .cases-section {
+                padding: 48px 0 56px;
+            }
+
+            .case-card {
+                padding: 28px 20px;
+            }
+
+            .case-stat-number {
+                font-size: 36px;
+            }
+
+            .case-card h2 {
+                font-size: 24px;
+            }
+
+            .case-results {
+                padding: 20px 22px;
+            }
+
+            .bottom-cta {
+                padding: 56px 0;
+            }
+
+            .btn {
+                padding: 13px 28px;
+                font-size: 14px;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAV ========== -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">Grand Vision Perspective</a>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="/services/" class="nav-link">Services</a>
+                <a href="/about/" class="nav-link">About</a>
+                <a href="/case-studies/" class="nav-link nav-link--active">Case Studies</a>
+                <a href="/contact/" class="nav-link">Contact</a>
+                <a href="/contact/#book" class="nav-cta">Book a Strategy Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="container">
+            <h1>Case Studies</h1>
+            <p>Real results from real projects</p>
+        </div>
+    </section>
+
+    <!-- ========== CASE STUDY 1: FINANCIAL SYSTEMS ========== -->
+    <section class="cases-section cases-section--white">
+        <div class="container">
+            <div class="case-card">
+                <div class="case-stat">
+                    <div class="case-stat-number">90%</div>
+                    <div class="case-stat-label">reduction in manual accounting</div>
+                </div>
+                <h2>Financial Systems Overhaul</h2>
+                <p class="case-client">A hospitality group managing multiple business entities</p>
+                <div class="case-block">
+                    <h4>Challenge</h4>
+                    <p>Manual accounting across three businesses with no reconciliation process. Hundreds of bank transactions sat unprocessed. There was no profit and loss visibility and no way to understand the financial health of any entity at a glance.</p>
+                </div>
+                <div class="case-block">
+                    <h4>Solution</h4>
+                    <p>We built a complete financial management system from scratch: automated ledger, line item categorisation, bank transaction matching, and reconciliation dashboards. Each entity received its own structured chart of accounts with unified reporting across the group.</p>
+                </div>
+                <div class="case-block case-results">
+                    <h4>Results</h4>
+                    <p>433 bank transactions processed and matched. Full profit and loss visibility across all entities. Monthly close reduced from days to hours. The finance team now spends time on analysis, not data entry.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CASE STUDY 2: DIGITAL INFRASTRUCTURE ========== -->
+    <section class="cases-section cases-section--grey">
+        <div class="container">
+            <div class="case-card">
+                <div class="case-stat">
+                    <div class="case-stat-number">27,715</div>
+                    <div class="case-stat-label">files organised across 16 drives</div>
+                </div>
+                <h2>Digital Infrastructure Cleanup</h2>
+                <p class="case-client">A multi-brand organisation with years of digital clutter</p>
+                <div class="case-block">
+                    <h4>Challenge</h4>
+                    <p>Sixteen cloud drives with no structure. Years of accumulation had left critical documents buried under duplicates, outdated versions, and orphaned files. Sixteen gigabytes of duplicated content. No naming conventions, no ownership mapping, no way to find anything quickly.</p>
+                </div>
+                <div class="case-block">
+                    <h4>Solution</h4>
+                    <p>We performed a complete audit of every drive and every file. Then we designed folder taxonomies, implemented naming conventions, mapped ownership per drive, and systematically reorganised the entire digital infrastructure.</p>
+                </div>
+                <div class="case-block case-results">
+                    <h4>Results</h4>
+                    <p>27,715 files organised. 16GB of duplicates identified and archived. Zero loose files remaining. Any document now findable in seconds. Clear ownership and structure that scales as the organisation grows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CASE STUDY 3: WORKFLOW AUTOMATION ========== -->
+    <section class="cases-section cases-section--white">
+        <div class="container">
+            <div class="case-card">
+                <div class="case-stat">
+                    <div class="case-stat-number">76</div>
+                    <div class="case-stat-label">workflows automated</div>
+                </div>
+                <h2>Workflow Automation at Scale</h2>
+                <p class="case-client">A growing product company with manual processes</p>
+                <div class="case-block">
+                    <h4>Challenge</h4>
+                    <p>Over twenty manual CRM processes eating into the team's day. Disconnected tools meant information lived in silos. Hours were lost weekly on repetitive tasks that should have been automatic: follow-ups, status updates, reporting, and data entry across systems.</p>
+                </div>
+                <div class="case-block">
+                    <h4>Solution</h4>
+                    <p>We designed and deployed 76 automated workflows connecting the CRM, email, accounting, and project management systems into a single cohesive operation. Automated reporting and real-time alerts replaced manual check-ins.</p>
+                </div>
+                <div class="case-block case-results">
+                    <h4>Results</h4>
+                    <p>76 workflows running daily. 20 CRM automations handling lead management, follow-ups, and pipeline updates. Over 15 hours reclaimed every week. The team now focuses on selling and building, not on admin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CASE STUDY 4: HOSPITALITY OPS ========== -->
+    <section class="cases-section cases-section--grey">
+        <div class="container">
+            <div class="case-card">
+                <div class="case-stat">
+                    <div class="case-stat-number">&lt;2 weeks</div>
+                    <div class="case-stat-label">from zero to fully operational</div>
+                </div>
+                <h2>Hospitality Operations &mdash; Zero to Live</h2>
+                <p class="case-client">A villa services business launching from scratch</p>
+                <div class="case-block">
+                    <h4>Challenge</h4>
+                    <p>A brand-new hospitality venture with nothing in place. No website, no booking system, no operational tools, no sales materials. The team needed to go from concept to revenue-ready as fast as possible.</p>
+                </div>
+                <div class="case-block">
+                    <h4>Solution</h4>
+                    <p>We built the complete operations stack in under two weeks: a fully designed website, detailed service menus, dynamic pricing engine, booking flow, bilingual sales kit, QR-based guest experience system, and kitchen management tools. Everything the team needed to operate and sell from day one.</p>
+                </div>
+                <div class="case-block case-results">
+                    <h4>Results</h4>
+                    <p>Full website live and indexed. Booking system operational. Sales team equipped with professional materials in two languages. First client meeting booked within days of launch. The business went from zero to taking orders in under a fortnight.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BOTTOM CTA ========== -->
+    <section class="bottom-cta">
+        <div class="container">
+            <h2>See something that looks like your business?</h2>
+            <p>Every project starts with a conversation. Let us understand your situation and show you what is possible.</p>
+            <a href="/contact/#book" class="btn">Book a Strategy Call</a>
+            <p class="bottom-cta-alt">Or email us at <a href="mailto:hello@grandvisionperspective.com">hello@grandvisionperspective.com</a></p>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-brand">Grand Vision Perspective</span>
+                <div class="footer-links">
+                    <a href="/services/" class="footer-link">Services</a>
+                    <a href="/about/" class="footer-link">About</a>
+                    <a href="/case-studies/" class="footer-link">Case Studies</a>
+                    <a href="/contact/" class="footer-link">Contact</a>
+                </div>
+                <p class="footer-copy">&copy; 2026 Grand Vision Perspective. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== MOBILE NAV SCRIPT ========== -->
+    <script>
+        (function () {
+            var toggle = document.querySelector('.nav-toggle');
+            var links = document.querySelector('.nav-links');
+            if (!toggle || !links) return;
+
+            toggle.addEventListener('click', function () {
+                var isOpen = links.classList.toggle('open');
+                toggle.classList.toggle('active', isOpen);
+                toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+
+            // Close menu when a link is clicked
+            var navItems = links.querySelectorAll('.nav-link, .nav-cta');
+            for (var i = 0; i < navItems.length; i++) {
+                navItems[i].addEventListener('click', function () {
+                    links.classList.remove('open');
+                    toggle.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                });
+            }
+        })();
+    </script>
+
+</body>
+</html>
