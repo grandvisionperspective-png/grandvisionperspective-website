@@ -58,15 +58,15 @@
             padding: 0 24px;
         }
 
-        /* ========== NAV ========== */
+        /* ========== NAV — Dark ========== */
         .nav {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(255, 255, 255, 0.97);
+            background: rgba(26, 26, 46, 0.98);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(26, 26, 46, 0.08);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
         }
 
         .nav-inner {
@@ -80,12 +80,8 @@
         }
 
         .nav-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            font-weight: 600;
-            color: #1a1a2e;
-            letter-spacing: -0.01em;
-            white-space: nowrap;
+            height: 36px;
+            width: auto;
         }
 
         .nav-links {
@@ -97,13 +93,13 @@
         .nav-link {
             font-size: 15px;
             font-weight: 500;
-            color: #2d2d3a;
+            color: #b0b0b8;
             transition: color 0.2s ease;
             position: relative;
         }
 
         .nav-link:hover {
-            color: #1a1a2e;
+            color: #c9a84c;
         }
 
         .nav-link--active::after {
@@ -151,7 +147,7 @@
             display: block;
             width: 100%;
             height: 2px;
-            background: #1a1a2e;
+            background: #b0b0b8;
             border-radius: 1px;
             transition: transform 0.25s ease, opacity 0.2s ease;
         }
@@ -168,28 +164,38 @@
             transform: rotate(-45deg) translate(5px, -5px);
         }
 
-        /* ========== HERO ========== */
+        /* ========== HERO — Dark ========== */
         .hero {
             padding: 100px 0 80px;
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0d0d1a 100%);
             text-align: center;
+        }
+
+        .hero-accent {
+            display: block;
+            width: 48px;
+            height: 3px;
+            background: #c9a84c;
+            border-radius: 2px;
+            margin: 0 auto 32px;
         }
 
         .hero h1 {
             font-size: clamp(36px, 5vw, 52px);
             margin-bottom: 20px;
             letter-spacing: -0.02em;
+            color: #ffffff;
         }
 
         .hero p {
             font-size: clamp(17px, 2vw, 20px);
-            color: #555;
+            color: #b0b0b8;
             max-width: 600px;
             margin: 0 auto;
             line-height: 1.6;
         }
 
-        /* ========== FOUNDER ========== */
+        /* ========== FOUNDER — Light ========== */
         .founder {
             padding: 88px 0 80px;
             background: #ffffff;
@@ -211,6 +217,16 @@
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid #c9a84c;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+        }
+
+        .founder-divider {
+            display: block;
+            width: 48px;
+            height: 2px;
+            background: #c9a84c;
+            border-radius: 1px;
+            margin: 18px auto 14px;
         }
 
         .founder-name {
@@ -218,7 +234,6 @@
             font-weight: 600;
             color: #1a1a2e;
             text-align: center;
-            margin-top: 16px;
             letter-spacing: 0.02em;
         }
 
@@ -273,12 +288,14 @@
             border-radius: 10px;
             padding: 36px 32px;
             border: 1px solid rgba(26, 26, 46, 0.06);
+            border-top: 3px solid #c9a84c;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: box-shadow 0.25s ease, transform 0.2s ease;
         }
 
         .approach-card:hover {
-            box-shadow: 0 8px 32px rgba(26, 26, 46, 0.08);
-            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
         }
 
         .approach-card h3 {
@@ -296,7 +313,7 @@
         /* ========== TEAM ========== */
         .team {
             padding: 80px 0 88px;
-            background: #ffffff;
+            background: #f8f9fa;
         }
 
         .team-accent {
@@ -344,7 +361,7 @@
             transform: translateY(-1px);
         }
 
-        /* ========== BOTTOM CTA ========== */
+        /* ========== BOTTOM CTA — Dark ========== */
         .bottom-cta {
             padding: 100px 0;
             background: #1a1a2e;
@@ -386,9 +403,9 @@
             color: #d4b55c;
         }
 
-        /* ========== FOOTER ========== */
+        /* ========== FOOTER — Dark ========== */
         .footer {
-            background: #1a1a2e;
+            background: #0d0d1a;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding: 48px 0;
         }
@@ -401,11 +418,9 @@
             gap: 16px;
         }
 
-        .footer-brand {
-            font-family: 'Playfair Display', serif;
-            font-size: 16px;
-            font-weight: 600;
-            color: #ffffff;
+        .footer-brand-logo {
+            height: 30px;
+            width: auto;
         }
 
         .footer-links {
@@ -415,12 +430,12 @@
 
         .footer-link {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.5);
+            color: #b0b0b8;
             transition: color 0.2s ease;
         }
 
         .footer-link:hover {
-            color: rgba(255, 255, 255, 0.8);
+            color: #c9a84c;
         }
 
         .footer-copy {
@@ -440,13 +455,13 @@
                 top: 72px;
                 left: 0;
                 right: 0;
-                background: rgba(255, 255, 255, 0.98);
+                background: rgba(26, 26, 46, 0.98);
                 backdrop-filter: blur(12px);
                 -webkit-backdrop-filter: blur(12px);
                 flex-direction: column;
                 padding: 32px 24px;
                 gap: 24px;
-                border-bottom: 1px solid rgba(26, 26, 46, 0.08);
+                border-bottom: 1px solid rgba(201, 168, 76, 0.2);
                 transform: translateY(-120%);
                 opacity: 0;
                 transition: transform 0.3s ease, opacity 0.25s ease;
@@ -522,7 +537,7 @@
             }
 
             .nav-logo {
-                font-size: 17px;
+                height: 30px;
             }
 
             .hero {
@@ -572,7 +587,7 @@
     <!-- ========== NAV ========== -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
         <div class="nav-inner">
-            <a href="/" class="nav-logo">Grand Vision Perspective</a>
+            <a href="/"><img src="../images/logo.jpg" alt="Grand Vision Perspective" class="nav-logo" style="height:36px;"></a>
             <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -591,6 +606,7 @@
     <!-- ========== HERO ========== -->
     <section class="hero">
         <div class="container">
+            <span class="hero-accent" aria-hidden="true"></span>
             <h1>About Us</h1>
             <p>We build systems that let people be people</p>
         </div>
@@ -602,6 +618,7 @@
             <div class="founder-layout">
                 <div class="founder-photo-wrap">
                     <img src="../images/founder.jpg" alt="Barrie, Founder of Grand Vision Perspective" class="founder-photo" width="180" height="180">
+                    <span class="founder-divider" aria-hidden="true"></span>
                     <p class="founder-name">Barrie</p>
                     <p class="founder-role">Founder</p>
                 </div>
@@ -656,7 +673,7 @@
             <h2>Want to work with us?</h2>
             <p>We would love to hear about your business and explore how we can help.</p>
             <a href="/contact/#book" class="btn">Book a Strategy Call</a>
-            <p class="bottom-cta-alt">Or email us at <a href="mailto:hello@grandvisionperspective.com">hello@grandvisionperspective.com</a></p>
+            <p class="bottom-cta-alt">Or email us at <a href="mailto:barrie@grandvisionperspective.com">barrie@grandvisionperspective.com</a></p>
         </div>
     </section>
 
@@ -664,7 +681,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-inner">
-                <span class="footer-brand">Grand Vision Perspective</span>
+                <a href="/"><img src="../images/logo.jpg" alt="Grand Vision Perspective" class="footer-brand-logo" style="height:30px;"></a>
                 <div class="footer-links">
                     <a href="/services/" class="footer-link">Services</a>
                     <a href="/about/" class="footer-link">About</a>
