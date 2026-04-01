@@ -461,6 +461,250 @@
             color: #b8953f;
         }
 
+        /* ===== WHAT WE BUILD ===== */
+        .wwb-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            margin-top: 48px;
+        }
+
+        .wwb-card {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .wwb-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        .wwb-header {
+            background: #1a1a2e;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .wwb-header-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #4ade80;
+            flex-shrink: 0;
+        }
+
+        .wwb-header-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+        }
+
+        .wwb-body {
+            padding: 20px 18px;
+        }
+
+        /* Mockup 1: Workflow Dashboard */
+        .wwb-stats-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .wwb-stat {
+            flex: 1;
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 10px 8px;
+            text-align: center;
+        }
+
+        .wwb-stat-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .wwb-stat-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .wwb-stat-dot--green { background: #4ade80; }
+        .wwb-stat-dot--amber { background: #fbbf24; }
+
+        .wwb-stat-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            color: #6b6b7b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
+        }
+
+        .wwb-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .wwb-bar {
+            height: 8px;
+            border-radius: 4px;
+        }
+
+        .wwb-bar--1 { width: 90%; background: #c9a84c; }
+        .wwb-bar--2 { width: 65%; background: #1a1a2e; }
+        .wwb-bar--3 { width: 80%; background: #dbbf6a; }
+        .wwb-bar--4 { width: 45%; background: #2d2d3a; }
+        .wwb-bar--5 { width: 70%; background: #c9a84c; }
+
+        .wwb-sync {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            color: #b0b0b8;
+            text-align: right;
+        }
+
+        /* Mockup 2: Financial Overview */
+        .wwb-revenue {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .wwb-revenue-amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #c9a84c;
+            line-height: 1.2;
+        }
+
+        .wwb-revenue-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            color: #6b6b7b;
+            margin-top: 2px;
+        }
+
+        .wwb-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 8px;
+            height: 60px;
+            margin-bottom: 14px;
+        }
+
+        .wwb-chart-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .wwb-chart-bar {
+            width: 20px;
+            background: #c9a84c;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .wwb-chart-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            color: #6b6b7b;
+            font-weight: 500;
+        }
+
+        .wwb-badge {
+            display: inline-block;
+            background: #ecfdf5;
+            color: #16a34a;
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .wwb-badge-wrap {
+            text-align: center;
+        }
+
+        /* Mockup 3: Client Pipeline */
+        .wwb-pipeline {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .wwb-pipeline-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wwb-pipeline-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            color: #2d2d3a;
+            width: 60px;
+            flex-shrink: 0;
+        }
+
+        .wwb-pipeline-track {
+            flex: 1;
+            height: 10px;
+            background: #f0f0f4;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .wwb-pipeline-fill {
+            height: 100%;
+            border-radius: 5px;
+            background: #c9a84c;
+        }
+
+        .wwb-pipeline-fill--won {
+            background: #4ade80;
+        }
+
+        .wwb-pipeline-count {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: #1a1a2e;
+            width: 16px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+
+        .wwb-conversion {
+            font-family: 'Inter', sans-serif;
+            font-size: 9px;
+            color: #b0b0b8;
+            text-align: right;
+            margin-top: 8px;
+        }
+
         /* ===== CASE STUDIES ===== */
         .case-cards {
             display: grid;
@@ -790,7 +1034,8 @@
             .pain-cards,
             .services-cards,
             .case-cards,
-            .testimonial-cards {
+            .testimonial-cards,
+            .wwb-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
 
@@ -871,7 +1116,7 @@
                     <li><a href="/contact/">Contact</a></li>
                 </ul>
                 <div class="nav-cta">
-                    <a href="https://calendar.app.google/57o9LrYSoyhYjQWm8" target="_blank" class="btn-primary">Book a Strategy Call</a>
+                    <a href="/contact/#book" class="btn-primary">Book a Strategy Call</a>
                 </div>
                 <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
                     <span></span>
@@ -888,7 +1133,7 @@
         <a href="/about/">About</a>
         <a href="/case-studies/">Case Studies</a>
         <a href="/contact/">Contact</a>
-        <a href="https://calendar.app.google/57o9LrYSoyhYjQWm8" target="_blank" class="btn-primary">Book a Strategy Call</a>
+        <a href="/contact/#book" class="btn-primary">Book a Strategy Call</a>
     </div>
 
     <!-- ===== HERO ===== -->
@@ -898,7 +1143,7 @@
                 <span class="hero-gold-line"></span>
                 <h1 class="hero-headline">We automate your business so you can focus on growing it</h1>
                 <p class="hero-sub">Management consultancy for businesses who want systems that work</p>
-                <a href="https://calendar.app.google/57o9LrYSoyhYjQWm8" target="_blank" class="btn-primary">Book a Free Strategy Call</a>
+                <a href="/contact/#book" class="btn-primary">Book a Free Strategy Call</a>
             </div>
         </div>
     </section>
@@ -989,6 +1234,134 @@
                     <p>Operational audits, roadmaps, and hands-on guidance to get you where you need to be.</p>
                     <span class="service-card-link">Learn more &rarr;</span>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHAT WE BUILD ===== -->
+    <section class="section-padding bg-light" id="what-we-build">
+        <div class="container text-center">
+            <span class="section-label">Showcase</span>
+            <h2 class="section-heading">What We Build</h2>
+            <p class="section-sub">A glimpse at the systems behind the results</p>
+            <div class="wwb-grid">
+
+                <!-- Mockup 1: Automated Workflow Dashboard -->
+                <div class="wwb-card fade-in">
+                    <div class="wwb-header">
+                        <span class="wwb-header-dot"></span>
+                        <span class="wwb-header-title">Workflow Monitor</span>
+                    </div>
+                    <div class="wwb-body">
+                        <div class="wwb-stats-row">
+                            <div class="wwb-stat">
+                                <div class="wwb-stat-value"><span class="wwb-stat-dot wwb-stat-dot--green"></span> 76</div>
+                                <div class="wwb-stat-label">Active</div>
+                            </div>
+                            <div class="wwb-stat">
+                                <div class="wwb-stat-value"><span class="wwb-stat-dot wwb-stat-dot--amber"></span> 12</div>
+                                <div class="wwb-stat-label">Queued</div>
+                            </div>
+                            <div class="wwb-stat">
+                                <div class="wwb-stat-value"><span class="wwb-stat-dot wwb-stat-dot--green"></span> 0</div>
+                                <div class="wwb-stat-label">Failed</div>
+                            </div>
+                        </div>
+                        <div class="wwb-bars">
+                            <div class="wwb-bar wwb-bar--1"></div>
+                            <div class="wwb-bar wwb-bar--2"></div>
+                            <div class="wwb-bar wwb-bar--3"></div>
+                            <div class="wwb-bar wwb-bar--4"></div>
+                            <div class="wwb-bar wwb-bar--5"></div>
+                        </div>
+                        <div class="wwb-sync">Last sync: 2 min ago</div>
+                    </div>
+                </div>
+
+                <!-- Mockup 2: Financial Overview -->
+                <div class="wwb-card fade-in">
+                    <div class="wwb-header">
+                        <span class="wwb-header-dot"></span>
+                        <span class="wwb-header-title">Financial Overview</span>
+                    </div>
+                    <div class="wwb-body">
+                        <div class="wwb-revenue">
+                            <div class="wwb-revenue-amount">$47,250</div>
+                            <div class="wwb-revenue-label">Monthly Revenue</div>
+                        </div>
+                        <div class="wwb-chart">
+                            <div class="wwb-chart-col">
+                                <div class="wwb-chart-bar" style="height:30px;"></div>
+                                <span class="wwb-chart-label">J</span>
+                            </div>
+                            <div class="wwb-chart-col">
+                                <div class="wwb-chart-bar" style="height:38px;"></div>
+                                <span class="wwb-chart-label">F</span>
+                            </div>
+                            <div class="wwb-chart-col">
+                                <div class="wwb-chart-bar" style="height:28px;"></div>
+                                <span class="wwb-chart-label">M</span>
+                            </div>
+                            <div class="wwb-chart-col">
+                                <div class="wwb-chart-bar" style="height:45px;"></div>
+                                <span class="wwb-chart-label">A</span>
+                            </div>
+                            <div class="wwb-chart-col">
+                                <div class="wwb-chart-bar" style="height:42px;"></div>
+                                <span class="wwb-chart-label">M</span>
+                            </div>
+                            <div class="wwb-chart-col">
+                                <div class="wwb-chart-bar" style="height:52px;"></div>
+                                <span class="wwb-chart-label">J</span>
+                            </div>
+                        </div>
+                        <div class="wwb-badge-wrap">
+                            <span class="wwb-badge">+12% vs last quarter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mockup 3: Client Pipeline -->
+                <div class="wwb-card fade-in">
+                    <div class="wwb-header">
+                        <span class="wwb-header-dot"></span>
+                        <span class="wwb-header-title">Client Pipeline</span>
+                    </div>
+                    <div class="wwb-body">
+                        <div class="wwb-pipeline">
+                            <div class="wwb-pipeline-row">
+                                <span class="wwb-pipeline-label">New Leads</span>
+                                <div class="wwb-pipeline-track">
+                                    <div class="wwb-pipeline-fill" style="width:80%;"></div>
+                                </div>
+                                <span class="wwb-pipeline-count">8</span>
+                            </div>
+                            <div class="wwb-pipeline-row">
+                                <span class="wwb-pipeline-label">Qualified</span>
+                                <div class="wwb-pipeline-track">
+                                    <div class="wwb-pipeline-fill" style="width:50%;"></div>
+                                </div>
+                                <span class="wwb-pipeline-count">5</span>
+                            </div>
+                            <div class="wwb-pipeline-row">
+                                <span class="wwb-pipeline-label">Proposal</span>
+                                <div class="wwb-pipeline-track">
+                                    <div class="wwb-pipeline-fill" style="width:30%;"></div>
+                                </div>
+                                <span class="wwb-pipeline-count">3</span>
+                            </div>
+                            <div class="wwb-pipeline-row">
+                                <span class="wwb-pipeline-label">Won</span>
+                                <div class="wwb-pipeline-track">
+                                    <div class="wwb-pipeline-fill wwb-pipeline-fill--won" style="width:20%;"></div>
+                                </div>
+                                <span class="wwb-pipeline-count">2</span>
+                            </div>
+                        </div>
+                        <div class="wwb-conversion">Conversion rate: 25%</div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -1104,7 +1477,7 @@
     <section class="final-cta text-center" id="cta">
         <div class="container">
             <h2>Ready to stop doing everything manually?</h2>
-            <a href="https://calendar.app.google/57o9LrYSoyhYjQWm8" target="_blank" class="btn-primary">Book a Free Strategy Call</a>
+            <a href="/contact/#book" class="btn-primary">Book a Free Strategy Call</a>
             <p class="final-cta-email">Or email <a href="mailto:barrie@grandvisionperspective.com">barrie@grandvisionperspective.com</a></p>
         </div>
     </section>
