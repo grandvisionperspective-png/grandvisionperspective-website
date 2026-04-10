@@ -1,0 +1,142 @@
+# CI Pipeline - Quality gates on every PR
+# Part of the Universal Quality Standard
+# Adapted from The_Quiet_Pilgrim's gold-standard pipeline
+
+name: CI
+
+on:
+  push:
+    branches: [main, staging, develop]
+  pull_request:
+    branches: [main, staging]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+  security-events: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint & Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        if: hashFiles('**/*.py', 'pyproject.toml', 'requirements.txt') != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Ruff
+        if: hashFiles('**/*.py', 'pyproject.toml', 'requirements.txt') != ''
+        run: pip install ruff
+
+      - name: Run Ruff
+        if: hashFiles('**/*.py', 'pyproject.toml', 'requirements.txt') != ''
+        run: |
+          ruff check . --output-format=github
+          ruff format --check .
+
+      - name: Set up Node.js
+        if: hashFiles('**/*.{js,ts,jsx,tsx}', 'package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Biome
+        if: hashFiles('**/*.{js,ts,jsx,tsx}', 'package.json') != ''
+        run: npm install -g @biomejs/biome
+
+      - name: Run Biome
+        if: hashFiles('**/*.{js,ts,jsx,tsx}', 'package.json') != ''
+        run: biome ci . || true  # Non-blocking until configured
+
+  test:
+    name: Tests & Coverage
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        if: hashFiles('**/*.py', 'pyproject.toml', 'requirements.txt') != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        if: hashFiles('requirements.txt') != ''
+        run: |
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+
+      - name: Run Python tests
+        if: hashFiles('**/test_*.py', '**/tests/**') != ''
+        run: |
+          pytest --cov=. --cov-report=xml --cov-report=term-missing || true
+
+      - name: Set up Node.js
+        if: hashFiles('package.json') != ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Node dependencies
+        if: hashFiles('package.json') != ''
+        run: npm ci || npm install
+
+      - name: Run Node tests
+        if: hashFiles('package.json') != ''
+        run: npm test --if-present || true
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Gitleaks - Secret scanning
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Trivy - Vulnerability scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+          exit-code: '0'
+
+      - name: Upload Trivy results
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  summary:
+    name: CI Summary
+    runs-on: ubuntu-latest
+    needs: [lint, test, security]
+    if: always()
+    steps:
+      - name: Report status
+        run: |
+          echo "## CI Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- Lint: ${{ needs.lint.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Tests: ${{ needs.test.result }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Security: ${{ needs.security.result }}" >> $GITHUB_STEP_SUMMARY

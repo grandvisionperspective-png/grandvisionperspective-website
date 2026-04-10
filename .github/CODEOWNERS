@@ -1,0 +1,15 @@
+# CODEOWNERS - auto-assigns reviewers for PRs
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# Part of the Universal Quality Standard
+
+# Default owner for everything in the repo
+*       @grandvisionperspective-png
+
+# CI/CD and quality infrastructure
+/.github/                   @grandvisionperspective-png
+/.pre-commit-config.yaml    @grandvisionperspective-png
+/.coderabbit.yaml           @grandvisionperspective-png
+
+# Documentation
+*.md                        @grandvisionperspective-png
+/docs/                      @grandvisionperspective-png
