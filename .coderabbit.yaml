@@ -1,0 +1,62 @@
+# CodeRabbit Configuration
+# https://docs.coderabbit.ai/getting-started/yaml-configuration
+# Part of the Universal Quality Standard (quality_standard_universal.md)
+
+language: "en-US"
+early_access: false
+
+reviews:
+  profile: "chill"  # "chill" = less verbose, "assertive" = more thorough
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - "main"
+      - "staging"
+
+  path_filters:
+    - "!**/*.min.js"
+    - "!**/*.min.css"
+    - "!**/node_modules/**"
+    - "!**/venv/**"
+    - "!**/.venv/**"
+    - "!**/__pycache__/**"
+    - "!**/dist/**"
+    - "!**/build/**"
+    - "!**/*.lock"
+
+  path_instructions:
+    - path: "**/*.py"
+      instructions: |
+        Review Python code for: PEP 8 compliance, type hints, docstrings on public functions,
+        proper exception handling (no bare except), resource management (context managers),
+        SQL injection risks, and memory efficiency. Flag any function over 50 lines.
+        Flag any hardcoded secrets, API keys, or credentials.
+
+    - path: "**/*.{js,ts,jsx,tsx}"
+      instructions: |
+        Review JavaScript/TypeScript for: async/await correctness, promise rejection handling,
+        memory leaks (event listeners, closures), XSS risks, proper error boundaries,
+        and performance (unnecessary re-renders, large bundle imports).
+
+    - path: "**/workflows/*.json"
+      instructions: |
+        These are n8n workflow JSON exports. Flag: (1) batch sizes over 100,
+        (2) workflows with more than 50 nodes, (3) Code nodes without timeout settings,
+        (4) missing error handlers, (5) continueOnFail on critical nodes,
+        (6) hardcoded credentials, (7) HTTP (not HTTPS) URLs, (8) webhooks without authentication.
+        This is CRITICAL - a memory-hungry n8n workflow caused a 2-day outage on 2026-04-06.
+
+    - path: ".github/workflows/*.yml"
+      instructions: |
+        Review GitHub Actions for: pinned action versions (not @main), secret handling,
+        permissions scoping (least privilege), and appropriate triggers.
+
+chat:
+  auto_reply: true
