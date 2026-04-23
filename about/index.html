@@ -93,52 +93,6 @@
             line-height: 1.7;
         }
 
-        /* Founder block */
-        .founder-block {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            align-items: center;
-            max-width: 920px;
-            margin: 0 auto;
-        }
-
-        .founder-media {
-            justify-self: center;
-        }
-
-        .founder-portrait {
-            width: 240px;
-            height: 240px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(201, 168, 76, 0.3);
-            box-shadow: 0 12px 32px rgba(26, 26, 46, 0.12);
-        }
-
-        .founder-body h2 {
-            margin-bottom: 12px;
-        }
-
-        .founder-tagline {
-            font-family: var(--font-display);
-            font-style: italic;
-            font-size: clamp(18px, 2vw, 22px);
-            color: var(--ink-heading);
-            margin-bottom: 24px;
-        }
-
-        .founder-body p {
-            font-size: clamp(16px, 1.6vw, 18px);
-            line-height: 1.85;
-            color: var(--ink);
-            margin-bottom: 20px;
-        }
-
-        .founder-body p:last-child {
-            margin-bottom: 0;
-        }
-
         @media (min-width: 600px) {
             .approach-grid {
                 grid-template-columns: 1fr 1fr;
@@ -149,18 +103,6 @@
         @media (min-width: 900px) {
             .approach-grid {
                 grid-template-columns: repeat(4, 1fr);
-            }
-            .founder-block {
-                grid-template-columns: 260px 1fr;
-                gap: 56px;
-                align-items: start;
-            }
-            .founder-media {
-                justify-self: start;
-            }
-            .founder-portrait {
-                width: 260px;
-                height: 260px;
             }
         }
     </style>
@@ -267,21 +209,17 @@
         </div>
     </section>
 
-    <!-- ==== FOUNDER ==== -->
+    <!-- ==== OUR TEAM ==== -->
     <section class="section section--paper">
         <div class="container">
-            <div class="founder-block reveal">
-                <div class="founder-media">
-                    <img src="../images/founder.jpg" alt="Barrie Elsden, Founder of Grand Vision Perspective" class="founder-portrait" width="260" height="260">
-                </div>
-                <div class="founder-body">
-                    <span class="eyebrow">Led by</span>
-                    <h2>Barrie Elsden</h2>
-                    <span class="gold-rule"></span>
-                    <p class="founder-tagline">Operations architecture and systems execution.</p>
-                    <p>Two decades working across franchises, startups, corporates, hospitality, construction, and conscious projects around the world. Based in Bali, partnering with businesses in Indonesia, Asia, and internationally.</p>
-                    <p>Every engagement is led directly, with hands-on experience in the domains we work across: finance operations, CRM and revenue systems, AI and data infrastructure, manufacturing coordination, and regulated industries.</p>
-                </div>
+            <div class="section-header reveal">
+                <span class="eyebrow">Our team</span>
+                <h2>International experience, grounded locally.</h2>
+                <span class="gold-rule"></span>
+            </div>
+            <div class="story-body reveal">
+                <p>Our team combines international strategic expertise with local operational knowledge. Working across Indonesia and Asia, we partner with businesses globally to design, build, and implement systems that last.</p>
+                <p>Every engagement is led by senior people with hands-on experience in the domains we work across: finance operations, CRM and revenue systems, AI and data infrastructure, manufacturing coordination, and regulated industries.</p>
             </div>
         </div>
     </section>

@@ -35,22 +35,8 @@
         .approach-card h3::before { content: ''; display: block; width: 32px; height: 2px; background: var(--gold); margin-bottom: 14px; }
         .approach-card p { font-size: 15px; color: var(--ink-muted); line-height: 1.7; }
 
-        /* Founder block */
-        .founder-block { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; max-width: 920px; margin: 0 auto; }
-        .founder-media { justify-self: center; }
-        .founder-portrait { width: 240px; height: 240px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(201, 168, 76, 0.3); box-shadow: 0 12px 32px rgba(26, 26, 46, 0.12); }
-        .founder-body h2 { margin-bottom: 12px; }
-        .founder-tagline { font-family: var(--font-display); font-style: italic; font-size: clamp(18px, 2vw, 22px); color: var(--ink-heading); margin-bottom: 24px; }
-        .founder-body p { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.85; color: var(--ink); margin-bottom: 20px; }
-        .founder-body p:last-child { margin-bottom: 0; }
-
         @media (min-width: 600px) { .approach-grid { grid-template-columns: 1fr 1fr; gap: 24px; } }
-        @media (min-width: 900px) {
-            .approach-grid { grid-template-columns: repeat(4, 1fr); }
-            .founder-block { grid-template-columns: 260px 1fr; gap: 56px; align-items: start; }
-            .founder-media { justify-self: start; }
-            .founder-portrait { width: 260px; height: 260px; }
-        }
+        @media (min-width: 900px) { .approach-grid { grid-template-columns: repeat(4, 1fr); } }
     </style>
 </head>
 <body>
@@ -151,18 +137,14 @@
 
     <section class="section section--paper">
         <div class="container">
-            <div class="founder-block reveal">
-                <div class="founder-media">
-                    <img src="../../images/founder.jpg" alt="Barrie Elsden, Founder Grand Vision Perspective" class="founder-portrait" width="260" height="260">
-                </div>
-                <div class="founder-body">
-                    <span class="eyebrow">Dipimpin oleh</span>
-                    <h2>Barrie Elsden</h2>
-                    <span class="gold-rule"></span>
-                    <p class="founder-tagline">Arsitektur operasional dan eksekusi sistem.</p>
-                    <p>Dua dekade bekerja di franchise, startup, korporat, perhotelan, konstruksi, dan proyek-proyek conscious di seluruh dunia. Berbasis di Bali, bermitra dengan bisnis di Indonesia, Asia, dan internasional.</p>
-                    <p>Setiap proyek dipimpin langsung, dengan pengalaman tangan di domain yang kami kerjakan: operasional keuangan, CRM dan sistem revenue, infrastruktur AI dan data, koordinasi manufaktur, serta industri yang teregulasi.</p>
-                </div>
+            <div class="section-header reveal">
+                <span class="eyebrow">Tim kami</span>
+                <h2>Pengalaman internasional, berakar lokal.</h2>
+                <span class="gold-rule"></span>
+            </div>
+            <div class="story-body reveal">
+                <p>Tim kami memadukan keahlian strategis internasional dengan pengetahuan operasional lokal. Bekerja di Indonesia dan Asia, kami bermitra dengan bisnis di seluruh dunia untuk merancang, membangun, dan mengimplementasikan sistem yang bertahan.</p>
+                <p>Setiap proyek dipimpin oleh orang-orang senior dengan pengalaman langsung di domain yang kami kerjakan: operasional keuangan, CRM dan sistem revenue, infrastruktur AI dan data, koordinasi manufaktur, serta industri yang teregulasi.</p>
             </div>
         </div>
     </section>
