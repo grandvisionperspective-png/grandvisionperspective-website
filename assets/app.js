@@ -36,8 +36,21 @@
         document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => el.classList.add('visible'));
     }
 
-    // Animated number counters on stats
+    // Animated number counters on stats.
+    // Locale follows the page's <html lang> so EN renders 27,715 and ID renders 27.715
+    // regardless of the user's browser locale.
+    const pageLocale = document.documentElement.lang === 'id' ? 'id-ID' : 'en-US';
     const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+    const formatNumber = (value, decimals) => {
+        if (decimals > 0) {
+            return value.toLocaleString(pageLocale, {
+                minimumFractionDigits: decimals,
+                maximumFractionDigits: decimals,
+            });
+        }
+        return Math.floor(value).toLocaleString(pageLocale);
+    };
 
     const animateNumber = (el) => {
         const target = parseFloat(el.dataset.target);
@@ -52,7 +65,7 @@
             const progress = Math.min(elapsed / duration, 1);
             const eased = easeOutCubic(progress);
             const value = target * eased;
-            el.textContent = prefix + (decimals > 0 ? value.toFixed(decimals) : Math.floor(value).toLocaleString()) + suffix;
+            el.textContent = prefix + formatNumber(value, decimals) + suffix;
             if (progress < 1) requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
@@ -73,7 +86,7 @@
         document.querySelectorAll('[data-target]').forEach((el) => {
             const t = parseFloat(el.dataset.target);
             const decimals = parseInt(el.dataset.decimals || '0', 10);
-            el.textContent = (el.dataset.prefix || '') + (decimals > 0 ? t.toFixed(decimals) : t.toLocaleString()) + (el.dataset.suffix || '');
+            el.textContent = (el.dataset.prefix || '') + formatNumber(t, decimals) + (el.dataset.suffix || '');
         });
     }
 })();

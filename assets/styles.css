@@ -1264,6 +1264,6 @@ p {
 
 .nav-mobile .lang-toggle {
     margin-top: 24px;
-    align-self: flex-start;
+    align-self: center;
     font-size: 15px;
 }
