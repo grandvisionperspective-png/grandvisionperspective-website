@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grand Vision Perspective — Management Consultancy | Business Automation & Digital Operations</title>
+    <title>Grand Vision Perspective — Management Consultancy | Business Automation &amp; Digital Operations</title>
     <meta name="description" content="We automate your business so you can focus on growing it. Management consultancy specialising in business automation, digital operations, and strategic advisory.">
-    <meta property="og:title" content="Grand Vision Perspective — Management Consultancy | Business Automation & Digital Operations">
+    <meta property="og:title" content="Grand Vision Perspective — Management Consultancy">
     <meta property="og:description" content="We automate your business so you can focus on growing it. Management consultancy specialising in business automation, digital operations, and strategic advisory.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://grandvisionperspective.com">
     <link rel="canonical" href="https://grandvisionperspective.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="images/bg-workflow.png">
+    <link rel="stylesheet" href="assets/styles.css">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -26,1094 +28,345 @@
     }
     </script>
     <style>
-        /* ===== RESET & BASE ===== */
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: #2d2d3a;
-            background: #ffffff;
-            line-height: 1.7;
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-            color: #1a1a2e;
-            line-height: 1.3;
-            font-weight: 600;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* ===== UTILITY ===== */
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .section-padding {
-            padding: 80px 0;
-        }
-
-        .section-padding-lg {
-            padding: 100px 0;
-        }
-
-        .bg-white {
-            background: #ffffff;
-        }
-
-        .bg-light {
-            background: #f8f9fa;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .gold-rule {
-            display: block;
-            width: 60px;
-            height: 2px;
-            background: #c9a84c;
-            margin: 24px auto;
-        }
-
-        /* ===== BUTTONS ===== */
-        .btn-primary {
-            display: inline-block;
-            background: #c9a84c;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            padding: 14px 32px;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .btn-primary:hover {
-            background: #b8953f;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
-        }
-
-        .btn-secondary {
-            display: inline-block;
-            color: #1a1a2e;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 0.3px;
-            padding: 14px 32px;
-            border: 1px solid #1a1a2e;
-            border-radius: 4px;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background: #1a1a2e;
-            color: #ffffff;
-        }
-
-        /* ===== NAV ===== */
-        .nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(26, 26, 46, 0.97);
-            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .nav-inner {
+        /* Page-specific CSS that extends the shared system */
+        .hero-home {
+            min-height: 640px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            height: 72px;
+            background:
+                linear-gradient(135deg, rgba(26, 26, 46, 0.82) 0%, rgba(13, 13, 26, 0.92) 100%),
+                url('images/bg-workflow.png') center/cover no-repeat;
+            position: relative;
         }
 
-        .nav-logo {
-            height: 36px;
-            width: auto;
+        .hero-home::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 85%, var(--navy-deep) 100%);
+            pointer-events: none;
         }
 
-        .nav-links {
-            display: none;
-            align-items: center;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #b0b0b8;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #c9a84c;
-        }
-
-        .nav-cta {
-            display: none;
-        }
-
-        .nav-cta .btn-primary {
-            font-size: 11px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 10px 22px;
-        }
-
-        /* Mobile hamburger */
-        .nav-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .nav-toggle span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: #b0b0b8;
-            border-radius: 2px;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        /* Mobile menu overlay */
-        .nav-mobile {
-            display: none;
-            position: fixed;
-            top: 72px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(26, 26, 46, 0.98);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 999;
-            padding: 40px 24px;
-        }
-
-        .nav-mobile.active {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 28px;
-        }
-
-        .nav-mobile a {
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #b0b0b8;
-            transition: color 0.3s ease;
-        }
-
-        .nav-mobile a:hover {
-            color: #c9a84c;
-        }
-
-        .nav-mobile .btn-primary {
-            margin-top: 12px;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            background: linear-gradient(135deg, rgba(26,26,46,0.92) 0%, rgba(13,13,26,0.95) 100%),
-                        url('images/bg-dashboard.png') center/cover no-repeat;
-            padding: 80px 0 100px;
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero-gold-line {
-            display: block;
-            width: 40px;
-            height: 2px;
-            background: #c9a84c;
-            margin-bottom: 32px;
-        }
-
-        .hero-headline {
-            font-size: clamp(32px, 5vw, 48px);
-            max-width: 700px;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
-
-        .hero-sub {
-            font-size: clamp(15px, 2vw, 16px);
-            color: #b0b0b8;
-            max-width: 520px;
-            margin-bottom: 36px;
-        }
-
-        /* ===== TRUST BAR ===== */
-        .trust-bar {
-            background: #12121e;
+        .hero-home .hero-inner {
+            position: relative;
+            z-index: 2;
             padding: 48px 0;
         }
 
-        .trust-label {
-            font-size: 13px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            color: #b0b0b8;
+        .hero-home h1 {
+            color: var(--white);
+            font-size: clamp(40px, 6vw, 72px);
+            line-height: 1.02;
+            letter-spacing: -0.03em;
             margin-bottom: 28px;
+            font-weight: 600;
+            max-width: 920px;
         }
 
-        .trust-items {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            max-width: 600px;
-            margin: 0 auto;
+        .hero-home h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold-hi);
         }
 
-        .trust-item {
+        .hero-home .hero-lead {
+            max-width: 560px;
+            margin-bottom: 40px;
+        }
+
+        .hero-home .hero-locations {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            margin-top: 44px;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.45);
         }
 
-        .trust-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(201, 168, 76, 0.1);
-            border: 1px solid rgba(201, 168, 76, 0.25);
+        .hero-home .hero-locations::before {
+            content: '';
+            display: inline-block;
+            width: 32px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        /* Stats band */
+        .stats-band {
+            padding: 64px 0;
+            background: var(--cream);
+            border-top: 1px solid var(--cream-deep);
+            border-bottom: 1px solid var(--cream-deep);
+        }
+
+        /* Problems cards */
+        .problem-card {
+            background: var(--white);
+            padding: 32px 28px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(26, 26, 46, 0.05);
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow var(--duration-base) var(--ease),
+                        transform var(--duration-base) var(--ease);
+            height: 100%;
             display: flex;
+            flex-direction: column;
+        }
+
+        .problem-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+        }
+
+        .problem-icon {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            transition: background 0.3s ease;
-        }
-
-        .trust-icon svg {
-            width: 18px;
-            height: 18px;
-            color: #c9a84c;
-        }
-
-        .trust-item span {
-            font-size: 13px;
-            font-weight: 500;
-            color: #c9a84c;
-        }
-
-        /* ===== PAIN POINTS ===== */
-        .pain-cards {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .pain-card {
-            background: #ffffff;
-            border-top: 3px solid #c9a84c;
-            padding: 36px 32px;
-            border-radius: 0 0 6px 6px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .pain-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .pain-card h3 {
+            width: 48px;
+            height: 48px;
+            background: var(--gold-tint);
+            border: 1px solid var(--gold-border);
+            border-radius: var(--radius-sm);
+            margin-bottom: 20px;
+            color: var(--gold);
+            font-family: var(--font-display);
+            font-weight: 600;
             font-size: 20px;
-            margin-bottom: 10px;
         }
 
-        .pain-card p {
+        .problem-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--ink-heading);
+        }
+
+        .problem-card p {
             font-size: 15px;
-            color: #6b6b7b;
-            line-height: 1.6;
+            color: var(--ink-muted);
+            line-height: 1.7;
         }
 
-        /* ===== SERVICES PREVIEW ===== */
-        .services-cards {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            margin-top: 48px;
-        }
-
+        /* Service cards */
         .service-card {
-            background: #ffffff;
-            padding: 40px 32px;
-            border-radius: 6px;
-            border: 1px solid #e8e8ee;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+            background: var(--white);
+            padding: 36px 32px 32px;
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(26, 26, 46, 0.05);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--duration-base) var(--ease);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--duration-slow) var(--ease);
         }
 
         .service-card:hover {
-            border-color: #c9a84c;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-lg);
             transform: translateY(-4px);
+            border-color: var(--gold-border);
         }
 
-        .service-card-icon {
-            width: 48px;
-            height: 48px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            transition: background 0.3s ease;
-        }
-
-        .service-card:hover .service-card-icon {
-            background: rgba(201, 168, 76, 0.1);
-        }
-
-        .service-card-icon svg {
-            width: 24px;
-            height: 24px;
-            color: #c9a84c;
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
 
         .service-card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #c9a84c;
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: var(--ink-heading);
         }
 
         .service-card p {
             font-size: 15px;
-            color: #6b6b7b;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            color: var(--ink-muted);
+            line-height: 1.7;
+            margin-bottom: 24px;
+            flex-grow: 1;
         }
 
-        .service-card-link {
+        .service-card a {
             font-size: 13px;
             font-weight: 600;
-            color: #c9a84c;
-            letter-spacing: 0.3px;
-            transition: color 0.3s ease;
+            letter-spacing: 0.5px;
+            color: var(--gold);
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap var(--duration-base) var(--ease), color var(--duration-base) var(--ease);
         }
 
-        .service-card-link:hover {
-            color: #b8953f;
+        .service-card a::after {
+            content: '→';
         }
 
-        /* ===== WHAT WE BUILD ===== */
-        #what-we-build {
-            background: linear-gradient(135deg, rgba(248,249,250,0.95) 0%, rgba(255,255,255,0.97) 100%),
-                        url('images/bg-workflow.png') center/cover no-repeat;
+        .service-card a:hover {
+            color: var(--gold-hover);
+            gap: 10px;
         }
 
-        .wwb-grid {
+        /* Process steps */
+        .process-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 28px;
-            margin-top: 48px;
+            position: relative;
         }
 
-        .wwb-card {
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .process-step {
+            position: relative;
+            padding: 32px 28px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(26, 26, 46, 0.06);
+            box-shadow: var(--shadow-sm);
         }
 
-        .wwb-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
-        }
-
-        .wwb-header {
-            background: #1a1a2e;
-            padding: 8px 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .wwb-header-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #4ade80;
-            flex-shrink: 0;
-        }
-
-        .wwb-header-title {
-            font-family: 'Inter', sans-serif;
-            font-size: 10px;
-            font-weight: 600;
-            color: #ffffff;
-            letter-spacing: 0.3px;
-        }
-
-        .wwb-body {
-            padding: 20px 18px;
-        }
-
-        /* Mockup 1: Workflow Dashboard */
-        .wwb-stats-row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .wwb-stat {
-            flex: 1;
-            background: #f8f9fa;
-            border-radius: 6px;
-            padding: 10px 8px;
-            text-align: center;
-        }
-
-        .wwb-stat-value {
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            color: #1a1a2e;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-
-        .wwb-stat-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
+        .process-step-number {
             display: inline-block;
-            flex-shrink: 0;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 48px;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 16px;
+            opacity: 0.9;
         }
 
-        .wwb-stat-dot--green { background: #4ade80; }
-        .wwb-stat-dot--amber { background: #fbbf24; }
-
-        .wwb-stat-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 9px;
-            color: #6b6b7b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 2px;
-        }
-
-        .wwb-bars {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+        .process-step h3 {
+            font-size: 20px;
             margin-bottom: 12px;
         }
 
-        .wwb-bar {
-            height: 8px;
-            border-radius: 4px;
-        }
-
-        .wwb-bar--1 { width: 90%; background: #c9a84c; }
-        .wwb-bar--2 { width: 65%; background: #1a1a2e; }
-        .wwb-bar--3 { width: 80%; background: #dbbf6a; }
-        .wwb-bar--4 { width: 45%; background: #2d2d3a; }
-        .wwb-bar--5 { width: 70%; background: #c9a84c; }
-
-        .wwb-sync {
-            font-family: 'Inter', sans-serif;
-            font-size: 9px;
-            color: #b0b0b8;
-            text-align: right;
-        }
-
-        /* Mockup 2: Financial Overview */
-        .wwb-revenue {
-            text-align: center;
-            margin-bottom: 18px;
-        }
-
-        .wwb-revenue-amount {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: #c9a84c;
-            line-height: 1.2;
-        }
-
-        .wwb-revenue-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 10px;
-            color: #6b6b7b;
-            margin-top: 2px;
-        }
-
-        .wwb-chart {
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 8px;
-            height: 60px;
-            margin-bottom: 14px;
-        }
-
-        .wwb-chart-col {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .wwb-chart-bar {
-            width: 20px;
-            background: #c9a84c;
-            border-radius: 3px 3px 0 0;
-        }
-
-        .wwb-chart-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 9px;
-            color: #6b6b7b;
-            font-weight: 500;
-        }
-
-        .wwb-badge {
-            display: inline-block;
-            background: #ecfdf5;
-            color: #16a34a;
-            font-family: 'Inter', sans-serif;
-            font-size: 10px;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 20px;
-            text-align: center;
-        }
-
-        .wwb-badge-wrap {
-            text-align: center;
-        }
-
-        /* Mockup 3: Client Pipeline */
-        .wwb-pipeline {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .wwb-pipeline-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .wwb-pipeline-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 10px;
-            font-weight: 500;
-            color: #2d2d3a;
-            width: 60px;
-            flex-shrink: 0;
-        }
-
-        .wwb-pipeline-track {
-            flex: 1;
-            height: 10px;
-            background: #f0f0f4;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .wwb-pipeline-fill {
-            height: 100%;
-            border-radius: 5px;
-            background: #c9a84c;
-        }
-
-        .wwb-pipeline-fill--won {
-            background: #4ade80;
-        }
-
-        .wwb-pipeline-count {
-            font-family: 'Inter', sans-serif;
-            font-size: 11px;
-            font-weight: 700;
-            color: #1a1a2e;
-            width: 16px;
-            text-align: right;
-            flex-shrink: 0;
-        }
-
-        .wwb-conversion {
-            font-family: 'Inter', sans-serif;
-            font-size: 9px;
-            color: #b0b0b8;
-            text-align: right;
-            margin-top: 8px;
-        }
-
-        /* ===== CASE STUDIES ===== */
-        .case-cards {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .case-card {
-            background: #ffffff;
-            padding: 36px 32px;
-            border-radius: 6px;
-            border: 1px solid #e8e8ee;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-        }
-
-        .case-card:hover {
-            border-color: #c9a84c;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-            transform: translateY(-4px);
-        }
-
-        .case-stat {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(32px, 5vw, 44px);
-            font-weight: 700;
-            color: #c9a84c;
-            margin-bottom: 8px;
-        }
-
-        .case-card h3 {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-
-        .case-card p {
-            font-size: 14px;
-            color: #6b6b7b;
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
-
-        .case-card-link {
-            font-size: 13px;
-            font-weight: 600;
-            color: #c9a84c;
-            letter-spacing: 0.3px;
-            transition: color 0.3s ease;
-        }
-
-        .case-card-link:hover {
-            color: #b8953f;
-        }
-
-        /* ===== HOW IT WORKS ===== */
-        .steps {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 0;
-            margin-top: 48px;
-        }
-
-        .step {
-            display: flex;
-            gap: 24px;
-            align-items: flex-start;
-            position: relative;
-            padding-bottom: 40px;
-        }
-
-        .step:last-child {
-            padding-bottom: 0;
-        }
-
-        /* Connecting gold line between steps */
-        .step::after {
-            content: '';
-            position: absolute;
-            left: 23px;
-            top: 52px;
-            width: 2px;
-            height: calc(100% - 52px);
-            background: linear-gradient(to bottom, #c9a84c, rgba(201, 168, 76, 0.2));
-        }
-
-        .step:last-child::after {
-            display: none;
-        }
-
-        .step-number {
-            width: 48px;
-            height: 48px;
-            min-width: 48px;
-            border-radius: 50%;
-            background: #c9a84c;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            font-weight: 700;
-            color: #1a1a2e;
-            position: relative;
-            z-index: 1;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .step:hover .step-number {
-            transform: scale(1.1);
-            box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
-        }
-
-        .step-content h3 {
-            font-size: 20px;
-            margin-bottom: 6px;
-        }
-
-        .step-content p {
+        .process-step p {
             font-size: 15px;
-            color: #6b6b7b;
-            line-height: 1.6;
+            color: var(--ink-muted);
+            line-height: 1.7;
         }
 
-        /* ===== ABOUT SNIPPET ===== */
-        .about-snippet {
-            max-width: 680px;
-            margin: 0 auto;
+        /* Featured results */
+        .result-item {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            padding: 32px 0;
+            border-bottom: 1px solid rgba(26, 26, 46, 0.08);
+            align-items: center;
         }
 
-        .about-snippet p {
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-stat {
+            font-family: var(--font-display);
+            font-size: clamp(32px, 4.5vw, 48px);
+            font-weight: 600;
+            color: var(--gold);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .result-item p {
             font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 16px;
+            line-height: 1.7;
+            color: var(--ink);
         }
 
-        .about-snippet .location {
-            font-size: 14px;
-            color: #6b6b7b;
-            font-weight: 500;
+        /* About teaser */
+        .about-teaser {
+            max-width: 760px;
+        }
+
+        .about-teaser p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--ink);
             margin-bottom: 24px;
         }
 
-        .about-link {
-            font-size: 14px;
-            font-weight: 600;
-            color: #c9a84c;
-            transition: color 0.3s ease;
-        }
-
-        .about-link:hover {
-            color: #b8953f;
-        }
-
-        /* ===== TESTIMONIALS ===== */
-        .testimonial-cards {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .testimonial-card {
-            background: #ffffff;
-            padding: 36px 32px;
-            border-radius: 6px;
-            border: 1px solid #e8e8ee;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-        }
-
-        .testimonial-card:hover {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            transform: translateY(-2px);
-        }
-
-        .testimonial-quote {
-            font-size: 15px;
-            font-style: italic;
-            line-height: 1.7;
-            color: #2d2d3a;
-            margin-bottom: 20px;
-        }
-
-        .testimonial-quote::before {
-            content: "\201C";
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            color: #c9a84c;
-            line-height: 0;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .testimonial-author {
-            font-size: 13px;
-            font-weight: 600;
-            color: #1a1a2e;
-        }
-
-        .testimonial-role {
-            font-size: 12px;
-            color: #6b6b7b;
-        }
-
-        .testimonial-placeholder {
-            font-size: 14px;
-            color: #6b6b7b;
-            font-style: italic;
-            margin-top: 24px;
-        }
-
-        /* ===== FINAL CTA ===== */
+        /* Final CTA */
         .final-cta {
-            background: #1a1a2e;
-            padding: 80px 0;
+            text-align: center;
         }
 
         .final-cta h2 {
-            color: #ffffff;
-            font-size: clamp(24px, 4vw, 34px);
-            margin-bottom: 28px;
-        }
-
-        .final-cta .btn-primary {
             margin-bottom: 20px;
         }
 
-        .final-cta-email {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
+        .final-cta .lead {
+            margin: 0 auto 40px;
+            color: rgba(255, 255, 255, 0.65);
         }
 
-        .final-cta-email a {
-            color: #c9a84c;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            transition: color 0.3s ease;
-        }
-
-        .final-cta-email a:hover {
-            color: #dbbf6a;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            border-top: 2px solid #c9a84c;
-            background: #0d0d1a;
-            padding: 48px 0 40px;
-        }
-
-        .footer-inner {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .footer-logo {
-            height: 30px;
-            width: auto;
-        }
-
-        .footer-links {
+        .final-cta-actions {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 24px;
-            list-style: none;
+            gap: 14px;
+            margin-bottom: 28px;
         }
 
-        .footer-links a {
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #b0b0b8;
-            transition: color 0.3s ease;
+        .final-cta-email {
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.4);
         }
 
-        .footer-links a:hover {
-            color: #c9a84c;
+        .final-cta-email a {
+            color: var(--gold);
         }
 
-        .footer-email {
-            font-size: 14px;
-            color: #6b6b7b;
+        .final-cta-email a:hover {
+            color: var(--gold-hi);
         }
 
-        .footer-email a {
-            color: #c9a84c;
-            transition: color 0.3s ease;
-        }
-
-        .footer-email a:hover {
-            color: #dbbf6a;
-        }
-
-        .footer-copy {
-            font-size: 12px;
-            color: #6b6b7b;
-        }
-
-        /* ===== SECTION HEADINGS ===== */
-        .section-label {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #c9a84c;
-            margin-bottom: 12px;
-        }
-
-        .section-heading {
-            font-size: clamp(26px, 4vw, 34px);
-            margin-bottom: 16px;
-        }
-
-        .section-sub {
-            font-size: 15px;
-            color: #6b6b7b;
-            max-width: 520px;
-            margin: 0 auto;
-        }
-
-        /* ===== RESPONSIVE — TABLET (768px+) ===== */
         @media (min-width: 768px) {
-            .pain-cards,
-            .services-cards,
-            .case-cards,
-            .testimonial-cards,
-            .wwb-grid {
+            .hero-home {
+                min-height: 720px;
+            }
+            .process-grid {
                 grid-template-columns: repeat(3, 1fr);
+                gap: 32px;
             }
-
-            .steps {
-                gap: 0;
-            }
-
-            .trust-items {
-                grid-template-columns: repeat(4, 1fr);
-            }
-
-            .section-padding {
-                padding: 100px 0;
-            }
-
-            .section-padding-lg {
-                padding: 120px 0;
-            }
-
-            .hero {
-                padding: 100px 0 120px;
+            .result-item {
+                grid-template-columns: 240px 1fr;
+                gap: 48px;
+                padding: 40px 0;
             }
         }
 
-        /* ===== RESPONSIVE — DESKTOP (1024px+) ===== */
         @media (min-width: 1024px) {
-            .nav-links {
-                display: flex;
+            .hero-home h1 {
+                font-size: clamp(48px, 6.5vw, 76px);
             }
-
-            .nav-cta {
-                display: block;
-            }
-
-            .nav-toggle {
-                display: none;
-            }
-
-            .container {
-                padding: 0 40px;
-            }
-
-            .pain-card {
-                padding: 40px 32px;
-            }
-
-            .service-card {
-                padding: 44px 32px;
-            }
-        }
-
-        /* ===== ANIMATIONS ===== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== NAV ===== -->
+    <!-- ==== NAV ==== -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
         <div class="container">
             <div class="nav-inner">
                 <a href="/" aria-label="Grand Vision Perspective Home">
-                    <img src="images/logo.jpg" alt="Grand Vision Perspective" class="nav-logo" style="height:36px;">
+                    <img src="images/logo.jpg" alt="Grand Vision Perspective" class="nav-logo" width="120" height="32" style="height:32px;width:auto;">
                 </a>
                 <ul class="nav-links">
                     <li><a href="/services/">Services</a></li>
@@ -1122,7 +375,7 @@
                     <li><a href="/contact/">Contact</a></li>
                 </ul>
                 <div class="nav-cta">
-                    <a href="/contact/#book" class="btn-primary">Book a Strategy Call</a>
+                    <a href="/contact/#book" class="btn btn-primary btn-sm">Book a Strategy Call</a>
                 </div>
                 <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
                     <span></span>
@@ -1131,368 +384,224 @@
                 </button>
             </div>
         </div>
+        <div class="nav-mobile" role="menu">
+            <a href="/services/" role="menuitem">Services</a>
+            <a href="/about/" role="menuitem">About</a>
+            <a href="/case-studies/" role="menuitem">Case Studies</a>
+            <a href="/contact/" role="menuitem">Contact</a>
+            <a href="/contact/#book" class="btn btn-primary" role="menuitem">Book a Strategy Call</a>
+        </div>
     </nav>
 
-    <!-- Mobile menu overlay -->
-    <div class="nav-mobile" id="navMobile" role="dialog" aria-label="Mobile navigation">
-        <a href="/services/">Services</a>
-        <a href="/about/">About</a>
-        <a href="/case-studies/">Case Studies</a>
-        <a href="/contact/">Contact</a>
-        <a href="/contact/#book" class="btn-primary">Book a Strategy Call</a>
-    </div>
-
-    <!-- ===== HERO ===== -->
-    <section class="hero" id="hero">
+    <!-- ==== HERO ==== -->
+    <section class="hero hero-home">
         <div class="container">
-            <div class="hero-content">
-                <span class="hero-gold-line"></span>
-                <h1 class="hero-headline">We automate your business so you can focus on growing it</h1>
-                <p class="hero-sub">Management consultancy for businesses who want systems that work</p>
-                <a href="/contact/#book" class="btn-primary">Book a Free Strategy Call</a>
+            <div class="hero-inner reveal">
+                <span class="eyebrow" style="color: var(--gold-hi);">Management Consultancy</span>
+                <h1>We automate your business <em>so you can focus</em> on growing it.</h1>
+                <p class="hero-lead">Practical systems for businesses that have outgrown spreadsheets and manual follow-ups. We design, build, and hand over the operations stack that lets your team do the work only humans can do.</p>
+                <div class="hero-actions">
+                    <a href="/contact/#book" class="btn btn-primary">Book a Strategy Call</a>
+                    <a href="/case-studies/" class="btn btn-ghost-light btn-arrow">See our work</a>
+                </div>
+                <div class="hero-locations">Working across Indonesia and Asia</div>
             </div>
         </div>
     </section>
 
-    <!-- ===== TRUST BAR ===== -->
-    <section class="trust-bar" aria-label="Trust indicators">
-        <div class="container text-center">
-            <p class="trust-label">Working with businesses across 4 countries</p>
-            <div class="trust-items">
-                <div class="trust-item">
-                    <div class="trust-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-                    </div>
-                    <span>Automation</span>
+    <!-- ==== STATS BAND ==== -->
+    <section class="stats-band">
+        <div class="container">
+            <div class="stats stats--4 reveal-stagger">
+                <div class="stat">
+                    <span class="stat-number" data-target="90" data-suffix="%">0</span>
+                    <span class="stat-label">Manual accounting reduced</span>
                 </div>
-                <div class="trust-item">
-                    <div class="trust-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                    </div>
-                    <span>Operations</span>
+                <div class="stat">
+                    <span class="stat-number" data-target="27715">0</span>
+                    <span class="stat-label">Files organised across 16 cloud drives</span>
                 </div>
-                <div class="trust-item">
-                    <div class="trust-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                    </div>
-                    <span>Advisory</span>
+                <div class="stat">
+                    <span class="stat-number" data-target="15" data-suffix="+">0</span>
+                    <span class="stat-label">Hours reclaimed per week</span>
                 </div>
-                <div class="trust-item">
-                    <div class="trust-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                    </div>
-                    <span>Global</span>
+                <div class="stat">
+                    <span class="stat-number" data-target="88">0</span>
+                    <span class="stat-label">Workflows audited and rehabilitated</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== PAIN POINTS ===== -->
-    <section class="section-padding bg-white" id="pain-points">
-        <div class="container text-center">
-            <span class="section-label">Sound familiar?</span>
-            <h2 class="section-heading">The problems we solve</h2>
-            <div class="pain-cards">
-                <div class="pain-card fade-in">
-                    <h3>Drowning in manual processes?</h3>
+    <!-- ==== PROBLEMS ==== -->
+    <section class="section section--paper">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">The problems we solve</span>
+                <h2>If any of these sound familiar, we should talk.</h2>
+                <span class="gold-rule"></span>
+            </div>
+            <div class="card-grid card-grid--3 reveal-stagger">
+                <div class="problem-card">
+                    <span class="problem-icon">01</span>
+                    <h3>Drowning in manual processes</h3>
                     <p>Your team spends hours on tasks that should take minutes. Spreadsheets, copy-paste, and manual follow-ups are draining your capacity.</p>
                 </div>
-                <div class="pain-card fade-in">
-                    <h3>Systems that don't talk to each other?</h3>
+                <div class="problem-card">
+                    <span class="problem-icon">02</span>
+                    <h3>Systems that don't talk to each other</h3>
                     <p>Your CRM, accounting, and project tools all hold different versions of the truth. Nothing is connected, nothing is synced.</p>
                 </div>
-                <div class="pain-card fade-in">
-                    <h3>Growing but your operations can't keep up?</h3>
+                <div class="problem-card">
+                    <span class="problem-icon">03</span>
+                    <h3>Growing but operations can't keep up</h3>
                     <p>Revenue is climbing but your back-office is held together with duct tape. Scaling feels impossible without more headcount.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== SERVICES PREVIEW ===== -->
-    <section class="section-padding bg-light" id="services">
-        <div class="container text-center">
-            <span class="section-label">What we do</span>
-            <h2 class="section-heading">Services</h2>
-            <p class="section-sub">We design and build the systems that let you focus on what matters most: your business.</p>
-            <div class="services-cards">
-                <a href="/services/" class="service-card fade-in">
-                    <div class="service-card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                    </div>
+    <!-- ==== SERVICES ==== -->
+    <section class="section section--cream">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">What we do</span>
+                <h2>Three services, one outcome: systems that actually run.</h2>
+                <span class="gold-rule"></span>
+                <p class="lead">We design and build the systems that let you focus on what matters most: your business.</p>
+            </div>
+            <div class="card-grid card-grid--3 reveal-stagger">
+                <div class="service-card">
                     <h3>Business Automation</h3>
-                    <p>Workflows, integrations, and automated systems that run without you.</p>
-                    <span class="service-card-link">Learn more &rarr;</span>
-                </a>
-                <a href="/services/" class="service-card fade-in">
-                    <div class="service-card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                    </div>
+                    <p>Workflows, integrations, and automated systems that run without you. Lead pipelines, approval flows, data sync, receipt capture.</p>
+                    <a href="/services/">Explore</a>
+                </div>
+                <div class="service-card">
                     <h3>Digital Operations</h3>
-                    <p>CRM, cloud infrastructure, and tools that keep your team aligned.</p>
-                    <span class="service-card-link">Learn more &rarr;</span>
-                </a>
-                <a href="/services/" class="service-card fade-in">
-                    <div class="service-card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                    </div>
+                    <p>CRM, cloud infrastructure, and internal tools that keep your team aligned. One source of truth, not five spreadsheets.</p>
+                    <a href="/services/">Explore</a>
+                </div>
+                <div class="service-card">
                     <h3>Strategic Advisory</h3>
-                    <p>Operational audits, roadmaps, and hands-on guidance to get you where you need to be.</p>
-                    <span class="service-card-link">Learn more &rarr;</span>
-                </a>
+                    <p>Operational audits, roadmaps, and hands-on guidance. We find where the tax is being paid and show you how to stop paying it.</p>
+                    <a href="/services/">Explore</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== WHAT WE BUILD ===== -->
-    <section class="section-padding bg-light" id="what-we-build">
-        <div class="container text-center">
-            <span class="section-label">Showcase</span>
-            <h2 class="section-heading">What We Build</h2>
-            <p class="section-sub">A glimpse at the systems behind the results</p>
-            <div class="wwb-grid">
-
-                <!-- Mockup 1: Automated Workflow Dashboard -->
-                <div class="wwb-card fade-in">
-                    <div class="wwb-header">
-                        <span class="wwb-header-dot"></span>
-                        <span class="wwb-header-title">Workflow Monitor</span>
-                    </div>
-                    <div class="wwb-body">
-                        <div class="wwb-stats-row">
-                            <div class="wwb-stat">
-                                <div class="wwb-stat-value"><span class="wwb-stat-dot wwb-stat-dot--green"></span> 76</div>
-                                <div class="wwb-stat-label">Active</div>
-                            </div>
-                            <div class="wwb-stat">
-                                <div class="wwb-stat-value"><span class="wwb-stat-dot wwb-stat-dot--amber"></span> 12</div>
-                                <div class="wwb-stat-label">Queued</div>
-                            </div>
-                            <div class="wwb-stat">
-                                <div class="wwb-stat-value"><span class="wwb-stat-dot wwb-stat-dot--green"></span> 0</div>
-                                <div class="wwb-stat-label">Failed</div>
-                            </div>
-                        </div>
-                        <div class="wwb-bars">
-                            <div class="wwb-bar wwb-bar--1"></div>
-                            <div class="wwb-bar wwb-bar--2"></div>
-                            <div class="wwb-bar wwb-bar--3"></div>
-                            <div class="wwb-bar wwb-bar--4"></div>
-                            <div class="wwb-bar wwb-bar--5"></div>
-                        </div>
-                        <div class="wwb-sync">Last sync: 2 min ago</div>
-                    </div>
-                </div>
-
-                <!-- Mockup 2: Financial Overview -->
-                <div class="wwb-card fade-in">
-                    <div class="wwb-header">
-                        <span class="wwb-header-dot"></span>
-                        <span class="wwb-header-title">Financial Overview</span>
-                    </div>
-                    <div class="wwb-body">
-                        <div class="wwb-revenue">
-                            <div class="wwb-revenue-amount">$47,250</div>
-                            <div class="wwb-revenue-label">Monthly Revenue</div>
-                        </div>
-                        <div class="wwb-chart">
-                            <div class="wwb-chart-col">
-                                <div class="wwb-chart-bar" style="height:30px;"></div>
-                                <span class="wwb-chart-label">J</span>
-                            </div>
-                            <div class="wwb-chart-col">
-                                <div class="wwb-chart-bar" style="height:38px;"></div>
-                                <span class="wwb-chart-label">F</span>
-                            </div>
-                            <div class="wwb-chart-col">
-                                <div class="wwb-chart-bar" style="height:28px;"></div>
-                                <span class="wwb-chart-label">M</span>
-                            </div>
-                            <div class="wwb-chart-col">
-                                <div class="wwb-chart-bar" style="height:45px;"></div>
-                                <span class="wwb-chart-label">A</span>
-                            </div>
-                            <div class="wwb-chart-col">
-                                <div class="wwb-chart-bar" style="height:42px;"></div>
-                                <span class="wwb-chart-label">M</span>
-                            </div>
-                            <div class="wwb-chart-col">
-                                <div class="wwb-chart-bar" style="height:52px;"></div>
-                                <span class="wwb-chart-label">J</span>
-                            </div>
-                        </div>
-                        <div class="wwb-badge-wrap">
-                            <span class="wwb-badge">+12% vs last quarter</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mockup 3: Client Pipeline -->
-                <div class="wwb-card fade-in">
-                    <div class="wwb-header">
-                        <span class="wwb-header-dot"></span>
-                        <span class="wwb-header-title">Client Pipeline</span>
-                    </div>
-                    <div class="wwb-body">
-                        <div class="wwb-pipeline">
-                            <div class="wwb-pipeline-row">
-                                <span class="wwb-pipeline-label">New Leads</span>
-                                <div class="wwb-pipeline-track">
-                                    <div class="wwb-pipeline-fill" style="width:80%;"></div>
-                                </div>
-                                <span class="wwb-pipeline-count">8</span>
-                            </div>
-                            <div class="wwb-pipeline-row">
-                                <span class="wwb-pipeline-label">Qualified</span>
-                                <div class="wwb-pipeline-track">
-                                    <div class="wwb-pipeline-fill" style="width:50%;"></div>
-                                </div>
-                                <span class="wwb-pipeline-count">5</span>
-                            </div>
-                            <div class="wwb-pipeline-row">
-                                <span class="wwb-pipeline-label">Proposal</span>
-                                <div class="wwb-pipeline-track">
-                                    <div class="wwb-pipeline-fill" style="width:30%;"></div>
-                                </div>
-                                <span class="wwb-pipeline-count">3</span>
-                            </div>
-                            <div class="wwb-pipeline-row">
-                                <span class="wwb-pipeline-label">Won</span>
-                                <div class="wwb-pipeline-track">
-                                    <div class="wwb-pipeline-fill wwb-pipeline-fill--won" style="width:20%;"></div>
-                                </div>
-                                <span class="wwb-pipeline-count">2</span>
-                            </div>
-                        </div>
-                        <div class="wwb-conversion">Conversion rate: 25%</div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== CASE STUDIES ===== -->
-    <section class="section-padding bg-white" id="case-studies">
-        <div class="container text-center">
-            <span class="section-label">Results</span>
-            <h2 class="section-heading">What we've delivered</h2>
-            <div class="case-cards">
-                <a href="/case-studies/" class="case-card fade-in">
-                    <div class="case-stat">90%</div>
-                    <h3>Reduction in manual accounting for a hospitality group</h3>
-                    <p>Automated transaction processing, reconciliation, and reporting across multiple entities.</p>
-                    <span class="case-card-link">Read the case study &rarr;</span>
-                </a>
-                <a href="/case-studies/" class="case-card fade-in">
-                    <div class="case-stat">27,715</div>
-                    <h3>Files organised across 16 cloud drives</h3>
-                    <p>A complete digital workspace overhaul: deduplication, reorganisation, and a system that stays clean.</p>
-                    <span class="case-card-link">Read the case study &rarr;</span>
-                </a>
-                <a href="/case-studies/" class="case-card fade-in">
-                    <div class="case-stat">76</div>
-                    <h3>Workflows automated, reclaiming 15+ hours per week</h3>
-                    <p>End-to-end automation across CRM, accounting, and operations.</p>
-                    <span class="case-card-link">Read the case study &rarr;</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== HOW IT WORKS ===== -->
-    <section class="section-padding bg-light" id="how-it-works">
+    <!-- ==== FEATURED RESULTS ==== -->
+    <section class="section section--paper">
         <div class="container">
-            <div class="text-center">
-                <span class="section-label">How it works</span>
-                <h2 class="section-heading">Three steps to better systems</h2>
+            <div class="section-header reveal">
+                <span class="eyebrow">What we have delivered</span>
+                <h2>Specific numbers, real businesses.</h2>
+                <span class="gold-rule"></span>
             </div>
-            <div class="steps">
-                <div class="step fade-in">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Tell us about your business</h3>
-                        <p>Book a free strategy call. We listen, ask the right questions, and identify where the biggest gains are hiding.</p>
-                    </div>
+            <div class="reveal-stagger">
+                <div class="result-item">
+                    <div class="result-stat">90%</div>
+                    <p>Reduction in manual accounting for a hospitality group. Automated transaction processing, reconciliation, and reporting across multiple entities.</p>
                 </div>
-                <div class="step fade-in">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>We design your system</h3>
-                        <p>Our team builds a custom solution with a clear roadmap, realistic timeline, and transparent pricing. No surprises.</p>
-                    </div>
+                <div class="result-item">
+                    <div class="result-stat">27,715</div>
+                    <p>Files organised across 16 cloud drives. A complete digital workspace overhaul: deduplication, reorganisation, and a system that stays clean.</p>
                 </div>
-                <div class="step fade-in">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>We build, test, and hand over</h3>
-                        <p>We implement, test thoroughly, train your team, and hand over documentation. You get results, not a half-finished project.</p>
-                    </div>
+                <div class="result-item">
+                    <div class="result-stat">15+</div>
+                    <p>Hours reclaimed per week through end-to-end automation across CRM, accounting, and operations for a growing services business.</p>
+                </div>
+                <div class="result-item">
+                    <div class="result-stat">88</div>
+                    <p>Workflows audited and brought under version control, CI, and error monitoring on a production automation platform. Zero downtime during the rehab.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- ===== ABOUT SNIPPET ===== -->
-    <section class="section-padding bg-white" id="about">
-        <div class="container text-center">
-            <span class="section-label">About us</span>
-            <h2 class="section-heading">Who we are</h2>
-            <span class="gold-rule"></span>
-            <div class="about-snippet">
-                <p>Founded by Barrie, a systems thinker with two decades of experience across franchises, startups, hospitality, and global operations. We believe technology should serve people, not the other way around.</p>
-                <p class="location">Working across Indonesia and Asia</p>
-                <a href="/about/" class="about-link">Learn more about us &rarr;</a>
+            <div style="margin-top: 40px;">
+                <a href="/case-studies/" class="btn btn-secondary btn-arrow">Read the case studies</a>
             </div>
         </div>
     </section>
 
-    <!-- ===== TESTIMONIALS ===== -->
-    <section class="section-padding bg-light" id="testimonials">
-        <div class="container text-center">
-            <span class="section-label">Testimonials</span>
-            <h2 class="section-heading">What our clients say</h2>
-            <div class="testimonial-cards">
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-quote">
-                        They came in, looked at our entire operation, and within weeks everything just worked. Invoicing, reporting, client tracking — all automatic. My team went from firefighting every day to actually enjoying their jobs. I genuinely did not think it was possible to change that fast.
-                    </div>
-                    <div class="testimonial-author">&mdash; James</div>
-                    <div class="testimonial-role">Managing Director, Hospitality Group</div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-quote">
-                        We were drowning in spreadsheets and manual processes. They built us a system that connects everything and runs itself. Our monthly close used to take three days. Now it takes a few hours. The clarity we have over our finances now is something we have never had before.
-                    </div>
-                    <div class="testimonial-author">&mdash; Sarah</div>
-                    <div class="testimonial-role">Operations Manager, Multi-Brand Organisation</div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-quote">
-                        What impressed me most was how quickly they understood our business. No jargon, no overcomplication. They just saw where the problems were and fixed them. We launched seven locations using the systems they built, and every single one ran smoothly from day one.
-                    </div>
-                    <div class="testimonial-author">&mdash; Marcus</div>
-                    <div class="testimonial-role">Founder, Food &amp; Beverage Group</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== FINAL CTA ===== -->
-    <section class="final-cta text-center" id="cta">
+    <!-- ==== PROCESS ==== -->
+    <section class="section section--cream-deep">
         <div class="container">
-            <h2>Ready to stop doing everything manually?</h2>
-            <a href="/contact/#book" class="btn-primary">Book a Free Strategy Call</a>
-            <p class="final-cta-email">Or email <a href="mailto:barrie@grandvisionperspective.com">barrie@grandvisionperspective.com</a></p>
+            <div class="section-header reveal">
+                <span class="eyebrow">How we work</span>
+                <h2>Three steps to better systems.</h2>
+                <span class="gold-rule"></span>
+            </div>
+            <div class="process-grid reveal-stagger">
+                <div class="process-step">
+                    <span class="process-step-number">01</span>
+                    <h3>Tell us about your business</h3>
+                    <p>Book a free strategy call. We listen, ask the right questions, and identify where the biggest gains are hiding.</p>
+                </div>
+                <div class="process-step">
+                    <span class="process-step-number">02</span>
+                    <h3>We design your system</h3>
+                    <p>We build a custom solution with a clear roadmap, realistic timeline, and transparent pricing. No surprises.</p>
+                </div>
+                <div class="process-step">
+                    <span class="process-step-number">03</span>
+                    <h3>We build, test, and hand over</h3>
+                    <p>We implement, test thoroughly, train your team, and hand over documentation. You get working systems, not a half-finished project.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ==== ABOUT TEASER ==== -->
+    <section class="section section--paper">
+        <div class="container">
+            <div class="about-teaser reveal">
+                <span class="eyebrow">Who we are</span>
+                <h2>We believe technology should serve people, not the other way around.</h2>
+                <span class="gold-rule"></span>
+                <p>Grand Vision Perspective was founded with two decades of experience across franchises, startups, corporates, hospitality, construction, and conscious projects around the world. In every environment, the same pattern kept showing up: broken systems putting unnecessary pressure on good people. We exist to fix that.</p>
+                <p>Based in Bali, working with businesses across Indonesia, Asia, and internationally.</p>
+                <div style="margin-top: 28px;">
+                    <a href="/about/" class="btn btn-secondary btn-arrow">Read our story</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== TESTIMONIALS ==== -->
+    <section class="section section--navy">
+        <div class="container">
+            <div class="section-header section-header--center reveal">
+                <span class="eyebrow">Client voices</span>
+                <h2>What our clients say</h2>
+                <span class="gold-rule gold-rule--center"></span>
+            </div>
+            <div class="testimonial reveal">
+                <p class="testimonial-quote">They came in, looked at our entire operation, and within weeks everything just worked. Invoicing, reporting, client tracking, all automatic. My team went from firefighting every day to actually enjoying their jobs. I genuinely did not think it was possible to change that fast.</p>
+                <p class="testimonial-attribution">James &middot; Managing Director, Hospitality Group</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== FINAL CTA ==== -->
+    <section class="section section--deep">
+        <div class="container">
+            <div class="final-cta reveal">
+                <h2>Ready to stop doing everything manually?</h2>
+                <p class="lead" style="max-width: 560px;">Book a free strategy call. Thirty minutes, no pitch deck, just a real conversation about what is broken and what it would take to fix it.</p>
+                <div class="final-cta-actions">
+                    <a href="/contact/#book" class="btn btn-primary">Book a Strategy Call</a>
+                    <a href="/services/" class="btn btn-ghost-light">Explore services</a>
+                </div>
+                <p class="final-cta-email">Or email <a href="mailto:barrie@grandvisionperspective.com">barrie@grandvisionperspective.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== FOOTER ==== -->
     <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-inner">
                 <a href="/" aria-label="Grand Vision Perspective Home">
-                    <img src="images/logo.jpg" alt="Grand Vision Perspective" class="footer-logo" style="height:30px;">
+                    <img src="images/logo.jpg" alt="Grand Vision Perspective" class="footer-logo" width="120" height="32" style="height:32px;width:auto;">
                 </a>
                 <ul class="footer-links">
                     <li><a href="/services/">Services</a></li>
@@ -1506,63 +615,6 @@
         </div>
     </footer>
 
-    <!-- ===== SCRIPTS ===== -->
-    <script>
-        // Mobile nav toggle
-        (function() {
-            var toggle = document.querySelector('.nav-toggle');
-            var mobile = document.getElementById('navMobile');
-            if (!toggle || !mobile) return;
-
-            toggle.addEventListener('click', function() {
-                var expanded = toggle.getAttribute('aria-expanded') === 'true';
-                toggle.setAttribute('aria-expanded', String(!expanded));
-                toggle.classList.toggle('active');
-                mobile.classList.toggle('active');
-                document.body.style.overflow = expanded ? '' : 'hidden';
-            });
-
-            // Close mobile nav when a link is clicked
-            var mobileLinks = mobile.querySelectorAll('a');
-            for (var i = 0; i < mobileLinks.length; i++) {
-                mobileLinks[i].addEventListener('click', function() {
-                    toggle.setAttribute('aria-expanded', 'false');
-                    toggle.classList.remove('active');
-                    mobile.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            }
-        })();
-
-        // Fade-in on scroll (Intersection Observer)
-        (function() {
-            var targets = document.querySelectorAll('.fade-in');
-            if (!targets.length) return;
-
-            if ('IntersectionObserver' in window) {
-                var observer = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, {
-                    threshold: 0.15,
-                    rootMargin: '0px 0px -40px 0px'
-                });
-
-                targets.forEach(function(target) {
-                    observer.observe(target);
-                });
-            } else {
-                // Fallback: show all immediately
-                targets.forEach(function(target) {
-                    target.classList.add('visible');
-                });
-            }
-        })();
-    </script>
-
+    <script src="assets/app.js"></script>
 </body>
 </html>
