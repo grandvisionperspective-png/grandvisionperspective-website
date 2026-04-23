@@ -3,701 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Studies | Grand Vision Perspective</title>
+    <title>Case Studies | Grand Vision Perspective — Real Results from Real Projects</title>
     <meta name="description" content="Real results from real projects. See how we have helped businesses automate operations, organise infrastructure, and launch from scratch.">
+    <meta property="og:title" content="Case Studies | Grand Vision Perspective">
+    <meta property="og:description" content="Real results from real projects. See how we have helped businesses automate operations, organise infrastructure, and launch from scratch.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://grandvisionperspective.com/case-studies/">
+    <link rel="canonical" href="https://grandvisionperspective.com/case-studies/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/styles.css">
     <style>
-        /* ========== RESET & BASE ========== */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .case-hero {
+            padding: 96px 0 64px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%);
         }
 
-        html {
-            scroll-behavior: smooth;
-            -webkit-text-size-adjust: 100%;
+        .case-study {
+            padding: 72px 0 80px;
+            border-bottom: 1px solid var(--cream-deep);
         }
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: #2d2d3a;
-            background: #ffffff;
-            line-height: 1.7;
-            font-size: 17px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        .case-study:last-of-type {
+            border-bottom: none;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', 'Georgia', serif;
-            color: #1a1a2e;
-            line-height: 1.25;
-            font-weight: 600;
+        .case-study--alt {
+            background: var(--cream);
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        /* ========== LAYOUT ========== */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* ========== NAV ========== */
-        .nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: #1a1a2e;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
-        }
-
-        .nav-inner {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 72px;
-        }
-
-        .nav-logo {
-            height: 36px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-        }
-
-        .nav-link {
-            font-size: 15px;
-            font-weight: 500;
-            color: #b0b0b8;
-            transition: color 0.2s ease;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: #c9a84c;
-        }
-
-        .nav-link--active::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: #c9a84c;
-            border-radius: 1px;
-        }
-
-        .nav-cta {
-            font-size: 14px;
-            font-weight: 600;
-            color: #ffffff;
-            background: #c9a84c;
-            padding: 10px 22px;
-            border-radius: 6px;
-            transition: background 0.2s ease, transform 0.15s ease;
-            white-space: nowrap;
-        }
-
-        .nav-cta:hover {
-            background: #b8963e;
-            transform: translateY(-1px);
-        }
-
-        /* Mobile nav toggle */
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            width: 28px;
-            height: 28px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0;
-        }
-
-        .nav-toggle span {
-            display: block;
-            width: 100%;
-            height: 2px;
-            background: #b0b0b8;
-            border-radius: 1px;
-            transition: transform 0.25s ease, opacity 0.2s ease;
-        }
-
-        .nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        /* ========== HERO ========== */
-        .hero {
-            padding: 100px 0 80px;
-            background: linear-gradient(135deg, rgba(26,26,46,0.90) 0%, rgba(13,13,26,0.93) 100%),
-                        url('../images/bg-opex.png') center/cover no-repeat;
-            text-align: center;
-        }
-
-        .hero-gold-line {
-            display: block;
-            width: 60px;
-            height: 2px;
-            background: #c9a84c;
-            margin: 0 auto 28px;
-        }
-
-        .hero h1 {
-            font-size: clamp(36px, 5vw, 52px);
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-            color: #ffffff;
-        }
-
-        .hero p {
-            font-size: clamp(17px, 2vw, 20px);
-            color: #b0b0b8;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* ========== CASE STUDY CARDS ========== */
-        .cases-section {
-            padding: 80px 0 88px;
-        }
-
-        .cases-section--white {
-            background: #ffffff;
-        }
-
-        .cases-section--grey {
-            background: #f8f9fa;
-        }
-
-        .case-card {
-            border-top: 4px solid #c9a84c;
-            background: #ffffff;
-            border-radius: 0 0 8px 8px;
-            padding: 48px 44px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .case-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .case-stat {
-            margin-bottom: 32px;
-        }
-
-        .case-stat-number {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(36px, 5vw, 48px);
-            font-weight: 700;
-            color: #c9a84c;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-
-        .case-stat-label {
-            font-size: 16px;
-            color: #555;
-            margin-top: 4px;
-            font-weight: 500;
-        }
-
-        .case-card h2 {
-            font-size: clamp(26px, 3.2vw, 34px);
-            margin-bottom: 12px;
-            letter-spacing: -0.015em;
-        }
-
-        .case-client {
-            font-size: 16px;
-            color: #555;
-            font-style: italic;
-            margin-bottom: 36px;
-            line-height: 1.6;
-        }
-
-        .case-block {
-            margin-bottom: 28px;
-        }
-
-        .case-block:last-child {
-            margin-bottom: 0;
-        }
-
-        .case-block h4 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #1a1a2e;
-        }
-
-        .case-block p {
-            font-size: 16px;
-            color: #2d2d3a;
-            line-height: 1.7;
-        }
-
-        .case-results {
-            background: rgba(201, 168, 76, 0.05);
-            border-radius: 6px;
-            padding: 24px 28px;
-        }
-
-        .case-results p {
-            font-weight: 500;
-            color: #1a1a2e;
-        }
-
-        /* ========== BUTTONS ========== */
-        .btn {
+        .case-study__meta {
             display: inline-block;
-            font-family: 'Inter', sans-serif;
-            font-size: 15px;
+            font-size: 11px;
             font-weight: 600;
-            color: #ffffff;
-            background: #c9a84c;
-            padding: 14px 32px;
-            border-radius: 6px;
-            transition: background 0.2s ease, transform 0.15s ease;
-            border: none;
-            cursor: pointer;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 14px;
         }
 
-        .btn:hover {
-            background: #b8963e;
-            transform: translateY(-1px);
-        }
-
-        /* ========== BOTTOM CTA ========== */
-        .bottom-cta {
-            padding: 100px 0;
-            background: linear-gradient(135deg, rgba(26,26,46,0.92) 0%, rgba(13,13,26,0.95) 100%),
-                        url('../images/bg-dashboard.png') center/cover no-repeat;
-            background-size: cover;
-            text-align: center;
-        }
-
-        .bottom-cta h2 {
-            font-size: clamp(26px, 3.5vw, 36px);
-            color: #ffffff;
-            margin-bottom: 16px;
+        .case-study__title {
+            font-size: clamp(26px, 3.2vw, 36px);
+            margin-bottom: 18px;
+            max-width: 740px;
             letter-spacing: -0.015em;
         }
 
-        .bottom-cta p {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 520px;
-            margin: 0 auto 36px;
-            line-height: 1.6;
+        .case-study__subtitle {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: clamp(17px, 2vw, 20px);
+            color: var(--ink-muted);
+            margin-bottom: 48px;
+            max-width: 620px;
         }
 
-        .bottom-cta .btn {
-            margin-bottom: 20px;
+        .case-study__sections {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
         }
 
-        .bottom-cta-alt {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.5);
+        .case-study__section {
+            padding: 28px 28px 32px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(26, 26, 46, 0.06);
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow var(--duration-base) var(--ease),
+                        transform var(--duration-base) var(--ease);
         }
 
-        .bottom-cta-alt a {
-            color: #c9a84c;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-            transition: color 0.2s ease;
+        .case-study__section:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
         }
 
-        .bottom-cta-alt a:hover {
-            color: #d4b55c;
+        .case-study--alt .case-study__section {
+            background: var(--paper);
         }
 
-        /* ========== FOOTER ========== */
-        .footer {
-            background: #0d0d1a;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 48px 0;
-        }
-
-        .footer-inner {
+        .case-study__section h3 {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            gap: 10px;
+            font-family: var(--font-body);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .case-study__section h3::before {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .case-study__section p {
+            font-size: 15px;
+            color: var(--ink);
+            line-height: 1.75;
+        }
+
+        .case-study__results-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 16px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(201, 168, 76, 0.3);
         }
 
-        .footer-brand {
-            height: 30px;
-            width: auto;
+        .case-study__stat-small-number {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 4px;
         }
 
-        .footer-links {
-            display: flex;
-            gap: 28px;
+        .case-study__stat-small-label {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: var(--ink-muted);
+            line-height: 1.4;
         }
 
-        .footer-link {
-            font-size: 14px;
-            color: #b0b0b8;
-            transition: color 0.2s ease;
-        }
-
-        .footer-link:hover {
-            color: #ffffff;
-        }
-
-        .footer-email {
-            color: #c9a84c;
-            font-size: 14px;
-            transition: color 0.2s ease;
-        }
-
-        .footer-email:hover {
-            color: #d4b55c;
-        }
-
-        .footer-copy {
-            width: 100%;
-            text-align: center;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.35);
-            margin-top: 28px;
-            padding-top: 28px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 72px;
-                left: 0;
-                right: 0;
-                background: rgba(26, 26, 46, 0.98);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                flex-direction: column;
-                padding: 32px 24px;
+        @media (min-width: 900px) {
+            .case-study__sections {
+                grid-template-columns: repeat(3, 1fr);
                 gap: 24px;
-                border-bottom: 1px solid rgba(201, 168, 76, 0.2);
-                transform: translateY(-120%);
-                opacity: 0;
-                transition: transform 0.3s ease, opacity 0.25s ease;
-                pointer-events: none;
-            }
-
-            .nav-links.open {
-                transform: translateY(0);
-                opacity: 1;
-                pointer-events: auto;
-            }
-
-            .nav-toggle {
-                display: flex;
-            }
-
-            .nav-link--active::after {
-                display: none;
-            }
-
-            .hero {
-                padding: 72px 0 60px;
-            }
-
-            .cases-section {
-                padding: 60px 0 68px;
-            }
-
-            .case-card {
-                padding: 36px 28px;
-            }
-
-            .bottom-cta {
-                padding: 72px 0;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-links {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            body {
-                font-size: 16px;
-            }
-
-            .nav-inner {
-                height: 64px;
-            }
-
-            .nav-logo {
-                height: 30px;
-            }
-
-            .hero {
-                padding: 56px 0 48px;
-            }
-
-            .cases-section {
-                padding: 48px 0 56px;
-            }
-
-            .case-card {
-                padding: 28px 20px;
-            }
-
-            .case-stat-number {
-                font-size: 36px;
-            }
-
-            .case-card h2 {
-                font-size: 24px;
-            }
-
-            .case-results {
-                padding: 20px 22px;
-            }
-
-            .bottom-cta {
-                padding: 56px 0;
-            }
-
-            .btn {
-                padding: 13px 28px;
-                font-size: 14px;
-                width: 100%;
-                text-align: center;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ========== NAV ========== -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
-        <div class="nav-inner">
-            <a href="/"><img src="../images/logo.jpg" alt="Grand Vision Perspective" class="nav-logo" style="height:36px;"></a>
-            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="nav-links">
-                <a href="/services/" class="nav-link">Services</a>
-                <a href="/about/" class="nav-link">About</a>
-                <a href="/case-studies/" class="nav-link nav-link--active">Case Studies</a>
-                <a href="/contact/" class="nav-link">Contact</a>
-                <a href="/contact/#book" class="nav-cta">Book a Strategy Call</a>
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/" aria-label="Grand Vision Perspective Home">
+                    <img src="../images/logo.jpg" alt="Grand Vision Perspective" class="nav-logo" width="120" height="32" style="height:32px;width:auto;">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/case-studies/" class="active">Case Studies</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+                <div class="nav-cta">
+                    <a href="/contact/#book" class="btn btn-primary btn-sm">Book a Strategy Call</a>
+                </div>
+                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
+        </div>
+        <div class="nav-mobile" role="menu">
+            <a href="/services/" role="menuitem">Services</a>
+            <a href="/about/" role="menuitem">About</a>
+            <a href="/case-studies/" role="menuitem">Case Studies</a>
+            <a href="/contact/" role="menuitem">Contact</a>
+            <a href="/contact/#book" class="btn btn-primary" role="menuitem">Book a Strategy Call</a>
         </div>
     </nav>
 
-    <!-- ========== HERO ========== -->
-    <section class="hero">
+    <section class="case-hero">
         <div class="container">
-            <span class="hero-gold-line"></span>
-            <h1>Case Studies</h1>
-            <p>Real results from real projects</p>
+            <div class="reveal">
+                <span class="eyebrow">Case Studies</span>
+                <h1>Real results from <em class="italic-display">real projects</em>.</h1>
+                <p class="lead" style="margin-top: 20px;">Four engagements across different industries, all anonymised. Same pattern: messy operation, clear system, measurable result.</p>
+            </div>
         </div>
     </section>
 
-    <!-- ========== CASE STUDY 1: END-TO-END CUSTOMER JOURNEY ========== -->
-    <section class="cases-section cases-section--white">
+    <section class="case-study">
         <div class="container">
-            <div class="case-card">
-                <div class="case-stat">
-                    <div class="case-stat-number">80%</div>
-                    <div class="case-stat-label">reduction in manual touchpoints</div>
-                </div>
-                <h2>End-to-End Customer Journey Automation</h2>
-                <p class="case-client">A product company with a complex sales-to-delivery lifecycle</p>
-                <div class="case-block">
-                    <h4>Challenge</h4>
-                    <p>Every step of the customer journey was manual. Leads came in from the website and sat in inboxes. Qualification was inconsistent. Follow-ups were missed. Once a sale was made, production tracking lived in spreadsheets, logistics was coordinated by phone, and clients had no visibility on their order. The team was stretched thin doing work that should have been automatic.</p>
-                </div>
-                <div class="case-block">
-                    <h4>Solution</h4>
-                    <p>We designed and implemented a complete lifecycle system. Leads are automatically captured, profiled, scored, and routed. High-potential prospects are flagged for personal outreach while others receive tailored content based on how they move through the pipeline. Post-sale, the system tracks production, triggers payment reminders, manages logistics and delivery scheduling, coordinates installation teams, and feeds live updates back into the client record. Every touchpoint is tracked, every communication is automated, and humans step in only where they add real value.</p>
-                </div>
-                <div class="case-block case-results">
-                    <h4>Results</h4>
-                    <p>Manual touchpoints reduced by 80%. Customer response times dropped from days to hours. The sales team doubled their outreach capacity without adding a single person. Product quality improved because the people responsible for it finally had space to focus on craft instead of chasing admin. Staff retention improved noticeably — people stayed because the work became meaningful again. The client went from firefighting daily to operating with clarity and confidence for the first time.</p>
+            <div class="reveal">
+                <span class="case-study__meta">Case Study 01</span>
+                <h2 class="case-study__title">End-to-End Customer Journey Automation</h2>
+                <p class="case-study__subtitle">A product company with a complex sales-to-delivery lifecycle</p>
+                <div class="case-study__sections">
+                    <div class="case-study__section">
+                        <h3>Challenge</h3>
+                        <p>Every step of the customer journey was manual. Leads came in from the website and sat in inboxes. Qualification was inconsistent. Follow-ups were missed. Once a sale was made, production tracking lived in spreadsheets, logistics was coordinated by phone, and clients had no visibility on their order. The team was stretched thin doing work that should have been automatic.</p>
+                    </div>
+                    <div class="case-study__section">
+                        <h3>Solution</h3>
+                        <p>We designed and implemented a complete lifecycle system. Leads are automatically captured, profiled, scored, and routed. High-potential prospects are flagged for personal outreach while others receive tailored content based on how they move through the pipeline. Post-sale, the system tracks production, triggers payment reminders, manages logistics, and keeps clients informed at every stage.</p>
+                    </div>
+                    <div class="case-study__section">
+                        <h3>Results</h3>
+                        <p>Manual touchpoints reduced by 80%. Customer response times dropped from days to hours. The sales team doubled their outreach capacity without adding a single person. Staff retention improved because people had space to focus on craft instead of chasing admin.</p>
+                        <div class="case-study__results-stats">
+                            <div><span class="case-study__stat-small-number">80%</span><span class="case-study__stat-small-label">Fewer manual touchpoints</span></div>
+                            <div><span class="case-study__stat-small-number">2×</span><span class="case-study__stat-small-label">Sales team capacity</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== CASE STUDY 2: MULTI-SITE HOSPITALITY ========== -->
-    <section class="cases-section cases-section--grey">
+    <section class="case-study case-study--alt">
         <div class="container">
-            <div class="case-card">
-                <div class="case-stat">
-                    <div class="case-stat-number">7</div>
-                    <div class="case-stat-label">venues launched in 21 months</div>
-                </div>
-                <h2>Multi-Site Hospitality Launch Programme</h2>
-                <p class="case-client">A gastropub group expanding across multiple locations</p>
-                <div class="case-block">
-                    <h4>Challenge</h4>
-                    <p>The group needed to open a new venue every three months across different locations in the country. Each site had its own local challenges, regulations, suppliers, and staffing requirements. Without standardised systems, every launch was starting from scratch. Teams were burning out, timelines were slipping, and quality was inconsistent.</p>
-                </div>
-                <div class="case-block">
-                    <h4>Solution</h4>
-                    <p>We created a repeatable operational playbook. Each 3-month cycle covered recruitment, team training, systems implementation, local marketing, the launch honeymoon period, and structured handover. Every process was documented, templated, and refined with each successive site. By the third launch, the playbook was running like clockwork.</p>
-                </div>
-                <div class="case-block case-results">
-                    <h4>Results</h4>
-                    <p>Seven venues launched on schedule across 21 months. Each launch was faster and smoother than the last. New teams were trained and confident from day one. Customer experience was consistent across every location because the systems were consistent. Staff turnover dropped with each successive launch as the onboarding process matured. Marketing ramp-up time halved because templates and local playbooks were ready before the doors opened. The group went from chaotic expansion to a repeatable machine.</p>
+            <div class="reveal">
+                <span class="case-study__meta">Case Study 02</span>
+                <h2 class="case-study__title">Multi-Site Hospitality Launch Programme</h2>
+                <p class="case-study__subtitle">A gastropub group expanding across multiple locations</p>
+                <div class="case-study__sections">
+                    <div class="case-study__section">
+                        <h3>Challenge</h3>
+                        <p>The group needed to open a new venue every three months across different locations in the country. Each site had its own local challenges, regulations, suppliers, and staffing requirements. Without standardised systems, every launch was starting from scratch. Teams were burning out, timelines were slipping, and quality was inconsistent.</p>
+                    </div>
+                    <div class="case-study__section">
+                        <h3>Solution</h3>
+                        <p>We created a repeatable operational playbook. Each three-month cycle covered recruitment, team training, systems implementation, local marketing, the launch honeymoon period, and structured handover. Every process was documented, templated, and refined with each successive site. By the third launch, the playbook was running like clockwork.</p>
+                    </div>
+                    <div class="case-study__section">
+                        <h3>Results</h3>
+                        <p>Seven venues launched on schedule across 21 months. Each launch was faster and smoother than the last. Customer experience was consistent across every location because the systems were consistent. Staff turnover dropped with each successive launch as the onboarding process matured.</p>
+                        <div class="case-study__results-stats">
+                            <div><span class="case-study__stat-small-number">7</span><span class="case-study__stat-small-label">Venues launched on schedule</span></div>
+                            <div><span class="case-study__stat-small-number">21</span><span class="case-study__stat-small-label">Months, end to end</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== CASE STUDY 3: OPERATIONAL AUTOMATION ========== -->
-    <section class="cases-section cases-section--white">
+    <section class="case-study">
         <div class="container">
-            <div class="case-card">
-                <div class="case-stat">
-                    <div class="case-stat-number">15+</div>
-                    <div class="case-stat-label">hours reclaimed per week</div>
-                </div>
-                <h2>Operational Automation at Scale</h2>
-                <p class="case-client">A growing organisation with disconnected systems across departments</p>
-                <div class="case-block">
-                    <h4>Challenge</h4>
-                    <p>The team was spending more time on admin than on the work that actually mattered. CRM updates were manual. Financial reporting required hours of spreadsheet compilation. Marketing, sales, and operations each used different tools that did not talk to each other. Information lived in silos, and the people who needed it most could not find it.</p>
-                </div>
-                <div class="case-block">
-                    <h4>Solution</h4>
-                    <p>We mapped every manual process, identified the bottlenecks, and designed an integrated automation layer connecting CRM, email, accounting, and project management into one cohesive system. Automated workflows now handle lead routing, follow-ups, invoicing, reporting, and internal notifications. Real-time dashboards replaced weekly manual reports.</p>
-                </div>
-                <div class="case-block case-results">
-                    <h4>Results</h4>
-                    <p>Over 15 hours reclaimed every week across the team. Data entry errors virtually disappeared. Reports that used to take half a day now generate themselves. The sales team started closing faster because they could see their entire pipeline in real time. Customer follow-up became instant instead of sporadic. The organisation scaled its output significantly without hiring a single additional person — the existing team simply had the space to do what they were actually good at.</p>
+            <div class="reveal">
+                <span class="case-study__meta">Case Study 03</span>
+                <h2 class="case-study__title">Operational Automation at Scale</h2>
+                <p class="case-study__subtitle">A growing organisation with disconnected systems across departments</p>
+                <div class="case-study__sections">
+                    <div class="case-study__section">
+                        <h3>Challenge</h3>
+                        <p>The team was spending more time on admin than on the work that actually mattered. CRM updates were manual. Financial reporting required hours of spreadsheet compilation. Marketing, sales, and operations each used different tools that did not talk to each other. Information lived in silos, and the people who needed it most could not find it.</p>
+                    </div>
+                    <div class="case-study__section">
+                        <h3>Solution</h3>
+                        <p>We mapped every manual process, identified the bottlenecks, and designed an integrated automation layer connecting CRM, email, accounting, and project management into one cohesive system. Automated workflows now handle lead routing, follow-ups, invoicing, reporting, and internal notifications. Real-time dashboards replaced weekly manual reports.</p>
+                    </div>
+                    <div class="case-study__section">
+                        <h3>Results</h3>
+                        <p>Over 15 hours reclaimed every week across the team. Data entry errors virtually disappeared. Reports that used to take half a day now generate themselves. The sales team started closing faster because they could see their entire pipeline in real time. Customer follow-up became instant instead of sporadic.</p>
+                        <div class="case-study__results-stats">
+                            <div><span class="case-study__stat-small-number">15+</span><span class="case-study__stat-small-label">Hours reclaimed weekly</span></div>
+                            <div><span class="case-study__stat-small-number">0</span><span class="case-study__stat-small-label">Manual data entry errors</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== CASE STUDY 4: MULTI-ENTITY FINANCIAL TRANSFORMATION ========== -->
-    <section class="cases-section cases-section--grey">
+    <section class="case-study case-study--alt">
         <div class="container">
-            <div class="case-card">
-                <div class="case-stat">
-                    <div class="case-stat-number">3</div>
-                    <div class="case-stat-label">entities unified into one financial system</div>
-                </div>
-                <h2>Multi-Entity Financial Transformation</h2>
-                <p class="case-client">A group of businesses with no unified financial visibility</p>
-                <div class="case-block">
-                    <h4>Challenge</h4>
-                    <p>Three separate businesses, each with its own accounting mess. No reconciliation process. No profit and loss visibility. Bank transactions piling up unprocessed. The leadership team was making decisions in the dark, unable to see the financial health of any entity, let alone the group as a whole.</p>
-                </div>
-                <div class="case-block">
-                    <h4>Solution</h4>
-                    <p>We designed and built a unified financial management system across all three entities. Automated ledger processing, transaction categorisation, bank reconciliation, and real-time P&L dashboards. Each entity maintains its own books while leadership gets a consolidated group view at the touch of a button.</p>
-                </div>
-                <div class="case-block case-results">
-                    <h4>Results</h4>
-                    <p>Full financial visibility across all three entities for the first time. Monthly close went from days of manual work to hours. The finance team shifted from data entry to strategic analysis. Decision-making improved across the board because leadership could finally see the numbers in real time. Cash flow forecasting became possible. Errors in categorisation and reconciliation dropped to near zero. The group now operates with the financial clarity of a company ten times its size.</p>
+            <div class="reveal">
+                <span class="case-study__meta">Case Study 04</span>
+                <h2 class="case-study__title">Multi-Entity Financial Transformation</h2>
+                <p class="case-study__subtitle">A group of businesses with no unified financial visibility</p>
+                <div class="case-study__sections">
+                    <div class="case-study__section">
+                        <h3>Challenge</h3>
+                        <p>Three separate businesses, each with its own accounting mess. No reconciliation process. No profit and loss visibility. Bank transactions piling up unprocessed. The leadership team was making decisions in the dark, unable to see the financial health of any entity, let alone the group as a whole.</p>
+                    </div>
+                    <div class="case-study__section">
+                        <h3>Solution</h3>
+                        <p>We designed and built a unified financial management system across all three entities. Automated ledger processing, transaction categorisation, bank reconciliation, and real-time P&L dashboards. Each entity maintains its own books while leadership gets a consolidated group view at the touch of a button.</p>
+                    </div>
+                    <div class="case-study__section">
+                        <h3>Results</h3>
+                        <p>Full financial visibility across all three entities for the first time. Monthly close went from days of manual work to hours. The finance team shifted from data entry to strategic analysis. Decision-making improved across the board because leadership could finally see the numbers in real time.</p>
+                        <div class="case-study__results-stats">
+                            <div><span class="case-study__stat-small-number">3</span><span class="case-study__stat-small-label">Entities unified</span></div>
+                            <div><span class="case-study__stat-small-number">90%</span><span class="case-study__stat-small-label">Faster monthly close</span></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== BOTTOM CTA ========== -->
-    <section class="bottom-cta">
+    <section class="section section--deep">
         <div class="container">
-            <h2>See something that looks like your business?</h2>
-            <p>Every project starts with a conversation. Let us understand your situation and show you what is possible.</p>
-            <a href="/contact/#book" class="btn">Book a Strategy Call</a>
-            <p class="bottom-cta-alt">Or email us at <a href="mailto:barrie@grandvisionperspective.com">barrie@grandvisionperspective.com</a></p>
+            <div class="final-cta text-center reveal">
+                <h2>See something that looks like your business?</h2>
+                <p class="lead" style="max-width: 560px; margin: 0 auto 36px;">Every project starts with a conversation. Let us understand your situation and show you what is possible.</p>
+                <div class="hero-actions" style="justify-content: center;">
+                    <a href="/contact/#book" class="btn btn-primary">Book a Strategy Call</a>
+                    <a href="/services/" class="btn btn-ghost-light btn-arrow">See services</a>
+                </div>
+                <p style="margin-top: 28px; font-size: 13px; color: rgba(255,255,255,0.4); letter-spacing: 0.5px;">
+                    Or email <a href="mailto:barrie@grandvisionperspective.com" style="color: var(--gold);">barrie@grandvisionperspective.com</a>
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- ========== FOOTER ========== -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-inner">
-                <a href="/"><img src="../images/logo.jpg" alt="Grand Vision Perspective" class="footer-brand" style="height:30px;"></a>
-                <div class="footer-links">
-                    <a href="/services/" class="footer-link">Services</a>
-                    <a href="/about/" class="footer-link">About</a>
-                    <a href="/case-studies/" class="footer-link">Case Studies</a>
-                    <a href="/contact/" class="footer-link">Contact</a>
-                    <a href="mailto:barrie@grandvisionperspective.com" class="footer-email">barrie@grandvisionperspective.com</a>
-                </div>
-                <p class="footer-copy">&copy; 2026 Grand Vision Perspective. All rights reserved.</p>
+                <a href="/" aria-label="Grand Vision Perspective Home">
+                    <img src="../images/logo.jpg" alt="Grand Vision Perspective" class="footer-logo" width="120" height="32" style="height:32px;width:auto;">
+                </a>
+                <ul class="footer-links">
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/case-studies/">Case Studies</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+                <p class="footer-email"><a href="mailto:barrie@grandvisionperspective.com">barrie@grandvisionperspective.com</a></p>
+                <p class="footer-copy">&copy; 2026 Grand Vision Perspective</p>
             </div>
         </div>
     </footer>
 
-    <!-- ========== MOBILE NAV SCRIPT ========== -->
-    <script>
-        (function () {
-            var toggle = document.querySelector('.nav-toggle');
-            var links = document.querySelector('.nav-links');
-            if (!toggle || !links) return;
-
-            toggle.addEventListener('click', function () {
-                var isOpen = links.classList.toggle('open');
-                toggle.classList.toggle('active', isOpen);
-                toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-            });
-
-            // Close menu when a link is clicked
-            var navItems = links.querySelectorAll('.nav-link, .nav-cta');
-            for (var i = 0; i < navItems.length; i++) {
-                navItems[i].addEventListener('click', function () {
-                    links.classList.remove('open');
-                    toggle.classList.remove('active');
-                    toggle.setAttribute('aria-expanded', 'false');
-                });
-            }
-        })();
-    </script>
-
+    <script src="../assets/app.js"></script>
 </body>
 </html>

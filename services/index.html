@@ -12,7 +12,9 @@
     <link rel="canonical" href="https://grandvisionperspective.com/services/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="../images/bg-workflow.png">
+    <link rel="stylesheet" href="../assets/styles.css">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -23,517 +25,147 @@
             "url": "https://grandvisionperspective.com"
         },
         "serviceType": ["Business Automation", "Digital Operations", "Strategic Advisory"],
-        "areaServed": ["Indonesia", "Asia"],
-        "description": "Business automation, digital operations, and strategic advisory services for growing businesses."
+        "areaServed": ["Indonesia", "Asia"]
     }
     </script>
     <style>
-        /* ===== RESET & BASE ===== */
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: #2d2d3a;
-            background: #ffffff;
-            line-height: 1.7;
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-            color: #1a1a2e;
-            line-height: 1.3;
-            font-weight: 600;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* ===== UTILITY ===== */
-        .container {
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        /* ===== BUTTONS ===== */
-        .btn-primary {
-            display: inline-block;
-            background: #c9a84c;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            padding: 14px 32px;
-            border-radius: 4px;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s ease, transform 0.2s ease;
-        }
-
-        .btn-primary:hover {
-            background: #b8953f;
-            transform: translateY(-1px);
-        }
-
-        /* ===== NAV ===== */
-        .nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: #1a1a2e;
-            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .nav-inner {
+        .hero-services {
+            background:
+                linear-gradient(135deg, rgba(26,26,46,0.78) 0%, rgba(13,13,26,0.9) 100%),
+                url('../images/bg-workflow.png') center/cover no-repeat;
+            min-height: 420px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            height: 72px;
+            position: relative;
         }
 
-        .nav-logo {
-            height: 36px;
-            width: auto;
+        .hero-services::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 80%, var(--navy-deep) 100%);
+            pointer-events: none;
         }
 
-        .nav-links {
-            display: none;
-            align-items: center;
-            gap: 32px;
-            list-style: none;
+        .hero-services .hero-inner {
+            position: relative;
+            z-index: 2;
         }
 
-        .nav-links a {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #b0b0b8;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: #c9a84c;
-        }
-
-        .nav-links .nav-link--active {
-            color: #c9a84c;
-        }
-
-        .nav-cta {
-            display: none;
-        }
-
-        .nav-cta .btn-primary {
-            font-size: 11px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 10px 22px;
-        }
-
-        /* Mobile hamburger */
-        .nav-toggle {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .nav-toggle span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: #b0b0b8;
-            border-radius: 2px;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-
-        .nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        /* Mobile menu overlay */
-        .nav-mobile {
-            display: none;
-            position: fixed;
-            top: 72px;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(26, 26, 46, 0.98);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            z-index: 999;
-            padding: 40px 24px;
-        }
-
-        .nav-mobile.active {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 28px;
-        }
-
-        .nav-mobile a {
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #b0b0b8;
-        }
-
-        .nav-mobile a:hover {
-            color: #c9a84c;
-        }
-
-        .nav-mobile .btn-primary {
-            margin-top: 12px;
-            color: #ffffff;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            background: linear-gradient(135deg, rgba(26,26,46,0.92) 0%, rgba(13,13,26,0.95) 100%),
-                        url('../images/bg-workflow.png') center/cover no-repeat;
-            padding: 80px 0 100px;
-        }
-
-        .hero-gold-line {
-            display: block;
-            width: 40px;
-            height: 2px;
-            background: #c9a84c;
-            margin: 0 auto 28px;
-        }
-
-        .hero h1 {
-            font-size: clamp(32px, 5vw, 48px);
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-            color: #ffffff;
-        }
-
-        .hero p {
-            font-size: clamp(15px, 2vw, 18px);
-            color: #b0b0b8;
-            max-width: 560px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
-
-        /* ===== SERVICE SECTIONS ===== */
+        /* Service section */
         .service-section {
-            padding: 80px 0 88px;
-        }
-
-        .service-section--white {
-            background: #ffffff;
-        }
-
-        .service-section--grey {
-            background: #f8f9fa;
+            padding: 96px 0 104px;
+            position: relative;
         }
 
         .service-block {
-            border-left: 4px solid #c9a84c;
-            padding-left: 32px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            align-items: start;
         }
 
-        .service-accent {
-            display: block;
-            width: 48px;
-            height: 3px;
-            background: #c9a84c;
-            border-radius: 2px;
-            margin-bottom: 28px;
-        }
-
-        .service-section h2 {
-            font-size: clamp(26px, 3.5vw, 36px);
-            margin-bottom: 20px;
-            letter-spacing: -0.015em;
-        }
-
-        .service-description {
-            font-size: 16px;
-            color: #6b6b7b;
-            line-height: 1.7;
-            max-width: 680px;
-            margin-bottom: 36px;
-        }
-
-        .service-list {
-            list-style: none;
-            margin-bottom: 40px;
-        }
-
-        .service-list li {
+        .service-block__header {
             position: relative;
-            padding-left: 28px;
-            margin-bottom: 14px;
-            font-size: 15px;
-            color: #2d2d3a;
-            line-height: 1.6;
         }
 
-        .service-list li::before {
+        .service-block__number {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-size: clamp(56px, 7vw, 84px);
+            font-weight: 600;
+            color: var(--gold);
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+        }
+
+        .service-block__header h2 {
+            font-size: clamp(28px, 3.6vw, 40px);
+            margin-bottom: 18px;
+        }
+
+        .service-block__header p {
+            font-size: clamp(16px, 1.8vw, 18px);
+            line-height: 1.7;
+            color: var(--ink-muted);
+            max-width: 440px;
+        }
+
+        .service-block__list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .service-block__list li {
+            position: relative;
+            padding: 14px 14px 14px 44px;
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(26, 26, 46, 0.06);
+            font-size: 15px;
+            color: var(--ink);
+            line-height: 1.6;
+            transition: border-color var(--duration-base) var(--ease),
+                        transform var(--duration-base) var(--ease),
+                        box-shadow var(--duration-base) var(--ease);
+        }
+
+        .service-block__list li:hover {
+            border-color: var(--gold-border);
+            transform: translateX(4px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .service-block__list li::before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 10px;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: #c9a84c;
+            background: var(--gold);
         }
 
-        .service-section .btn-primary {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        .service-section--alt .service-block__list li {
+            background: var(--paper);
         }
 
-        .service-section .btn-primary:hover {
-            background: #b8953f;
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-        }
-
-        /* ===== BOTTOM CTA ===== */
-        .bottom-cta {
-            background: #1a1a2e;
-            padding: 100px 0;
-        }
-
-        .bottom-cta h2 {
-            color: #ffffff;
-            font-size: clamp(24px, 4vw, 34px);
-            margin-bottom: 16px;
-        }
-
-        .bottom-cta p {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.6);
-            max-width: 480px;
-            margin: 0 auto 36px;
-            line-height: 1.7;
-        }
-
-        .bottom-cta .btn-primary {
-            margin-bottom: 20px;
-        }
-
-        .bottom-cta-email {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .bottom-cta-email a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            transition: color 0.2s ease;
-        }
-
-        .bottom-cta-email a:hover {
-            color: #c9a84c;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            border-top: 2px solid #c9a84c;
-            background: #0d0d1a;
-            padding: 48px 0 40px;
-        }
-
-        .footer-inner {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .footer-logo {
-            height: 30px;
-            width: auto;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 24px;
-            list-style: none;
-        }
-
-        .footer-links a {
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #b0b0b8;
-            transition: color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: #c9a84c;
-        }
-
-        .footer-email {
-            font-size: 14px;
-            color: #b0b0b8;
-        }
-
-        .footer-email a {
-            color: #c9a84c;
-            transition: color 0.2s ease;
-        }
-
-        .footer-email a:hover {
-            color: #e0c06a;
-        }
-
-        .footer-copy {
-            font-size: 12px;
-            color: #6b6b7b;
-        }
-
-        /* ===== ANIMATIONS ===== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ===== RESPONSIVE — TABLET (768px+) ===== */
-        @media (min-width: 768px) {
-            .hero {
-                padding: 100px 0 120px;
-            }
-
-            .service-section {
-                padding: 100px 0 108px;
-            }
-
-            .bottom-cta {
-                padding: 120px 0;
-            }
-        }
-
-        /* ===== RESPONSIVE — DESKTOP (1024px+) ===== */
-        @media (min-width: 1024px) {
-            .nav-links {
-                display: flex;
-            }
-
-            .nav-cta {
-                display: block;
-            }
-
-            .nav-toggle {
-                display: none;
-            }
-
-            .container {
-                padding: 0 40px;
-            }
-        }
-
-        /* ===== RESPONSIVE — SMALL MOBILE ===== */
-        @media (max-width: 480px) {
-            body {
-                font-size: 15px;
-            }
-
-            .hero {
-                padding: 56px 0 64px;
-            }
-
-            .service-section {
-                padding: 56px 0 64px;
-            }
-
-            .bottom-cta {
-                padding: 64px 0;
-            }
-
-            .btn-primary {
-                padding: 13px 28px;
-                font-size: 13px;
-                width: 100%;
-                text-align: center;
-            }
-
-            .service-list li {
-                font-size: 14px;
-            }
-
+        @media (min-width: 900px) {
             .service-block {
-                padding-left: 20px;
+                grid-template-columns: 360px 1fr;
+                gap: 64px;
+            }
+        }
+
+        @media (min-width: 1100px) {
+            .service-block {
+                grid-template-columns: 420px 1fr;
+                gap: 72px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== NAV ===== -->
+    <!-- ==== NAV ==== -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
         <div class="container">
             <div class="nav-inner">
                 <a href="/" aria-label="Grand Vision Perspective Home">
-                    <img src="../images/logo.jpg" alt="Grand Vision Perspective" class="nav-logo" style="height:36px;">
+                    <img src="../images/logo.jpg" alt="Grand Vision Perspective" class="nav-logo" width="120" height="32" style="height:32px;width:auto;">
                 </a>
                 <ul class="nav-links">
-                    <li><a href="/services/" class="nav-link--active">Services</a></li>
+                    <li><a href="/services/" class="active">Services</a></li>
                     <li><a href="/about/">About</a></li>
                     <li><a href="/case-studies/">Case Studies</a></li>
                     <li><a href="/contact/">Contact</a></li>
                 </ul>
                 <div class="nav-cta">
-                    <a href="/contact/#book" class="btn-primary">Book a Strategy Call</a>
+                    <a href="/contact/#book" class="btn btn-primary btn-sm">Book a Strategy Call</a>
                 </div>
                 <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
                     <span></span>
@@ -542,99 +174,113 @@
                 </button>
             </div>
         </div>
+        <div class="nav-mobile" role="menu">
+            <a href="/services/" role="menuitem">Services</a>
+            <a href="/about/" role="menuitem">About</a>
+            <a href="/case-studies/" role="menuitem">Case Studies</a>
+            <a href="/contact/" role="menuitem">Contact</a>
+            <a href="/contact/#book" class="btn btn-primary" role="menuitem">Book a Strategy Call</a>
+        </div>
     </nav>
 
-    <!-- Mobile menu overlay -->
-    <div class="nav-mobile" id="navMobile" role="dialog" aria-label="Mobile navigation">
-        <a href="/services/">Services</a>
-        <a href="/about/">About</a>
-        <a href="/case-studies/">Case Studies</a>
-        <a href="/contact/">Contact</a>
-        <a href="/contact/#book" class="btn-primary">Book a Strategy Call</a>
-    </div>
-
-    <!-- ===== HERO ===== -->
-    <section class="hero text-center">
+    <!-- ==== HERO ==== -->
+    <section class="hero hero-services hero--center">
         <div class="container">
-            <span class="hero-gold-line" aria-hidden="true"></span>
-            <h1>Our Services</h1>
-            <p>Practical solutions that free your team to focus on what matters</p>
+            <div class="hero-inner reveal">
+                <span class="eyebrow" style="color: var(--gold-hi);">Services</span>
+                <h1 style="color: var(--white);">Practical solutions that free your team to <em class="italic-display" style="color: var(--gold-hi);">focus on what matters</em>.</h1>
+                <p class="hero-lead">Three services. Each delivered end to end. All designed to fit the way your business actually runs.</p>
+            </div>
         </div>
     </section>
 
-    <!-- ===== BUSINESS AUTOMATION ===== -->
-    <section class="service-section service-section--white fade-in">
+    <!-- ==== BUSINESS AUTOMATION ==== -->
+    <section class="service-section section--paper">
         <div class="container">
-            <div class="service-block">
-                <span class="service-accent" aria-hidden="true"></span>
-                <h2>Business Automation</h2>
-                <p class="service-description">We design and build automated systems that replace manual processes, reduce errors, and give your team their time back.</p>
-                <ul class="service-list">
+            <div class="service-block reveal">
+                <div class="service-block__header">
+                    <span class="service-block__number">01</span>
+                    <h2>Business Automation</h2>
+                    <span class="gold-rule"></span>
+                    <p>We design and build automated systems that replace manual processes, reduce errors, and give your team their time back.</p>
+                </div>
+                <ul class="service-block__list">
                     <li>Workflow design and implementation</li>
                     <li>API integrations between your existing tools</li>
                     <li>Automated reporting and dashboards</li>
                     <li>AI-powered customer communication</li>
                     <li>Invoice, payment, and accounting automation</li>
                 </ul>
-                <a href="/contact/#book" class="btn-primary">Book a Strategy Call</a>
             </div>
         </div>
     </section>
 
-    <!-- ===== DIGITAL OPERATIONS ===== -->
-    <section class="service-section service-section--grey fade-in">
+    <!-- ==== DIGITAL OPERATIONS ==== -->
+    <section class="service-section section--cream service-section--alt">
         <div class="container">
-            <div class="service-block">
-                <span class="service-accent" aria-hidden="true"></span>
-                <h2>Digital Operations</h2>
-                <p class="service-description">We set up and optimise the digital tools your business runs on, so everything works together and nothing falls through the cracks.</p>
-                <ul class="service-list">
+            <div class="service-block reveal">
+                <div class="service-block__header">
+                    <span class="service-block__number">02</span>
+                    <h2>Digital Operations</h2>
+                    <span class="gold-rule"></span>
+                    <p>We set up and optimise the digital tools your business runs on, so everything works together and nothing falls through the cracks.</p>
+                </div>
+                <ul class="service-block__list">
                     <li>CRM setup and optimisation</li>
                     <li>Cloud infrastructure and file management</li>
                     <li>Team collaboration and project management tools</li>
                     <li>Accounting and financial system design</li>
                     <li>Data migration and cleanup</li>
                 </ul>
-                <a href="/contact/#book" class="btn-primary">Book a Strategy Call</a>
             </div>
         </div>
     </section>
 
-    <!-- ===== STRATEGIC ADVISORY ===== -->
-    <section class="service-section service-section--white fade-in">
+    <!-- ==== STRATEGIC ADVISORY ==== -->
+    <section class="service-section section--paper">
         <div class="container">
-            <div class="service-block">
-                <span class="service-accent" aria-hidden="true"></span>
-                <h2>Strategic Advisory</h2>
-                <p class="service-description">We audit your operations, identify what is broken, and build a clear roadmap to fix it. Then we help you execute.</p>
-                <ul class="service-list">
+            <div class="service-block reveal">
+                <div class="service-block__header">
+                    <span class="service-block__number">03</span>
+                    <h2>Strategic Advisory</h2>
+                    <span class="gold-rule"></span>
+                    <p>We audit your operations, identify what is broken, and build a clear roadmap to fix it. Then we help you execute.</p>
+                </div>
+                <ul class="service-block__list">
                     <li>Operational audits and process mapping</li>
                     <li>Technology roadmap planning</li>
                     <li>Compliance and regulatory guidance</li>
                     <li>Vendor selection and management</li>
                     <li>Ongoing advisory retainers</li>
                 </ul>
-                <a href="/contact/#book" class="btn-primary">Book a Strategy Call</a>
             </div>
         </div>
     </section>
 
-    <!-- ===== BOTTOM CTA ===== -->
-    <section class="bottom-cta text-center">
+    <!-- ==== BOTTOM CTA ==== -->
+    <section class="section section--deep">
         <div class="container">
-            <h2>Not sure which service you need?</h2>
-            <p>Book a free strategy call and we will help you figure it out.</p>
-            <a href="/contact/#book" class="btn-primary">Book a Strategy Call</a>
-            <p class="bottom-cta-email">Or email us at <a href="mailto:barrie@grandvisionperspective.com">barrie@grandvisionperspective.com</a></p>
+            <div class="final-cta text-center reveal">
+                <span class="eyebrow" style="color: var(--gold-hi);">Not sure where to start</span>
+                <h2>Let's figure out which service fits.</h2>
+                <p class="lead" style="max-width: 560px; margin: 0 auto 36px;">Book a free strategy call and we will help you work out which of the three (or which combination) best matches what your business actually needs.</p>
+                <div class="hero-actions" style="justify-content: center;">
+                    <a href="/contact/#book" class="btn btn-primary">Book a Strategy Call</a>
+                    <a href="/case-studies/" class="btn btn-ghost-light btn-arrow">See our work</a>
+                </div>
+                <p style="margin-top: 28px; font-size: 13px; color: rgba(255,255,255,0.4); letter-spacing: 0.5px;">
+                    Or email <a href="mailto:barrie@grandvisionperspective.com" style="color: var(--gold);">barrie@grandvisionperspective.com</a>
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ==== FOOTER ==== -->
     <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-inner">
                 <a href="/" aria-label="Grand Vision Perspective Home">
-                    <img src="../images/logo.jpg" alt="Grand Vision Perspective" class="footer-logo" style="height:30px;">
+                    <img src="../images/logo.jpg" alt="Grand Vision Perspective" class="footer-logo" width="120" height="32" style="height:32px;width:auto;">
                 </a>
                 <ul class="footer-links">
                     <li><a href="/services/">Services</a></li>
@@ -648,63 +294,6 @@
         </div>
     </footer>
 
-    <!-- ===== SCRIPTS ===== -->
-    <script>
-        // Mobile nav toggle
-        (function() {
-            var toggle = document.querySelector('.nav-toggle');
-            var mobile = document.getElementById('navMobile');
-            if (!toggle || !mobile) return;
-
-            toggle.addEventListener('click', function() {
-                var expanded = toggle.getAttribute('aria-expanded') === 'true';
-                toggle.setAttribute('aria-expanded', String(!expanded));
-                toggle.classList.toggle('active');
-                mobile.classList.toggle('active');
-                document.body.style.overflow = expanded ? '' : 'hidden';
-            });
-
-            // Close mobile nav when a link is clicked
-            var mobileLinks = mobile.querySelectorAll('a');
-            for (var i = 0; i < mobileLinks.length; i++) {
-                mobileLinks[i].addEventListener('click', function() {
-                    toggle.setAttribute('aria-expanded', 'false');
-                    toggle.classList.remove('active');
-                    mobile.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            }
-        })();
-
-        // Fade-in on scroll (Intersection Observer)
-        (function() {
-            var targets = document.querySelectorAll('.fade-in');
-            if (!targets.length) return;
-
-            if ('IntersectionObserver' in window) {
-                var observer = new IntersectionObserver(function(entries) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, {
-                    threshold: 0.15,
-                    rootMargin: '0px 0px -40px 0px'
-                });
-
-                targets.forEach(function(target) {
-                    observer.observe(target);
-                });
-            } else {
-                // Fallback: show all immediately
-                targets.forEach(function(target) {
-                    target.classList.add('visible');
-                });
-            }
-        })();
-    </script>
-
+    <script src="../assets/app.js"></script>
 </body>
 </html>
