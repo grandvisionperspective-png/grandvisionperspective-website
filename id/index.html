@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Vision Perspective — Konsultansi Manajemen | Otomatisasi Bisnis &amp; Operasional Digital</title>
+    <meta name="description" content="Kami mengotomatisasi bisnis Anda sehingga Anda dapat fokus pada pertumbuhannya. Konsultansi manajemen spesialis otomatisasi bisnis, operasional digital, dan konsultasi strategis.">
+    <meta property="og:title" content="Grand Vision Perspective — Konsultansi Manajemen">
+    <meta property="og:description" content="Kami mengotomatisasi bisnis Anda sehingga Anda dapat fokus pada pertumbuhannya.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://grandvisionperspective.com/id/">
+    <link rel="canonical" href="https://grandvisionperspective.com/id/">
+    <link rel="alternate" hreflang="en" href="https://grandvisionperspective.com/">
+    <link rel="alternate" hreflang="id" href="https://grandvisionperspective.com/id/">
+    <link rel="alternate" hreflang="x-default" href="https://grandvisionperspective.com/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="../images/bg-workflow.png">
+    <link rel="stylesheet" href="../assets/styles.css">
+    <style>
+        .hero-home {
+            min-height: 640px;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(135deg, rgba(26, 26, 46, 0.82) 0%, rgba(13, 13, 26, 0.92) 100%),
+                url('../images/bg-workflow.png') center/cover no-repeat;
+            position: relative;
+        }
+        .hero-home::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 85%, var(--navy-deep) 100%); pointer-events: none; }
+        .hero-home .hero-inner { position: relative; z-index: 2; padding: 48px 0; }
+        .hero-home h1 { color: var(--white); font-size: clamp(40px, 6vw, 72px); line-height: 1.02; letter-spacing: -0.03em; margin-bottom: 28px; font-weight: 600; max-width: 920px; }
+        .hero-home h1 em { font-style: italic; font-weight: 400; color: var(--gold-hi); }
+        .hero-home .hero-lead { max-width: 560px; margin-bottom: 40px; }
+        .hero-home .hero-locations { display: flex; align-items: center; gap: 12px; margin-top: 44px; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255, 255, 255, 0.45); }
+        .hero-home .hero-locations::before { content: ''; display: inline-block; width: 32px; height: 1px; background: var(--gold); }
+
+        .stats-band { padding: 64px 0; background: var(--cream); border-top: 1px solid var(--cream-deep); border-bottom: 1px solid var(--cream-deep); }
+
+        .problem-card { background: var(--white); padding: 32px 28px; border-radius: var(--radius-md); border: 1px solid rgba(26, 26, 46, 0.05); box-shadow: var(--shadow-sm); transition: box-shadow var(--duration-base) var(--ease), transform var(--duration-base) var(--ease); height: 100%; display: flex; flex-direction: column; }
+        .problem-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+        .problem-icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: var(--gold-tint); border: 1px solid var(--gold-border); border-radius: var(--radius-sm); margin-bottom: 20px; color: var(--gold); font-family: var(--font-display); font-weight: 600; font-size: 20px; }
+        .problem-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--ink-heading); }
+        .problem-card p { font-size: 15px; color: var(--ink-muted); line-height: 1.7; }
+
+        .service-card { background: var(--white); padding: 36px 32px 32px; border-radius: var(--radius-md); border: 1px solid rgba(26, 26, 46, 0.05); box-shadow: var(--shadow-sm); transition: all var(--duration-base) var(--ease); height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold) 0%, transparent 100%); transform: scaleX(0); transform-origin: left; transition: transform var(--duration-slow) var(--ease); }
+        .service-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); border-color: var(--gold-border); }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card h3 { font-size: 22px; margin-bottom: 12px; color: var(--ink-heading); }
+        .service-card p { font-size: 15px; color: var(--ink-muted); line-height: 1.7; margin-bottom: 24px; flex-grow: 1; }
+        .service-card a { font-size: 13px; font-weight: 600; letter-spacing: 0.5px; color: var(--gold); text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; transition: gap var(--duration-base) var(--ease), color var(--duration-base) var(--ease); }
+        .service-card a::after { content: '→'; }
+        .service-card a:hover { color: var(--gold-hover); gap: 10px; }
+
+        .process-grid { display: grid; grid-template-columns: 1fr; gap: 28px; position: relative; }
+        .process-step { position: relative; padding: 32px 28px; background: var(--white); border-radius: var(--radius-md); border: 1px solid rgba(26, 26, 46, 0.06); box-shadow: var(--shadow-sm); }
+        .process-step-number { display: inline-block; font-family: var(--font-display); font-weight: 600; font-size: 48px; color: var(--gold); line-height: 1; margin-bottom: 16px; opacity: 0.9; }
+        .process-step h3 { font-size: 20px; margin-bottom: 12px; }
+        .process-step p { font-size: 15px; color: var(--ink-muted); line-height: 1.7; }
+
+        .result-item { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 32px 0; border-bottom: 1px solid rgba(26, 26, 46, 0.08); align-items: center; }
+        .result-item:last-child { border-bottom: none; }
+        .result-stat { font-family: var(--font-display); font-size: clamp(32px, 4.5vw, 48px); font-weight: 600; color: var(--gold); line-height: 1; letter-spacing: -0.02em; }
+        .result-item p { font-size: 16px; line-height: 1.7; color: var(--ink); }
+
+        .about-teaser { max-width: 760px; }
+        .about-teaser p { font-size: 17px; line-height: 1.8; color: var(--ink); margin-bottom: 24px; }
+
+        .final-cta { text-align: center; }
+        .final-cta h2 { margin-bottom: 20px; }
+        .final-cta .lead { margin: 0 auto 40px; color: rgba(255, 255, 255, 0.65); }
+        .final-cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-bottom: 28px; }
+        .final-cta-email { font-size: 13px; letter-spacing: 0.5px; color: rgba(255, 255, 255, 0.4); }
+        .final-cta-email a { color: var(--gold); }
+        .final-cta-email a:hover { color: var(--gold-hi); }
+
+        @media (min-width: 768px) {
+            .hero-home { min-height: 720px; }
+            .process-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+            .result-item { grid-template-columns: 240px 1fr; gap: 48px; padding: 40px 0; }
+        }
+        @media (min-width: 1024px) {
+            .hero-home h1 { font-size: clamp(48px, 6.5vw, 76px); }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Grand Vision Perspective",
+        "url": "https://grandvisionperspective.com",
+        "email": "connect@grandvisionperspective.com",
+        "description": "Konsultansi manajemen spesialis otomatisasi bisnis, operasional digital, dan konsultasi strategis.",
+        "areaServed": ["Indonesia", "Asia"]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="nav" role="navigation" aria-label="Navigasi utama">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/id/" aria-label="Grand Vision Perspective Beranda">
+                    <img src="../images/logo.jpg" alt="Grand Vision Perspective" class="nav-logo" width="120" height="32" style="height:32px;width:auto;">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/id/services/">Layanan</a></li>
+                    <li><a href="/about/" lang="en" hreflang="en">Tentang</a></li>
+                    <li><a href="/case-studies/" lang="en" hreflang="en">Studi Kasus</a></li>
+                    <li><a href="/id/contact/">Kontak</a></li>
+                </ul>
+                <div class="lang-toggle" role="group" aria-label="Bahasa">
+                    <a href="/" class="lang-btn" lang="en" hreflang="en">EN</a>
+                    <span class="lang-divider" aria-hidden="true">·</span>
+                    <a href="/id/" class="lang-btn lang-btn--active" lang="id" aria-current="true">ID</a>
+                </div>
+                <div class="nav-cta">
+                    <a href="/id/contact/#book" class="btn btn-primary btn-sm">Jadwalkan Konsultasi</a>
+                </div>
+                <button class="nav-toggle" aria-label="Buka menu navigasi" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+        <div class="nav-mobile" role="menu">
+            <a href="/id/services/" role="menuitem">Layanan</a>
+            <a href="/about/" role="menuitem" lang="en">Tentang</a>
+            <a href="/case-studies/" role="menuitem" lang="en">Studi Kasus</a>
+            <a href="/id/contact/" role="menuitem">Kontak</a>
+            <a href="/id/contact/#book" class="btn btn-primary" role="menuitem">Jadwalkan Konsultasi</a>
+            <div class="lang-toggle" role="group" aria-label="Bahasa">
+                <a href="/" class="lang-btn" lang="en" hreflang="en">EN</a>
+                <span class="lang-divider" aria-hidden="true">·</span>
+                <a href="/id/" class="lang-btn lang-btn--active" lang="id" aria-current="true">ID</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero hero-home">
+        <div class="container">
+            <div class="hero-inner reveal">
+                <span class="eyebrow" style="color: var(--gold-hi);">Konsultansi Manajemen</span>
+                <h1>Kami mengotomatisasi bisnis Anda <em>sehingga Anda dapat fokus</em> pada pertumbuhannya.</h1>
+                <p class="hero-lead">Sistem praktis untuk bisnis yang telah melampaui spreadsheet dan tindak lanjut manual. Kami merancang, membangun, dan menyerahkan susunan operasional yang memungkinkan tim Anda melakukan pekerjaan yang hanya bisa dilakukan manusia.</p>
+                <div class="hero-actions">
+                    <a href="/id/contact/#book" class="btn btn-primary">Jadwalkan Konsultasi</a>
+                    <a href="/case-studies/" lang="en" class="btn btn-ghost-light btn-arrow">Lihat karya kami</a>
+                </div>
+                <div class="hero-locations">Melayani di Indonesia dan Asia</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-band">
+        <div class="container">
+            <div class="stats stats--4 reveal-stagger">
+                <div class="stat">
+                    <span class="stat-number" data-target="90" data-suffix="%">0</span>
+                    <span class="stat-label">Akuntansi manual berkurang</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="27715">0</span>
+                    <span class="stat-label">File terorganisir di 16 cloud drive</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="15" data-suffix="+">0</span>
+                    <span class="stat-label">Jam dihemat per minggu</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="88">0</span>
+                    <span class="stat-label">Alur kerja diaudit dan direvitalisasi</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--paper">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">Masalah yang kami selesaikan</span>
+                <h2>Kalau salah satu terasa familier, mari bicara.</h2>
+                <span class="gold-rule"></span>
+            </div>
+            <div class="card-grid card-grid--3 reveal-stagger">
+                <div class="problem-card">
+                    <span class="problem-icon">01</span>
+                    <h3>Tenggelam dalam proses manual</h3>
+                    <p>Tim Anda menghabiskan jam-jam berharga untuk tugas yang seharusnya hanya butuh menit. Spreadsheet, copy-paste, dan tindak lanjut manual menguras kapasitas Anda.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">02</span>
+                    <h3>Sistem yang tidak saling terhubung</h3>
+                    <p>CRM, akuntansi, dan perangkat proyek Anda masing-masing menyimpan versi kebenaran yang berbeda. Tidak ada yang terhubung, tidak ada yang sinkron.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">03</span>
+                    <h3>Tumbuh tapi operasional tertinggal</h3>
+                    <p>Pendapatan meningkat tetapi back-office Anda hanya bertahan dengan selotip. Peningkatan skala tanpa menambah karyawan terasa mustahil.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--cream">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">Apa yang kami lakukan</span>
+                <h2>Tiga layanan, satu hasil: sistem yang benar-benar berjalan.</h2>
+                <span class="gold-rule"></span>
+                <p class="lead">Kami merancang dan membangun sistem yang membebaskan Anda untuk fokus pada hal yang paling penting: bisnis Anda.</p>
+            </div>
+            <div class="card-grid card-grid--3 reveal-stagger">
+                <div class="service-card">
+                    <h3>Otomatisasi Bisnis</h3>
+                    <p>Alur kerja, integrasi, dan sistem otomatis yang berjalan tanpa Anda. Pipeline prospek, alur persetujuan, sinkronisasi data, pencatatan kwitansi.</p>
+                    <a href="/id/services/">Jelajahi</a>
+                </div>
+                <div class="service-card">
+                    <h3>Operasional Digital</h3>
+                    <p>CRM, infrastruktur cloud, dan perangkat internal yang menjaga tim Anda tetap selaras. Satu sumber kebenaran, bukan lima spreadsheet.</p>
+                    <a href="/id/services/">Jelajahi</a>
+                </div>
+                <div class="service-card">
+                    <h3>Konsultasi Strategis</h3>
+                    <p>Audit operasional, peta jalan, dan bimbingan langsung. Kami menemukan di mana pemborosan terjadi dan menunjukkan cara menghentikannya.</p>
+                    <a href="/id/services/">Jelajahi</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--paper">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">Apa yang telah kami kerjakan</span>
+                <h2>Angka spesifik, bisnis nyata.</h2>
+                <span class="gold-rule"></span>
+            </div>
+            <div class="reveal-stagger">
+                <div class="result-item">
+                    <div class="result-stat">90%</div>
+                    <p>Pengurangan akuntansi manual untuk grup perhotelan. Pemrosesan transaksi, rekonsiliasi, dan pelaporan otomatis di beberapa entitas.</p>
+                </div>
+                <div class="result-item">
+                    <div class="result-stat">27.715</div>
+                    <p>File terorganisir di 16 cloud drive. Perombakan ruang kerja digital secara menyeluruh: deduplikasi, reorganisasi, dan sistem yang tetap rapi.</p>
+                </div>
+                <div class="result-item">
+                    <div class="result-stat">15+</div>
+                    <p>Jam dihemat setiap minggu melalui otomatisasi end-to-end pada CRM, akuntansi, dan operasional untuk bisnis jasa yang sedang tumbuh.</p>
+                </div>
+                <div class="result-item">
+                    <div class="result-stat">88</div>
+                    <p>Alur kerja yang diaudit dan dibawa ke dalam kendali versi, CI, dan pemantauan error pada platform otomatisasi produksi. Tanpa downtime selama perbaikan.</p>
+                </div>
+            </div>
+            <div style="margin-top: 40px;">
+                <a href="/case-studies/" lang="en" class="btn btn-secondary btn-arrow">Baca studi kasus</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--cream-deep">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">Cara kerja kami</span>
+                <h2>Tiga langkah menuju sistem yang lebih baik.</h2>
+                <span class="gold-rule"></span>
+            </div>
+            <div class="process-grid reveal-stagger">
+                <div class="process-step">
+                    <span class="process-step-number">01</span>
+                    <h3>Ceritakan tentang bisnis Anda</h3>
+                    <p>Jadwalkan konsultasi gratis. Kami mendengarkan, mengajukan pertanyaan yang tepat, dan mengidentifikasi di mana keuntungan terbesar tersembunyi.</p>
+                </div>
+                <div class="process-step">
+                    <span class="process-step-number">02</span>
+                    <h3>Kami merancang sistem Anda</h3>
+                    <p>Kami membangun solusi sesuai kebutuhan dengan peta jalan yang jelas, jadwal yang realistis, dan harga yang transparan. Tanpa kejutan.</p>
+                </div>
+                <div class="process-step">
+                    <span class="process-step-number">03</span>
+                    <h3>Kami bangun, uji, dan serahkan</h3>
+                    <p>Kami implementasikan, uji secara menyeluruh, latih tim Anda, dan serahkan dokumentasi. Anda mendapatkan sistem yang berjalan, bukan proyek setengah jadi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--paper">
+        <div class="container">
+            <div class="about-teaser reveal">
+                <span class="eyebrow">Siapa kami</span>
+                <h2>Kami percaya teknologi harus melayani manusia, bukan sebaliknya.</h2>
+                <span class="gold-rule"></span>
+                <p>Grand Vision Perspective didirikan dengan dua dekade pengalaman melintasi franchise, startup, korporat, perhotelan, konstruksi, dan proyek-proyek conscious di berbagai belahan dunia. Di setiap lingkungan, pola yang sama selalu muncul: sistem yang rusak memberi tekanan yang tidak perlu kepada orang-orang yang baik. Kami hadir untuk mengubah itu.</p>
+                <p>Berbasis di Bali, bekerja bersama bisnis di Indonesia, Asia, dan secara internasional.</p>
+                <div style="margin-top: 28px;">
+                    <a href="/about/" lang="en" class="btn btn-secondary btn-arrow">Baca cerita kami</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--navy">
+        <div class="container">
+            <div class="section-header section-header--center reveal">
+                <span class="eyebrow">Suara klien</span>
+                <h2>Kata para klien kami</h2>
+                <span class="gold-rule gold-rule--center"></span>
+            </div>
+            <div class="testimonial reveal">
+                <p class="testimonial-quote">Mereka datang, melihat seluruh operasional kami, dan dalam hitungan minggu semuanya berjalan. Penagihan, pelaporan, pelacakan klien, semuanya otomatis. Tim saya beralih dari pemadam kebakaran setiap hari menjadi benar-benar menikmati pekerjaan mereka. Saya jujur tidak mengira bisa berubah secepat ini.</p>
+                <p class="testimonial-attribution">James &middot; Managing Director, Grup Perhotelan</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--deep">
+        <div class="container">
+            <div class="final-cta reveal">
+                <h2>Siap berhenti mengerjakan semuanya secara manual?</h2>
+                <p class="lead" style="max-width: 560px;">Jadwalkan konsultasi strategi gratis. Tiga puluh menit, tanpa pitch deck, hanya percakapan nyata tentang apa yang rusak dan apa yang perlu diperbaiki.</p>
+                <div class="final-cta-actions">
+                    <a href="/id/contact/#book" class="btn btn-primary">Jadwalkan Konsultasi</a>
+                    <a href="/id/services/" class="btn btn-ghost-light">Jelajahi layanan</a>
+                </div>
+                <p class="final-cta-email">Atau kirim email ke <a href="mailto:connect@grandvisionperspective.com">connect@grandvisionperspective.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-inner">
+                <a href="/id/" aria-label="Grand Vision Perspective Beranda">
+                    <img src="../images/logo.jpg" alt="Grand Vision Perspective" class="footer-logo" width="120" height="32" style="height:32px;width:auto;">
+                </a>
+                <ul class="footer-links">
+                    <li><a href="/id/services/">Layanan</a></li>
+                    <li><a href="/about/" lang="en">Tentang</a></li>
+                    <li><a href="/case-studies/" lang="en">Studi Kasus</a></li>
+                    <li><a href="/id/contact/">Kontak</a></li>
+                </ul>
+                <p class="footer-email"><a href="mailto:connect@grandvisionperspective.com">connect@grandvisionperspective.com</a></p>
+                <p class="footer-copy">&copy; 2026 Grand Vision Perspective</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/app.js"></script>
+</body>
+</html>
