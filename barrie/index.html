@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Barrie | Grand Vision Perspective</title>
+    <meta name="description" content="Operations architecture and systems execution. Audit, design, build, and operate the systems that let your business scale without scaling headcount.">
+    <meta property="og:title" content="Barrie | Grand Vision Perspective">
+    <meta property="og:description" content="Operations architecture and systems execution. Audit, design, build, and operate the systems that let your business scale without scaling headcount.">
+    <meta property="og:type" content="profile">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #2d2d3a;
+            background: #ffffff;
+            line-height: 1.7;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            color: #1a1a2e;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ===== UTILITY ===== */
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .gold-rule {
+            display: block;
+            width: 48px;
+            height: 3px;
+            background: #c9a84c;
+            border-radius: 2px;
+            margin: 0 0 28px;
+        }
+
+        .gold-rule--center {
+            margin: 0 auto 28px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-primary {
+            display: inline-block;
+            background: #c9a84c;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 14px 32px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #b8953f;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            padding: 13px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 4px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #c9a84c;
+        }
+
+        /* ===== NAV ===== */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #1a1a2e;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav-logo {
+            height: 36px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: none;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #b0b0b8;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #c9a84c;
+        }
+
+        .nav-cta {
+            display: none;
+        }
+
+        .nav-cta .btn-primary {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 10px 22px;
+        }
+
+        .nav-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: #b0b0b8;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .nav-mobile {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 999;
+            padding: 40px 24px;
+        }
+
+        .nav-mobile.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-mobile a {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #b0b0b8;
+        }
+
+        .nav-mobile a:hover {
+            color: #c9a84c;
+        }
+
+        .nav-mobile .btn-primary {
+            margin-top: 12px;
+            color: #ffffff;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0d0d1a 100%);
+            padding: 72px 0 88px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at top right, rgba(201, 168, 76, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 32px;
+        }
+
+        .hero-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(201, 168, 76, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-text {
+            max-width: 680px;
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #c9a84c;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            margin-bottom: 18px;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+        }
+
+        .hero-tagline {
+            font-size: clamp(17px, 2.2vw, 20px);
+            color: #c9a84c;
+            font-weight: 500;
+            margin-bottom: 24px;
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+        }
+
+        .hero-lead {
+            font-size: clamp(15px, 1.8vw, 17px);
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* ===== SECTION BASE ===== */
+        .section {
+            padding: 72px 0 80px;
+        }
+
+        .section--grey {
+            background: #f8f9fa;
+        }
+
+        .section--dark {
+            background: #1a1a2e;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .section--dark h2, .section--dark h3 {
+            color: #ffffff;
+        }
+
+        .section-eyebrow {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #c9a84c;
+            margin-bottom: 14px;
+        }
+
+        .section h2 {
+            font-size: clamp(26px, 3.5vw, 36px);
+            margin-bottom: 16px;
+            letter-spacing: -0.015em;
+        }
+
+        .section-lead {
+            font-size: 17px;
+            color: #6b6b7b;
+            line-height: 1.7;
+            max-width: 720px;
+            margin-bottom: 48px;
+        }
+
+        .section--dark .section-lead {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        /* ===== ABOUT PARAGRAPH ===== */
+        .about-body {
+            max-width: 720px;
+        }
+
+        .about-body p {
+            font-size: 17px;
+            color: #2d2d3a;
+            line-height: 1.85;
+            margin-bottom: 20px;
+        }
+
+        .about-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== PHASE CARDS (Audit/Design/Build/Operate) ===== */
+        .phase-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .phase-card {
+            background: #ffffff;
+            border: 1px solid rgba(26, 26, 46, 0.08);
+            border-left: 4px solid #c9a84c;
+            padding: 28px 28px 30px;
+            border-radius: 6px;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .phase-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .phase-number {
+            display: inline-block;
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #c9a84c;
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+        }
+
+        .phase-card h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .phase-card p {
+            font-size: 15px;
+            color: #6b6b7b;
+            line-height: 1.7;
+        }
+
+        /* ===== CAPABILITY BLOCKS ===== */
+        .capability-block {
+            padding: 32px 0;
+            border-bottom: 1px solid rgba(26, 26, 46, 0.1);
+        }
+
+        .capability-block:last-child {
+            border-bottom: none;
+        }
+
+        .capability-block h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .capability-block p {
+            font-size: 16px;
+            color: #4a4a5a;
+            line-height: 1.75;
+            max-width: 760px;
+        }
+
+        .capability-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 10px;
+            margin-top: 18px;
+        }
+
+        .capability-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            color: #6b6b7b;
+            background: rgba(201, 168, 76, 0.08);
+            padding: 6px 12px;
+            border-radius: 3px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+        }
+
+        /* ===== TECH STACK ===== */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        .tech-category h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #c9a84c;
+            margin-bottom: 10px;
+        }
+
+        .tech-category p {
+            font-size: 14px;
+            color: #4a4a5a;
+            line-height: 1.7;
+        }
+
+        /* ===== CASE STUDY ITEMS ===== */
+        .case-item {
+            padding: 28px 0;
+            border-bottom: 1px solid rgba(26, 26, 46, 0.08);
+        }
+
+        .case-item:last-child {
+            border-bottom: none;
+        }
+
+        .case-meta {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #c9a84c;
+            margin-bottom: 8px;
+        }
+
+        .case-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .case-item p {
+            font-size: 15px;
+            color: #4a4a5a;
+            line-height: 1.7;
+        }
+
+        /* ===== ENGAGEMENT CARDS ===== */
+        .engagement-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+        }
+
+        .engagement-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 24px 28px;
+            border-radius: 6px;
+        }
+
+        .engagement-card h3 {
+            font-size: 18px;
+            color: #c9a84c;
+            margin-bottom: 6px;
+            letter-spacing: -0.005em;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .engagement-card p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* ===== METHOD ===== */
+        .method-list {
+            list-style: none;
+            max-width: 720px;
+        }
+
+        .method-list li {
+            position: relative;
+            padding-left: 36px;
+            margin-bottom: 18px;
+            font-size: 16px;
+            color: #2d2d3a;
+            line-height: 1.7;
+        }
+
+        .method-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 20px;
+            height: 2px;
+            background: #c9a84c;
+        }
+
+        .method-list strong {
+            color: #1a1a2e;
+            font-weight: 600;
+        }
+
+        /* ===== BOTTOM CTA ===== */
+        .bottom-cta {
+            background: #1a1a2e;
+            padding: 88px 0 96px;
+            text-align: center;
+        }
+
+        .bottom-cta h2 {
+            color: #ffffff;
+            font-size: clamp(24px, 4vw, 34px);
+            margin-bottom: 14px;
+        }
+
+        .bottom-cta p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 520px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+
+        .bottom-cta-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 2px solid #c9a84c;
+            background: #0d0d1a;
+            padding: 48px 0 40px;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .footer-logo {
+            height: 30px;
+            width: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #b0b0b8;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #c9a84c;
+        }
+
+        .footer-email {
+            font-size: 14px;
+            color: #b0b0b8;
+        }
+
+        .footer-email a {
+            color: #c9a84c;
+        }
+
+        .footer-email a:hover {
+            color: #e0c06a;
+        }
+
+        .footer-copy {
+            font-size: 12px;
+            color: #6b6b7b;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (min-width: 600px) {
+            .phase-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+
+            .engagement-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 18px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 96px 0 112px;
+            }
+
+            .hero-inner {
+                flex-direction: row;
+                text-align: left;
+                gap: 56px;
+            }
+
+            .hero-photo {
+                width: 200px;
+                height: 200px;
+                flex-shrink: 0;
+            }
+
+            .section {
+                padding: 96px 0 104px;
+            }
+
+            .bottom-cta {
+                padding: 112px 0 120px;
+            }
+
+            .bottom-cta-actions {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .nav-links {
+                display: flex;
+            }
+
+            .nav-cta {
+                display: block;
+            }
+
+            .nav-toggle {
+                display: none;
+            }
+
+            .container {
+                padding: 0 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 15px;
+            }
+
+            .hero {
+                padding: 56px 0 64px;
+            }
+
+            .hero-photo {
+                width: 140px;
+                height: 140px;
+            }
+
+            .section {
+                padding: 56px 0 64px;
+            }
+
+            .bottom-cta {
+                padding: 64px 0 72px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/" aria-label="Grand Vision Perspective Home">
+                    <img src="../images/logo.jpg" alt="Grand Vision Perspective" class="nav-logo">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/case-studies/">Case Studies</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+                <div class="nav-cta">
+                    <a href="/contact/#book" class="btn-primary">Book a Strategy Call</a>
+                </div>
+                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        <div class="nav-mobile" role="menu">
+            <a href="/services/" role="menuitem">Services</a>
+            <a href="/about/" role="menuitem">About</a>
+            <a href="/case-studies/" role="menuitem">Case Studies</a>
+            <a href="/contact/" role="menuitem">Contact</a>
+            <a href="/contact/#book" class="btn-primary" role="menuitem">Book a Strategy Call</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <img src="../images/founder.jpg" alt="Barrie, Principal at Grand Vision Perspective" class="hero-photo" width="200" height="200">
+                <div class="hero-text">
+                    <span class="hero-eyebrow">Grand Vision Perspective</span>
+                    <h1>Barrie Elsden</h1>
+                    <p class="hero-tagline">Operations architecture and systems execution.</p>
+                    <p class="hero-lead">I build the operating systems that let businesses run themselves. Audit what's broken, design what should be there, ship the working system, keep it alive. Full stack, one operator, end to end.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <span class="section-eyebrow">About</span>
+            <h2>Who I am</h2>
+            <span class="gold-rule"></span>
+            <div class="about-body">
+                <p>I have spent the last several years running product, operations, and systems at the intersection of hardware and software. I have led the development of a commercial wellness technology product from prototype through international manufacturing. I have coordinated supply chains across Indonesia, the Philippines, and China. I have built the finance, CRM, and operations systems that keep multiple companies running day to day. I have shipped my own personal AI assistant infrastructure. I have rehabilitated broken automation platforms that were causing outages.</p>
+                <p>The thread through all of it is the same: take the messy, manual, fragile parts of a business and turn them into systems that just work. Quietly, reliably, in the background, so the people inside the business can do the things only people can do.</p>
+                <p>Grand Vision Perspective is the practice I run this work through. Based in Bali, serving clients across Indonesia, Asia, and internationally.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--grey">
+        <div class="container">
+            <span class="section-eyebrow">How I work</span>
+            <h2>Four phases, one operator</h2>
+            <span class="gold-rule"></span>
+            <p class="section-lead">Most consultancies stop at the plan. Most builders arrive without one. I do both, in sequence, so the work actually lands in the business and keeps running after handover.</p>
+
+            <div class="phase-grid">
+                <div class="phase-card">
+                    <span class="phase-number">01</span>
+                    <h3>Audit and Discovery</h3>
+                    <p>I walk into your operations and come out with a clear map. What is working, what is wasting money, what is waiting to break, what should exist that does not. Delivered as a prioritised roadmap you can act on, with or without me.</p>
+                </div>
+                <div class="phase-card">
+                    <span class="phase-number">02</span>
+                    <h3>Design and Architecture</h3>
+                    <p>Turning the audit into a concrete systems plan. Tools, workflows, integrations, data model, sequencing, and realistic timelines. Written in language both the business and engineering sides can act on.</p>
+                </div>
+                <div class="phase-card">
+                    <span class="phase-number">03</span>
+                    <h3>Build and Ship</h3>
+                    <p>Solo delivery of the system, end to end. I write the code, connect the services, configure the platforms, document the handover, and train your team. No throwing work over a wall.</p>
+                </div>
+                <div class="phase-card">
+                    <span class="phase-number">04</span>
+                    <h3>Operate and Iterate</h3>
+                    <p>Optional ongoing engagement to run, monitor, extend, and evolve the system as the business grows. This is where most consultancies stop. I stay.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <span class="section-eyebrow">Capabilities</span>
+            <h2>What I build</h2>
+            <span class="gold-rule"></span>
+            <p class="section-lead">Seven problem spaces I work across. Most engagements touch two or three. I do not outsource the build.</p>
+
+            <div class="capability-block">
+                <h3>Finance and Operations Systems</h3>
+                <p>Multi-entity accounting with Xero, QuickBooks, or similar. Bank feed ingestion via SFTP, CSV, or direct API. Automated reconciliation. Approval workflows via Telegram, WhatsApp, Slack, or web. Receipt capture pipelines. Daily, weekly, and monthly reporting dashboards. Full audit trail for regulators, investors, and internal review.</p>
+                <div class="capability-list">
+                    <span class="capability-tag">Xero</span>
+                    <span class="capability-tag">Bank SFTP</span>
+                    <span class="capability-tag">Reconciliation</span>
+                    <span class="capability-tag">Approval queues</span>
+                    <span class="capability-tag">Multi-entity</span>
+                    <span class="capability-tag">Audit trails</span>
+                </div>
+            </div>
+
+            <div class="capability-block">
+                <h3>CRM and Revenue Systems</h3>
+                <p>End-to-end lead pipelines from first touch through qualified booking. Form integrations (ScoreApp, Typeform, custom). Scoring and routing logic. CRM setup and automation across ClickUp, HubSpot, Monday.com, Pipedrive, Airtable. Calendly and booking flow integration. Email nurture sequences. Conversion tracking. Sales operations that do not rely on anyone remembering to update the spreadsheet.</p>
+                <div class="capability-list">
+                    <span class="capability-tag">ClickUp</span>
+                    <span class="capability-tag">HubSpot</span>
+                    <span class="capability-tag">Monday.com</span>
+                    <span class="capability-tag">Calendly</span>
+                    <span class="capability-tag">Lead scoring</span>
+                    <span class="capability-tag">Email sequences</span>
+                </div>
+            </div>
+
+            <div class="capability-block">
+                <h3>AI Systems and Agents</h3>
+                <p>Custom AI agents with persistent memory, voice input, and real operational integration across calendars, email, documents, and tasks. Model Context Protocol servers for Claude and other LLMs. Meeting transcription and searchable multi-year archives. Multi-agent architectures with specialist routing. Cost-to-quality model selection across Claude, OpenAI, Groq, Gemini. Not chatbots, actual agents that do work.</p>
+                <div class="capability-list">
+                    <span class="capability-tag">Claude API</span>
+                    <span class="capability-tag">OpenAI</span>
+                    <span class="capability-tag">MCP servers</span>
+                    <span class="capability-tag">Voice transcription</span>
+                    <span class="capability-tag">Persistent memory</span>
+                    <span class="capability-tag">Multi-agent</span>
+                </div>
+            </div>
+
+            <div class="capability-block">
+                <h3>Data Pipelines and Integrations</h3>
+                <p>ETL across Google Workspace, Microsoft 365, Xero, CRMs, banks, and payment processors. Clean, auditable, monitored. Google Sheets and Apps Script as a first-class platform, not just a spreadsheet. SQL and document stores. Deduplication, normalisation, enrichment. APIs that were never designed to talk to each other, made to talk cleanly.</p>
+                <div class="capability-list">
+                    <span class="capability-tag">REST APIs</span>
+                    <span class="capability-tag">Webhooks</span>
+                    <span class="capability-tag">SFTP</span>
+                    <span class="capability-tag">Apps Script</span>
+                    <span class="capability-tag">SQL</span>
+                    <span class="capability-tag">Event-driven</span>
+                </div>
+            </div>
+
+            <div class="capability-block">
+                <h3>Internal Tools and Dashboards</h3>
+                <p>Real-time operations dashboards. Admin panels for non-technical teams. Telegram and WhatsApp control surfaces so ops can run from a phone. Document generators for PDFs, certificates, and structured reports. Workflow command centres. The tools your team actually uses to run the business, built to fit your team, not the other way around.</p>
+                <div class="capability-list">
+                    <span class="capability-tag">Custom dashboards</span>
+                    <span class="capability-tag">Telegram bots</span>
+                    <span class="capability-tag">WhatsApp Business</span>
+                    <span class="capability-tag">Admin panels</span>
+                    <span class="capability-tag">PDF generation</span>
+                </div>
+            </div>
+
+            <div class="capability-block">
+                <h3>Infrastructure and DevOps</h3>
+                <p>VPS setup and hardening on Linux, Docker, nginx, cron, systemd. CI/CD pipelines via GitHub Actions. Monitoring stacks with uptime, error tracking, and alerting. Offsite encrypted backups. Secrets management and security hardening. Git hygiene for teams that grew faster than their tooling. The unsexy foundation that makes everything else reliable.</p>
+                <div class="capability-list">
+                    <span class="capability-tag">Linux VPS</span>
+                    <span class="capability-tag">GitHub Actions</span>
+                    <span class="capability-tag">Docker</span>
+                    <span class="capability-tag">Monitoring</span>
+                    <span class="capability-tag">Backups</span>
+                    <span class="capability-tag">Cloudflare</span>
+                </div>
+            </div>
+
+            <div class="capability-block">
+                <h3>Websites, Platforms, and Customer Touchpoints</h3>
+                <p>Full websites and landing pages. Booking flows. E-learning platforms with certification and automated enrolment. Onboarding portals. Static or dynamic, Next.js or Astro or plain HTML where appropriate. Integrated with the rest of the business stack from day one, not built as a silo.</p>
+                <div class="capability-list">
+                    <span class="capability-tag">Next.js</span>
+                    <span class="capability-tag">Astro</span>
+                    <span class="capability-tag">GitHub Pages</span>
+                    <span class="capability-tag">Vercel</span>
+                    <span class="capability-tag">Webflow</span>
+                    <span class="capability-tag">Learning platforms</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--grey">
+        <div class="container">
+            <span class="section-eyebrow">Tools and platforms</span>
+            <h2>What I build in</h2>
+            <span class="gold-rule"></span>
+            <p class="section-lead">A working subset, not a shopping list. These are the tools I reach for first.</p>
+
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <h4>Languages</h4>
+                    <p>Python, TypeScript, JavaScript, Node, SQL, Bash, Google Apps Script.</p>
+                </div>
+                <div class="tech-category">
+                    <h4>Automation platforms</h4>
+                    <p>n8n, Make, Zapier. Custom Node and Python where the visual tools hit their limits.</p>
+                </div>
+                <div class="tech-category">
+                    <h4>AI and agents</h4>
+                    <p>Claude, OpenAI, Groq, Gemini. Anthropic SDK. Model Context Protocol servers.</p>
+                </div>
+                <div class="tech-category">
+                    <h4>Business platforms</h4>
+                    <p>Google Workspace. Microsoft 365. Xero. QuickBooks. ClickUp. HubSpot. Monday.com.</p>
+                </div>
+                <div class="tech-category">
+                    <h4>Data stores</h4>
+                    <p>PostgreSQL. SQLite with full-text search. Redis. Google Sheets as a lightweight database.</p>
+                </div>
+                <div class="tech-category">
+                    <h4>Infrastructure</h4>
+                    <p>Linux VPS. Docker. nginx. Cloudflare. GitHub Actions. Self-hosted monitoring.</p>
+                </div>
+                <div class="tech-category">
+                    <h4>Messaging</h4>
+                    <p>Telegram Bot API. WhatsApp Business. Twilio. Slack. Email via SMTP and API.</p>
+                </div>
+                <div class="tech-category">
+                    <h4>Frontend</h4>
+                    <p>Next.js, Astro, static HTML/CSS, Tailwind. Whatever is right for the job.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <span class="section-eyebrow">Recent work</span>
+            <h2>What I have actually shipped</h2>
+            <span class="gold-rule"></span>
+            <p class="section-lead">Selected engagements, anonymised. Different industries, same pattern: messy operation, clear system, clean result.</p>
+
+            <div class="case-item">
+                <span class="case-meta">Finance Operations</span>
+                <h3>Multi-entity finance operations system for a product group</h3>
+                <p>Three legal entities, three bank accounts, three sets of bookkeeping. Built a unified finance operations system from scratch: automated bank feed ingestion, multi-currency reconciliation, approval queues via Telegram, direct Xero write-back, daily digests, receipt capture pipeline, full audit trail. Replaced eight plus hours of manual bookkeeping per week across the group.</p>
+            </div>
+
+            <div class="case-item">
+                <span class="case-meta">CRM and Lead Pipeline</span>
+                <h3>Automated lead qualification funnel from assessment to booked call</h3>
+                <p>ScoreApp submission through scoring rules, budget gating, automated CRM task creation, Calendly invite dispatch, and tiered email nurture. Auto-escalation on high-value leads. Zero manual triage. Sales ops stopped being a bottleneck; the pipeline runs itself.</p>
+            </div>
+
+            <div class="case-item">
+                <span class="case-meta">AI Systems</span>
+                <h3>Personal AI operations assistant with multi-year memory</h3>
+                <p>Custom agent built on Claude, with persistent memory spanning multi-year conversation history, voice input and output via Whisper and ElevenLabs, email and calendar integration, meeting transcription, and task management. Running on self-hosted infrastructure with full-text search across conversations, documents, and archived communications.</p>
+            </div>
+
+            <div class="case-item">
+                <span class="case-meta">Training Platform</span>
+                <h3>Production e-learning platform, zero to live in ten days</h3>
+                <p>Six-module training platform with quizzes, automated PDF certificate generation, enrolment tracking, and completion analytics. Built and shipped in ten days for international hospitality clients. Later extended with a cheat-sheet companion module for on-the-job reference.</p>
+            </div>
+
+            <div class="case-item">
+                <span class="case-meta">Operations Consolidation</span>
+                <h3>Google Drive and Gmail reorganisation across three companies</h3>
+                <p>27,715 files organised across 16 shared drives. 16 GB of duplicates archived. 900 plus stale project tasks cleaned up. 9,600 email inbox triaged down to 1,700 actionable items. Moved from ad-hoc organisation to discoverable, role-gated structure with documented access model.</p>
+            </div>
+
+            <div class="case-item">
+                <span class="case-meta">Automation Platform Rehabilitation</span>
+                <h3>n8n tenant rehabilitation with zero downtime</h3>
+                <p>Audited 88 workflows and 1,235 nodes across a production automation tenant. Deep-inspected the 13 most critical flows. Applied six live fixes with no service interruption. Moved the tenant from ad-hoc automation to version-controlled workflows with CI, branch protection, error monitoring, and capacity-safe execution storage.</p>
+            </div>
+
+            <div class="case-item">
+                <span class="case-meta">Security Hardening</span>
+                <h3>Git history and credential hygiene across three codebases</h3>
+                <p>Removed 47 secrets from git history. Migrated 43 credentials to a hardware-backed vault. Patched 17 vulnerabilities. Set up branch protection, pre-commit hooks, automated dependency updates, and AI-assisted code review. Every production PR now passes a security-first gate before merge.</p>
+            </div>
+
+            <div class="case-item">
+                <span class="case-meta">Monitoring and Reliability</span>
+                <h3>Self-hosted monitoring stack replacing paid SaaS</h3>
+                <p>Uptime monitoring, error tracking, and encrypted offsite backups, all with Telegram alerting, deployed on the client's own infrastructure. Replaced paid services (UptimeRobot, Sentry Cloud) at a fraction of the cost, with the client fully owning their telemetry data.</p>
+            </div>
+
+            <div class="case-item">
+                <span class="case-meta">International Operations</span>
+                <h3>Cross-border manufacturing coordination across three countries</h3>
+                <p>Real-time status dashboards and stakeholder-specific reporting across production sites in Indonesia, the Philippines, and China. Daily visibility on production, QC, and shipping. Replaced an overloaded WhatsApp-and-email workflow with a clean operational picture the whole team could trust.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--dark">
+        <div class="container">
+            <span class="section-eyebrow">Engagement models</span>
+            <h2>How I work with clients</h2>
+            <span class="gold-rule"></span>
+            <p class="section-lead">Four ways to engage. Most projects start with an audit.</p>
+
+            <div class="engagement-grid">
+                <div class="engagement-card">
+                    <h3>Audit only</h3>
+                    <p>I produce a written map of your operations, what is working, what is broken, and a prioritised roadmap. Fixed fee, delivered in one to three weeks. Useful even if we do not build together.</p>
+                </div>
+                <div class="engagement-card">
+                    <h3>Build project</h3>
+                    <p>Fixed scope, fixed fee, delivered system. Documented, tested, handed over to your team with training.</p>
+                </div>
+                <div class="engagement-card">
+                    <h3>Monthly retainer</h3>
+                    <p>Ongoing partnership where I build, operate, monitor, and iterate your systems as the business evolves.</p>
+                </div>
+                <div class="engagement-card">
+                    <h3>Fractional Head of Operations or CTO</h3>
+                    <p>Integrated into your leadership for a defined period. For businesses between five and fifty people who need senior systems thinking without a full-time hire.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <span class="section-eyebrow">Principles</span>
+            <h2>How I actually work</h2>
+            <span class="gold-rule"></span>
+
+            <ul class="method-list">
+                <li><strong>Discovery starts with your workflow, not a framework.</strong> I watch how work actually moves in your business and find where the tax is being paid. The system gets designed around reality.</li>
+                <li><strong>Every recommendation is justified by the cost of the problem it replaces.</strong> No nice-to-haves. If it does not pay for itself, it does not ship.</li>
+                <li><strong>Working systems, not plans.</strong> I deliver things that run, not deliverables that sit in a folder.</li>
+                <li><strong>No lock-in.</strong> Documentation and handover are part of the work. Your team should be able to run and extend the system without me.</li>
+                <li><strong>Security and reliability are baked in.</strong> Secrets in vaults, not spreadsheets. Audit trails by default. Backups tested, not assumed.</li>
+                <li><strong>Scope honesty.</strong> If something is more expensive or harder than it looks, I say so before the contract. If something is easier, the same.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="bottom-cta">
+        <div class="container">
+            <h2>Let's talk</h2>
+            <p>The best engagements start with a conversation about what is actually broken. No pitch deck, no pre-prepared pitch. Just the real picture.</p>
+
+            <div class="bottom-cta-actions">
+                <a href="mailto:barrie@grandvisionperspective.com" class="btn-primary">Email barrie@grandvisionperspective.com</a>
+                <a href="/contact/#book" class="btn-secondary">Book a strategy call</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-inner">
+                <a href="/" aria-label="Grand Vision Perspective Home">
+                    <img src="../images/logo.jpg" alt="Grand Vision Perspective" class="footer-logo">
+                </a>
+                <ul class="footer-links">
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/case-studies/">Case Studies</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+                <p class="footer-email"><a href="mailto:barrie@grandvisionperspective.com">barrie@grandvisionperspective.com</a></p>
+                <p class="footer-copy">&copy; 2026 Grand Vision Perspective</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const toggle = document.querySelector('.nav-toggle');
+        const mobile = document.querySelector('.nav-mobile');
+        if (toggle && mobile) {
+            toggle.addEventListener('click', () => {
+                const isActive = toggle.classList.toggle('active');
+                mobile.classList.toggle('active');
+                toggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            });
+            mobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+                toggle.classList.remove('active');
+                mobile.classList.remove('active');
+                toggle.setAttribute('aria-expanded', 'false');
+            }));
+        }
+    </script>
+</body>
+</html>
