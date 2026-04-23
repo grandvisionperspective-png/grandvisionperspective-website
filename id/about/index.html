@@ -23,6 +23,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/styles.css">
     <style>
+        /* Tighter hero on this page — less empty air before the story */
+        .hero.hero--cream { padding-top: 72px; padding-bottom: 56px; }
+        @media (min-width: 768px) {
+            .hero.hero--cream { padding-top: 96px; padding-bottom: 72px; }
+        }
+
         .story-body { max-width: 780px; }
         .story-body p { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.85; color: var(--ink); margin-bottom: 24px; }
         .story-body p:last-child { margin-bottom: 0; }
@@ -86,6 +92,11 @@
                 <span class="eyebrow">Tentang Grand Vision Perspective</span>
                 <h1>Kami membangun sistem yang membiarkan <em class="italic-display">manusia menjadi manusia</em>.</h1>
                 <p class="hero-lead">Konsultan manajemen praktis untuk bisnis yang telah melampaui tools yang digunakan saat memulai. Kami merancang, membangun, dan menjalankan sistem operasional yang memungkinkan tim hebat mengerjakan pekerjaan terbaiknya.</p>
+                <div class="hero-credentials">
+                    <span>Indonesia &amp; Asia</span>
+                    <span>Pengalaman 20+ tahun</span>
+                    <span>Eksekusi end-to-end</span>
+                </div>
             </div>
         </div>
     </section>

@@ -23,6 +23,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/styles.css">
     <style>
+        /* Tighter hero on this page — less empty air before the story */
+        .hero.hero--cream {
+            padding-top: 72px;
+            padding-bottom: 56px;
+        }
+
+        @media (min-width: 768px) {
+            .hero.hero--cream {
+                padding-top: 96px;
+                padding-bottom: 72px;
+            }
+        }
+
         /* Page-specific: story layout */
         .story-body {
             max-width: 780px;
@@ -158,6 +171,11 @@
                 <span class="eyebrow">About Grand Vision Perspective</span>
                 <h1>We build systems that let <em class="italic-display">people be people</em>.</h1>
                 <p class="hero-lead">A practical management consultancy for businesses that have outgrown the tools they started with. We design, build, and run the operations stack that lets good teams do their best work.</p>
+                <div class="hero-credentials">
+                    <span>Indonesia &amp; Asia</span>
+                    <span>20+ years experience</span>
+                    <span>End-to-end execution</span>
+                </div>
             </div>
         </div>
     </section>
