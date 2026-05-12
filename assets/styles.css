@@ -90,7 +90,7 @@ ul, ol {
     --grey-200: #d0d0d6;
 
     /* Semantic token: text on dark surfaces (nav, footer, mobile menu) */
-    --text-on-dark: var(--text-on-dark);
+    --text-on-dark: #d8d4cc;
 
     /* Palette:ink */
     --ink: #2d2d3a;
