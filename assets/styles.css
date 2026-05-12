@@ -449,6 +449,9 @@ p {
 
 
 /* === 05. BUTTONS =========================================== */
+/* Buttons run on the locked --ease-out-q for brand-moment feedback.
+   Primary hover gains a stronger gold halo. Ghost-light gains a soft
+   gold-tint backdrop instead of plain rgba white. */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -461,11 +464,11 @@ p {
     padding: 14px 28px;
     border-radius: var(--radius-sm);
     border: 1px solid transparent;
-    transition: background var(--duration-base) var(--ease),
-                border-color var(--duration-base) var(--ease),
-                color var(--duration-base) var(--ease),
-                transform var(--duration-base) var(--ease),
-                box-shadow var(--duration-base) var(--ease);
+    transition: background 0.4s var(--ease-out-q),
+                border-color 0.4s var(--ease-out-q),
+                color 0.4s var(--ease-out-q),
+                transform 0.4s var(--ease-out-q),
+                box-shadow 0.4s var(--ease-out-q);
     cursor: pointer;
     white-space: nowrap;
 }
@@ -474,13 +477,14 @@ p {
     background: var(--gold);
     color: var(--white);
     border-color: var(--gold);
+    box-shadow: 0 4px 14px rgba(201, 168, 76, 0.18);
 }
 
 .btn-primary:hover {
     background: var(--gold-hover);
     border-color: var(--gold-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-gold);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(201, 168, 76, 0.32), 0 4px 10px rgba(201, 168, 76, 0.2);
 }
 
 .btn-secondary {
@@ -492,6 +496,8 @@ p {
 .btn-secondary:hover {
     background: var(--ink-heading);
     color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-ghost-light {
@@ -501,9 +507,11 @@ p {
 }
 
 .btn-ghost-light:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(201, 168, 76, 0.08);
     border-color: var(--gold);
     color: var(--gold-hi);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
 .btn-sm {
@@ -1419,12 +1427,64 @@ p {
 }
 
 
-/* === 17. FOOTER ============================================ */
+/* === 17. FOOTER ============================================
+   Cinematic close: layered radial atmosphere + grain overlay + subtle
+   ambient gold blob behind content. Top border becomes a gradient
+   hairline (gold fade) instead of a flat 2px rule. */
 .footer {
-    border-top: 2px solid var(--gold);
-    background: var(--navy-deep);
-    padding: 56px 0 44px;
+    position: relative;
+    border-top: 1px solid transparent;
+    background:
+        radial-gradient(ellipse 60% 80% at 50% 0%, rgba(201, 168, 76, 0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 60% at 100% 100%, rgba(91, 122, 140, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, var(--navy-deep) 0%, #08080b 100%);
+    padding: 64px 0 48px;
     color: var(--ink-subtle);
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: var(--grain-tight);
+    opacity: 0.35;
+    mix-blend-mode: overlay;
+    z-index: 0;
+}
+
+/* Subtle ambient gold blob behind centred footer content. */
+.footer::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -120px;
+    width: 800px;
+    height: 400px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.12) 0%, transparent 65%);
+    filter: blur(30px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Top accent hairline (gradient gold fade) draws the eye to footer. */
+.footer > .container {
+    position: relative;
+    z-index: 1;
+}
+
+.footer > .container::before {
+    content: '';
+    position: absolute;
+    top: -64px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(320px, 60%);
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+    opacity: 0.55;
 }
 
 .footer-inner {
