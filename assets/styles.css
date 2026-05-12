@@ -244,6 +244,10 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.15;
     font-weight: 600;
     letter-spacing: -0.01em;
+    /* Fraunces is a variable font with an optical-size axis. Set a sane
+       default; individual heading levels override below.
+       Per docs/brand/03-visual-system.md Section II (Type scale).  */
+    font-variation-settings: "opsz" 48;
 }
 
 /* Brand signature: italic-gold emphasis inside display contexts.
@@ -279,26 +283,39 @@ h1 em, h2 em, h3 em, .hero em, .lead em, .display em {
     }
 }
 
+/* H1: editorial display level. Opsz 96 pulls Fraunces toward its display
+   cut for sharper editorial weight. Letterspacing locked tight. */
 h1 {
     font-size: clamp(36px, 5.5vw, 64px);
     line-height: 1.05;
     letter-spacing: -0.025em;
+    font-variation-settings: "opsz" 96;
+    font-weight: 500;
 }
 
+/* H2: section headline. Opsz 64. */
 h2 {
-    font-size: clamp(28px, 4vw, 44px);
-    line-height: 1.15;
+    font-size: clamp(26px, 3.6vw, 40px);
+    line-height: 1.12;
     letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 64;
+    font-weight: 500;
 }
 
+/* H3: card title / sub-section. Opsz 36. */
 h3 {
-    font-size: clamp(20px, 2.3vw, 24px);
-    line-height: 1.25;
+    font-size: clamp(19px, 2.1vw, 22px);
+    line-height: 1.22;
+    letter-spacing: -0.012em;
+    font-variation-settings: "opsz" 36;
+    font-weight: 500;
 }
 
 h4 {
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.3;
+    font-variation-settings: "opsz" 24;
+    font-weight: 500;
 }
 
 p {
@@ -314,21 +331,58 @@ p {
     max-width: 680px;
 }
 
+/* Eyebrow: caption-scale caps with a hairline rule prefix.
+   The hairline (via ::before) is the canvas-spec editorial signature.
+   For places where the leading rule is unwanted, use .eyebrow--bare. */
 .eyebrow {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
     font-family: var(--font-body);
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 16px;
+    margin-bottom: 18px;
+    line-height: 1.4;
 }
 
-.eyebrow--muted {
+.eyebrow::before {
+    content: '';
+    display: inline-block;
+    flex-shrink: 0;
+    width: 24px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.55;
+}
+
+.eyebrow--bare::before { display: none; }
+.eyebrow--muted { color: var(--ink-muted); }
+
+/* Centered eyebrows (inside .section-header--center) keep the flex
+   contents centred via the parent text-align: center context. */
+.section-header--center .eyebrow { justify-content: center; }
+
+/* Caption: brand-spec technical metadata. Manrope 11px 600 0.22em caps.
+   Per docs/brand/03-visual-system.md Section II type scale level 6. */
+.caption {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    line-height: 1.45;
     color: var(--ink-muted);
 }
 
+.caption--gold { color: var(--gold); }
+.caption--faint { color: var(--c-ink-faint); }
+
+/* Gold rule: the inline accent under section headers. Default keeps the
+   marketing rhythm (48 x 3 gold bar). --hair variant is the canvas-spec
+   editorial hairline for cinematic moments. */
 .gold-rule {
     display: block;
     width: 48px;
@@ -340,6 +394,14 @@ p {
 
 .gold-rule--center {
     margin-inline: auto;
+}
+
+.gold-rule--hair {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    border-radius: 0;
+    opacity: 0.6;
 }
 
 .italic-display {
