@@ -108,12 +108,102 @@
             max-width: 640px;
         }
 
+        /* Wave 19 h2 refinement. Cinematic display register, italic-gold
+           accent on closing phrase. Matches Wave 17/18 about + case-studies. */
+        .media-section h2 {
+            font-size: clamp(28px, 3.6vw, 40px);
+            line-height: 1.12;
+            letter-spacing: -0.02em;
+            font-variation-settings: "opsz" 96;
+            font-weight: 500;
+        }
+        .media-section h2 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold);
+        }
+
+        /* Wave 19 surface-cadence atmospherics. Paper sections take a
+           warm gold radial; cream sections a gold radial from the
+           opposing corner; cream-deep takes a centred navy radial.
+           Faint Vantage watermarks alternate sides for editorial identity. */
+        .media-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .media-section--paper {
+            background:
+                radial-gradient(ellipse 70% 50% at 100% 0%, rgba(201, 168, 76, 0.06) 0%, transparent 55%),
+                var(--paper);
+        }
+        .media-section--cream {
+            background:
+                radial-gradient(ellipse 70% 50% at 0% 100%, rgba(201, 168, 76, 0.08) 0%, transparent 55%),
+                var(--cream);
+        }
+        .media-section--cream-deep {
+            background:
+                radial-gradient(ellipse 70% 50% at 50% 0%, rgba(26, 26, 46, 0.05) 0%, transparent 55%),
+                var(--cream-deep);
+        }
+        .media-section--watermark::after {
+            content: '';
+            position: absolute;
+            width: 560px;
+            height: 448px;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 64'><circle cx='40' cy='10' r='2.6' fill='%23c9a84c'/><line x1='32' y1='22' x2='48' y2='22' stroke='%23c9a84c' stroke-width='1.6' stroke-linecap='round'/><line x1='24' y1='32' x2='56' y2='32' stroke='%23c9a84c' stroke-width='2' stroke-linecap='round'/><line x1='16' y1='42' x2='64' y2='42' stroke='%23c9a84c' stroke-width='2.4' stroke-linecap='round'/><line x1='6' y1='54' x2='74' y2='54' stroke='%23c9a84c' stroke-width='2.8' stroke-linecap='round'/></svg>");
+            background-repeat: no-repeat;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .media-section--watermark-right::after {
+            right: -120px;
+            top: 80px;
+            transform: rotate(-8deg);
+        }
+        .media-section--watermark-left::after {
+            left: -120px;
+            bottom: 80px;
+            transform: rotate(8deg);
+        }
+        .media-section > .container { position: relative; z-index: 1; }
+
+        /* Wave 19 sub-heading refinement. Replaces inline h3 styling
+           that was duplicated across each asset group. Sits between h2
+           and the asset grids. Picks up the italic-gold em pattern. */
+        .asset-group-heading {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-variation-settings: "opsz" 36;
+            font-weight: 500;
+            letter-spacing: -0.012em;
+            color: var(--ink-heading);
+            margin-top: 48px;
+            margin-bottom: 8px;
+        }
+        .asset-group-heading:first-of-type { margin-top: 40px; }
+        .asset-group-heading em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold);
+        }
+        .asset-group-intro {
+            font-family: var(--font-body);
+            color: var(--ink-muted);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 14px;
+            max-width: 640px;
+        }
+
         /* Asset grid */
         .asset-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
-            margin-top: 36px;
+            margin-top: 20px;
         }
         @media (max-width: 900px) {
             .asset-grid { grid-template-columns: 1fr 1fr; }
@@ -121,16 +211,34 @@
         @media (max-width: 600px) {
             .asset-grid { grid-template-columns: 1fr; }
         }
+        /* Wave 19 cinematic asset-card. Gradient bg, gold left-rule
+           hairline, locked easing, cinematic shadow + gold-border on
+           hover. Matches Wave 9/17/18 card register. */
         .asset-card {
-            background: var(--paper);
-            border: 1px solid var(--cream-deep);
-            border-radius: 10px;
+            position: relative;
+            background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%);
+            border: 1px solid rgba(26, 26, 46, 0.06);
+            border-radius: var(--radius-md);
             overflow: hidden;
-            transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.45s var(--ease-out-q),
+                        transform 0.45s var(--ease-out-q),
+                        border-color 0.45s var(--ease-out-q);
+        }
+        .asset-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
+            z-index: 2;
         }
         .asset-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-cinematic);
+            border-color: var(--gold-border);
         }
         .asset-card .preview {
             padding: 36px 28px;
@@ -170,8 +278,9 @@
             display: block;
             color: var(--ink-heading);
             font-family: var(--font-display);
-            font-size: 16px;
-            letter-spacing: -0.005em;
+            font-size: 17px;
+            font-variation-settings: "opsz" 36;
+            letter-spacing: -0.012em;
             font-weight: 500;
             text-transform: none;
             margin-bottom: 2px;
@@ -205,32 +314,61 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 16px;
-            margin-top: 32px;
+            margin-top: 20px;
         }
         @media (max-width: 900px) {
             .palette-grid { grid-template-columns: 1fr 1fr; }
         }
+        /* Wave 19 cinematic palette-swatch. Same editorial register as
+           asset-card so the press kit reads as one consistent system.
+           Gold left-rule hairline, gradient meta-panel bg, locked easing. */
         .palette-swatch {
-            border-radius: 8px;
+            position: relative;
+            border-radius: var(--radius-md);
             overflow: hidden;
-            border: 1px solid var(--cream-deep);
-            transition: transform 0.3s var(--ease);
+            border: 1px solid rgba(26, 26, 46, 0.06);
+            background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%);
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.45s var(--ease-out-q),
+                        transform 0.45s var(--ease-out-q),
+                        border-color 0.45s var(--ease-out-q);
         }
-        .palette-swatch:hover { transform: translateY(-3px); }
+        .palette-swatch::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
+            z-index: 2;
+        }
+        .palette-swatch:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-cinematic);
+            border-color: var(--gold-border);
+        }
         .palette-swatch .colour {
             height: 120px;
         }
         .palette-swatch .meta {
-            background: var(--paper);
-            padding: 16px 18px;
+            background: transparent;
+            padding: 16px 18px 18px;
             font-family: var(--font-body);
         }
         .palette-swatch .meta .nm {
             font-family: var(--font-display);
-            font-size: 16px;
+            font-size: 17px;
+            font-variation-settings: "opsz" 36;
             font-weight: 500;
+            letter-spacing: -0.012em;
             color: var(--ink-heading);
             margin-bottom: 8px;
+        }
+        .palette-swatch .meta .nm em {
+            font-style: italic;
+            color: var(--gold);
+            font-weight: 400;
         }
         .palette-swatch .meta .row {
             font-size: 11px;
@@ -255,10 +393,30 @@
             .type-specimen { grid-template-columns: 1fr; }
         }
         .type-card {
-            background: var(--paper);
-            border: 1px solid var(--cream-deep);
-            border-radius: 10px;
+            position: relative;
+            background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%);
+            border: 1px solid rgba(26, 26, 46, 0.06);
+            border-radius: var(--radius-md);
             padding: 36px 32px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: box-shadow 0.45s var(--ease-out-q),
+                        transform 0.45s var(--ease-out-q),
+                        border-color 0.45s var(--ease-out-q);
+        }
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
+        }
+        .type-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-cinematic);
+            border-color: var(--gold-border);
         }
         .type-card .lbl {
             font-family: var(--font-body);
@@ -426,17 +584,17 @@
     </section>
 
     <!-- ==== MARK ASSETS ==== -->
-    <section class="section section--paper">
+    <section class="section media-section media-section--paper media-section--watermark media-section--watermark-right">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">The Vantage Mark</span>
-                <h2>The mark, the lockups, the wordmark.</h2>
+                <h2>The mark, the lockups, <em>the wordmark</em>.</h2>
                 <span class="gold-rule"></span>
                 <p class="lead">A single observer point above four widening horizon bars. Use the variant with the strongest contrast against the background. Each asset is available in three colour states: coloured (gold), black (single-colour print), and white (for dark surfaces).</p>
             </div>
 
-            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink-heading); margin-top: 40px; margin-bottom: 8px;">Mark only</h3>
-            <p style="font-family: var(--font-body); color: var(--ink-muted); font-size: 14px; margin-bottom: 8px;">The standalone Vantage. Use wherever the wordmark cannot fit (favicons, profile photos, watermarks, social icons).</p>
+            <h3 class="asset-group-heading">Mark <em>only</em></h3>
+            <p class="asset-group-intro">The standalone Vantage. Use wherever the wordmark cannot fit (favicons, profile photos, watermarks, social icons).</p>
             <div class="asset-grid">
                 <div class="asset-card">
                     <div class="preview bg-paper">
@@ -476,8 +634,8 @@
                 </div>
             </div>
 
-            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink-heading); margin-top: 48px; margin-bottom: 8px;">Horizontal lockup</h3>
-            <p style="font-family: var(--font-body); color: var(--ink-muted); font-size: 14px; margin-bottom: 8px;">The primary lockup. Mark and wordmark baseline-aligned. Default for site nav, email signatures, partner brochures, deck headers.</p>
+            <h3 class="asset-group-heading">Horizontal <em>lockup</em></h3>
+            <p class="asset-group-intro">The primary lockup. Mark and wordmark baseline-aligned. Default for site nav, email signatures, partner brochures, deck headers.</p>
             <div class="asset-grid">
                 <div class="asset-card">
                     <div class="preview bg-paper">
@@ -517,8 +675,8 @@
                 </div>
             </div>
 
-            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink-heading); margin-top: 48px; margin-bottom: 8px;">Vertical lockup</h3>
-            <p style="font-family: var(--font-body); color: var(--ink-muted); font-size: 14px; margin-bottom: 8px;">Mark above wordmark, centred. Use on deck covers, social tile signatures, proposal frontispieces.</p>
+            <h3 class="asset-group-heading">Vertical <em>lockup</em></h3>
+            <p class="asset-group-intro">Mark above wordmark, centred. Use on deck covers, social tile signatures, proposal frontispieces.</p>
             <div class="asset-grid">
                 <div class="asset-card">
                     <div class="preview bg-paper">
@@ -558,8 +716,8 @@
                 </div>
             </div>
 
-            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink-heading); margin-top: 48px; margin-bottom: 8px;">Wordmark only</h3>
-            <p style="font-family: var(--font-body); color: var(--ink-muted); font-size: 14px; margin-bottom: 8px;">The wordmark without the Vantage. Use in body copy mentions, page footers, signatures where the mark would be redundant.</p>
+            <h3 class="asset-group-heading">Wordmark <em>only</em></h3>
+            <p class="asset-group-intro">The wordmark without the Vantage. Use in body copy mentions, page footers, signatures where the mark would be redundant.</p>
             <div class="asset-grid">
                 <div class="asset-card">
                     <div class="preview bg-paper">
@@ -602,16 +760,16 @@
     </section>
 
     <!-- ==== PALETTE ==== -->
-    <section class="section section--cream">
+    <section class="section media-section media-section--cream media-section--watermark media-section--watermark-left">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">The palette</span>
-                <h2>Four primary tones, four secondary.</h2>
+                <h2>Four primary tones, <em>four secondary</em>.</h2>
                 <span class="gold-rule"></span>
                 <p class="lead">Paper, Cream, Navy, Gold. Used in paired combinations: Gold on Navy, Navy on Paper, Navy on Cream, Navy on Gold. Other pairings prohibited.</p>
             </div>
 
-            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink-heading); margin-top: 36px; margin-bottom: 8px;">Primary</h3>
+            <h3 class="asset-group-heading">Primary</h3>
             <div class="palette-grid">
                 <div class="palette-swatch">
                     <div class="colour" style="background:#fdfcf8; border-bottom: 1px solid var(--cream-deep);"></div>
@@ -651,7 +809,7 @@
                 </div>
             </div>
 
-            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink-heading); margin-top: 36px; margin-bottom: 8px;">Secondary</h3>
+            <h3 class="asset-group-heading">Secondary</h3>
             <div class="palette-grid">
                 <div class="palette-swatch">
                     <div class="colour" style="background:#ebe7dc;"></div>
@@ -694,11 +852,11 @@
     </section>
 
     <!-- ==== TYPE ==== -->
-    <section class="section section--paper">
+    <section class="section media-section media-section--cream-deep">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">The type stack</span>
-                <h2>Fraunces and Manrope.</h2>
+                <h2>Fraunces and <em>Manrope</em>.</h2>
                 <span class="gold-rule"></span>
                 <p class="lead">Fraunces (variable serif, optical sizing) for display and headlines. Manrope (geometric sans, weight 300 to 700) for body and UI. Italic Fraunces in Gold is the brand signature; use for emphasis within serif headlines.</p>
             </div>
@@ -726,11 +884,11 @@
     </section>
 
     <!-- ==== BOILERPLATE ==== -->
-    <section class="section section--cream">
+    <section class="section media-section media-section--cream media-section--watermark media-section--watermark-right">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Boilerplate copy</span>
-                <h2>For citation, partner briefs, and press use.</h2>
+                <h2>For citation, partner briefs, and <em>press use</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
 
@@ -753,11 +911,11 @@
     </section>
 
     <!-- ==== PRIVACY RULES ==== -->
-    <section class="section section--paper">
+    <section class="section media-section media-section--paper media-section--watermark media-section--watermark-left">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Privacy rules</span>
-                <h2>How we represent ourselves, and why.</h2>
+                <h2>How we represent ourselves, <em>and why</em>.</h2>
                 <span class="gold-rule"></span>
                 <p class="lead">A short list of the rules that govern how Grand Vision Perspective shows up in the world. These are not preferences. They are commitments to the clients who trust us with their operations.</p>
             </div>

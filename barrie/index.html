@@ -118,11 +118,38 @@
             max-width: 620px;
         }
 
+        /* Wave 19: h2 type refine. Larger, tighter, opsz display.
+           Italic-gold em accent on the closing phrase of every section title. */
+        .section .section-header h2 {
+            font-size: clamp(28px, 3.6vw, 40px);
+            line-height: 1.12;
+            letter-spacing: -0.02em;
+            font-variation-settings: "opsz" 96;
+            font-weight: 500;
+        }
+        .section .section-header h2 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold);
+        }
+        /* On dark surfaces the gold needs the brighter tone for legibility. */
+        .section--navy .section-header h2 em,
+        .section--deep .section-header h2 em {
+            color: var(--gold-hi);
+        }
+
         /* Phase cards */
         .phase-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 20px;
+        }
+
+        /* Wave 19: phase-card h3 italic-gold em accent (uses shared .card.card--accent). */
+        .phase-grid .card h3 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold);
         }
 
         /* Story body */
@@ -141,14 +168,171 @@
             margin-bottom: 0;
         }
 
-        .story-body p.first {
+        /* Wave 19: lead block now uses the about-page editorial pattern.
+           Italic Fraunces opsz 96, gradient gold rule on the left
+           (fades top to bottom), italic-gold em accent. Replaces the old
+           p.first flat 3px bar treatment. */
+        .story-body p.first,
+        .story-body p.lead {
             font-family: var(--font-display);
             font-style: italic;
-            font-size: clamp(18px, 2vw, 22px);
+            font-weight: 400;
+            font-size: clamp(22px, 2.6vw, 30px);
+            line-height: 1.45;
             color: var(--ink-heading);
-            padding-left: 20px;
-            border-left: 3px solid var(--gold);
-            margin-bottom: 32px;
+            margin-bottom: 44px;
+            padding: 4px 0 4px 28px;
+            border-left: none;
+            position: relative;
+            font-variation-settings: "opsz" 96;
+            letter-spacing: -0.012em;
+        }
+
+        .story-body p.first::before,
+        .story-body p.lead::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--gold) 35%, transparent 100%);
+        }
+
+        .story-body p.first em,
+        .story-body p.lead em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        /* Wave 19: subtle Vantage watermark behind the "Who I am" story
+           copy. Atmospheric only, per docs/brand/02-marks.md geometry. */
+        .story-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .story-section::after {
+            content: '';
+            position: absolute;
+            right: -120px;
+            top: 80px;
+            width: 560px;
+            height: 448px;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 64'><circle cx='40' cy='10' r='2.6' fill='%23c9a84c'/><line x1='32' y1='22' x2='48' y2='22' stroke='%23c9a84c' stroke-width='1.6' stroke-linecap='round'/><line x1='24' y1='32' x2='56' y2='32' stroke='%23c9a84c' stroke-width='2' stroke-linecap='round'/><line x1='16' y1='42' x2='64' y2='42' stroke='%23c9a84c' stroke-width='2.4' stroke-linecap='round'/><line x1='6' y1='54' x2='74' y2='54' stroke='%23c9a84c' stroke-width='2.8' stroke-linecap='round'/></svg>");
+            background-repeat: no-repeat;
+            background-size: contain;
+            transform: rotate(-8deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .story-section > .container { position: relative; z-index: 1; }
+
+        /* Wave 19: shipped section also gets a Vantage watermark on the
+           opposite side, so the page has two atmospheric anchors. */
+        .shipped-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .shipped-section::after {
+            content: '';
+            position: absolute;
+            left: -120px;
+            bottom: 80px;
+            width: 520px;
+            height: 416px;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 64'><circle cx='40' cy='10' r='2.6' fill='%23c9a84c'/><line x1='32' y1='22' x2='48' y2='22' stroke='%23c9a84c' stroke-width='1.6' stroke-linecap='round'/><line x1='24' y1='32' x2='56' y2='32' stroke='%23c9a84c' stroke-width='2' stroke-linecap='round'/><line x1='16' y1='42' x2='64' y2='42' stroke='%23c9a84c' stroke-width='2.4' stroke-linecap='round'/><line x1='6' y1='54' x2='74' y2='54' stroke='%23c9a84c' stroke-width='2.8' stroke-linecap='round'/></svg>");
+            background-repeat: no-repeat;
+            background-size: contain;
+            transform: rotate(8deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .shipped-section > .container { position: relative; z-index: 1; }
+
+        /* Wave 19: case-item refinement. Hairline gold rule prefix on the
+           meta caption (Wave 18 pattern), italic-gold em accent on the
+           item title, refined spacing. */
+        .case-item .case-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 14px;
+            line-height: 1.4;
+        }
+        .case-item .case-meta::before {
+            content: '';
+            flex-shrink: 0;
+            width: 24px;
+            height: 1px;
+            background: currentColor;
+            opacity: 0.55;
+        }
+        .case-item h3 {
+            font-size: clamp(20px, 2.2vw, 24px);
+            line-height: 1.2;
+            letter-spacing: -0.015em;
+            font-variation-settings: "opsz" 72;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .case-item h3 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold);
+        }
+
+        /* Wave 19: tech-grid polish. Subtle gold left-rule hairline + locked
+           easing on hover, keeps the flat tag-density feel but reads cinematic. */
+        .tech-grid .tech-category {
+            position: relative;
+            padding-left: 18px;
+            transition: transform 0.45s var(--ease-out-q);
+        }
+        .tech-grid .tech-category::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 6px;
+            bottom: 6px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
+            opacity: 0.7;
+        }
+        .tech-grid .tech-category:hover {
+            transform: translateX(2px);
+        }
+        .tech-grid .tech-category h4 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold);
+        }
+
+        /* Engagement cards: italic-gold em on h3 closing phrase. */
+        .engagement-card h3 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold-hi);
+        }
+
+        /* Capability blocks: italic-gold em on h3 closing phrase. */
+        .capability-block h3 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold);
+        }
+
+        /* Method list strong: italic-gold em accent option (where meaningful phrase exists). */
+        .method-list li strong em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold);
         }
 
         @media (min-width: 600px) {
@@ -225,15 +409,15 @@
         </div>
     </section>
 
-    <section class="section section--paper">
+    <section class="section section--paper story-section">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">About</span>
-                <h2>Who I am</h2>
+                <h2>Who <em>I am</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <div class="story-body reveal">
-                <p class="first">Over two decades of working across franchises, startups, corporates, hospitality, construction, and conscious projects around the world.</p>
+                <p class="lead">Over two decades of working across franchises, startups, corporates, hospitality, construction, and conscious projects <em>around the world</em>.</p>
                 <p>In every one of those environments, the same pattern kept showing up: businesses that started with a genuine purpose would gradually lose touch with the people they were built to serve. The focus would drift from customers and teams to margins and spreadsheets. Quality would quietly decline.</p>
                 <p>The root cause was almost always the same: broken systems putting unnecessary pressure on good people. Manual processes, disconnected tools, duplicated work, missed details. Teams drowning in admin instead of doing what they were hired to do. The technology to fix this existed, but it was not reaching the businesses that needed it most.</p>
                 <p>Grand Vision Perspective was founded to change that. I look at what appears to be operational chaos and find the clear path to simplicity. Then I build it. Finance systems, CRM and revenue pipelines, AI agents, internal tools, infrastructure, the whole stack. Always end to end, always practical, always measured by the hours saved and the problems eliminated.</p>
@@ -247,29 +431,29 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">How I work</span>
-                <h2>Four phases, one operator.</h2>
+                <h2>Four phases, <em>one operator</em>.</h2>
                 <span class="gold-rule"></span>
                 <p class="lead">Most consultancies stop at the plan. Most builders arrive without one. I do both, in sequence, so the work actually lands in the business and keeps running after handover.</p>
             </div>
             <div class="phase-grid reveal-stagger">
                 <div class="card card--accent">
                     <span class="card-number">01</span>
-                    <h3>Audit and Discovery</h3>
+                    <h3>Audit and <em>Discovery</em></h3>
                     <p>I walk into your operations and come out with a clear map. What is working, what is wasting money, what is waiting to break, what should exist that does not. Delivered as a prioritised roadmap you can act on, with or without me.</p>
                 </div>
                 <div class="card card--accent">
                     <span class="card-number">02</span>
-                    <h3>Design and Architecture</h3>
+                    <h3>Design and <em>Architecture</em></h3>
                     <p>Turning the audit into a concrete systems plan. Tools, workflows, integrations, data model, sequencing, and realistic timelines. Written in language both the business and engineering sides can act on.</p>
                 </div>
                 <div class="card card--accent">
                     <span class="card-number">03</span>
-                    <h3>Build and Ship</h3>
+                    <h3>Build and <em>Ship</em></h3>
                     <p>Solo delivery of the system, end to end. I write the code, connect the services, configure the platforms, document the handover, and train your team. No throwing work over a wall.</p>
                 </div>
                 <div class="card card--accent">
                     <span class="card-number">04</span>
-                    <h3>Operate and Iterate</h3>
+                    <h3>Operate and <em>Iterate</em></h3>
                     <p>Optional ongoing engagement to run, monitor, extend, and evolve the system as the business grows. This is where most consultancies stop. I stay.</p>
                 </div>
             </div>
@@ -280,13 +464,13 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Capabilities</span>
-                <h2>What I build</h2>
+                <h2>What <em>I build</em>.</h2>
                 <span class="gold-rule"></span>
                 <p class="lead">Seven problem spaces I work across. Most engagements touch two or three. I do not outsource the build.</p>
             </div>
 
             <div class="capability-block">
-                <h3>Finance and Operations Systems</h3>
+                <h3>Finance and <em>Operations Systems</em></h3>
                 <p>Multi-entity accounting with Xero, QuickBooks, or similar. Bank feed ingestion via SFTP, CSV, or direct API. Automated reconciliation. Approval workflows via Telegram, WhatsApp, Slack, or web. Receipt capture pipelines. Daily, weekly, and monthly reporting dashboards. Full audit trail for regulators, investors, and internal review.</p>
                 <div class="capability-list">
                     <span class="capability-tag">Xero</span>
@@ -299,7 +483,7 @@
             </div>
 
             <div class="capability-block">
-                <h3>CRM and Revenue Systems</h3>
+                <h3>CRM and <em>Revenue Systems</em></h3>
                 <p>End-to-end lead pipelines from first touch through qualified booking. Form integrations (ScoreApp, Typeform, custom). Scoring and routing logic. CRM setup and automation across ClickUp, HubSpot, Monday.com, Pipedrive, Airtable. Calendly and booking flow integration. Email nurture sequences. Conversion tracking.</p>
                 <div class="capability-list">
                     <span class="capability-tag">ClickUp</span>
@@ -312,7 +496,7 @@
             </div>
 
             <div class="capability-block">
-                <h3>AI Systems and Agents</h3>
+                <h3>AI Systems and <em>Agents</em></h3>
                 <p>Custom AI agents with persistent memory, voice input, and real operational integration across calendars, email, documents, and tasks. Model Context Protocol servers for Claude and other LLMs. Meeting transcription and searchable multi-year archives. Multi-agent architectures with specialist routing. Not chatbots, actual agents that do work.</p>
                 <div class="capability-list">
                     <span class="capability-tag">Claude API</span>
@@ -325,7 +509,7 @@
             </div>
 
             <div class="capability-block">
-                <h3>Data Pipelines and Integrations</h3>
+                <h3>Data Pipelines and <em>Integrations</em></h3>
                 <p>ETL across Google Workspace, Microsoft 365, Xero, CRMs, banks, and payment processors. Clean, auditable, monitored. Google Sheets and Apps Script as a first-class platform. SQL and document stores. APIs that were never designed to talk to each other, made to talk cleanly.</p>
                 <div class="capability-list">
                     <span class="capability-tag">REST APIs</span>
@@ -338,7 +522,7 @@
             </div>
 
             <div class="capability-block">
-                <h3>Internal Tools and Dashboards</h3>
+                <h3>Internal Tools and <em>Dashboards</em></h3>
                 <p>Real-time operations dashboards. Admin panels for non-technical teams. Telegram and WhatsApp control surfaces so ops can run from a phone. Document generators for PDFs, certificates, and structured reports. The tools your team actually uses to run the business, built to fit your team.</p>
                 <div class="capability-list">
                     <span class="capability-tag">Custom dashboards</span>
@@ -350,7 +534,7 @@
             </div>
 
             <div class="capability-block">
-                <h3>Infrastructure and DevOps</h3>
+                <h3>Infrastructure and <em>DevOps</em></h3>
                 <p>VPS setup and hardening on Linux, Docker, nginx, cron, systemd. CI/CD pipelines via GitHub Actions. Monitoring stacks with uptime, error tracking, and alerting. Offsite encrypted backups. Secrets management and security hardening. The foundation that makes everything else reliable.</p>
                 <div class="capability-list">
                     <span class="capability-tag">Linux VPS</span>
@@ -363,7 +547,7 @@
             </div>
 
             <div class="capability-block">
-                <h3>Websites, Platforms, and Customer Touchpoints</h3>
+                <h3>Websites, Platforms, and <em>Customer Touchpoints</em></h3>
                 <p>Full websites and landing pages. Booking flows. E-learning platforms with certification and automated enrolment. Onboarding portals. Static or dynamic, Next.js or Astro or plain HTML where appropriate. Integrated with the rest of the business stack from day one, not built as a silo.</p>
                 <div class="capability-list">
                     <span class="capability-tag">Next.js</span>
@@ -381,7 +565,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Tools and platforms</span>
-                <h2>What I build in.</h2>
+                <h2>What I <em>build in</em>.</h2>
                 <span class="gold-rule"></span>
                 <p class="lead">A working subset, not a shopping list. These are the tools I reach for first.</p>
             </div>
@@ -422,58 +606,58 @@
         </div>
     </section>
 
-    <section class="section section--paper">
+    <section class="section section--paper shipped-section">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Recent work</span>
-                <h2>What I have actually shipped.</h2>
+                <h2>What I have <em>actually shipped</em>.</h2>
                 <span class="gold-rule"></span>
                 <p class="lead">Selected engagements, anonymised. Different industries, same pattern: messy operation, clear system, clean result.</p>
             </div>
             <div class="reveal">
                 <div class="case-item">
                     <span class="case-meta">Finance Operations</span>
-                    <h3>Multi-entity finance operations system for a product group</h3>
+                    <h3>Multi-entity finance operations system for a <em>product group</em></h3>
                     <p>Three legal entities, three bank accounts, three sets of bookkeeping. Built a unified finance operations system from scratch: automated bank feed ingestion, multi-currency reconciliation, approval queues via Telegram, direct Xero write-back, daily digests, receipt capture pipeline, full audit trail. Replaced eight plus hours of manual bookkeeping per week across the group.</p>
                 </div>
                 <div class="case-item">
                     <span class="case-meta">CRM and Lead Pipeline</span>
-                    <h3>Automated lead qualification funnel from assessment to booked call</h3>
+                    <h3>Automated lead qualification funnel from assessment to <em>booked call</em></h3>
                     <p>ScoreApp submission through scoring rules, budget gating, automated CRM task creation, Calendly invite dispatch, and tiered email nurture. Auto-escalation on high-value leads. Zero manual triage. Sales ops stopped being a bottleneck; the pipeline runs itself.</p>
                 </div>
                 <div class="case-item">
                     <span class="case-meta">AI Systems</span>
-                    <h3>Personal AI operations assistant with multi-year memory</h3>
+                    <h3>Personal AI operations assistant with <em>multi-year memory</em></h3>
                     <p>Custom agent built on Claude, with persistent memory spanning multi-year conversation history, voice input and output via Whisper and ElevenLabs, email and calendar integration, meeting transcription, and task management. Running on self-hosted infrastructure with full-text search across conversations, documents, and archived communications.</p>
                 </div>
                 <div class="case-item">
                     <span class="case-meta">Training Platform</span>
-                    <h3>Production e-learning platform, zero to live in ten days</h3>
+                    <h3>Production e-learning platform, <em>zero to live in ten days</em></h3>
                     <p>Six-module training platform with quizzes, automated PDF certificate generation, enrolment tracking, and completion analytics. Built and shipped in ten days for international hospitality clients.</p>
                 </div>
                 <div class="case-item">
                     <span class="case-meta">Operations Consolidation</span>
-                    <h3>Google Drive and Gmail reorganisation across three companies</h3>
+                    <h3>Google Drive and Gmail reorganisation across <em>three companies</em></h3>
                     <p>27,715 files organised across 16 shared drives. 16 GB of duplicates archived. 900 plus stale project tasks cleaned up. 9,600 email inbox triaged down to 1,700 actionable items. Moved from ad-hoc organisation to discoverable, role-gated structure.</p>
                 </div>
                 <div class="case-item">
                     <span class="case-meta">Automation Platform Rehabilitation</span>
-                    <h3>n8n tenant rehabilitation with zero downtime</h3>
+                    <h3>n8n tenant rehabilitation with <em>zero downtime</em></h3>
                     <p>Audited 88 workflows and 1,235 nodes across a production automation tenant. Deep-inspected the 13 most critical flows. Applied six live fixes with no service interruption. Moved from ad-hoc automation to version-controlled workflows with CI, branch protection, error monitoring, and capacity-safe execution storage.</p>
                 </div>
                 <div class="case-item">
                     <span class="case-meta">Security Hardening</span>
-                    <h3>Git history and credential hygiene across three codebases</h3>
+                    <h3>Git history and credential hygiene across <em>three codebases</em></h3>
                     <p>Removed 47 secrets from git history. Migrated 43 credentials to a hardware-backed vault. Patched 17 vulnerabilities. Set up branch protection, pre-commit hooks, automated dependency updates, and AI-assisted code review. Every production PR now passes a security-first gate.</p>
                 </div>
                 <div class="case-item">
                     <span class="case-meta">Monitoring and Reliability</span>
-                    <h3>Self-hosted monitoring stack replacing paid SaaS</h3>
+                    <h3>Self-hosted monitoring stack <em>replacing paid SaaS</em></h3>
                     <p>Uptime monitoring, error tracking, and encrypted offsite backups, all with Telegram alerting, deployed on the client's own infrastructure. Replaced paid services at a fraction of the cost, with the client fully owning their telemetry data.</p>
                 </div>
                 <div class="case-item">
                     <span class="case-meta">International Operations</span>
-                    <h3>Cross-border manufacturing coordination across three countries</h3>
+                    <h3>Cross-border manufacturing coordination across <em>three countries</em></h3>
                     <p>Real-time status dashboards and stakeholder-specific reporting across production sites in Indonesia, the Philippines, and China. Daily visibility on production, QC, and shipping. Replaced an overloaded WhatsApp-and-email workflow with a clean operational picture.</p>
                 </div>
             </div>
@@ -484,25 +668,25 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Engagement models</span>
-                <h2>How I work with clients.</h2>
+                <h2>How I work <em>with clients</em>.</h2>
                 <span class="gold-rule"></span>
                 <p class="lead">Four ways to engage. Most projects start with an audit.</p>
             </div>
             <div class="engagement-grid reveal-stagger">
                 <div class="engagement-card">
-                    <h3>Audit only</h3>
+                    <h3>Audit <em>only</em></h3>
                     <p>I produce a written map of your operations, what is working, what is broken, and a prioritised roadmap. Fixed fee, delivered in one to three weeks. Useful even if we do not build together.</p>
                 </div>
                 <div class="engagement-card">
-                    <h3>Build project</h3>
+                    <h3>Build <em>project</em></h3>
                     <p>Fixed scope, fixed fee, delivered system. Documented, tested, handed over to your team with training.</p>
                 </div>
                 <div class="engagement-card">
-                    <h3>Monthly retainer</h3>
+                    <h3>Monthly <em>retainer</em></h3>
                     <p>Ongoing partnership where I build, operate, monitor, and iterate your systems as the business evolves.</p>
                 </div>
                 <div class="engagement-card">
-                    <h3>Fractional Head of Operations or CTO</h3>
+                    <h3>Fractional Head of Operations <em>or CTO</em></h3>
                     <p>Integrated into your leadership for a defined period. For businesses between five and fifty people who need senior systems thinking without a full-time hire.</p>
                 </div>
             </div>
@@ -513,7 +697,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Principles</span>
-                <h2>How I actually work.</h2>
+                <h2>How I <em>actually work</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <ul class="method-list reveal-stagger">
@@ -530,7 +714,7 @@
     <section class="section section--deep">
         <div class="container">
             <div class="final-cta text-center reveal">
-                <h2>Let's talk.</h2>
+                <h2>Let's <em>talk</em>.</h2>
                 <p class="lead" style="max-width: 560px; margin: 0 auto 36px;">The best engagements start with a conversation about what is actually broken. No pitch deck, no pre-prepared pitch. Just the real picture.</p>
                 <div class="hero-actions" style="justify-content: center;">
                     <a href="mailto:barrie@grandvisionperspective.com" class="btn btn-primary">Email barrie@grandvisionperspective.com</a>
