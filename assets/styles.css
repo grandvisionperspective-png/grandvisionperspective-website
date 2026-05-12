@@ -150,6 +150,90 @@ ul, ol {
 
     /* Nav */
     --nav-height: 72px;
+
+    /* Canvas-spec deep dark scale (for cinematic dark surfaces) */
+    --c-bg-0: #08080b;
+    --c-bg-1: #14141a;
+    --c-bg-2: #1c1c25;
+
+    /* Hairline rules on dark surfaces */
+    --c-line: rgba(255, 255, 255, 0.07);
+    --c-line-strong: rgba(255, 255, 255, 0.15);
+
+    /* Ink mutations on dark */
+    --c-ink-faint: rgba(255, 255, 255, 0.32);
+
+    /* Atmosphere overlays: SVG noise tiled via data URI.
+       Per docs/brand/03-visual-system.md Section IV.4: grain overlay is
+       a brand surface signature. baseFrequency 0.85 = soft printed grain,
+       1.4 = tighter cinematic grain for hero / section emphasis. */
+    --grain-soft: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    --grain-tight: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+
+    /* Cinematic shadows (deep, multi-layer) */
+    --shadow-deep: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    --shadow-cinematic: 0 30px 60px -12px rgba(0, 0, 0, 0.45), 0 12px 24px -8px rgba(0, 0, 0, 0.3);
+}
+
+
+/* === 02b. CINEMATIC ATMOSPHERE FOUNDATION ==================
+   Per docs/brand/03-visual-system.md Section IV. The brand has four
+   signature motion / surface behaviours: italic-gold glow, vantage rise,
+   ambient gold drift, grain overlay. This section installs the surface
+   atmosphere (grain + vignette) and motion keyframes used site-wide. */
+
+/* Subtle SVG noise grain across the entire viewport.
+   z-index below nav (1000) and above content. pointer-events none so
+   it never blocks interaction. mix-blend overlay preserves underlying
+   colour while adding the printed-feel texture. */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.35;
+    background-image: var(--grain-soft);
+}
+
+/* Subtle radial vignette darkens the corners just enough to focus the eye.
+   Layered on top of grain (z-index 99 in canvases; here we keep both at
+   layer 100 because the underlying surface is light by default and a
+   strong vignette would feel heavy. Light-touch only on light surfaces). */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 50% 40%, transparent 55%, rgba(26, 26, 46, 0.06) 100%);
+}
+
+
+/* === 02c. CINEMATIC MOTION KEYFRAMES ====================== */
+
+/* Ambient gold blob drift. Behind hero marks and atmospheric heroes.
+   Locked spec: 6s ease-in-out infinite, scale 1 to 1.15, opacity 0.5 to 1. */
+@keyframes ambient-pulse {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50%      { opacity: 1;   transform: translate(-50%, -50%) scale(1.15); }
+}
+
+/* Vantage mark rise loop. Used on hero mark elements. 4s, gold drop-shadow
+   pulse synced with vertical translation. */
+@keyframes vantage-rise-loop {
+    0%, 100% { transform: translateY(0);    filter: drop-shadow(0 0 28px rgba(224, 192, 106, 0.4)); }
+    50%      { transform: translateY(-6px); filter: drop-shadow(0 0 40px rgba(224, 192, 106, 0.6)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    /* Grain stays (static), vignette stays (static). Disable animated ambient. */
+    .hero--dark::before,
+    .has-ambient-glow::before,
+    .hero-mark--rise {
+        animation: none !important;
+    }
 }
 
 
@@ -518,7 +602,14 @@ p {
 }
 
 
-/* === 07. HERO VARIANTS ===================================== */
+/* === 07. HERO VARIANTS =====================================
+   Heroes are the brand's first impression. Each variant gets:
+   - layered radial gradients for atmospheric depth (not flat colour)
+   - ambient pulse blob behind the headline (dark variants)
+   - grain overlay scoped to the hero surface
+   - content layered above via .hero-inner { z-index: 1 }
+   The canvas-spec atmosphere lives here. Per docs/brand/03-visual-system.md
+   Section IV (motion principles) + Section I (palette paired-use rules). */
 .hero {
     position: relative;
     overflow: hidden;
@@ -527,9 +618,36 @@ p {
 
 .hero--dark {
     background:
-        linear-gradient(135deg, rgba(26, 26, 46, 0.88) 0%, rgba(13, 13, 26, 0.94) 100%),
-        var(--navy-deep);
+        radial-gradient(ellipse 60% 50% at 50% 30%, rgba(201, 168, 76, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(91, 122, 140, 0.10) 0%, transparent 50%),
+        linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, #1f1f33 100%);
     color: var(--white);
+}
+
+.hero--dark::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 720px;
+    height: 720px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.18) 0%, transparent 60%);
+    filter: blur(40px);
+    animation: ambient-pulse 6s ease-in-out infinite;
+    z-index: 0;
+}
+
+.hero--dark::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: var(--grain-tight);
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+    z-index: 0;
 }
 
 .hero--dark-image {
@@ -540,24 +658,63 @@ p {
     color: var(--white);
 }
 
+.hero--dark-image::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 720px;
+    height: 720px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.14) 0%, transparent 60%);
+    filter: blur(50px);
+    animation: ambient-pulse 6s ease-in-out infinite;
+    z-index: 0;
+}
+
+.hero--dark-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: var(--grain-tight);
+    opacity: 0.35;
+    mix-blend-mode: overlay;
+    z-index: 0;
+}
+
 .hero--cream {
-    background: linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%);
+    background:
+        radial-gradient(ellipse 60% 50% at 100% 0%, rgba(201, 168, 76, 0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 0% 100%, rgba(235, 231, 220, 0.45) 0%, transparent 50%),
+        linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%);
     color: var(--ink-heading);
 }
 
-.hero::before {
+.hero--cream::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: -10%;
     right: -10%;
-    width: 60%;
-    height: 100%;
-    background: radial-gradient(ellipse at top right, rgba(201, 168, 76, 0.08) 0%, transparent 60%);
+    width: 70%;
+    height: 130%;
+    background: radial-gradient(ellipse at top right, rgba(201, 168, 76, 0.12) 0%, transparent 55%);
     pointer-events: none;
+    z-index: 0;
 }
 
-.hero--cream::before {
-    background: radial-gradient(ellipse at top right, rgba(201, 168, 76, 0.12) 0%, transparent 55%);
+/* Lock content above all atmosphere layers. */
+.hero .hero-inner {
+    position: relative;
+    z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero--dark::before,
+    .hero--dark-image::before {
+        animation: none;
+    }
 }
 
 .hero-inner {
@@ -660,19 +817,88 @@ p {
 }
 
 
-/* === 08. SECTION TONES ===================================== */
+/* === 08. SECTION TONES =====================================
+   Every section gets atmospheric layering. Light variants get a barely
+   perceptible warm radial; dark variants get the full cinematic treatment
+   (multi-layer radials + grain overlay + locked dark gradient).
+   Per docs/brand/03-visual-system.md Section IV.3 (ambient glow). */
 .section {
     padding: 88px 0 96px;
     position: relative;
 }
 
-.section--paper { background: var(--paper); }
-.section--cream { background: var(--cream); }
-.section--cream-deep { background: var(--cream-deep); }
+/* Light variants: subtle warm atmosphere, almost imperceptible.
+   Keeps the reading surface calm but never flat. */
+.section--paper {
+    background:
+        radial-gradient(ellipse 90% 50% at 50% 0%, rgba(201, 168, 76, 0.035) 0%, transparent 55%),
+        var(--paper);
+}
+
+.section--cream {
+    background:
+        radial-gradient(ellipse 60% 50% at 100% 50%, rgba(201, 168, 76, 0.05) 0%, transparent 60%),
+        var(--cream);
+}
+
+.section--cream-deep {
+    background:
+        radial-gradient(ellipse 80% 50% at 0% 100%, rgba(26, 26, 46, 0.04) 0%, transparent 60%),
+        var(--cream-deep);
+}
+
 .section--white { background: var(--white); }
-.section--grey { background: var(--grey-50); }
-.section--navy { background: var(--navy); color: rgba(255, 255, 255, 0.85); }
-.section--deep { background: var(--navy-deep); color: rgba(255, 255, 255, 0.85); }
+.section--grey  { background: var(--grey-50); }
+
+/* Dark variants: full cinematic atmosphere. Multi-layer radials, grain
+   overlay via ::before, ensure descendants stack via .container { z-index }
+   so the atmosphere never obscures content. */
+.section--navy {
+    background:
+        radial-gradient(ellipse 60% 50% at 20% 30%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 60% at 80% 70%, rgba(91, 122, 140, 0.10) 0%, transparent 60%),
+        linear-gradient(180deg, var(--navy) 0%, #1f1f33 100%);
+    color: rgba(255, 255, 255, 0.85);
+    overflow: hidden;
+}
+
+.section--navy::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: var(--grain-tight);
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+    z-index: 0;
+}
+
+.section--deep {
+    background:
+        radial-gradient(ellipse 70% 80% at 50% 50%, rgba(201, 168, 76, 0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 0% 0%, rgba(91, 122, 140, 0.08) 0%, transparent 60%),
+        linear-gradient(180deg, #15151c 0%, var(--navy-deep) 60%, #08080b 100%);
+    color: rgba(255, 255, 255, 0.85);
+    overflow: hidden;
+}
+
+.section--deep::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: var(--grain-tight);
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+    z-index: 0;
+}
+
+/* Lock section content above the atmospheric ::before layers. */
+.section--navy > .container,
+.section--deep > .container {
+    position: relative;
+    z-index: 1;
+}
 
 .section--navy h1, .section--navy h2, .section--navy h3,
 .section--deep h1, .section--deep h2, .section--deep h3 {
