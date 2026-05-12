@@ -37,7 +37,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/styles.css">
     <style>
-        .contact-hero { padding: 96px 0 64px; background: linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%); }
+        .contact-hero {
+            padding: 96px 0 64px;
+            background:
+                radial-gradient(ellipse 60% 50% at 100% 0%, rgba(201, 168, 76, 0.10) 0%, transparent 55%),
+                radial-gradient(ellipse 70% 50% at 0% 100%, rgba(235, 231, 220, 0.6) 0%, transparent 50%),
+                linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%);
+            position: relative;
+            overflow: hidden;
+        }
         .contact-layout { display: grid; grid-template-columns: 1fr; gap: 56px; align-items: start; }
         .contact-form { background: var(--white); border: 1px solid rgba(26, 26, 46, 0.06); border-radius: var(--radius-lg); padding: 40px 32px 36px; box-shadow: var(--shadow-md); }
         .form-title { font-size: clamp(22px, 2.4vw, 28px); margin-bottom: 8px; }

@@ -51,7 +51,10 @@
         /* Page-specific: hero with founder photo */
         .hero-barrie {
             padding: 80px 0 96px;
-            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+            background:
+                radial-gradient(ellipse 60% 50% at 30% 30%, rgba(201, 168, 76, 0.10) 0%, transparent 60%),
+                radial-gradient(ellipse 70% 60% at 80% 80%, rgba(91, 122, 140, 0.10) 0%, transparent 50%),
+                linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 60%, #1f1f33 100%);
             color: var(--white);
             position: relative;
             overflow: hidden;
@@ -60,9 +63,20 @@
         .hero-barrie::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at top right, rgba(201, 168, 76, 0.1) 0%, transparent 55%);
+            left: 50%;
+            top: 50%;
+            width: 760px;
+            height: 760px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle at center, rgba(201, 168, 76, 0.16) 0%, transparent 60%);
+            filter: blur(50px);
             pointer-events: none;
+            animation: ambient-pulse 6s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-barrie::before { animation: none; }
         }
 
         .hero-barrie-inner {
@@ -195,6 +209,7 @@
     </nav>
 
     <section class="hero-barrie">
+        <div class="hero-atmosphere" aria-hidden="true"></div>
         <div class="container">
             <div class="hero-barrie-inner reveal">
                 <img src="../images/founder.jpg" alt="Barrie, Principal at Grand Vision Perspective" class="hero-photo" width="200" height="200">

@@ -50,7 +50,12 @@
     <style>
         .case-hero {
             padding: 96px 0 64px;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%);
+            background:
+                radial-gradient(ellipse 60% 50% at 100% 0%, rgba(201, 168, 76, 0.10) 0%, transparent 55%),
+                radial-gradient(ellipse 70% 50% at 0% 100%, rgba(235, 231, 220, 0.6) 0%, transparent 50%),
+                linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%);
+            position: relative;
+            overflow: hidden;
         }
 
         .case-study {

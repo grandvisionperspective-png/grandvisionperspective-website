@@ -37,7 +37,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/styles.css">
     <style>
-        .case-hero { padding: 96px 0 64px; background: linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%); }
+        .case-hero {
+            padding: 96px 0 64px;
+            background:
+                radial-gradient(ellipse 60% 50% at 100% 0%, rgba(201, 168, 76, 0.10) 0%, transparent 55%),
+                radial-gradient(ellipse 70% 50% at 0% 100%, rgba(235, 231, 220, 0.6) 0%, transparent 50%),
+                linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%);
+            position: relative;
+            overflow: hidden;
+        }
         .case-study { padding: 72px 0 80px; border-bottom: 1px solid var(--cream-deep); }
         .case-study:last-of-type { border-bottom: none; }
         .case-study--alt { background: var(--cream); }

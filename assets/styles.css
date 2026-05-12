@@ -1498,6 +1498,56 @@ p {
 }
 
 
+/* === 17a. HERO ATMOSPHERE (cinematic surface utility) =====
+   Inject <div class="hero-atmosphere"> as the first child of any hero
+   (or section) to add the tight grain texture overlay. Add modifier
+   --with-blob for the animated ambient gold blob behind the headline.
+   --warm uses a warm tint blob (light heroes); --slate uses a cool
+   slate tint blob (for layered dark heroes). z-index 0 keeps it behind
+   the .hero-inner content (which is locked to z-index 1).
+   Per docs/brand/03-visual-system.md Section IV.3 + IV.4. */
+.hero-atmosphere {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image: var(--grain-tight);
+    mix-blend-mode: overlay;
+    opacity: 0.4;
+}
+
+.hero-atmosphere--with-blob::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 720px;
+    height: 720px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.18) 0%, transparent 60%);
+    filter: blur(40px);
+    animation: ambient-pulse 6s ease-in-out infinite;
+    mix-blend-mode: normal;
+}
+
+.hero-atmosphere--warm::before {
+    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.10) 0%, transparent 65%);
+    filter: blur(60px);
+}
+
+.hero-atmosphere--slate::before {
+    background: radial-gradient(circle at center, rgba(91, 122, 140, 0.14) 0%, transparent 60%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-atmosphere--with-blob::before,
+    .hero-atmosphere--warm::before,
+    .hero-atmosphere--slate::before {
+        animation: none;
+    }
+}
+
+
 /* === 17b. HERO MARK (vantage motion utility) ===============
    Use on inline Vantage SVGs at hero scale. Default state has a soft gold
    drop-shadow halo; .hero-mark--rise adds the 4s rise/glow loop.
