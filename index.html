@@ -163,23 +163,39 @@
             border-bottom: 1px solid var(--cream-deep);
         }
 
-        /* Problems cards */
+        /* Problems cards. Wave 9 cinematic treatment ported in:
+           gradient paper bg, gold left-rule hairline, locked --ease-out-q
+           on hover, --shadow-cinematic. */
         .problem-card {
-            background: var(--white);
-            padding: 32px 28px;
+            position: relative;
+            background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%);
+            padding: 36px 30px 32px;
             border-radius: var(--radius-md);
-            border: 1px solid rgba(26, 26, 46, 0.05);
+            border: 1px solid rgba(26, 26, 46, 0.06);
             box-shadow: var(--shadow-sm);
-            transition: box-shadow var(--duration-base) var(--ease),
-                        transform var(--duration-base) var(--ease);
+            transition: box-shadow 0.45s var(--ease-out-q),
+                        transform 0.45s var(--ease-out-q),
+                        border-color 0.45s var(--ease-out-q);
             height: 100%;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
         }
 
         .problem-card:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-3px);
+            box-shadow: var(--shadow-cinematic);
+            transform: translateY(-4px);
+            border-color: var(--gold-border);
         }
 
         .problem-icon {
@@ -210,14 +226,18 @@
             line-height: 1.7;
         }
 
-        /* Service cards */
+        /* Service cards. Wave 9 cinematic: gradient paper bg, vertical
+           gold left-rule (replaces the old horizontal top sliver), locked
+           --ease-out-q on hover, --shadow-cinematic. */
         .service-card {
-            background: var(--white);
+            background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%);
             padding: 36px 32px 32px;
             border-radius: var(--radius-md);
-            border: 1px solid rgba(26, 26, 46, 0.05);
+            border: 1px solid rgba(26, 26, 46, 0.06);
             box-shadow: var(--shadow-sm);
-            transition: all var(--duration-base) var(--ease);
+            transition: box-shadow 0.45s var(--ease-out-q),
+                        transform 0.45s var(--ease-out-q),
+                        border-color 0.45s var(--ease-out-q);
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -230,22 +250,15 @@
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform var(--duration-slow) var(--ease);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
         }
 
         .service-card:hover {
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-cinematic);
             transform: translateY(-4px);
             border-color: var(--gold-border);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
         }
 
         .service-card h3 {
@@ -271,7 +284,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: gap var(--duration-base) var(--ease), color var(--duration-base) var(--ease);
+            transition: gap 0.35s var(--ease-out-q), color 0.35s var(--ease-out-q);
         }
 
         .service-card a::after {
@@ -291,13 +304,32 @@
             position: relative;
         }
 
+        /* Process steps. Wave 9 cinematic treatment + locked --ease-out-q. */
         .process-step {
             position: relative;
-            padding: 32px 28px;
-            background: var(--white);
+            padding: 36px 30px 34px;
+            background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%);
             border-radius: var(--radius-md);
             border: 1px solid rgba(26, 26, 46, 0.06);
             box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.45s var(--ease-out-q),
+                        transform 0.45s var(--ease-out-q),
+                        border-color 0.45s var(--ease-out-q);
+            overflow: hidden;
+        }
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
+        }
+        .process-step:hover {
+            box-shadow: var(--shadow-cinematic);
+            transform: translateY(-4px);
+            border-color: var(--gold-border);
         }
 
         .process-step-number {
@@ -513,7 +545,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">The problems we solve</span>
-                <h2>If any of these sound familiar, we should talk.</h2>
+                <h2>If any of these sound familiar, <em>we should talk</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <div class="card-grid card-grid--3 reveal-stagger">
@@ -541,7 +573,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">What we do</span>
-                <h2>Three services, one outcome: systems that actually run.</h2>
+                <h2>Three services, one outcome: <em>systems that actually run</em>.</h2>
                 <span class="gold-rule"></span>
                 <p class="lead">We design and build the systems that let you focus on what matters most: your business.</p>
             </div>
@@ -570,7 +602,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">What we have delivered</span>
-                <h2>Specific numbers, real businesses.</h2>
+                <h2>Specific numbers, <em>real businesses</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <div class="reveal-stagger">
@@ -602,7 +634,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">How we work</span>
-                <h2>Three steps to better systems.</h2>
+                <h2>Three steps to <em>better systems</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <div class="process-grid reveal-stagger">
@@ -630,7 +662,7 @@
         <div class="container">
             <div class="about-teaser reveal">
                 <span class="eyebrow">Who we are</span>
-                <h2>We believe technology should serve people, not the other way around.</h2>
+                <h2>We believe technology should <em>serve people</em>, not the other way around.</h2>
                 <span class="gold-rule"></span>
                 <p>Grand Vision Perspective was founded with two decades of experience across franchises, startups, corporates, hospitality, construction, and conscious projects around the world. In every environment, the same pattern kept showing up: broken systems putting unnecessary pressure on good people. We exist to fix that.</p>
                 <p>Based in Bali, working with businesses across Indonesia, Asia, and internationally.</p>
@@ -646,7 +678,7 @@
         <div class="container">
             <div class="section-header section-header--center reveal">
                 <span class="eyebrow">Client voices</span>
-                <h2>What our clients say</h2>
+                <h2>What our <em>clients say</em>.</h2>
                 <span class="gold-rule gold-rule--center"></span>
             </div>
             <div class="testimonial reveal">
@@ -660,7 +692,7 @@
     <section class="section section--deep">
         <div class="container">
             <div class="final-cta reveal">
-                <h2>Ready to stop doing everything manually?</h2>
+                <h2>Ready to stop doing <em>everything manually</em>?</h2>
                 <p class="lead" style="max-width: 560px;">Book a free strategy call. Thirty minutes, no pitch deck, just a real conversation about what is broken and what it would take to fix it.</p>
                 <div class="final-cta-actions">
                     <a href="/contact/#book" class="btn btn-primary">Book a Strategy Call</a>

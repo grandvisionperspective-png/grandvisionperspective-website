@@ -301,11 +301,14 @@
             padding: 8px 12px;
             border: 1px solid var(--gold-border);
             border-radius: 6px;
-            transition: all 0.25s var(--ease);
+            transition: background 0.35s var(--ease-out-q),
+                        color 0.35s var(--ease-out-q),
+                        border-color 0.35s var(--ease-out-q),
+                        box-shadow 0.35s var(--ease-out-q);
         }
         .asset-card .dl:hover {
             background: var(--gold);
-            color: var(--white);
+            color: var(--ink-heading);
             border-color: var(--gold);
         }
 
@@ -456,8 +459,12 @@
             letter-spacing: 0.05em;
             color: var(--ink-muted);
         }
+        /* Code samples on the type specimen card use generic monospace
+           (system fallback). Intentional exception: this is the only
+           context on the site where code-typeface display is appropriate
+           (showing the actual CSS font-family declaration). */
         .type-card .stack code {
-            font-family: 'Courier New', monospace;
+            font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
             font-size: 12px;
             color: var(--ink-heading);
         }
@@ -872,7 +879,7 @@
                 </div>
                 <div class="type-card">
                     <div class="lbl">Body + UI</div>
-                    <div class="display" style="font-family: 'Manrope', sans-serif; font-size: 36px; font-weight: 500;">The dashboard layer your team actually uses.</div>
+                    <div class="display" style="font-family: var(--font-body); font-size: 36px; font-weight: 500;">The dashboard layer your team actually uses.</div>
                     <div class="sample">Manrope is a modern geometric sans with weight axis 300 to 800. Use for body copy, captions, labels, and UI. Pairs warm with Fraunces; reads modern without being eccentric.</div>
                     <div class="stack">
                         <code>font-family: 'Manrope', sans-serif;</code><br>
@@ -905,7 +912,7 @@
             <div class="boilerplate" style="margin-top: 20px;">
                 <div class="lbl">Tagline · primary</div>
                 <h3>We build systems that <em>let people be people.</em></h3>
-                <p style="margin-top: 8px;">Footer mark for ceremonial sign-off: <em>A GRAND VISION, EXECUTED PRECISELY · 2026</em></p>
+                <p style="margin-top: 8px;">Footer mark for ceremonial sign-off: <em>A GRAND VISION, EXECUTED PRECISELY  .  2023</em></p>
             </div>
         </div>
     </section>
@@ -948,7 +955,7 @@
     <section class="section section--deep">
         <div class="container">
             <div class="final-cta reveal">
-                <h2>Press, partner, or want to use these assets?</h2>
+                <h2>Press, partner, or want to <em>use these assets</em>?</h2>
                 <p class="lead" style="max-width: 560px;">Reach out and we will confirm the right files and the right context. Most uses are simple and quick.</p>
                 <div class="final-cta-actions">
                     <a href="/contact/" class="btn btn-primary">Contact us</a>

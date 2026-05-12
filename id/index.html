@@ -80,24 +80,26 @@
 
         .stats-band { padding: 64px 0; background: var(--cream); border-top: 1px solid var(--cream-deep); border-bottom: 1px solid var(--cream-deep); }
 
-        .problem-card { background: var(--white); padding: 32px 28px; border-radius: var(--radius-md); border: 1px solid rgba(26, 26, 46, 0.05); box-shadow: var(--shadow-sm); transition: box-shadow var(--duration-base) var(--ease), transform var(--duration-base) var(--ease); height: 100%; display: flex; flex-direction: column; }
-        .problem-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+        .problem-card { position: relative; background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%); padding: 36px 30px 32px; border-radius: var(--radius-md); border: 1px solid rgba(26, 26, 46, 0.06); box-shadow: var(--shadow-sm); transition: box-shadow 0.45s var(--ease-out-q), transform 0.45s var(--ease-out-q), border-color 0.45s var(--ease-out-q); height: 100%; display: flex; flex-direction: column; overflow: hidden; }
+        .problem-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(180deg, var(--gold) 0%, transparent 100%); }
+        .problem-card:hover { box-shadow: var(--shadow-cinematic); transform: translateY(-4px); border-color: var(--gold-border); }
         .problem-icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: var(--gold-tint); border: 1px solid var(--gold-border); border-radius: var(--radius-sm); margin-bottom: 20px; color: var(--gold); font-family: var(--font-display); font-weight: 600; font-size: 20px; }
         .problem-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--ink-heading); }
         .problem-card p { font-size: 15px; color: var(--ink-muted); line-height: 1.7; }
 
-        .service-card { background: var(--white); padding: 36px 32px 32px; border-radius: var(--radius-md); border: 1px solid rgba(26, 26, 46, 0.05); box-shadow: var(--shadow-sm); transition: all var(--duration-base) var(--ease); height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; }
-        .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold) 0%, transparent 100%); transform: scaleX(0); transform-origin: left; transition: transform var(--duration-slow) var(--ease); }
-        .service-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); border-color: var(--gold-border); }
-        .service-card:hover::before { transform: scaleX(1); }
+        .service-card { background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%); padding: 36px 32px 32px; border-radius: var(--radius-md); border: 1px solid rgba(26, 26, 46, 0.06); box-shadow: var(--shadow-sm); transition: box-shadow 0.45s var(--ease-out-q), transform 0.45s var(--ease-out-q), border-color 0.45s var(--ease-out-q); height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(180deg, var(--gold) 0%, transparent 100%); }
+        .service-card:hover { box-shadow: var(--shadow-cinematic); transform: translateY(-4px); border-color: var(--gold-border); }
         .service-card h3 { font-size: 22px; margin-bottom: 12px; color: var(--ink-heading); }
         .service-card p { font-size: 15px; color: var(--ink-muted); line-height: 1.7; margin-bottom: 24px; flex-grow: 1; }
-        .service-card a { font-size: 13px; font-weight: 600; letter-spacing: 0.5px; color: var(--gold); text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; transition: gap var(--duration-base) var(--ease), color var(--duration-base) var(--ease); }
+        .service-card a { font-size: 13px; font-weight: 600; letter-spacing: 0.5px; color: var(--gold); text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.35s var(--ease-out-q), color 0.35s var(--ease-out-q); }
         .service-card a::after { content: '→'; }
         .service-card a:hover { color: var(--gold-hover); gap: 10px; }
 
         .process-grid { display: grid; grid-template-columns: 1fr; gap: 28px; position: relative; }
-        .process-step { position: relative; padding: 32px 28px; background: var(--white); border-radius: var(--radius-md); border: 1px solid rgba(26, 26, 46, 0.06); box-shadow: var(--shadow-sm); }
+        .process-step { position: relative; padding: 36px 30px 34px; background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%); border-radius: var(--radius-md); border: 1px solid rgba(26, 26, 46, 0.06); box-shadow: var(--shadow-sm); transition: box-shadow 0.45s var(--ease-out-q), transform 0.45s var(--ease-out-q), border-color 0.45s var(--ease-out-q); overflow: hidden; }
+        .process-step::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(180deg, var(--gold) 0%, transparent 100%); }
+        .process-step:hover { box-shadow: var(--shadow-cinematic); transform: translateY(-4px); border-color: var(--gold-border); }
         .process-step-number { display: inline-block; font-family: var(--font-display); font-weight: 600; font-size: 48px; color: var(--gold); line-height: 1; margin-bottom: 16px; opacity: 0.9; }
         .process-step h3 { font-size: 20px; margin-bottom: 12px; }
         .process-step p { font-size: 15px; color: var(--ink-muted); line-height: 1.7; }
@@ -227,7 +229,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Masalah yang kami selesaikan</span>
-                <h2>Jika salah satunya terasa familier, mari bicara.</h2>
+                <h2>Jika salah satunya terasa familier, <em>mari bicara</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <div class="card-grid card-grid--3 reveal-stagger">
@@ -254,7 +256,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Apa yang kami lakukan</span>
-                <h2>Tiga layanan, satu hasil: sistem yang benar-benar berjalan.</h2>
+                <h2>Tiga layanan, satu hasil: <em>sistem yang benar-benar berjalan</em>.</h2>
                 <span class="gold-rule"></span>
                 <p class="lead">Kami merancang dan membangun sistem yang memberi Anda ruang untuk fokus pada yang paling penting: bisnis Anda.</p>
             </div>
@@ -282,7 +284,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Yang sudah kami kerjakan</span>
-                <h2>Angka spesifik, bisnis nyata.</h2>
+                <h2>Angka spesifik, <em>bisnis nyata</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <div class="reveal-stagger">
@@ -313,7 +315,7 @@
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Cara kerja kami</span>
-                <h2>Tiga langkah menuju sistem yang lebih baik.</h2>
+                <h2>Tiga langkah menuju <em>sistem yang lebih baik</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <div class="process-grid reveal-stagger">
@@ -340,7 +342,7 @@
         <div class="container">
             <div class="about-teaser reveal">
                 <span class="eyebrow">Siapa kami</span>
-                <h2>Kami percaya teknologi harus melayani manusia, bukan sebaliknya.</h2>
+                <h2>Kami percaya teknologi harus <em>melayani manusia</em>, bukan sebaliknya.</h2>
                 <span class="gold-rule"></span>
                 <p>Grand Vision Perspective dibangun dari dua dekade pengalaman: franchise, startup, korporat, perhotelan, konstruksi, dan proyek-proyek conscious di berbagai negara. Di mana pun polanya sama: sistem yang rusak membebani orang-orang baik dengan tekanan yang tidak perlu. Kami hadir untuk mengubah itu.</p>
                 <p>Berbasis di Bali. Bekerja sama dengan bisnis di Indonesia, Asia, dan seluruh dunia.</p>
@@ -355,7 +357,7 @@
         <div class="container">
             <div class="section-header section-header--center reveal">
                 <span class="eyebrow">Suara klien</span>
-                <h2>Kata para klien kami</h2>
+                <h2>Kata para <em>klien kami</em>.</h2>
                 <span class="gold-rule gold-rule--center"></span>
             </div>
             <div class="testimonial reveal">
@@ -368,7 +370,7 @@
     <section class="section section--deep">
         <div class="container">
             <div class="final-cta reveal">
-                <h2>Siap berhenti mengerjakan semuanya secara manual?</h2>
+                <h2>Siap berhenti mengerjakan <em>semuanya secara manual</em>?</h2>
                 <p class="lead" style="max-width: 560px;">Jadwalkan konsultasi strategi gratis. 30 menit, tanpa pitch deck, hanya percakapan jujur tentang apa yang rusak dan apa yang perlu dibenahi.</p>
                 <div class="final-cta-actions">
                     <a href="/id/contact/#book" class="btn btn-primary">Jadwalkan Konsultasi</a>
