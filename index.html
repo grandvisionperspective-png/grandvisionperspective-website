@@ -354,13 +354,16 @@
             line-height: 1.7;
         }
 
-        /* Featured results */
+        /* Featured results. Wave 24: now sitting on section--navy (dark
+           intercut for page rhythm). Italic Fraunces stat numerals in
+           gold-hi (locked palette pair on dark surfaces), body copy on
+           soft white-alpha. */
         .result-item {
             display: grid;
             grid-template-columns: 1fr;
             gap: 16px;
-            padding: 32px 0;
-            border-bottom: 1px solid rgba(26, 26, 46, 0.08);
+            padding: 36px 0;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.18);
             align-items: center;
         }
 
@@ -370,17 +373,19 @@
 
         .result-stat {
             font-family: var(--font-display);
-            font-size: clamp(32px, 4.5vw, 48px);
-            font-weight: 600;
-            color: var(--gold);
+            font-style: italic;
+            font-size: clamp(40px, 5.5vw, 64px);
+            font-weight: 400;
+            color: var(--gold-hi);
             line-height: 1;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.025em;
+            font-variation-settings: "opsz" 144;
         }
 
         .result-item p {
             font-size: 16px;
-            line-height: 1.7;
-            color: var(--ink);
+            line-height: 1.75;
+            color: rgba(253, 252, 248, 0.82);
         }
 
         /* About teaser */
@@ -598,7 +603,7 @@
     </section>
 
     <!-- ==== FEATURED RESULTS ==== -->
-    <section class="section section--paper">
+    <section class="section section--navy">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">What we have delivered</span>
@@ -674,7 +679,7 @@
     </section>
 
     <!-- ==== TESTIMONIALS ==== -->
-    <section class="section section--navy">
+    <section class="section section--cream-deep">
         <div class="container">
             <div class="section-header section-header--center reveal">
                 <span class="eyebrow">Client voices</span>
