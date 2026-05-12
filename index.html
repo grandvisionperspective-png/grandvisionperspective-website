@@ -52,22 +52,61 @@
     </script>
     <style>
         /* Page-specific CSS that extends the shared system */
+        /* Cinematic dark hero. Layers (top to bottom):
+           1. Linear overlay (lighter than before so bg-dashboard atmosphere reads)
+           2. Multi-radial gold + slate atmospheres for cinematic depth
+           3. Vignette darkening at edges for editorial focus
+           4. bg-dashboard image creating the textural underlayer */
         .hero-home {
             min-height: 640px;
             display: flex;
             align-items: center;
             background:
-                linear-gradient(135deg, rgba(26, 26, 46, 0.82) 0%, rgba(13, 13, 26, 0.92) 100%),
+                radial-gradient(ellipse 70% 70% at 28% 55%, rgba(201, 168, 76, 0.18) 0%, transparent 55%),
+                radial-gradient(ellipse 80% 60% at 80% 30%, rgba(91, 122, 140, 0.18) 0%, transparent 55%),
+                radial-gradient(ellipse 100% 100% at 50% 50%, transparent 30%, rgba(13, 13, 26, 0.45) 100%),
+                linear-gradient(135deg, rgba(26, 26, 46, 0.62) 0%, rgba(13, 13, 26, 0.82) 100%),
                 url('images/bg-dashboard.png') center/cover no-repeat;
             position: relative;
         }
 
+        /* Bottom seam fade to navy-deep so the hero blends into the next section. */
         .hero-home::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 85%, var(--navy-deep) 100%);
+            background: linear-gradient(180deg, transparent 78%, var(--navy-deep) 100%);
             pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Top-edge gold aurora streak (subtle, cinematic).
+           A wide blurred gold horizontal band that drifts slowly. */
+        .hero-home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -10%;
+            right: -10%;
+            height: 220px;
+            background: linear-gradient(180deg,
+                rgba(201, 168, 76, 0.16) 0%,
+                rgba(201, 168, 76, 0.04) 50%,
+                transparent 100%);
+            filter: blur(30px);
+            pointer-events: none;
+            opacity: 0.7;
+            z-index: 0;
+            animation: hero-aurora-drift 10s ease-in-out infinite;
+        }
+
+        @keyframes hero-aurora-drift {
+            0%, 100% { opacity: 0.55; transform: translateX(0); }
+            50%      { opacity: 0.85; transform: translateX(40px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-home::before { animation: none; }
         }
 
         .hero-home .hero-inner {
@@ -430,7 +469,7 @@
 
     <!-- ==== HERO ==== -->
     <section class="hero hero-home">
-        <div class="hero-atmosphere hero-atmosphere--with-blob" aria-hidden="true"></div>
+        <div class="hero-atmosphere hero-atmosphere--with-blob hero-atmosphere--dual" aria-hidden="true"></div>
         <div class="container">
             <div class="hero-inner reveal">
                 <span class="eyebrow" style="color: var(--gold-hi);">Management Consultancy</span>

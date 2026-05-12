@@ -38,7 +38,14 @@
     <link rel="preload" as="image" href="../../images/bg-opex.png">
     <link rel="stylesheet" href="../../assets/styles.css">
     <style>
-        .hero-services { background: linear-gradient(135deg, rgba(26,26,46,0.78) 0%, rgba(13,13,26,0.9) 100%), url('../../images/bg-opex.png') center/cover no-repeat; min-height: 420px; display: flex; align-items: center; position: relative; }
+        .hero-services {
+            background:
+                radial-gradient(ellipse 60% 70% at 50% 50%, rgba(201, 168, 76, 0.22) 0%, transparent 55%),
+                radial-gradient(ellipse 80% 60% at 100% 0%, rgba(91, 122, 140, 0.18) 0%, transparent 55%),
+                linear-gradient(135deg, rgba(26,26,46,0.58) 0%, rgba(13,13,26,0.80) 100%),
+                url('../../images/bg-opex.png') center/cover no-repeat;
+            min-height: 420px; display: flex; align-items: center; position: relative;
+        }
         .hero-services::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 80%, var(--navy-deep) 100%); pointer-events: none; }
         .hero-services .hero-inner { position: relative; z-index: 2; }
 
