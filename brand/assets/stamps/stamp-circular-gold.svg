@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="Grand Vision Perspective circular stamp, gold">
+  <title>GVP circular stamp, gold</title>
+  <desc>Circular cap/stempel for Indonesian business documents. Gold variant. Locked 2026-05-12.</desc>
+  <defs>
+    <path id="circ-gold-top" d="M 80 300 A 220 220 0 0 1 520 300" fill="none"/>
+  </defs>
+  <g>
+    <circle cx="300" cy="300" r="280" fill="none" stroke="#c9a84c" stroke-width="6"/>
+    <circle cx="300" cy="300" r="240" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+    <circle cx="300" cy="300" r="135" fill="none" stroke="#c9a84c" stroke-width="1"/>
+    <text font-family="Fraunces, Georgia, serif" font-size="32" font-weight="600" fill="#c9a84c" letter-spacing="0.18em">
+      <textPath href="#circ-gold-top" startOffset="50%" text-anchor="middle">GRAND VISION PERSPECTIVE</textPath>
+    </text>
+    <circle cx="60" cy="300" r="5" fill="#c9a84c"/>
+    <circle cx="540" cy="300" r="5" fill="#c9a84c"/>
+    <svg x="240" y="245" width="120" height="96" viewBox="0 0 80 64" overflow="visible">
+      <circle cx="40" cy="10" r="2.6" fill="#c9a84c"/>
+      <line x1="32" y1="22" x2="48" y2="22" stroke="#c9a84c" stroke-width="1.6" stroke-linecap="round"/>
+      <line x1="24" y1="32" x2="56" y2="32" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/>
+      <line x1="16" y1="42" x2="64" y2="42" stroke="#c9a84c" stroke-width="2.4" stroke-linecap="round"/>
+      <line x1="6" y1="54" x2="74" y2="54" stroke="#c9a84c" stroke-width="2.8" stroke-linecap="round"/>
+    </svg>
+    <text x="300" y="380" text-anchor="middle" font-family="Manrope, Arial, sans-serif" font-size="17" font-weight="600" fill="#c9a84c" letter-spacing="0.32em">BALI . INDONESIA</text>
+    <text x="300" y="408" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="20" font-weight="400" fill="#c9a84c" letter-spacing="0.1em">Est. 2023</text>
+  </g>
+</svg>

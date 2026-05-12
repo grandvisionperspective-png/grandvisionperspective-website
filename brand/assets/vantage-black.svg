@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 64" width="80" height="64" role="img" aria-label="Grand Vision Perspective Vantage mark, black">
+  <title>GVP Vantage mark, black variant</title>
+  <desc>Single observer dot above four widening horizon bars. Black variant for printing on light surfaces. Locked 2026-05-12.</desc>
+  <g fill="none" stroke="#1a1a2e" stroke-linecap="round">
+    <circle cx="40" cy="10" r="2.6" fill="#1a1a2e" stroke="none"/>
+    <line x1="32" y1="22" x2="48" y2="22" stroke-width="1.6"/>
+    <line x1="24" y1="32" x2="56" y2="32" stroke-width="2"/>
+    <line x1="16" y1="42" x2="64" y2="42" stroke-width="2.4"/>
+    <line x1="6" y1="54" x2="74" y2="54" stroke-width="2.8"/>
+  </g>
+</svg>

@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Media Kit | Grand Vision Perspective</title>
+    <meta name="description" content="Downloadable brand assets for Grand Vision Perspective. Vantage mark, wordmark, lockups, palette, type stack, boilerplate copy.">
+    <meta property="og:title" content="Brand Media Kit | Grand Vision Perspective">
+    <meta property="og:description" content="Downloadable brand assets for Grand Vision Perspective. Vantage mark, wordmark, lockups, palette, type stack, boilerplate copy.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://grandvisionperspective.com/media/">
+    <link rel="canonical" href="https://grandvisionperspective.com/media/">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/styles.css">
+    <style>
+        /* Page-specific styles for the brand media kit */
+        .media-hero {
+            background:
+                radial-gradient(ellipse 60% 50% at 50% 30%, rgba(201, 168, 76, 0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 80% 60% at 50% 100%, rgba(91, 122, 140, 0.10) 0%, transparent 50%),
+                linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, #1f1f33 100%);
+            color: var(--white);
+            padding: 120px 0 96px;
+            position: relative;
+            overflow: hidden;
+        }
+        .media-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+            mix-blend-mode: overlay;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .media-hero .container { position: relative; z-index: 1; }
+        .media-hero .eyebrow {
+            font-family: var(--font-body);
+            font-size: 11px;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--gold-hi);
+            font-weight: 600;
+            margin-bottom: 22px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .media-hero .eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 26px;
+            height: 1px;
+            background: var(--gold-hi);
+        }
+        .media-hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 500;
+            line-height: 1.02;
+            letter-spacing: -0.025em;
+            color: var(--white);
+            max-width: 880px;
+            margin-bottom: 22px;
+        }
+        .media-hero h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold-hi);
+        }
+        .media-hero .lead {
+            font-family: var(--font-body);
+            font-size: 17px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 640px;
+        }
+
+        /* Asset grid */
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 36px;
+        }
+        @media (max-width: 900px) {
+            .asset-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .asset-grid { grid-template-columns: 1fr; }
+        }
+        .asset-card {
+            background: var(--paper);
+            border: 1px solid var(--cream-deep);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+        }
+        .asset-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        .asset-card .preview {
+            padding: 36px 28px;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .asset-card .preview.bg-paper { background: var(--paper); }
+        .asset-card .preview.bg-cream { background: var(--cream); }
+        .asset-card .preview.bg-navy {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+        }
+        .asset-card .preview img,
+        .asset-card .preview svg {
+            max-width: 100%;
+            max-height: 120px;
+        }
+        .asset-card .info {
+            padding: 18px 20px;
+            border-top: 1px solid var(--cream-deep);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .asset-card .label {
+            font-family: var(--font-body);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            font-weight: 600;
+        }
+        .asset-card .label .nm {
+            display: block;
+            color: var(--ink-heading);
+            font-family: var(--font-display);
+            font-size: 16px;
+            letter-spacing: -0.005em;
+            font-weight: 500;
+            text-transform: none;
+            margin-bottom: 2px;
+        }
+        .asset-card .label .nm em {
+            font-style: italic;
+            color: var(--gold);
+            font-weight: 400;
+        }
+        .asset-card .dl {
+            font-family: var(--font-body);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 12px;
+            border: 1px solid var(--gold-border);
+            border-radius: 6px;
+            transition: all 0.25s var(--ease);
+        }
+        .asset-card .dl:hover {
+            background: var(--gold);
+            color: var(--white);
+            border-color: var(--gold);
+        }
+
+        /* Palette grid */
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+        }
+        @media (max-width: 900px) {
+            .palette-grid { grid-template-columns: 1fr 1fr; }
+        }
+        .palette-swatch {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--cream-deep);
+            transition: transform 0.3s var(--ease);
+        }
+        .palette-swatch:hover { transform: translateY(-3px); }
+        .palette-swatch .colour {
+            height: 120px;
+        }
+        .palette-swatch .meta {
+            background: var(--paper);
+            padding: 16px 18px;
+            font-family: var(--font-body);
+        }
+        .palette-swatch .meta .nm {
+            font-family: var(--font-display);
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--ink-heading);
+            margin-bottom: 8px;
+        }
+        .palette-swatch .meta .row {
+            font-size: 11px;
+            line-height: 1.7;
+            color: var(--ink-muted);
+            letter-spacing: 0.02em;
+        }
+        .palette-swatch .meta .row .lab {
+            color: var(--gold);
+            font-weight: 600;
+            margin-right: 6px;
+        }
+
+        /* Type specimen */
+        .type-specimen {
+            margin-top: 32px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+        @media (max-width: 800px) {
+            .type-specimen { grid-template-columns: 1fr; }
+        }
+        .type-card {
+            background: var(--paper);
+            border: 1px solid var(--cream-deep);
+            border-radius: 10px;
+            padding: 36px 32px;
+        }
+        .type-card .lbl {
+            font-family: var(--font-body);
+            font-size: 11px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+        .type-card .display {
+            font-family: var(--font-display);
+            font-size: 44px;
+            font-weight: 500;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--ink-heading);
+        }
+        .type-card .display em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold);
+        }
+        .type-card .sample {
+            margin-top: 18px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--ink);
+        }
+        .type-card .stack {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid var(--cream-deep);
+            font-family: var(--font-body);
+            font-size: 11px;
+            letter-spacing: 0.05em;
+            color: var(--ink-muted);
+        }
+        .type-card .stack code {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: var(--ink-heading);
+        }
+
+        /* Boilerplate panel */
+        .boilerplate {
+            background: var(--cream);
+            padding: 40px 44px;
+            border-radius: 10px;
+            border-left: 4px solid var(--gold);
+            margin-top: 36px;
+            position: relative;
+        }
+        .boilerplate .lbl {
+            font-family: var(--font-body);
+            font-size: 11px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+        .boilerplate h3 {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--ink-heading);
+            margin-bottom: 14px;
+        }
+        .boilerplate h3 em { font-style: italic; color: var(--gold); font-weight: 400; }
+        .boilerplate p {
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--ink);
+        }
+        .boilerplate p em { font-style: italic; color: var(--gold); }
+        .boilerplate p + p { margin-top: 12px; }
+
+        /* Privacy rules */
+        .rules-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 24px;
+        }
+        .rules-list li {
+            padding: 16px 0;
+            border-top: 1px solid var(--cream-deep);
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 20px;
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--ink);
+        }
+        .rules-list li:first-child { border-top: 1px solid var(--gold-border); }
+        .rules-list li:last-child { border-bottom: 1px solid var(--cream-deep); }
+        .rules-list li .n {
+            font-family: var(--font-display);
+            font-size: 24px;
+            color: var(--gold);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1;
+            padding-top: 2px;
+        }
+        .rules-list li strong { color: var(--ink-heading); font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <!-- ==== NAV ==== -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/" aria-label="Grand Vision Perspective Home">
+                    <img src="/images/logo.jpg" alt="Grand Vision Perspective" class="nav-logo" width="120" height="32" style="height:32px;width:auto;">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/case-studies/">Case Studies</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+                <div class="lang-toggle" role="group" aria-label="Language">
+                    <a href="/" class="lang-btn lang-btn--active" lang="en" aria-current="true">EN</a>
+                    <span class="lang-divider" aria-hidden="true">·</span>
+                    <a href="/id/" class="lang-btn" lang="id" hreflang="id">ID</a>
+                </div>
+                <div class="nav-cta">
+                    <a href="/contact/#book" class="btn btn-primary btn-sm">Book a Strategy Call</a>
+                </div>
+                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        <div class="nav-mobile" role="menu">
+            <a href="/services/" role="menuitem">Services</a>
+            <a href="/about/" role="menuitem">About</a>
+            <a href="/case-studies/" role="menuitem">Case Studies</a>
+            <a href="/contact/" role="menuitem">Contact</a>
+            <a href="/contact/#book" class="btn btn-primary" role="menuitem">Book a Strategy Call</a>
+            <div class="lang-toggle" role="group" aria-label="Language">
+                <a href="/" class="lang-btn lang-btn--active" lang="en" aria-current="true">EN</a>
+                <span class="lang-divider" aria-hidden="true">·</span>
+                <a href="/id/" class="lang-btn" lang="id" hreflang="id">ID</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==== HERO ==== -->
+    <section class="media-hero">
+        <div class="container">
+            <span class="eyebrow">Brand Media Kit</span>
+            <h1>Marks, palette, type, and boilerplate. <em>Everything you need to represent us, properly.</em></h1>
+            <p class="lead">The full brand system locked 2026-05-12. Vantage mark in three colour states, four lockups, locked palette with paired-use rules, the Fraunces + Manrope type stack, brand foundation copy. Use the assets here in publications, partner decks, conference programmes, anywhere GVP is represented.</p>
+        </div>
+    </section>
+
+    <!-- ==== MARK ASSETS ==== -->
+    <section class="section section--paper">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">The Vantage Mark</span>
+                <h2>The mark, the lockups, the wordmark.</h2>
+                <span class="gold-rule"></span>
+                <p class="lead">A single observer point above four widening horizon bars. Use the variant with the strongest contrast against the background. Each asset is available in three colour states: coloured (gold), black (single-colour print), and white (for dark surfaces).</p>
+            </div>
+
+            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink-heading); margin-top: 40px; margin-bottom: 8px;">Mark only</h3>
+            <p style="font-family: var(--font-body); color: var(--ink-muted); font-size: 14px; margin-bottom: 8px;">The standalone Vantage. Use wherever the wordmark cannot fit (favicons, profile photos, watermarks, social icons).</p>
+            <div class="asset-grid">
+                <div class="asset-card">
+                    <div class="preview bg-paper">
+                        <img src="/brand/assets/vantage-coloured.svg" alt="Vantage mark, coloured" width="120">
+                    </div>
+                    <div class="info">
+                        <div class="label">
+                            <span class="nm">Vantage <em>coloured</em></span>
+                            On Paper, Cream, Navy
+                        </div>
+                        <a class="dl" href="/brand/assets/vantage-coloured.svg" download>SVG</a>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <div class="preview bg-cream">
+                        <img src="/brand/assets/vantage-black.svg" alt="Vantage mark, black" width="120">
+                    </div>
+                    <div class="info">
+                        <div class="label">
+                            <span class="nm">Vantage black</span>
+                            Single colour print
+                        </div>
+                        <a class="dl" href="/brand/assets/vantage-black.svg" download>SVG</a>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <div class="preview bg-navy">
+                        <img src="/brand/assets/vantage-white.svg" alt="Vantage mark, white" width="120">
+                    </div>
+                    <div class="info">
+                        <div class="label">
+                            <span class="nm">Vantage white</span>
+                            For dark surfaces
+                        </div>
+                        <a class="dl" href="/brand/assets/vantage-white.svg" download>SVG</a>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink-heading); margin-top: 48px; margin-bottom: 8px;">Horizontal lockup</h3>
+            <p style="font-family: var(--font-body); color: var(--ink-muted); font-size: 14px; margin-bottom: 8px;">The primary lockup. Mark and wordmark baseline-aligned. Default for site nav, email signatures, partner brochures, deck headers.</p>
+            <div class="asset-grid">
+                <div class="asset-card">
+                    <div class="preview bg-paper">
+                        <img src="/brand/assets/horizontal-lockup-coloured.svg" alt="Horizontal lockup, coloured" style="max-width: 90%;">
+                    </div>
+                    <div class="info">
+                        <div class="label">
+                            <span class="nm">Horizontal <em>coloured</em></span>
+                            Primary lockup
+                        </div>
+                        <a class="dl" href="/brand/assets/horizontal-lockup-coloured.svg" download>SVG</a>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <div class="preview bg-cream">
+                        <img src="/brand/assets/horizontal-lockup-black.svg" alt="Horizontal lockup, black" style="max-width: 90%;">
+                    </div>
+                    <div class="info">
+                        <div class="label">
+                            <span class="nm">Horizontal black</span>
+                            Single colour print
+                        </div>
+                        <a class="dl" href="/brand/assets/horizontal-lockup-black.svg" download>SVG</a>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <div class="preview bg-navy">
+                        <img src="/brand/assets/horizontal-lockup-white.svg" alt="Horizontal lockup, white" style="max-width: 90%;">
+                    </div>
+                    <div class="info">
+                        <div class="label">
+                            <span class="nm">Horizontal white</span>
+                            For dark surfaces
+                        </div>
+                        <a class="dl" href="/brand/assets/horizontal-lockup-white.svg" download>SVG</a>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink-heading); margin-top: 48px; margin-bottom: 8px;">Vertical lockup</h3>
+            <p style="font-family: var(--font-body); color: var(--ink-muted); font-size: 14px; margin-bottom: 8px;">Mark above wordmark, centred. Use on deck covers, social tile signatures, proposal frontispieces.</p>
+            <div class="asset-grid">
+                <div class="asset-card">
+                    <div class="preview bg-paper">
+                        <img src="/brand/assets/vertical-lockup-coloured.svg" alt="Vertical lockup, coloured" style="max-width: 60%;">
+                    </div>
+                    <div class="info">
+                        <div class="label">
+                            <span class="nm">Vertical <em>coloured</em></span>
+                            Centred lockup
+                        </div>
+                        <a class="dl" href="/brand/assets/vertical-lockup-coloured.svg" download>SVG</a>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <div class="preview bg-cream">
+                        <img src="/brand/assets/vertical-lockup-black.svg" alt="Vertical lockup, black" style="max-width: 60%;">
+                    </div>
+                    <div class="info">
+                        <div class="label">
+                            <span class="nm">Vertical black</span>
+                            Single colour print
+                        </div>
+                        <a class="dl" href="/brand/assets/vertical-lockup-black.svg" download>SVG</a>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <div class="preview bg-navy">
+                        <img src="/brand/assets/vertical-lockup-white.svg" alt="Vertical lockup, white" style="max-width: 60%;">
+                    </div>
+                    <div class="info">
+                        <div class="label">
+                            <span class="nm">Vertical white</span>
+                            For dark surfaces
+                        </div>
+                        <a class="dl" href="/brand/assets/vertical-lockup-white.svg" download>SVG</a>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink-heading); margin-top: 48px; margin-bottom: 8px;">Wordmark only</h3>
+            <p style="font-family: var(--font-body); color: var(--ink-muted); font-size: 14px; margin-bottom: 8px;">The wordmark without the Vantage. Use in body copy mentions, page footers, signatures where the mark would be redundant.</p>
+            <div class="asset-grid">
+                <div class="asset-card">
+                    <div class="preview bg-paper">
+                        <img src="/brand/assets/wordmark-coloured.svg" alt="Wordmark, coloured" style="max-width: 90%;">
+                    </div>
+                    <div class="info">
+                        <div class="label">
+                            <span class="nm">Wordmark <em>coloured</em></span>
+                            Default wordmark
+                        </div>
+                        <a class="dl" href="/brand/assets/wordmark-coloured.svg" download>SVG</a>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <div class="preview bg-cream">
+                        <img src="/brand/assets/wordmark-black.svg" alt="Wordmark, black" style="max-width: 90%;">
+                    </div>
+                    <div class="info">
+                        <div class="label">
+                            <span class="nm">Wordmark black</span>
+                            Single colour print
+                        </div>
+                        <a class="dl" href="/brand/assets/wordmark-black.svg" download>SVG</a>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <div class="preview bg-navy">
+                        <img src="/brand/assets/wordmark-white.svg" alt="Wordmark, white" style="max-width: 90%;">
+                    </div>
+                    <div class="info">
+                        <div class="label">
+                            <span class="nm">Wordmark white</span>
+                            For dark surfaces
+                        </div>
+                        <a class="dl" href="/brand/assets/wordmark-white.svg" download>SVG</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== PALETTE ==== -->
+    <section class="section section--cream">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">The palette</span>
+                <h2>Four primary tones, four secondary.</h2>
+                <span class="gold-rule"></span>
+                <p class="lead">Paper, Cream, Navy, Gold. Used in paired combinations: Gold on Navy, Navy on Paper, Navy on Cream, Navy on Gold. Other pairings prohibited.</p>
+            </div>
+
+            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink-heading); margin-top: 36px; margin-bottom: 8px;">Primary</h3>
+            <div class="palette-grid">
+                <div class="palette-swatch">
+                    <div class="colour" style="background:#fdfcf8; border-bottom: 1px solid var(--cream-deep);"></div>
+                    <div class="meta">
+                        <div class="nm">Paper</div>
+                        <div class="row"><span class="lab">HEX</span>#FDFCF8</div>
+                        <div class="row"><span class="lab">RGB</span>253, 252, 248</div>
+                        <div class="row"><span class="lab">CMYK</span>0, 0, 2, 1</div>
+                    </div>
+                </div>
+                <div class="palette-swatch">
+                    <div class="colour" style="background:#f5f2ea;"></div>
+                    <div class="meta">
+                        <div class="nm">Cream</div>
+                        <div class="row"><span class="lab">HEX</span>#F5F2EA</div>
+                        <div class="row"><span class="lab">RGB</span>245, 242, 234</div>
+                        <div class="row"><span class="lab">CMYK</span>0, 1, 4, 4</div>
+                    </div>
+                </div>
+                <div class="palette-swatch">
+                    <div class="colour" style="background:#1a1a2e;"></div>
+                    <div class="meta">
+                        <div class="nm">Navy</div>
+                        <div class="row"><span class="lab">HEX</span>#1A1A2E</div>
+                        <div class="row"><span class="lab">RGB</span>26, 26, 46</div>
+                        <div class="row"><span class="lab">CMYK</span>43, 43, 0, 82</div>
+                    </div>
+                </div>
+                <div class="palette-swatch">
+                    <div class="colour" style="background:#c9a84c;"></div>
+                    <div class="meta">
+                        <div class="nm">Gold</div>
+                        <div class="row"><span class="lab">HEX</span>#C9A84C</div>
+                        <div class="row"><span class="lab">RGB</span>201, 168, 76</div>
+                        <div class="row"><span class="lab">CMYK</span>0, 16, 62, 21</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--ink-heading); margin-top: 36px; margin-bottom: 8px;">Secondary</h3>
+            <div class="palette-grid">
+                <div class="palette-swatch">
+                    <div class="colour" style="background:#ebe7dc;"></div>
+                    <div class="meta">
+                        <div class="nm">Cream Deep</div>
+                        <div class="row"><span class="lab">HEX</span>#EBE7DC</div>
+                        <div class="row"><span class="lab">RGB</span>235, 231, 220</div>
+                        <div class="row"><span class="lab">CMYK</span>0, 2, 6, 8</div>
+                    </div>
+                </div>
+                <div class="palette-swatch">
+                    <div class="colour" style="background:#e0c06a;"></div>
+                    <div class="meta">
+                        <div class="nm">Gold Hi</div>
+                        <div class="row"><span class="lab">HEX</span>#E0C06A</div>
+                        <div class="row"><span class="lab">RGB</span>224, 192, 106</div>
+                        <div class="row"><span class="lab">CMYK</span>0, 14, 53, 12</div>
+                    </div>
+                </div>
+                <div class="palette-swatch">
+                    <div class="colour" style="background:#6b6b7b;"></div>
+                    <div class="meta">
+                        <div class="nm">Ink Mute</div>
+                        <div class="row"><span class="lab">HEX</span>#6B6B7B</div>
+                        <div class="row"><span class="lab">RGB</span>107, 107, 123</div>
+                        <div class="row"><span class="lab">CMYK</span>13, 13, 0, 52</div>
+                    </div>
+                </div>
+                <div class="palette-swatch">
+                    <div class="colour" style="background:#2d2d3a;"></div>
+                    <div class="meta">
+                        <div class="nm">Ink Body</div>
+                        <div class="row"><span class="lab">HEX</span>#2D2D3A</div>
+                        <div class="row"><span class="lab">RGB</span>45, 45, 58</div>
+                        <div class="row"><span class="lab">CMYK</span>22, 22, 0, 77</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== TYPE ==== -->
+    <section class="section section--paper">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">The type stack</span>
+                <h2>Fraunces and Manrope.</h2>
+                <span class="gold-rule"></span>
+                <p class="lead">Fraunces (variable serif, optical sizing) for display and headlines. Manrope (geometric sans, weight 300 to 700) for body and UI. Italic Fraunces in Gold is the brand signature; use for emphasis within serif headlines.</p>
+            </div>
+            <div class="type-specimen">
+                <div class="type-card">
+                    <div class="lbl">Display + Headlines</div>
+                    <div class="display">A grand vision, <em>executed precisely.</em></div>
+                    <div class="sample">Fraunces is a variable serif with proper optical sizing. The italic carries the brand's gold-accent signature. Use weights 400 to 700 across the type scale.</div>
+                    <div class="stack">
+                        <code>font-family: 'Fraunces', Georgia, serif;</code><br>
+                        <code>font-variation-settings: 'opsz' 144;</code>
+                    </div>
+                </div>
+                <div class="type-card">
+                    <div class="lbl">Body + UI</div>
+                    <div class="display" style="font-family: 'Manrope', sans-serif; font-size: 36px; font-weight: 500;">The dashboard layer your team actually uses.</div>
+                    <div class="sample">Manrope is a modern geometric sans with weight axis 300 to 800. Use for body copy, captions, labels, and UI. Pairs warm with Fraunces; reads modern without being eccentric.</div>
+                    <div class="stack">
+                        <code>font-family: 'Manrope', sans-serif;</code><br>
+                        <code>weights: 300, 400, 500, 600, 700</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== BOILERPLATE ==== -->
+    <section class="section section--cream">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">Boilerplate copy</span>
+                <h2>For citation, partner briefs, and press use.</h2>
+                <span class="gold-rule"></span>
+            </div>
+
+            <div class="boilerplate">
+                <div class="lbl">Brand story · 120 words · primary</div>
+                <p>Grand Vision Perspective was started in Bali by Barrie, after two decades watching the same pattern play out across franchises, startups, hospitality groups, and growing companies on three continents. Businesses that began with real purpose would slowly lose touch with the people they were built to serve. Margins tightened, processes bloated, quality slipped, and the team carrying it all began to break. The root cause was almost always the same: <em>broken systems putting unnecessary pressure on good people.</em> GVP exists to fix that. We design and ship the operating systems that let businesses scale without grinding down the humans inside them.</p>
+            </div>
+
+            <div class="boilerplate" style="margin-top: 20px;">
+                <div class="lbl">Positioning · 1 paragraph · external</div>
+                <p>Grand Vision Perspective is a single-operator, full-stack management consultancy that designs, builds, and ships operating systems for founder-led businesses scaling past their first 20 to 50 staff. Where an in-house ops hire takes months to ramp and misses the cross-functional view, and where larger consultancies stop at the strategy deck, <em>GVP runs end to end:</em> audit, design, build, train, hand over. One person accountable, with the systems work most consultancies promise and few finish.</p>
+            </div>
+
+            <div class="boilerplate" style="margin-top: 20px;">
+                <div class="lbl">Tagline · primary</div>
+                <h3>We build systems that <em>let people be people.</em></h3>
+                <p style="margin-top: 8px;">Footer mark for ceremonial sign-off: <em>A GRAND VISION, EXECUTED PRECISELY · 2026</em></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== PRIVACY RULES ==== -->
+    <section class="section section--paper">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="eyebrow">Privacy rules</span>
+                <h2>How we represent ourselves, and why.</h2>
+                <span class="gold-rule"></span>
+                <p class="lead">A short list of the rules that govern how Grand Vision Perspective shows up in the world. These are not preferences. They are commitments to the clients who trust us with their operations.</p>
+            </div>
+            <ul class="rules-list">
+                <li>
+                    <span class="n">0<em style="font-style:italic;">1</em></span>
+                    <span><strong>First name only.</strong> The founder is referenced as "Barrie" externally. Surnames are never used on the public site, in press, in partner briefs, or in any media represented to the outside world.</span>
+                </li>
+                <li>
+                    <span class="n">0<em style="font-style:italic;">2</em></span>
+                    <span><strong>No physical address.</strong> Geographic positioning is "Working across Indonesia and Asia." No specific city beyond the regional anchor of Bali, no street address, no co-working location named.</span>
+                </li>
+                <li>
+                    <span class="n">0<em style="font-style:italic;">3</em></span>
+                    <span><strong>Case studies are anonymised.</strong> We do not trade on our clients' names. Industry and shape of the engagement are described; specific clients are never identified. No client logos. No recognisable brand names.</span>
+                </li>
+                <li>
+                    <span class="n">0<em style="font-style:italic;">4</em></span>
+                    <span><strong>Contact via form or email only.</strong> No phone number on the site. No address. Contact happens through the form on this site or via <em>connect@grandvisionperspective.com</em>.</span>
+                </li>
+                <li>
+                    <span class="n">0<em style="font-style:italic;">5</em></span>
+                    <span><strong>No AI-generated faces, ever.</strong> The brand promise depends on trust; synthetic people erode that. All photography is real, and where people appear, they are named with consent.</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ==== FINAL CTA ==== -->
+    <section class="section section--deep">
+        <div class="container">
+            <div class="final-cta reveal">
+                <h2>Press, partner, or want to use these assets?</h2>
+                <p class="lead" style="max-width: 560px;">Reach out and we will confirm the right files and the right context. Most uses are simple and quick.</p>
+                <div class="final-cta-actions">
+                    <a href="/contact/" class="btn btn-primary">Contact us</a>
+                    <a href="mailto:connect@grandvisionperspective.com" class="btn btn-ghost-light">Email directly</a>
+                </div>
+                <p class="final-cta-email">Or reach <a href="mailto:connect@grandvisionperspective.com">connect@grandvisionperspective.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==== FOOTER ==== -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-inner">
+                <a href="/" aria-label="Grand Vision Perspective Home">
+                    <img src="/images/logo.jpg" alt="Grand Vision Perspective" class="footer-logo" width="120" height="32" style="height:32px;width:auto;">
+                </a>
+                <ul class="footer-links">
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/case-studies/">Case Studies</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                    <li><a href="/media/">Media Kit</a></li>
+                </ul>
+                <p class="footer-email"><a href="mailto:connect@grandvisionperspective.com">connect@grandvisionperspective.com</a></p>
+                <p class="footer-copy">&copy; 2026 Grand Vision Perspective</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/app.js"></script>
+</body>
+</html>

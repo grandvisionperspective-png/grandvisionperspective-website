@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 130" width="320" height="130" role="img" aria-label="Grand Vision Perspective vertical lockup, black">
+  <title>GVP vertical lockup, black</title>
+  <desc>Vantage mark above centred wordmark. Single-colour black variant. Locked 2026-05-12.</desc>
+  <g transform="translate(120, 8)">
+    <circle cx="40" cy="10" r="2.6" fill="#1a1a2e"/>
+    <line x1="32" y1="22" x2="48" y2="22" stroke="#1a1a2e" stroke-width="1.6" stroke-linecap="round"/>
+    <line x1="24" y1="32" x2="56" y2="32" stroke="#1a1a2e" stroke-width="2" stroke-linecap="round"/>
+    <line x1="16" y1="42" x2="64" y2="42" stroke="#1a1a2e" stroke-width="2.4" stroke-linecap="round"/>
+    <line x1="6" y1="54" x2="74" y2="54" stroke="#1a1a2e" stroke-width="2.8" stroke-linecap="round"/>
+  </g>
+  <text x="160" y="112" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="500" fill="#1a1a2e" letter-spacing="-0.2">Grand Vision <tspan font-style="italic" font-weight="400">Perspective</tspan></text>
+</svg>

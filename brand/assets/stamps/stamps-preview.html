@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GVP Stamps Preview | Grand Vision Perspective</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: #08080b;
+    color: #f5f0e8;
+    font-family: 'Manrope', sans-serif;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 100;
+    pointer-events: none; mix-blend-mode: overlay; opacity: 0.55;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.045 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .glow {
+    position: fixed; top: -200px; left: -200px; width: 700px; height: 700px;
+    background: radial-gradient(circle at center, rgba(201,168,76,0.10) 0%, transparent 60%);
+    filter: blur(60px); pointer-events: none; z-index: 0;
+  }
+  .page { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; padding: 60px 56px 100px; }
+
+  .head {
+    padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 48px;
+  }
+  .head .doc-no {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.22em; color: #c9a84c;
+    margin-bottom: 4px;
+  }
+  .head .doc-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.16em;
+    color: #8a8a95; text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .head h1 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 144;
+    font-size: clamp(40px, 5.5vw, 76px);
+    font-weight: 400; line-height: 0.96;
+    letter-spacing: -0.025em; color: #f5f0e8;
+  }
+  .head h1 em { font-style: italic; font-weight: 300; color: #e0c06a; }
+
+  .intro {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 22;
+    font-size: 17px; line-height: 1.55;
+    color: #8a8a95; max-width: 820px;
+    margin-bottom: 60px;
+  }
+  .intro em { font-style: italic; color: #e0c06a; }
+  .intro strong { color: #f5f0e8; font-weight: 500; }
+
+  .section-head {
+    margin: 60px 0 24px;
+    display: flex; align-items: baseline; gap: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .section-head .ix {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.22em; color: #c9a84c;
+  }
+  .section-head .name {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 96;
+    font-size: 28px; font-weight: 400; font-style: italic;
+    letter-spacing: -0.01em;
+  }
+  .section-head .name .roman { font-style: normal; color: #8a8a95; }
+
+  .stamp-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+  }
+  .stamp-card {
+    background: linear-gradient(180deg, #14141a 0%, #08080b 100%);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .stamp-card:hover {
+    transform: translateY(-4px);
+    border-color: #c9a84c;
+    box-shadow: 0 24px 48px -16px rgba(0,0,0,0.55);
+  }
+  .stamp-card .preview {
+    aspect-ratio: 1 / 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 36px;
+    position: relative;
+  }
+  .stamp-card .preview.on-paper { background: #fdfcf8; }
+  .stamp-card .preview.on-cream { background: #f5f2ea; }
+  .stamp-card .preview.on-navy {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0d0d1a 100%);
+  }
+  .stamp-card .preview::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.025 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply; opacity: 0.7;
+  }
+  .stamp-card .preview img {
+    max-width: 80%; max-height: 80%;
+    position: relative; z-index: 1;
+  }
+  .stamp-card .info {
+    padding: 18px 22px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .stamp-card .info .nm {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 36;
+    font-size: 16px; font-weight: 500;
+    color: #f5f0e8; letter-spacing: -0.005em;
+  }
+  .stamp-card .info .nm em { font-style: italic; color: #c9a84c; font-weight: 400; }
+  .stamp-card .info .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.18em;
+    color: #8a8a95; text-transform: uppercase;
+  }
+  .stamp-card .download {
+    padding: 14px 22px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex; gap: 14px;
+  }
+  .stamp-card .download a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #c9a84c; text-decoration: none;
+    padding: 7px 12px; border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px;
+    transition: all 0.25s ease;
+  }
+  .stamp-card .download a:hover {
+    background: #c9a84c; color: #08080b;
+    border-color: #c9a84c;
+  }
+
+  .ask {
+    margin-top: 80px;
+    padding: 36px 40px;
+    background:
+      radial-gradient(ellipse 60% 60% at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      linear-gradient(180deg, #14141a 0%, #08080b 100%);
+    border: 1px solid #c9a84c;
+    border-radius: 10px;
+  }
+  .ask .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.25em; color: #c9a84c;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .ask h3 {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 96;
+    font-size: 28px; line-height: 1.1; font-weight: 400;
+    color: #f5f0e8; margin-bottom: 14px;
+    letter-spacing: -0.015em;
+  }
+  .ask h3 em { font-style: italic; color: #e0c06a; font-weight: 300; }
+  .ask p {
+    font-family: 'Fraunces', serif;
+    font-variation-settings: "opsz" 18;
+    font-size: 15px; line-height: 1.6;
+    color: #8a8a95;
+  }
+  .ask p em { color: #e0c06a; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<div class="page">
+  <header class="head">
+    <div class="doc-no">DOC / 010 · STAMPS</div>
+    <div class="doc-meta">Circular + Square Variants for Indonesian Documents</div>
+    <h1>The <em>cap</em> /<br><em>stempel.</em></h1>
+  </header>
+
+  <p class="intro">
+    Six variants, two shapes, three colour states. <strong>Circular</strong> follows the conventional Indonesian business stamp pattern (outer ring with company name curving along the top, mark at centre, location and year below). <strong>Square</strong> reads more like a corporate seal or letterhead stamp (clean rectangular frame, corner accents, mark and text inside a structured layout). <em>Pick the shape that fits the documents you're stamping.</em>
+  </p>
+
+  <div class="section-head">
+    <span class="ix">I / II</span>
+    <span class="name">Circular <span class="roman">stamp (cap/stempel)</span></span>
+  </div>
+  <div class="stamp-grid">
+    <div class="stamp-card">
+      <div class="preview on-paper">
+        <img src="stamp-circular-gold.svg" alt="Circular stamp, gold">
+      </div>
+      <div class="info">
+        <div class="nm">Circular <em>gold</em></div>
+        <div class="meta">ON BRAND</div>
+      </div>
+      <div class="download">
+        <a href="stamp-circular-gold.svg" download>SVG</a>
+      </div>
+    </div>
+    <div class="stamp-card">
+      <div class="preview on-paper">
+        <img src="stamp-circular-navy.svg" alt="Circular stamp, navy">
+      </div>
+      <div class="info">
+        <div class="nm">Circular navy</div>
+        <div class="meta">FORMAL DOCS</div>
+      </div>
+      <div class="download">
+        <a href="stamp-circular-navy.svg" download>SVG</a>
+      </div>
+    </div>
+    <div class="stamp-card">
+      <div class="preview on-paper">
+        <img src="stamp-circular-black.svg" alt="Circular stamp, black">
+      </div>
+      <div class="info">
+        <div class="nm">Circular black</div>
+        <div class="meta">MAX FORMAL</div>
+      </div>
+      <div class="download">
+        <a href="stamp-circular-black.svg" download>SVG</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <span class="ix">II / II</span>
+    <span class="name">Square <span class="roman">stamp (corporate seal)</span></span>
+  </div>
+  <div class="stamp-grid">
+    <div class="stamp-card">
+      <div class="preview on-paper">
+        <img src="stamp-square-gold.svg" alt="Square stamp, gold">
+      </div>
+      <div class="info">
+        <div class="nm">Square <em>gold</em></div>
+        <div class="meta">ON BRAND</div>
+      </div>
+      <div class="download">
+        <a href="stamp-square-gold.svg" download>SVG</a>
+      </div>
+    </div>
+    <div class="stamp-card">
+      <div class="preview on-paper">
+        <img src="stamp-square-navy.svg" alt="Square stamp, navy">
+      </div>
+      <div class="info">
+        <div class="nm">Square navy</div>
+        <div class="meta">FORMAL DOCS</div>
+      </div>
+      <div class="download">
+        <a href="stamp-square-navy.svg" download>SVG</a>
+      </div>
+    </div>
+    <div class="stamp-card">
+      <div class="preview on-paper">
+        <img src="stamp-square-black.svg" alt="Square stamp, black">
+      </div>
+      <div class="info">
+        <div class="nm">Square black</div>
+        <div class="meta">MAX FORMAL</div>
+      </div>
+      <div class="download">
+        <a href="stamp-square-black.svg" download>SVG</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ask">
+    <div class="lbl">PICK ONE TO LOCK</div>
+    <h3>Which shape feels right for <em>GVP's documents?</em></h3>
+    <p>Tell me which of the six lands (or both shapes if you want to keep both available for different document types), and I'll commit the SVGs as canonical to <em>docs/brand/02-marks.md</em>, render PNG variants at print sizes, generate distressed "wet ink" versions if you want that authenticity, and upload to Drive.</p>
+  </div>
+</div>
+
+</body>
+</html>
