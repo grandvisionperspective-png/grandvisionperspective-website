@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why most automation projects quietly die in production. | Field Notes | Grand Vision Perspective</title>
+<meta name="description" content="And the one architectural choice that decides which ones survive. A field note from Grand Vision Perspective on why automation projects fail when the team that ships them never owns them.">
+<meta property="og:title" content="Why most automation projects quietly die in production.">
+<meta property="og:description" content="And the one architectural choice that decides which ones survive.">
+<meta property="og:type" content="article">
+<link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="manifest" href="/images/site.webmanifest">
+<meta name="theme-color" content="#1a1a2e">
+<link rel="canonical" href="https://grandvisionperspective.com/insights/why-most-automation-projects-quietly-die-in-production/">
+<meta property="og:url" content="https://grandvisionperspective.com/insights/why-most-automation-projects-quietly-die-in-production/">
+<meta property="og:image" content="https://grandvisionperspective.com/images/og-image.png">
+<meta property="article:published_time" content="2026-05-12">
+<meta property="article:author" content="Barrie Elsden">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://grandvisionperspective.com/images/og-image.png">
+<script defer data-domain="grandvisionperspective.com" src="https://plausible.io/js/script.outbound-links.file-downloads.js"></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
+<style>
+    /* Self-hosted variable WOFF2 (subset latin) */
+  @font-face {
+    font-family: 'Fraunces';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url('/assets/fonts/fraunces-latin-opsz-normal.woff2') format('woff2-variations');
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    font-style: italic;
+    font-display: swap;
+    font-weight: 100 900;
+    src: url('/assets/fonts/fraunces-latin-opsz-italic.woff2') format('woff2-variations');
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  }
+  @font-face {
+    font-family: 'Manrope';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 200 800;
+    src: url('/assets/fonts/manrope-latin-wght-normal.woff2') format('woff2-variations');
+    unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --paper: #fdfcf8;
+    --cream: #f5f2ea;
+    --cream-deep: #ebe7dc;
+    --ink: #2d2d3a;
+    --ink-heading: #1a1a2e;
+    --ink-muted: #6b6b7b;
+    --ink-subtle: #9a9aa5;
+    --navy: #1a1a2e;
+    --navy-deep: #0d0d1a;
+    --gold: #c9a84c;
+    --gold-hi: #e0c06a;
+    --ease-out-q: cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    --content-max: 920px;
+    --reading-max: 720px;
+
+    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+    --font-mono: 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Cinematic grain overlay, page-wide */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 999;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.35;
+  }
+
+  /* Cinematic radial vignette */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 998;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, transparent 0%, rgba(45, 45, 58, 0.04) 100%),
+      radial-gradient(ellipse 70% 50% at 50% 100%, transparent 40%, rgba(45, 45, 58, 0.06) 100%);
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  ::selection { background: rgba(201, 168, 76, 0.30); color: var(--ink-heading); }
+
+  /* ====== NAV ====== */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 72px;
+    background: rgba(26, 26, 46, 0.88);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+  }
+  .nav-inner {
+    max-width: 1240px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--paper);
+  }
+  .nav-brand svg { width: 28px; height: 22px; color: var(--gold); display: block; }
+  .nav-brand .wordmark {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--paper);
+    font-variation-settings: "opsz" 36;
+  }
+  .nav-brand .wordmark em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+  }
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(253, 252, 248, 0.72);
+    letter-spacing: 0.01em;
+    transition: color 320ms var(--ease-out-q);
+    position: relative;
+    padding: 4px 0;
+  }
+  .nav-links a:hover { color: var(--paper); }
+  .nav-links a.active { color: var(--gold); }
+  .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.7;
+  }
+  .nav-cta {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    background: var(--gold);
+    padding: 10px 18px;
+    border-radius: 2px;
+    letter-spacing: 0.01em;
+    transition: background 320ms var(--ease-out-q), transform 320ms var(--ease-out-q);
+  }
+  .nav-cta:hover { background: var(--gold-hi); transform: translateY(-1px); }
+
+  /* ====== ARTICLE HEADER ====== */
+  .article-header {
+    position: relative;
+    padding: 96px 32px 48px;
+    background: var(--paper);
+    overflow: hidden;
+  }
+  .article-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 55% 50% at 100% 0%, rgba(201, 168, 76, 0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 0% 100%, rgba(253, 252, 248, 0.6) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .article-header-inner {
+    position: relative;
+    max-width: var(--content-max);
+    margin: 0 auto;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+  .eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+  .eyebrow .dot { color: var(--gold); margin: 0 2px; font-weight: 700; }
+
+  .article-headline {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 5.6vw, 56px);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    color: var(--ink-heading);
+    max-width: 880px;
+    margin-bottom: 28px;
+    font-variation-settings: "opsz" 144;
+  }
+  .article-headline em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+    font-variation-settings: "opsz" 144;
+  }
+
+  .article-deck {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(17px, 2vw, 20px);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--gold);
+    max-width: 640px;
+    margin-bottom: 44px;
+    font-variation-settings: "opsz" 22;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px;
+    font-family: var(--font-body);
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--ink-muted);
+  }
+  .article-meta .dot { color: var(--gold); }
+
+  /* ====== HERO IMAGE PLACEHOLDER ====== */
+  .article-figure {
+    max-width: var(--content-max);
+    margin: 0 auto 64px;
+    padding: 0 32px;
+  }
+  .article-figure .frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background:
+      linear-gradient(135deg, var(--cream-deep) 0%, var(--cream) 100%);
+    border: 1px solid rgba(26, 26, 46, 0.08);
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+  }
+  .article-figure .frame svg { width: 72px; height: 56px; opacity: 0.6; }
+  .article-figure .frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 40% at 50% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .article-figure figcaption {
+    margin-top: 16px;
+    font-family: var(--font-body);
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--ink-subtle);
+    text-align: center;
+  }
+
+  /* ====== ARTICLE BODY ====== */
+  .article-body {
+    max-width: var(--reading-max);
+    margin: 0 auto;
+    padding: 0 32px 96px;
+  }
+
+  .article-body p {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 28px;
+    font-variation-settings: "opsz" 22;
+  }
+  .article-body p:last-child { margin-bottom: 0; }
+
+  .article-body p em,
+  .article-body li em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+  }
+
+  .article-body h2 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--ink-heading);
+    margin: 56px 0 24px;
+    font-variation-settings: "opsz" 64;
+  }
+  .article-body h2 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold);
+    font-variation-settings: "opsz" 64;
+  }
+
+  .article-body h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--ink-heading);
+    margin: 40px 0 16px;
+    font-variation-settings: "opsz" 36;
+  }
+  .article-body h3 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold);
+  }
+
+  .article-body a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 320ms var(--ease-out-q), color 320ms var(--ease-out-q);
+  }
+  .article-body a:hover {
+    color: var(--gold-hi);
+    border-bottom-color: var(--gold-hi);
+  }
+
+  .article-body code,
+  .article-body kbd {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--gold);
+    background: rgba(201, 168, 76, 0.06);
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: 1px solid rgba(201, 168, 76, 0.14);
+  }
+
+  .article-body ul,
+  .article-body ol {
+    margin: 0 0 28px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .article-body ol { counter-reset: post-counter; }
+
+  .article-body ol li {
+    counter-increment: post-counter;
+    position: relative;
+    padding-left: 44px;
+    margin-bottom: 18px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .article-body ol li::before {
+    content: counter(post-counter, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: -2px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--gold);
+    line-height: 1;
+    font-variation-settings: "opsz" 72;
+  }
+
+  .article-body ul li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 16px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+  .article-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 11px;
+    width: 8px;
+    height: 1.5px;
+    background: var(--gold);
+  }
+  .article-body li strong {
+    font-family: var(--font-display);
+    font-weight: 500;
+    color: var(--ink-heading);
+    font-size: 16px;
+    display: block;
+    margin-bottom: 2px;
+    font-variation-settings: "opsz" 22;
+  }
+
+  /* ====== PULL QUOTE ====== */
+  .pullquote {
+    margin: 48px 0;
+    padding: 8px 0 8px 32px;
+    border-left: 3px solid var(--gold);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    color: var(--gold-hi);
+    font-variation-settings: "opsz" 96;
+  }
+  .pullquote cite {
+    display: block;
+    margin-top: 18px;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--ink-muted);
+  }
+  .pullquote cite::before {
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 1px;
+    background: var(--gold);
+    margin-right: 12px;
+    vertical-align: middle;
+    opacity: 0.6;
+  }
+
+  /* ====== THREE-BULLET PATTERN BLOCK ====== */
+  .pattern-block {
+    margin: 56px 0;
+    padding: 40px 36px;
+    background: var(--cream);
+    border: 1px solid var(--cream-deep);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pattern-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 40% at 100% 0%, rgba(201, 168, 76, 0.07) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .pattern-block .pattern-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .pattern-block .pattern-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 22px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+  .pattern-block .pattern-list {
+    display: grid;
+    gap: 24px;
+    position: relative;
+  }
+  .pattern-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .pattern-item .n {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 32px;
+    color: var(--gold);
+    line-height: 1;
+    font-variation-settings: "opsz" 96;
+  }
+  .pattern-item .lbl {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.3;
+    color: var(--ink-heading);
+    margin-bottom: 4px;
+    font-variation-settings: "opsz" 36;
+  }
+  .pattern-item .lbl em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+  }
+  .pattern-item .desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--ink-muted);
+  }
+
+  /* ====== AUTHOR FOOTER ====== */
+  .author-footer {
+    position: relative;
+    background: var(--cream);
+    padding: 64px 32px 72px;
+    border-top: 1px solid rgba(26, 26, 46, 0.06);
+    overflow: hidden;
+  }
+  .author-footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 55% 50% at 0% 0%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 100% 100%, rgba(253, 252, 248, 0.5) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .author-footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.7;
+  }
+  .author-inner {
+    position: relative;
+    max-width: var(--reading-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  .author-mark {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .author-mark svg { width: 56px; height: 44px; }
+  .author-meta .author-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .author-meta .author-tag::before {
+    content: '';
+    display: inline-block;
+    width: 22px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+  .author-meta .author-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--ink-heading);
+    margin-bottom: 4px;
+    font-variation-settings: "opsz" 48;
+  }
+  .author-meta .author-role {
+    font-family: var(--font-body);
+    font-size: 9.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--ink-muted);
+    margin-bottom: 18px;
+  }
+  .author-meta .author-bio {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--ink-muted);
+    margin-bottom: 24px;
+    max-width: 540px;
+  }
+  .author-meta .author-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: border-color 320ms var(--ease-out-q), color 320ms var(--ease-out-q);
+  }
+  .author-meta .author-cta:hover {
+    color: var(--gold-hi);
+    border-bottom-color: var(--gold-hi);
+  }
+  .author-meta .author-cta::after {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: currentColor;
+    transition: width 320ms var(--ease-out-q);
+  }
+  .author-meta .author-cta:hover::after { width: 28px; }
+
+  /* ====== RELATED POSTS ====== */
+  .related {
+    background: var(--paper);
+    padding: 88px 32px;
+    position: relative;
+  }
+  .related-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+  }
+  .related-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 44px;
+    flex-wrap: wrap;
+  }
+  .related-head h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.6vw, 36px);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink-heading);
+    font-variation-settings: "opsz" 96;
+  }
+  .related-head h2 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold);
+  }
+  .related-head .related-eyebrow {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .related-head .related-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .related-card {
+    background: var(--paper);
+    border: 1px solid var(--cream-deep);
+    padding: 32px 28px 28px;
+    border-radius: 2px;
+    transition: transform 380ms var(--ease-out-q), border-color 380ms var(--ease-out-q), box-shadow 380ms var(--ease-out-q);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 240px;
+  }
+  .related-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(201, 168, 76, 0.45);
+    box-shadow: 0 18px 40px -22px rgba(26, 26, 46, 0.22);
+  }
+  .related-card .card-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 14px;
+    font-variation-settings: "opsz" 36;
+  }
+  .related-card h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink-heading);
+    margin-bottom: 16px;
+    font-variation-settings: "opsz" 48;
+  }
+  .related-card h3 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--gold);
+  }
+  .related-card .card-meta {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--ink-subtle);
+    margin-bottom: 20px;
+  }
+  .related-card .card-meta .dot { color: var(--gold); }
+  .related-card .card-link {
+    margin-top: auto;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .related-card .card-link::after {
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: currentColor;
+    transition: width 320ms var(--ease-out-q);
+  }
+  .related-card:hover .card-link::after { width: 26px; }
+
+  /* ====== FINAL CTA ====== */
+  .cta-deep {
+    position: relative;
+    background: var(--navy-deep);
+    color: var(--paper);
+    padding: 120px 32px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .cta-deep::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 55% at 25% 30%, rgba(201, 168, 76, 0.16) 0%, transparent 55%),
+      radial-gradient(ellipse 55% 50% at 80% 80%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+      linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 100%);
+    z-index: -2;
+  }
+  .cta-deep::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.30;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .cta-glow {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(circle, rgba(201, 168, 76, 0.14) 0%, transparent 60%);
+    border-radius: 50%;
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: -1;
+    animation: pulse 8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+  }
+  .cta-inner {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .cta-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+  .cta-eyebrow::before,
+  .cta-eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+  .cta-deep h2 {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--paper);
+    margin-bottom: 24px;
+    font-variation-settings: "opsz" 144;
+  }
+  .cta-deep h2 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+  }
+  .cta-deep .cta-lead {
+    font-family: var(--font-display);
+    font-size: clamp(16px, 1.8vw, 18px);
+    font-weight: 400;
+    line-height: 1.65;
+    color: rgba(253, 252, 248, 0.72);
+    margin-bottom: 40px;
+    font-variation-settings: "opsz" 22;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--navy-deep);
+    background: var(--gold);
+    padding: 18px 32px;
+    border-radius: 2px;
+    transition: background 320ms var(--ease-out-q), transform 320ms var(--ease-out-q), box-shadow 320ms var(--ease-out-q);
+    box-shadow: 0 12px 32px -10px rgba(201, 168, 76, 0.45);
+  }
+  .cta-btn:hover {
+    background: var(--gold-hi);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px -12px rgba(201, 168, 76, 0.6);
+  }
+  .cta-btn::after {
+    content: '';
+    width: 18px;
+    height: 1px;
+    background: currentColor;
+    transition: width 320ms var(--ease-out-q);
+  }
+  .cta-btn:hover::after { width: 28px; }
+
+  /* ====== FOOTER ====== */
+  .footer {
+    position: relative;
+    background: var(--navy-deep);
+    color: rgba(253, 252, 248, 0.7);
+    padding: 64px 32px 36px;
+    overflow: hidden;
+    border-top: 1px solid rgba(201, 168, 76, 0.18);
+  }
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.7;
+  }
+  .footer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  .footer-inner {
+    position: relative;
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    text-align: center;
+  }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--paper);
+  }
+  .footer-brand svg { width: 32px; height: 25px; color: var(--gold); }
+  .footer-brand .wordmark {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--paper);
+    font-variation-settings: "opsz" 48;
+  }
+  .footer-brand .wordmark em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 28px;
+    list-style: none;
+  }
+  .footer-links a {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(253, 252, 248, 0.6);
+    transition: color 320ms var(--ease-out-q);
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-email {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: rgba(253, 252, 248, 0.6);
+  }
+  .footer-email a { color: var(--gold); }
+  .footer-copy {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: rgba(253, 252, 248, 0.4);
+    letter-spacing: 0.05em;
+  }
+  .footer-ritual {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    color: rgba(253, 252, 248, 0.45);
+    padding-top: 18px;
+    border-top: 1px solid rgba(201, 168, 76, 0.18);
+    width: 100%;
+    max-width: 480px;
+  }
+  .footer-ritual .dot { color: var(--gold); margin: 0 6px; }
+
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 980px) {
+    .related-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-inner { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-cta { padding: 9px 14px; font-size: 12px; }
+
+    .article-header { padding: 64px 24px 40px; }
+    .article-figure { padding: 0 24px; margin-bottom: 48px; }
+    .article-body { padding: 0 24px 72px; }
+    .article-headline { margin-bottom: 24px; }
+    .article-deck { margin-bottom: 32px; }
+
+    .article-body h2 { margin-top: 44px; font-size: 24px; }
+    .article-body h3 { font-size: 18px; }
+
+    .pullquote {
+      font-size: 21px;
+      padding-left: 22px;
+      margin: 36px 0;
+    }
+
+    .pattern-block { padding: 32px 24px; margin: 44px 0; }
+    .pattern-item { grid-template-columns: 44px 1fr; gap: 12px; }
+    .pattern-item .n { font-size: 26px; }
+
+    .author-footer { padding: 56px 24px; }
+    .author-inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      text-align: center;
+      justify-items: center;
+    }
+    .author-meta .author-tag,
+    .author-meta .author-cta { justify-content: center; }
+    .author-meta .author-bio { margin-left: auto; margin-right: auto; }
+
+    .related { padding: 72px 24px; }
+    .related-grid { grid-template-columns: 1fr; gap: 20px; }
+    .related-head { margin-bottom: 36px; }
+
+    .cta-deep { padding: 88px 24px; }
+    .cta-deep .cta-lead { margin-bottom: 32px; }
+    .cta-btn { padding: 16px 26px; font-size: 12px; }
+
+    .footer { padding: 56px 24px 32px; }
+    .footer-links { gap: 18px 22px; }
+  }
+
+  @media (max-width: 480px) {
+    .article-meta { gap: 10px; font-size: 9.5px; }
+    .article-meta .dot { display: none; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ====== NAV ====== -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand" aria-label="Grand Vision Perspective Home">
+        <svg viewBox="0 0 80 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="40" cy="10" r="2.6" fill="currentColor"/>
+          <line x1="32" y1="22" x2="48" y2="22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="24" y1="32" x2="56" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="42" x2="64" y2="42" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+          <line x1="6" y1="54" x2="74" y2="54" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+        </svg>
+        <span class="wordmark">Grand Vision <em>Perspective</em></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/case-studies/">Case Studies</a></li>
+        <li><a href="/insights/" class="active">Insights</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+      <a href="/contact/#book" class="nav-cta">Book a Call</a>
+    </div>
+  </nav>
+
+  <!-- ====== ARTICLE HEADER ====== -->
+  <header class="article-header">
+    <div class="article-header-inner">
+      <div class="eyebrow">Field Notes <span class="dot">.</span> 03</div>
+      <h1 class="article-headline">Why most automation projects <em>quietly die in production</em>.</h1>
+      <p class="article-deck">And the one architectural choice that decides which ones survive.</p>
+      <div class="article-meta">
+        <span>By Barrie Elsden</span>
+        <span class="dot">.</span>
+        <span>6 min read</span>
+        <span class="dot">.</span>
+        <span>Posted 12 May 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====== HERO IMAGE PLACEHOLDER ====== -->
+  <figure class="article-figure">
+    <div class="frame" role="img" aria-label="Article hero image placeholder">
+      <svg viewBox="0 0 80 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="40" cy="10" r="2.6" fill="currentColor"/>
+        <line x1="32" y1="22" x2="48" y2="22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="24" y1="32" x2="56" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="16" y1="42" x2="64" y2="42" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <line x1="6" y1="54" x2="74" y2="54" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <figcaption>Hero image placeholder <span style="color:var(--gold)">.</span> 16:9 ratio <span style="color:var(--gold)">.</span> Replace with article photography</figcaption>
+  </figure>
+
+  <!-- ====== ARTICLE BODY ====== -->
+  <article class="article-body">
+
+    <p>Walk into the office of any growing company and you will find the graveyard. A Zapier account nobody can log into. A Make.com scenario that has been paused for nine months. Six tabs of half-built dashboards. A Notion database that three people swore was going to fix everything in March, and nobody has opened since April.</p>
+
+    <p>The work was real. The intent was right. The tools were sound. And yet the systems are <em>dead</em>, and the team is back to doing the work by hand.</p>
+
+    <p>This is not an automation problem. It is an ownership problem. And ownership is decided on day one, in the architecture, long before anyone writes a single workflow.</p>
+
+    <h2>The handover is where projects <em>break</em>.</h2>
+
+    <p>Most automation projects are sold as engineering deliverables. A consultant or a freelancer is paid to build a thing. They build the thing. They demo the thing. They send an invoice. They leave.</p>
+
+    <p>What gets handed over is a working system. What does not get handed over is the <em>capacity to maintain it</em>. The team that has to live with the system every day was never inside it. They watched a demo. They got a Loom. They have no muscle memory for what it does, no instinct for what it should not do, and no path to fix it when it breaks.</p>
+
+    <p>Six months later, an API changes. A field gets renamed. A credential expires. The system fails quietly, and quietly, the team goes back to the spreadsheet. The automation did not die because the technology failed. It died because nobody in the building owned it.</p>
+
+    <div class="pullquote">
+      An automation that the operating team cannot edit, debug, or extend is not an asset. It is a hostage.
+      <cite>Field Notes <span style="color:var(--gold)">.</span> 03</cite>
+    </div>
+
+    <h2>The architectural decision that <em>actually matters</em>.</h2>
+
+    <p>Before you pick a platform, before you write a workflow, before you connect a single API, decide one thing: who is going to own this when we are gone? Not who is going to use it. Who is going to <em>own</em> it. Edit it. Debug it at 11pm when the Friday payroll run fails.</p>
+
+    <p>If the answer is a person on the team, the system has to be built at their level. Tools they can read. Logic they can follow. Documentation written in their language. If the answer is nobody, you are not building an asset, you are building a debt. And debt collects interest in production.</p>
+
+    <p>We name the owner before we name the platform. That single rule kills more bad projects than any technical review.</p>
+
+    <!-- ====== PATTERN BLOCK ====== -->
+    <aside class="pattern-block" aria-label="Three principles for automation that survives">
+      <div class="pattern-eyebrow">Three principles</div>
+      <div class="pattern-list">
+        <div class="pattern-item">
+          <div class="n">01</div>
+          <div>
+            <div class="lbl"><em>Name</em> the owner first.</div>
+            <p class="desc">Before the platform, before the workflow, before the API call. A real person on the team. Their name goes on the system documentation. They are present in every design conversation.</p>
+          </div>
+        </div>
+        <div class="pattern-item">
+          <div class="n">02</div>
+          <div>
+            <div class="lbl"><em>Build</em> at their reading level.</div>
+            <p class="desc">If the owner is a non-engineer, the workflows are visual, named in plain English, and short. If they need code to fix it, it is not their system. It is yours, and you are leaving.</p>
+          </div>
+        </div>
+        <div class="pattern-item">
+          <div class="n">03</div>
+          <div>
+            <div class="lbl"><em>Hand</em> over the keys, not the screenshots.</div>
+            <p class="desc">A Loom is not handover. Real handover is the owner editing the live system, on their own laptop, while you watch. Twice. The second time without you saying a word.</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <h2>What this looks like in <em>practice</em>.</h2>
+
+    <p>On a recent engagement, we replaced a six-figure custom-built CRM with a stack of off-the-shelf tools and one operations manager who now runs the whole thing herself. The original system was beautiful, performant, and completely inert because nobody on the team could touch it without filing a ticket.</p>
+
+    <p>The replacement is uglier. It is also alive. She has added three new workflows in the last quarter without calling us. That is the success metric. Not the architecture, not the elegance, not the cost. <em>She added three workflows without calling us.</em></p>
+
+    <p>If your operations team cannot edit your operations, you do not have an operations stack. You have a dependency, and the bill comes due in production.</p>
+
+  </article>
+
+  <!-- ====== AUTHOR FOOTER ====== -->
+  <section class="author-footer" aria-label="About the author">
+    <div class="author-inner">
+      <div class="author-mark" aria-hidden="true">
+        <svg viewBox="0 0 80 64" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="10" r="2.6" fill="currentColor"/>
+          <line x1="32" y1="22" x2="48" y2="22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="24" y1="32" x2="56" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="42" x2="64" y2="42" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+          <line x1="6" y1="54" x2="74" y2="54" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="author-meta">
+        <div class="author-tag">Written by</div>
+        <div class="author-name">Barrie Elsden</div>
+        <div class="author-role">Principal at Grand Vision Perspective</div>
+        <p class="author-bio">Twenty years across franchises, startups, hospitality, and growing companies on three continents. Based in Bali. Writing about the operating systems that let founder-led businesses scale.</p>
+        <a href="/insights/" class="author-cta">More from Field Notes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== RELATED POSTS ====== -->
+  <section class="related" aria-label="Related field notes">
+    <div class="related-inner">
+      <div class="related-head">
+        <h2>More <em>field notes</em>.</h2>
+        <span class="related-eyebrow">Keep reading</span>
+      </div>
+      <div class="related-grid">
+
+        <div class="related-card" aria-label="More notes in development" style="opacity:0.72">
+          <div class="card-num">In development</div>
+          <h3>More notes from the <em>operating-systems</em> field, weekly.</h3>
+          <div class="card-meta">Subscribe via contact <span class="dot">.</span> First drops late May</div>
+          <span class="card-link" style="opacity:0.7">Soon</span>
+        </div>
+
+        <a href="/insights/" class="related-card">
+          <div class="card-num">Archive</div>
+          <h3>Every field note we have <em>published</em>.</h3>
+          <div class="card-meta">Index <span class="dot">.</span> Updated weekly</div>
+          <span class="card-link">Browse all</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FINAL CTA ====== -->
+  <section class="cta-deep" aria-label="Book a strategy call">
+    <div class="cta-glow" aria-hidden="true"></div>
+    <div class="cta-inner">
+      <div class="cta-eyebrow">Next step</div>
+      <h2>Ready to fix what is <em>breaking</em> in your operations?</h2>
+      <p class="cta-lead">Thirty minutes. We will map the part of your business that is leaking time, name the system that should own it, and tell you whether you need us to build it or whether you can do it yourself.</p>
+      <a href="/contact/#book" class="cta-btn">Book a Strategy Call</a>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <a href="/" class="footer-brand" aria-label="Grand Vision Perspective Home">
+        <svg viewBox="0 0 80 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="40" cy="10" r="2.6" fill="currentColor"/>
+          <line x1="32" y1="22" x2="48" y2="22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="24" y1="32" x2="56" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="42" x2="64" y2="42" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+          <line x1="6" y1="54" x2="74" y2="54" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+        </svg>
+        <span class="wordmark">Grand Vision <em>Perspective</em></span>
+      </a>
+      <ul class="footer-links">
+        <li><a href="/services/">Services</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/case-studies/">Case Studies</a></li>
+        <li><a href="/insights/">Insights</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+      <p class="footer-email"><a href="mailto:connect@grandvisionperspective.com">connect@grandvisionperspective.com</a></p>
+      <p class="footer-copy">&copy; 2026 Grand Vision Perspective</p>
+      <p class="footer-ritual">A Grand Vision, Executed Precisely <span class="dot">.</span> 2023</p>
+    </div>
+  </footer>
+
+</body>
+</html>

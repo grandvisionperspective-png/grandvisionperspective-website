@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights | Grand Vision Perspective | Field Notes on Operating Systems</title>
+    <meta name="description" content="Field notes from Grand Vision Perspective. Short essays on the operating systems, automation, and ownership patterns that decide whether founder-led businesses scale or stall.">
+    <meta property="og:title" content="Insights | Grand Vision Perspective">
+    <meta property="og:description" content="Field notes from Grand Vision Perspective. Short essays on operating systems, automation, and ownership patterns.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://grandvisionperspective.com/insights/">
+    <meta property="og:image" content="https://grandvisionperspective.com/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://grandvisionperspective.com/images/og-image.png">
+    <meta name="twitter:title" content="Insights | Grand Vision Perspective">
+    <meta name="twitter:description" content="Field notes from Grand Vision Perspective.">
+    <link rel="canonical" href="https://grandvisionperspective.com/insights/">
+    <link rel="alternate" hreflang="en" href="https://grandvisionperspective.com/insights/">
+    <link rel="alternate" hreflang="x-default" href="https://grandvisionperspective.com/insights/">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="/images/favicon-64x64.png">
+    <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#1a1a2e">
+    <link rel="manifest" href="/images/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#1a1a2e">
+    <meta name="msapplication-TileImage" content="/images/mstile-150x150.png">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../assets/styles.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Grand Vision Perspective Insights",
+        "url": "https://grandvisionperspective.com/insights/",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Grand Vision Perspective",
+            "url": "https://grandvisionperspective.com"
+        }
+    }
+    </script>
+    <style>
+        .insights-hero {
+            padding: 96px 0 64px;
+            background:
+                radial-gradient(ellipse 60% 50% at 100% 0%, rgba(201, 168, 76, 0.10) 0%, transparent 55%),
+                radial-gradient(ellipse 70% 50% at 0% 100%, rgba(235, 231, 220, 0.6) 0%, transparent 50%),
+                linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insights-list {
+            padding: 64px 0 96px;
+            background: var(--paper);
+        }
+
+        .insight-card {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 36px;
+            padding: 40px 36px;
+            background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%);
+            border: 1px solid rgba(26, 26, 46, 0.06);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 28px;
+            transition: box-shadow 0.45s var(--ease-out-q),
+                        transform 0.45s var(--ease-out-q),
+                        border-color 0.45s var(--ease-out-q);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
+        }
+
+        .insight-card:hover {
+            box-shadow: var(--shadow-cinematic);
+            transform: translateY(-4px);
+            border-color: var(--gold-border);
+        }
+
+        .insight-card--published {
+            cursor: pointer;
+        }
+
+        .insight-card--placeholder {
+            background: var(--cream);
+            border-style: dashed;
+            border-color: rgba(26, 26, 46, 0.10);
+            opacity: 0.78;
+        }
+
+        .insight-card--placeholder::before {
+            background: linear-gradient(180deg, rgba(201, 168, 76, 0.4) 0%, transparent 100%);
+        }
+
+        .insight-card--placeholder:hover {
+            transform: none;
+            box-shadow: var(--shadow-sm);
+            border-color: rgba(26, 26, 46, 0.10);
+        }
+
+        .insight-number {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 56px;
+            color: var(--gold);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            font-variation-settings: "opsz" 144;
+        }
+
+        .insight-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-body);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .insight-meta::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 1px;
+            background: currentColor;
+            opacity: 0.55;
+        }
+
+        .insight-card h2 {
+            font-family: var(--font-display);
+            font-size: clamp(24px, 3vw, 32px);
+            font-weight: 500;
+            line-height: 1.18;
+            letter-spacing: -0.02em;
+            color: var(--ink-heading);
+            margin-bottom: 14px;
+            font-variation-settings: "opsz" 72;
+        }
+
+        .insight-card h2 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold);
+        }
+
+        .insight-card .insight-deck {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 17px;
+            line-height: 1.55;
+            color: var(--ink-muted);
+            margin-bottom: 22px;
+            max-width: 640px;
+            font-variation-settings: "opsz" 28;
+        }
+
+        .insight-card .insight-readtime {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-body);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: var(--gold);
+        }
+
+        .insight-card .insight-readtime::after {
+            content: '';
+            display: inline-block;
+            width: 18px;
+            height: 1px;
+            background: currentColor;
+            transition: width 320ms var(--ease-out-q);
+        }
+
+        .insight-card--published:hover .insight-readtime::after {
+            width: 30px;
+        }
+
+        .insight-card--placeholder .insight-readtime {
+            color: var(--ink-subtle);
+        }
+
+        @media (max-width: 720px) {
+            .insight-card {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 32px 24px;
+            }
+            .insight-number {
+                font-size: 36px;
+            }
+        }
+    </style>
+    <script defer data-domain="grandvisionperspective.com" src="https://plausible.io/js/script.outbound-links.file-downloads.js"></script>
+    <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
+</head>
+<body>
+
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/" aria-label="Grand Vision Perspective Home">
+                    <img src="/brand/assets/horizontal-lockup-white.svg" alt="Grand Vision Perspective" class="nav-logo" width="160" height="32" style="height:32px;width:auto;">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/case-studies/">Case Studies</a></li>
+                    <li><a href="/insights/" class="active">Insights</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+                <div class="lang-toggle" role="group" aria-label="Language">
+                    <a href="/insights/" class="lang-btn lang-btn--active" lang="en" aria-current="true">EN</a>
+                    <span class="lang-divider" aria-hidden="true">·</span>
+                    <a href="/insights/" class="lang-btn" lang="id" hreflang="id">ID</a>
+                </div>
+                <div class="nav-cta">
+                    <a href="/contact/#book" class="btn btn-primary btn-sm">Book a Strategy Call</a>
+                </div>
+                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+        <div class="nav-mobile" role="menu">
+            <a href="/services/" role="menuitem">Services</a>
+            <a href="/about/" role="menuitem">About</a>
+            <a href="/case-studies/" role="menuitem">Case Studies</a>
+            <a href="/insights/" role="menuitem">Insights</a>
+            <a href="/contact/" role="menuitem">Contact</a>
+            <a href="/contact/#book" class="btn btn-primary" role="menuitem">Book a Strategy Call</a>
+            <div class="lang-toggle" role="group" aria-label="Language">
+                <a href="/insights/" class="lang-btn lang-btn--active" lang="en" aria-current="true">EN</a>
+                <span class="lang-divider" aria-hidden="true">·</span>
+                <a href="/insights/" class="lang-btn" lang="id" hreflang="id">ID</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="content">
+
+    <section class="insights-hero">
+        <div class="container">
+            <div class="reveal">
+                <span class="eyebrow">Field Notes</span>
+                <h1>Short essays on the systems that <em class="italic-display">actually run</em>.</h1>
+                <p class="lead" style="margin-top: 20px;">Field notes from twenty years of building operations across franchises, hospitality, and growing companies. Published when we have something useful to say, not on a schedule.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="insights-list">
+        <div class="container" style="max-width: 920px;">
+
+            <a href="/insights/why-most-automation-projects-quietly-die-in-production/" class="insight-card insight-card--published reveal" aria-label="Read: Why most automation projects quietly die in production">
+                <div class="insight-number">03</div>
+                <div>
+                    <span class="insight-meta">Field Notes  .  03  .  12 May 2026</span>
+                    <h2>Why most automation projects <em>quietly die in production</em>.</h2>
+                    <p class="insight-deck">And the one architectural choice that decides which ones survive.</p>
+                    <span class="insight-readtime">6 min read</span>
+                </div>
+            </a>
+
+            <div class="insight-card insight-card--placeholder reveal" aria-label="In development: Operating systems, not tools">
+                <div class="insight-number">02</div>
+                <div>
+                    <span class="insight-meta">In development  .  drops late May</span>
+                    <h2>Why founder-led companies need <em>operating systems</em>, not more tools.</h2>
+                    <p class="insight-deck">The difference between adding software and building a system that runs without you.</p>
+                    <span class="insight-readtime">Coming soon</span>
+                </div>
+            </div>
+
+            <div class="insight-card insight-card--placeholder reveal" aria-label="In development: The cost of a manual back office">
+                <div class="insight-number">01</div>
+                <div>
+                    <span class="insight-meta">In development  .  drops June</span>
+                    <h2>The real cost of a <em>manual back office</em>, in hours and in turnover.</h2>
+                    <p class="insight-deck">A line-item breakdown of what spreadsheet operations actually cost a growing business.</p>
+                    <span class="insight-readtime">Coming soon</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section section--deep">
+        <div class="container">
+            <div class="final-cta text-center reveal">
+                <h2>Want these notes <em>delivered</em>?</h2>
+                <p class="lead" style="max-width: 560px; margin: 0 auto 36px;">Email us. Low volume, no automation, sent when there is something worth sending.</p>
+                <div class="hero-actions" style="justify-content: center;">
+                    <a href="mailto:connect@grandvisionperspective.com?subject=Subscribe%20to%20Field%20Notes" class="btn btn-primary">Subscribe</a>
+                    <a href="/case-studies/" class="btn btn-ghost-light btn-arrow">See the work</a>
+                </div>
+                <p style="margin-top: 28px; font-size: 13px; color: rgba(255,255,255,0.4); letter-spacing: 0.5px;">
+                    Or book a call directly at <a href="/contact/#book" style="color: var(--gold);">grandvisionperspective.com/contact</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+        </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-inner">
+                <a href="/" aria-label="Grand Vision Perspective Home">
+                    <img src="/brand/assets/horizontal-lockup-white.svg" alt="Grand Vision Perspective" class="footer-logo" width="160" height="32" style="height:32px;width:auto;">
+                </a>
+                <ul class="footer-links">
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/case-studies/">Case Studies</a></li>
+                    <li><a href="/insights/">Insights</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                    <li><a href="/media/">Media Kit</a></li>
+                </ul>
+                <p class="footer-email"><a href="mailto:connect@grandvisionperspective.com">connect@grandvisionperspective.com</a></p>
+                <p class="footer-copy">&copy; 2026 Grand Vision Perspective</p>
+                <p class="footer-ritual">A GRAND VISION, EXECUTED PRECISELY <span class="footer-ritual-dot">·</span> 2023</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/app.js"></script>
+</body>
+</html>
