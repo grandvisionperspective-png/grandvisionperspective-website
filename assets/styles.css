@@ -1,5 +1,5 @@
 /* =============================================================
-   Grand Vision Perspective — Shared Stylesheet
+   Grand Vision Perspective:Shared Stylesheet
    Editorial luxury meets technical craft.
 
    Structure:
@@ -78,31 +78,34 @@ ul, ol {
     --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
     --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-    /* Palette — warm whites */
+    /* Palette:warm whites */
     --paper: #fdfcf8;
     --cream: #f5f2ea;
     --cream-deep: #ebe7dc;
 
-    /* Palette — neutrals */
+    /* Palette:neutrals */
     --white: #ffffff;
     --grey-50: #f8f9fa;
     --grey-100: #e8e8ec;
     --grey-200: #d0d0d6;
 
-    /* Palette — ink */
+    /* Semantic token: text on dark surfaces (nav, footer, mobile menu) */
+    --text-on-dark: var(--text-on-dark);
+
+    /* Palette:ink */
     --ink: #2d2d3a;
     --ink-heading: #1a1a2e;
     --ink-muted: #6b6b7b;
     --ink-subtle: #9a9aa5;
 
-    /* Palette — signature gold */
+    /* Palette:signature gold */
     --gold: #c9a84c;
     --gold-hover: #b8953f;
     --gold-hi: #e0c06a;
     --gold-tint: rgba(201, 168, 76, 0.08);
     --gold-border: rgba(201, 168, 76, 0.2);
 
-    /* Palette — dark */
+    /* Palette:dark */
     --navy: #1a1a2e;
     --navy-deep: #0d0d1a;
 
@@ -133,6 +136,7 @@ ul, ol {
     /* Motion */
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-q: cubic-bezier(0.165, 0.84, 0.44, 1); /* locked brand-moment easing per docs/brand/03-visual-system.md */
     --duration-fast: 0.2s;
     --duration-base: 0.3s;
     --duration-slow: 0.6s;
@@ -156,6 +160,39 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.15;
     font-weight: 600;
     letter-spacing: -0.01em;
+}
+
+/* Brand signature: italic-gold emphasis inside display contexts.
+   Per docs/brand/03-visual-system.md, italic Fraunces in Gold (or
+   Gold Hi on dark surfaces) is the locked GVP visual signature. */
+h1 em, h2 em, h3 em, .hero em, .lead em, .display em {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+}
+
+/* Dark surfaces use Gold Hi for stronger contrast against Navy */
+.section--navy h1 em, .section--navy h2 em, .section--navy h3 em,
+.section--deep h1 em, .section--deep h2 em, .section--deep h3 em,
+.hero h1 em, .hero h2 em, .media-hero h1 em {
+    color: var(--gold-hi);
+}
+
+/* Gentle gold-glow pulse on hero italic accents (signature motion). */
+.hero h1 em, .media-hero h1 em {
+    animation: gold-glow 4s ease-in-out infinite;
+}
+
+@keyframes gold-glow {
+    0%, 100% { text-shadow: 0 0 0 transparent; }
+    50% { text-shadow: 0 0 22px rgba(224, 192, 106, 0.45); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero h1 em, .media-hero h1 em {
+        animation: none;
+    }
 }
 
 h1 {
@@ -382,7 +419,7 @@ p {
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: #b0b0b8;
+    color: var(--text-on-dark);
     position: relative;
     padding: 6px 0;
 }
@@ -430,7 +467,7 @@ p {
     display: block;
     width: 22px;
     height: 2px;
-    background: #b0b0b8;
+    background: var(--text-on-dark);
     border-radius: 2px;
     transition: transform var(--duration-base) var(--ease),
                 opacity var(--duration-base) var(--ease);
@@ -473,7 +510,7 @@ p {
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: #b0b0b8;
+    color: var(--text-on-dark);
 }
 
 .nav-mobile a:hover {
@@ -1080,7 +1117,7 @@ p {
     font-weight: 500;
     letter-spacing: 1.2px;
     text-transform: uppercase;
-    color: #b0b0b8;
+    color: var(--text-on-dark);
 }
 
 .footer-links a:hover {
@@ -1089,7 +1126,7 @@ p {
 
 .footer-email {
     font-size: 14px;
-    color: #b0b0b8;
+    color: var(--text-on-dark);
 }
 
 .footer-email a {
@@ -1102,8 +1139,27 @@ p {
 
 .footer-copy {
     font-size: 12px;
-    color: #6b6b7b;
+    color: var(--ink-muted);
     margin-top: 8px;
+}
+
+/* Locked brand footer ritual stamp. Per docs/brand/01-foundation.md
+   Section V (Tagline System), this is the ceremonial sign-off mark
+   applied to every deliverable. 2023 is the founding year. */
+.footer-ritual {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 6px;
+}
+
+.footer-ritual-dot {
+    color: var(--gold);
+    margin: 0 6px;
+    font-weight: 700;
 }
 
 

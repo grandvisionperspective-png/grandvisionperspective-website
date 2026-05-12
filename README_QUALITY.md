@@ -1,15 +1,15 @@
-# Quality Standard — This Repo
+# Quality Standard: This Repo
 
 This repo follows the **Universal Quality Standard** (established 2026-04-09 after the n8n outage).
 
 ## What's in place
 
-- **CodeRabbit** — AI code review on every PR (`.coderabbit.yaml`)
-- **Pre-commit hooks** — Ruff, Gitleaks, hygiene checks (`.pre-commit-config.yaml`)
-- **Dependabot** — Weekly vulnerability scans (`.github/dependabot.yml`)
-- **CI Pipeline** — Lint + tests + security on every PR (`.github/workflows/ci.yml`)
-- **Branch protection** — Main is protected, PRs required
-- **CODEOWNERS** — Auto-assigns reviewers
+- **CodeRabbit**: AI code review on every PR (`.coderabbit.yaml`)
+- **Pre-commit hooks**: Ruff, Gitleaks, hygiene checks (`.pre-commit-config.yaml`)
+- **Dependabot**: Weekly vulnerability scans (`.github/dependabot.yml`)
+- **CI Pipeline**: Lint + tests + security on every PR (`.github/workflows/ci.yml`)
+- **Branch protection**: Main is protected, PRs required
+- **CODEOWNERS**: Auto-assigns reviewers
 
 ## Setup (first time clone)
 
@@ -27,9 +27,9 @@ pre-commit run --all-files
 
 1. Create a feature branch: `git checkout -b feat/your-feature`
 2. Make changes
-3. Commit — pre-commit hooks run automatically
-4. Push — CI runs
-5. Open PR — CodeRabbit reviews automatically
+3. Commit: pre-commit hooks run automatically
+4. Push: CI runs
+5. Open PR: CodeRabbit reviews automatically
 6. Address feedback, get approval, merge
 
 ## Never

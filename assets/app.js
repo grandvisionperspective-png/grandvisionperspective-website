@@ -1,4 +1,4 @@
-/* Grand Vision Perspective — shared interactive behaviour */
+/* Grand Vision Perspective: shared interactive behaviour */
 (() => {
     'use strict';
 
