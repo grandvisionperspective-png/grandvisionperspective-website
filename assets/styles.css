@@ -956,14 +956,19 @@ p {
     z-index: 0;
 }
 
+/* Wave 21: bottom edge lifted from near-black (#08080b) to navy so the
+   transition into the footer reads as an editorial step down, not as
+   two near-identical dark slabs stacked. Padding also tightened so the
+   content density (headline + lead + buttons) earns the section height. */
 .section--deep {
     background:
         radial-gradient(ellipse 70% 80% at 50% 50%, rgba(201, 168, 76, 0.22) 0%, transparent 60%),
         radial-gradient(ellipse 60% 50% at 0% 0%, rgba(91, 122, 140, 0.16) 0%, transparent 60%),
         radial-gradient(ellipse 50% 40% at 100% 100%, rgba(201, 168, 76, 0.12) 0%, transparent 55%),
-        linear-gradient(180deg, #15151c 0%, var(--navy-deep) 60%, #08080b 100%);
+        linear-gradient(180deg, #15151c 0%, var(--navy-deep) 50%, var(--navy) 100%);
     color: rgba(255, 255, 255, 0.85);
     overflow: hidden;
+    padding: clamp(72px, 9vw, 112px) 0;
 }
 
 /* Animated ambient blob inside deep sections (the cinematic moment).
@@ -1466,11 +1471,14 @@ p {
    Cinematic close: layered radial atmosphere + grain overlay + subtle
    ambient gold blob behind content. Top border becomes a gradient
    hairline (gold fade) instead of a flat 2px rule. */
+/* Wave 21: footer starts at navy-deep (deeper than the CTA above which
+   ends at navy) so the seam reads as a step down into the colophon.
+   The horizon line below adds an explicit gold hairline at the boundary. */
 .footer {
     position: relative;
-    border-top: 1px solid transparent;
+    border-top: 1px solid rgba(201, 168, 76, 0.28);
     background:
-        radial-gradient(ellipse 60% 80% at 50% 0%, rgba(201, 168, 76, 0.20) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 80% at 50% 0%, rgba(201, 168, 76, 0.28) 0%, transparent 65%),
         radial-gradient(ellipse 80% 60% at 100% 100%, rgba(91, 122, 140, 0.14) 0%, transparent 50%),
         radial-gradient(ellipse 40% 40% at 0% 50%, rgba(201, 168, 76, 0.10) 0%, transparent 55%),
         linear-gradient(180deg, var(--navy-deep) 0%, #08080b 100%);
@@ -1521,16 +1529,19 @@ p {
     z-index: 1;
 }
 
+/* Wave 21: extended horizon hairline. Was 320px clipped; now spans the
+   container width with a tighter peak so the seam reads as an editorial
+   horizon, not a tucked-away tick mark. */
 .footer > .container::before {
     content: '';
     position: absolute;
-    top: -64px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(320px, 60%);
+    top: -54px;
+    left: 0;
+    right: 0;
+    width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
-    opacity: 0.55;
+    background: linear-gradient(90deg, transparent 0%, rgba(201, 168, 76, 0.4) 20%, var(--gold) 50%, rgba(201, 168, 76, 0.4) 80%, transparent 100%);
+    opacity: 0.85;
 }
 
 .footer-inner {
