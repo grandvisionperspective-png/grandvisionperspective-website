@@ -987,21 +987,27 @@ p {
 }
 
 
-/* === 09. CARDS ============================================= */
+/* === 09. CARDS =============================================
+   Light cards get a subtle paper-to-cream gradient (never flat), hover
+   lift uses the locked --ease-out-q with multi-layer cinematic shadow.
+   Dark cards (.card--dark) use a deep linear gradient bg-1 to bg-0.
+   Per docs/brand/03-visual-system.md Section IV (motion principles). */
 .card {
-    background: var(--white);
+    position: relative;
+    background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%);
     border-radius: var(--radius-md);
     padding: 28px 28px 30px;
-    transition: box-shadow var(--duration-base) var(--ease),
-                transform var(--duration-base) var(--ease),
-                border-color var(--duration-base) var(--ease);
+    transition: box-shadow 0.45s var(--ease-out-q),
+                transform 0.45s var(--ease-out-q),
+                border-color 0.45s var(--ease-out-q);
     border: 1px solid rgba(26, 26, 46, 0.06);
     box-shadow: var(--shadow-sm);
+    overflow: hidden;
 }
 
 .card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-3px);
+    box-shadow: var(--shadow-cinematic);
+    transform: translateY(-4px);
     border-color: var(--gold-border);
 }
 
@@ -1009,19 +1015,34 @@ p {
     border-left: 4px solid var(--gold);
 }
 
+/* Editorial left-accent: hairline gold rule fading down. The canvas
+   swarm-lane pattern (3px gold gradient from top to transparent). */
+.card--rule-left::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
+}
+
 .card--dark {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, var(--c-bg-1) 0%, var(--c-bg-0) 100%);
+    border: 1px solid var(--c-line);
     color: rgba(255, 255, 255, 0.85);
     box-shadow: none;
 }
 
 .card--dark:hover {
-    background: rgba(255, 255, 255, 0.07);
+    background: linear-gradient(180deg, var(--c-bg-2) 0%, var(--c-bg-1) 100%);
     border-color: var(--gold-border);
-    transform: translateY(-2px);
-    box-shadow: none;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-deep);
 }
+
+/* Italic-gold inside dark cards reads as Gold Hi for contrast. */
+.card--dark em, .card--dark .italic-display { color: var(--gold-hi); }
 
 .card-number {
     display: inline-block;
@@ -1085,11 +1106,12 @@ p {
     display: block;
     font-family: var(--font-display);
     font-size: clamp(36px, 5vw, 56px);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--ink-heading);
     line-height: 1;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     margin-bottom: 8px;
+    font-variation-settings: "opsz" 96;
 }
 
 .section--navy .stat-number,
@@ -1336,7 +1358,9 @@ p {
 }
 
 
-/* === 16. ENGAGEMENT CARDS (dark bg) ======================== */
+/* === 16. ENGAGEMENT CARDS (dark bg) ========================
+   Cinematic gradient bg + cinematic motion. Used on dark sections.
+   Gold-Hi accents on h3 (locked rule for italic-gold on Navy). */
 .engagement-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -1344,26 +1368,49 @@ p {
 }
 
 .engagement-card {
+    position: relative;
     padding: 28px 30px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, var(--c-bg-1) 0%, var(--c-bg-0) 100%);
+    border: 1px solid var(--c-line);
     border-radius: var(--radius-md);
-    transition: background var(--duration-base) var(--ease),
-                border-color var(--duration-base) var(--ease);
+    transition: background 0.45s var(--ease-out-q),
+                border-color 0.45s var(--ease-out-q),
+                transform 0.45s var(--ease-out-q),
+                box-shadow 0.45s var(--ease-out-q);
+    overflow: hidden;
+}
+
+.engagement-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
+    opacity: 0.7;
+    transition: opacity 0.45s var(--ease-out-q);
 }
 
 .engagement-card:hover {
-    background: rgba(255, 255, 255, 0.06);
+    background: linear-gradient(180deg, var(--c-bg-2) 0%, var(--c-bg-1) 100%);
     border-color: var(--gold-border);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-deep);
 }
+
+.engagement-card:hover::before { opacity: 1; }
 
 .engagement-card h3 {
     font-family: var(--font-display);
     font-size: 20px;
-    color: var(--gold);
+    color: var(--gold-hi);
     margin-bottom: 8px;
     letter-spacing: -0.005em;
+    font-variation-settings: "opsz" 36;
 }
+
+.engagement-card h3 em { color: var(--paper); font-style: italic; }
 
 .engagement-card p {
     font-size: 14px;
@@ -1449,6 +1496,32 @@ p {
     margin: 0 6px;
     font-weight: 700;
 }
+
+
+/* === 17b. HERO MARK (vantage motion utility) ===============
+   Use on inline Vantage SVGs at hero scale. Default state has a soft gold
+   drop-shadow halo; .hero-mark--rise adds the 4s rise/glow loop.
+   Per docs/brand/03-visual-system.md Section IV.2 (vantage rise). */
+.hero-mark {
+    display: inline-block;
+    color: var(--gold);
+    filter: drop-shadow(0 0 28px rgba(224, 192, 106, 0.35));
+    transition: filter 0.6s var(--ease-out-q);
+}
+
+.hero-mark svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    color: currentColor;
+}
+
+.hero-mark--rise {
+    animation: vantage-rise-loop 4s ease-in-out infinite;
+}
+
+.hero-mark--white { color: var(--paper); }
+.hero-mark--navy  { color: var(--navy); }
 
 
 /* === 18. MOTION ============================================ */
