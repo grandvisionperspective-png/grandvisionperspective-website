@@ -473,9 +473,13 @@ p {
     white-space: nowrap;
 }
 
+/* Navy on Gold is the locked WCAG-AA paired-use rule per docs/brand/03-visual-system.md
+   Section I. Navy #1a1a2e on Gold #c9a84c gives 6.7:1 contrast (AA pass).
+   White on Gold would fail (2.4:1) and breaks the brand pair rule.
+   Hover darkens the gold so navy text remains compliant. */
 .btn-primary {
     background: var(--gold);
-    color: var(--white);
+    color: var(--ink-heading);
     border-color: var(--gold);
     box-shadow: 0 4px 14px rgba(201, 168, 76, 0.18);
 }
@@ -483,6 +487,7 @@ p {
 .btn-primary:hover {
     background: var(--gold-hover);
     border-color: var(--gold-hover);
+    color: var(--ink-heading);
     transform: translateY(-3px);
     box-shadow: 0 12px 28px rgba(201, 168, 76, 0.32), 0 4px 10px rgba(201, 168, 76, 0.2);
 }
