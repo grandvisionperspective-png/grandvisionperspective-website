@@ -46,14 +46,22 @@
         .story-body { max-width: 780px; }
         .story-body p { font-size: clamp(16px, 1.6vw, 18px); line-height: 1.85; color: var(--ink); margin-bottom: 24px; }
         .story-body p:last-child { margin-bottom: 0; }
-        .story-body p.lead { font-family: var(--font-display); font-style: italic; font-size: clamp(20px, 2.4vw, 28px); line-height: 1.5; color: var(--ink-heading); margin-bottom: 40px; padding-left: 24px; border-left: 3px solid var(--gold); }
+        .story-body p.lead { font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.45; color: var(--ink-heading); margin-bottom: 44px; padding: 4px 0 4px 28px; border-left: none; position: relative; font-variation-settings: "opsz" 96; letter-spacing: -0.012em; }
+        .story-body p.lead::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--gold) 0%, var(--gold) 35%, transparent 100%); }
+        .story-body p.lead em { color: var(--gold); font-style: italic; }
+
+        .story-section { position: relative; overflow: hidden; }
+        .story-section::after { content: ''; position: absolute; right: -120px; top: 80px; width: 560px; height: 448px; opacity: 0.045; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 64'><circle cx='40' cy='10' r='2.6' fill='%23c9a84c'/><line x1='32' y1='22' x2='48' y2='22' stroke='%23c9a84c' stroke-width='1.6' stroke-linecap='round'/><line x1='24' y1='32' x2='56' y2='32' stroke='%23c9a84c' stroke-width='2' stroke-linecap='round'/><line x1='16' y1='42' x2='64' y2='42' stroke='%23c9a84c' stroke-width='2.4' stroke-linecap='round'/><line x1='6' y1='54' x2='74' y2='54' stroke='%23c9a84c' stroke-width='2.8' stroke-linecap='round'/></svg>"); background-repeat: no-repeat; background-size: contain; transform: rotate(-8deg); pointer-events: none; z-index: 0; }
+        .story-section > .container { position: relative; z-index: 1; }
 
         .approach-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .approach-card { background: var(--white); padding: 32px 28px; border-radius: var(--radius-md); border: 1px solid rgba(26, 26, 46, 0.05); box-shadow: var(--shadow-sm); transition: box-shadow var(--duration-base) var(--ease), transform var(--duration-base) var(--ease); }
-        .approach-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
-        .approach-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--ink-heading); }
-        .approach-card h3::before { content: ''; display: block; width: 32px; height: 2px; background: var(--gold); margin-bottom: 14px; }
-        .approach-card p { font-size: 15px; color: var(--ink-muted); line-height: 1.7; }
+        .approach-card { position: relative; background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%); padding: 34px 28px 32px; border-radius: var(--radius-md); border: 1px solid rgba(26, 26, 46, 0.06); box-shadow: var(--shadow-sm); transition: box-shadow 0.45s var(--ease-out-q), transform 0.45s var(--ease-out-q), border-color 0.45s var(--ease-out-q); overflow: hidden; }
+        .approach-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: linear-gradient(180deg, var(--gold) 0%, transparent 100%); }
+        .approach-card:hover { box-shadow: var(--shadow-cinematic); transform: translateY(-4px); border-color: var(--gold-border); }
+        .approach-card .card-num { display: inline-block; font-family: var(--font-display); font-style: italic; font-weight: 400; font-size: 24px; color: var(--gold); line-height: 1; margin-bottom: 14px; font-variation-settings: "opsz" 96; letter-spacing: -0.01em; }
+        .approach-card h3 { font-size: 20px; margin-bottom: 12px; color: var(--ink-heading); font-variation-settings: "opsz" 36; font-weight: 500; letter-spacing: -0.012em; }
+        .approach-card h3 em { font-style: italic; color: var(--gold); font-weight: 400; }
+        .approach-card p { font-size: 14.5px; color: var(--ink-muted); line-height: 1.7; }
 
         @media (min-width: 600px) { .approach-grid { grid-template-columns: 1fr 1fr; gap: 24px; } }
         @media (min-width: 900px) { .approach-grid { grid-template-columns: repeat(4, 1fr); } }
@@ -129,15 +137,15 @@
         </div>
     </section>
 
-    <section class="section section--paper">
+    <section class="section section--paper story-section">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Cerita kami</span>
-                <h2>Pola yang terus kami temui</h2>
+                <h2>Pola yang terus kami <em>temui</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <div class="story-body reveal">
-                <p class="lead">Selama dua dekade bekerja di franchise, startup, korporat, perhotelan, konstruksi, dan proyek-proyek conscious di seluruh dunia, satu pola terus bermunculan.</p>
+                <p class="lead">Selama dua dekade bekerja di franchise, startup, korporat, perhotelan, konstruksi, dan proyek-proyek conscious di seluruh dunia, <em>satu pola terus bermunculan</em>.</p>
                 <p>Bisnis yang dimulai dengan tujuan yang tulus perlahan kehilangan koneksi dengan orang-orang yang mereka layani. Fokus bergeser dari pelanggan dan tim menjadi margin dan spreadsheet, dan kualitas segalanya menurun secara diam-diam.</p>
                 <p>Akar masalahnya hampir selalu sama: sistem yang rusak membebani orang-orang baik dengan tekanan yang tidak perlu. Proses manual, tools yang tidak terhubung, pekerjaan ganda, detail yang terlewat. Tim tenggelam dalam admin alih-alih mengerjakan pekerjaan yang semestinya. Teknologi untuk memperbaiki ini sudah ada, tetapi tidak menjangkau bisnis yang paling membutuhkannya.</p>
                 <p>Grand Vision Perspective didirikan untuk mengubah itu. Kami melihat apa yang tampak seperti kekacauan operasional dan menemukan jalan yang jelas menuju kesederhanaan. Kami merancang dan membangun sistem yang menghilangkan friksi, menghapus pekerjaan berulang, dan mengembalikan waktu kepada manusia. Waktu untuk fokus pada pelanggan mereka. Waktu untuk pekerjaan yang bermakna. Waktu untuk hidup.</p>
@@ -146,39 +154,43 @@
         </div>
     </section>
 
-    <section class="section section--cream">
+    <section class="section section--cream-deep">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Pendekatan kami</span>
-                <h2>Empat prinsip yang membentuk setiap proyek.</h2>
+                <h2>Empat prinsip yang membentuk <em>setiap proyek</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <div class="approach-grid reveal-stagger">
                 <div class="approach-card">
-                    <h3>Manusia yang Utama</h3>
+                    <span class="card-num">01</span>
+                    <h3>Manusia yang Utama.</h3>
                     <p>Teknologi melayani manusia, bukan sebaliknya. Setiap sistem yang kami bangun dirancang untuk membuat hari seseorang menjadi lebih ringan.</p>
                 </div>
                 <div class="approach-card">
-                    <h3>Kesederhanaan</h3>
+                    <span class="card-num">02</span>
+                    <h3>Kesederhanaan.</h3>
                     <p>Jika belum cukup sederhana untuk dipahami siapa pun, berarti belum selesai. Kami mengupas kompleksitas hingga yang tersisa hanya hal yang penting.</p>
                 </div>
                 <div class="approach-card">
-                    <h3>Hasil</h3>
+                    <span class="card-num">03</span>
+                    <h3>Hasil.</h3>
                     <p>Kami mengukur keberhasilan dari jam yang dihemat dan masalah yang tuntas. Bukan dari fitur yang dirilis atau dashboard yang dibangun.</p>
                 </div>
                 <div class="approach-card">
-                    <h3>Praktis</h3>
+                    <span class="card-num">04</span>
+                    <h3>Praktis.</h3>
                     <p>Tanpa jargon. Tanpa kompleksitas yang tidak perlu. Hanya sistem yang bekerja, dikerjakan oleh orang-orang yang peduli.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section section--paper">
+    <section class="section section--cream">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Tim kami</span>
-                <h2>Pengalaman internasional, berakar lokal.</h2>
+                <h2>Pengalaman internasional, <em>berakar lokal</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <div class="story-body reveal">

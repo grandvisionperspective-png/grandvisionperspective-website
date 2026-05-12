@@ -77,18 +77,64 @@
             margin-bottom: 0;
         }
 
+        /* Editorial lead block. Italic-gold display, gradient gold rule on
+           the left (fades top to bottom) instead of a flat 3px bar. */
         .story-body p.lead {
             font-family: var(--font-display);
             font-style: italic;
-            font-size: clamp(20px, 2.4vw, 28px);
-            line-height: 1.5;
+            font-weight: 400;
+            font-size: clamp(22px, 2.6vw, 30px);
+            line-height: 1.45;
             color: var(--ink-heading);
-            margin-bottom: 40px;
-            padding-left: 24px;
-            border-left: 3px solid var(--gold);
+            margin-bottom: 44px;
+            padding: 4px 0 4px 28px;
+            border-left: none;
+            position: relative;
+            font-variation-settings: "opsz" 96;
+            letter-spacing: -0.012em;
         }
 
-        /* Approach cards - tighter grid */
+        .story-body p.lead::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--gold) 0%, var(--gold) 35%, transparent 100%);
+        }
+
+        .story-body p.lead em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        /* Subtle Vantage watermark behind the story copy. Atmospheric only.
+           Per docs/brand/02-marks.md (Vantage geometry, low-opacity application). */
+        .story-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .story-section::after {
+            content: '';
+            position: absolute;
+            right: -120px;
+            top: 80px;
+            width: 560px;
+            height: 448px;
+            opacity: 0.045;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 64'><circle cx='40' cy='10' r='2.6' fill='%23c9a84c'/><line x1='32' y1='22' x2='48' y2='22' stroke='%23c9a84c' stroke-width='1.6' stroke-linecap='round'/><line x1='24' y1='32' x2='56' y2='32' stroke='%23c9a84c' stroke-width='2' stroke-linecap='round'/><line x1='16' y1='42' x2='64' y2='42' stroke='%23c9a84c' stroke-width='2.4' stroke-linecap='round'/><line x1='6' y1='54' x2='74' y2='54' stroke='%23c9a84c' stroke-width='2.8' stroke-linecap='round'/></svg>");
+            background-repeat: no-repeat;
+            background-size: contain;
+            transform: rotate(-8deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .story-section > .container { position: relative; z-index: 1; }
+
+        /* Approach cards: Wave 9 cinematic treatment ported in.
+           Gradient white-to-paper background, gold left-accent hairline,
+           italic-gold accent on the h3, refined shadow + locked easing on hover. */
         .approach-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -96,37 +142,64 @@
         }
 
         .approach-card {
-            background: var(--white);
-            padding: 32px 28px;
+            position: relative;
+            background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%);
+            padding: 34px 28px 32px;
             border-radius: var(--radius-md);
-            border: 1px solid rgba(26, 26, 46, 0.05);
+            border: 1px solid rgba(26, 26, 46, 0.06);
             box-shadow: var(--shadow-sm);
-            transition: box-shadow var(--duration-base) var(--ease),
-                        transform var(--duration-base) var(--ease);
+            transition: box-shadow 0.45s var(--ease-out-q),
+                        transform 0.45s var(--ease-out-q),
+                        border-color 0.45s var(--ease-out-q);
+            overflow: hidden;
+        }
+
+        .approach-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
         }
 
         .approach-card:hover {
-            box-shadow: var(--shadow-lg);
-            transform: translateY(-3px);
+            box-shadow: var(--shadow-cinematic);
+            transform: translateY(-4px);
+            border-color: var(--gold-border);
+        }
+
+        .approach-card .card-num {
+            display: inline-block;
+            font-family: var(--font-display);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 24px;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 14px;
+            font-variation-settings: "opsz" 96;
+            letter-spacing: -0.01em;
         }
 
         .approach-card h3 {
             font-size: 20px;
             margin-bottom: 12px;
             color: var(--ink-heading);
+            font-variation-settings: "opsz" 36;
+            font-weight: 500;
+            letter-spacing: -0.012em;
         }
 
-        .approach-card h3::before {
-            content: '';
-            display: block;
-            width: 32px;
-            height: 2px;
-            background: var(--gold);
-            margin-bottom: 14px;
+        .approach-card h3 em {
+            font-style: italic;
+            color: var(--gold);
+            font-weight: 400;
         }
 
         .approach-card p {
-            font-size: 15px;
+            font-size: 14.5px;
             color: var(--ink-muted);
             line-height: 1.7;
         }
@@ -208,15 +281,15 @@
     </section>
 
     <!-- ==== OUR STORY ==== -->
-    <section class="section section--paper">
+    <section class="section section--paper story-section">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Our story</span>
-                <h2>The pattern we kept seeing</h2>
+                <h2>The pattern we kept <em>seeing</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <div class="story-body reveal">
-                <p class="lead">Over two decades of working across franchises, startups, corporates, hospitality, construction, and conscious projects around the world, one pattern kept showing up.</p>
+                <p class="lead">Over two decades of working across franchises, startups, corporates, hospitality, construction, and conscious projects around the world, <em>one pattern kept showing up</em>.</p>
                 <p>Businesses that started with a genuine purpose would gradually lose touch with the people they were built to serve. The focus would shift from customers and teams to margins and spreadsheets, and the quality of everything would quietly decline.</p>
                 <p>The root cause was almost always the same: broken systems putting unnecessary pressure on good people. Manual processes, disconnected tools, duplicated work, missed details. Teams drowning in admin instead of doing what they were hired to do. The technology to fix this existed, but it was not reaching the businesses that needed it most.</p>
                 <p>Grand Vision Perspective was founded to change that. We look at what seems like operational chaos and see a clear path to simplicity. We design and build systems that remove friction, eliminate repetitive work, and give people back their time. Time to focus on their customers. Time to do meaningful work. Time to live.</p>
@@ -226,28 +299,32 @@
     </section>
 
     <!-- ==== OUR APPROACH ==== -->
-    <section class="section section--cream">
+    <section class="section section--cream-deep">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Our approach</span>
-                <h2>Four principles that shape every engagement.</h2>
+                <h2>Four principles that shape <em>every engagement</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <div class="approach-grid reveal-stagger">
                 <div class="approach-card">
-                    <h3>People First</h3>
+                    <span class="card-num">01</span>
+                    <h3>People First.</h3>
                     <p>Technology serves humans, not the other way around. Every system we build is designed to make someone's day easier.</p>
                 </div>
                 <div class="approach-card">
-                    <h3>Simplicity</h3>
+                    <span class="card-num">02</span>
+                    <h3>Simplicity.</h3>
                     <p>If it is not simple enough for anyone to understand, it is not done. We strip away complexity until only what matters remains.</p>
                 </div>
                 <div class="approach-card">
-                    <h3>Results</h3>
+                    <span class="card-num">03</span>
+                    <h3>Results.</h3>
                     <p>We measure success in hours saved and problems eliminated. Not in features shipped or dashboards built.</p>
                 </div>
                 <div class="approach-card">
-                    <h3>Practical</h3>
+                    <span class="card-num">04</span>
+                    <h3>Practical.</h3>
                     <p>No jargon. No unnecessary complexity. Just systems that work, delivered by people who care.</p>
                 </div>
             </div>
@@ -255,11 +332,11 @@
     </section>
 
     <!-- ==== OUR TEAM ==== -->
-    <section class="section section--paper">
+    <section class="section section--cream">
         <div class="container">
             <div class="section-header reveal">
                 <span class="eyebrow">Our team</span>
-                <h2>International experience, grounded locally.</h2>
+                <h2>International experience, <em>grounded locally</em>.</h2>
                 <span class="gold-rule"></span>
             </div>
             <div class="story-body reveal">
