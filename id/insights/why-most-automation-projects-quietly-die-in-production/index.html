@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Why most automation projects quietly die in production. | Field Notes | Grand Vision Perspective</title>
-<meta name="description" content="And the one architectural choice that decides which ones survive. A field note from Grand Vision Perspective on why automation projects fail when the team that ships them never owns them.">
-<meta property="og:title" content="Why most automation projects quietly die in production.">
-<meta property="og:description" content="And the one architectural choice that decides which ones survive.">
+<title>Kenapa kebanyakan proyek otomatisasi diam-diam mati di produksi. | Field Notes | Grand Vision Perspective</title>
+<meta name="description" content="Dan satu pilihan arsitektur yang menentukan mana yang bertahan. Catatan lapangan dari Grand Vision Perspective tentang kenapa proyek otomatisasi gagal kalau tim yang nge-ship-nya ngga pernah punya ownership.">
+<meta property="og:title" content="Kenapa kebanyakan proyek otomatisasi diam-diam mati di produksi.">
+<meta property="og:description" content="Dan satu pilihan arsitektur yang menentukan mana yang bertahan.">
 <meta property="og:type" content="article">
 <link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -16,8 +16,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
 <link rel="manifest" href="/images/site.webmanifest">
 <meta name="theme-color" content="#1a1a2e">
-<link rel="canonical" href="https://grandvisionperspective.com/insights/why-most-automation-projects-quietly-die-in-production/">
-<meta property="og:url" content="https://grandvisionperspective.com/insights/why-most-automation-projects-quietly-die-in-production/">
+<link rel="canonical" href="https://grandvisionperspective.com/id/insights/why-most-automation-projects-quietly-die-in-production/">
+<link rel="alternate" hreflang="en" href="https://grandvisionperspective.com/insights/why-most-automation-projects-quietly-die-in-production/">
+<link rel="alternate" hreflang="id" href="https://grandvisionperspective.com/id/insights/why-most-automation-projects-quietly-die-in-production/">
+<meta property="og:url" content="https://grandvisionperspective.com/id/insights/why-most-automation-projects-quietly-die-in-production/">
 <meta property="og:image" content="https://grandvisionperspective.com/images/og-image.png">
 <meta property="article:published_time" content="2026-05-12">
 <meta property="article:author" content="Barrie Elsden">
@@ -1121,9 +1123,9 @@
 <body>
 
   <!-- ====== NAV ====== -->
-  <nav class="nav" role="navigation" aria-label="Main navigation">
+  <nav class="nav" role="navigation" aria-label="Navigasi utama">
     <div class="nav-inner">
-      <a href="/" class="nav-brand" aria-label="Grand Vision Perspective Home">
+      <a href="/id/" class="nav-brand" aria-label="Grand Vision Perspective Beranda">
         <svg viewBox="0 0 80 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <circle cx="40" cy="10" r="2.6" fill="currentColor"/>
           <line x1="32" y1="22" x2="48" y2="22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
@@ -1134,13 +1136,13 @@
         <span class="wordmark">Grand Vision <em>Perspective</em></span>
       </a>
       <ul class="nav-links">
-        <li><a href="/services/">Services</a></li>
-        <li><a href="/about/">About</a></li>
-        <li><a href="/case-studies/">Projects</a></li>
-        <li><a href="/insights/" class="active">Insights</a></li>
-        <li><a href="/contact/">Contact</a></li>
+        <li><a href="/id/services/">Layanan</a></li>
+        <li><a href="/id/about/">Tentang</a></li>
+        <li><a href="/id/case-studies/">Proyek</a></li>
+        <li><a href="/id/insights/" class="active">Wawasan</a></li>
+        <li><a href="/id/contact/">Kontak</a></li>
       </ul>
-      <a href="/contact/#book" class="nav-cta">Book a Call</a>
+      <a href="/id/contact/#book" class="nav-cta">Jadwalkan Konsultasi</a>
     </div>
   </nav>
 
@@ -1148,14 +1150,14 @@
   <header class="article-header">
     <div class="article-header-inner">
       <div class="eyebrow">Field Notes <span class="dot">.</span> 03</div>
-      <h1 class="article-headline">Why most automation projects <em>quietly die in production</em>.</h1>
-      <p class="article-deck">And the one architectural choice that decides which ones survive.</p>
+      <h1 class="article-headline">Kenapa kebanyakan proyek otomatisasi <em>diam-diam mati</em> di produksi.</h1>
+      <p class="article-deck">Dan satu pilihan arsitektur yang menentukan mana yang bertahan.</p>
       <div class="article-meta">
-        <span>By Barrie Elsden</span>
+        <span>Oleh Barrie Elsden</span>
         <span class="dot">.</span>
-        <span>6 min read</span>
+        <span>6 menit baca</span>
         <span class="dot">.</span>
-        <span>Posted 12 May 2026</span>
+        <span>Diposting 12 Mei 2026</span>
       </div>
     </div>
   </header>
@@ -1163,75 +1165,75 @@
   <!-- ====== HERO IMAGE ====== -->
   <figure class="article-figure">
     <div class="frame">
-      <img src="/images/insights/automation-projects-quietly-die-in-production.png" alt="Field Note 03 hero: italic-gold Fraunces word 'hostage' over a cinematic navy backdrop, with the article's defining pull-quote, an automation that the operating team cannot edit, debug, or extend is not an asset." style="width:100%; height:100%; object-fit:cover; display:block;">
+      <img src="/images/insights/automation-projects-quietly-die-in-production.png" alt="Hero Field Note 03: kata italic-gold Fraunces dependency di atas latar navy sinematik, dengan kutipan tesis artikel, otomatisasi yang tim operasionalnya tidak bisa edit, debug, atau extend bukanlah aset." style="width:100%; height:100%; object-fit:cover; display:block;">
     </div>
   </figure>
 
   <!-- ====== ARTICLE BODY ====== -->
   <article class="article-body">
 
-    <p>Walk into the office of any growing company and you will find the graveyard. A Zapier account nobody can log into. A Make.com scenario that has been paused for nine months. Six tabs of half-built dashboards. A Notion database that three people swore was going to fix everything in March, and nobody has opened since April.</p>
+    <p>Mampir ke kantor mana aja yang lagi tumbuh, kamu bakal nemuin kuburannya. Akun Zapier yang ngga ada yang bisa login. Scenario Make.com yang udah di-pause sembilan bulan. Enam tab dashboard setengah jadi. Database Notion yang tiga orang sumpah bakal benerin semuanya di Maret, dan ngga ada yang buka sejak April.</p>
 
-    <p>The work was real. The intent was right. The tools were sound. And yet the systems are <em>dead</em>, and the team is back to doing the work by hand.</p>
+    <p>Kerjaannya nyata. Niatnya benar. Tools-nya bagus. Tapi sistemnya <em>mati</em>, dan tim balik ngerjain semuanya manual.</p>
 
-    <p>This is not an automation problem. It is an ownership problem. And ownership is decided on day one, in the architecture, long before anyone writes a single workflow.</p>
+    <p>Ini bukan masalah otomatisasi. Ini masalah ownership. Dan ownership itu ditentuin di hari pertama, di arsitekturnya, jauh sebelum ada yang nulis satu workflow pun.</p>
 
-    <h2>The handover is where projects <em>break</em>.</h2>
+    <h2>Handover adalah tempat <em>proyek pecah</em>.</h2>
 
-    <p>Most automation projects are sold as engineering deliverables. A consultant or a freelancer is paid to build a thing. They build the thing. They demo the thing. They send an invoice. They leave.</p>
+    <p>Kebanyakan proyek otomatisasi dijual sebagai engineering deliverable. Konsultan atau freelancer dibayar buat bangun sesuatu. Mereka bangun. Mereka demo. Mereka kirim invoice. Mereka pergi.</p>
 
-    <p>What gets handed over is a working system. What does not get handed over is the <em>capacity to maintain it</em>. The team that has to live with the system every day was never inside it. They watched a demo. They got a Loom. They have no muscle memory for what it does, no instinct for what it should not do, and no path to fix it when it breaks.</p>
+    <p>Yang di-handover adalah sistem yang berfungsi. Yang ngga di-handover adalah <em>kapasitas buat ngerawatnya</em>. Tim yang harus hidup dengan sistem itu tiap hari belum pernah masuk ke dalamnya. Mereka nonton demo. Mereka dapat Loom. Mereka ngga punya muscle memory soal cara kerjanya, ngga punya instink soal apa yang sebaiknya ngga dilakuin, dan ngga punya jalan buat benerinnya pas rusak.</p>
 
-    <p>Six months later, an API changes. A field gets renamed. A credential expires. The system fails quietly, and quietly, the team goes back to the spreadsheet. The automation did not die because the technology failed. It died because nobody in the building owned it.</p>
+    <p>Enam bulan kemudian, API berubah. Sebuah field di-rename. Kredensial expired. Sistemnya gagal diam-diam, dan diam-diam, tim balik ke spreadsheet. Otomatisasinya ngga mati karena teknologinya gagal. Mati karena ngga ada yang di gedungnya yang punya ownership-nya.</p>
 
     <div class="pullquote">
-      An automation that the operating team cannot edit, debug, or extend is not an asset. It is a dependency.
+      Otomatisasi yang tim operasionalnya ngga bisa edit, debug, atau extend itu bukan aset. Itu sebuah ketergantungan.
       <cite>Field Notes <span style="color:var(--gold)">.</span> 03</cite>
     </div>
 
-    <h2>The architectural decision that <em>actually matters</em>.</h2>
+    <h2>Keputusan arsitektur yang <em>sebenernya penting</em>.</h2>
 
-    <p>Before you pick a platform, before you write a workflow, before you connect a single API, decide one thing: who is going to own this when we are gone? Not who is going to use it. Who is going to <em>own</em> it. Edit it. Debug it at 11pm when the Friday payroll run fails.</p>
+    <p>Sebelum kamu pilih platform, sebelum kamu nulis workflow, sebelum kamu nyambungin satu API pun, putusin satu hal: siapa yang bakal punya ini pas kita pergi? Bukan siapa yang bakal pake. Siapa yang bakal <em>punya</em>-nya. Edit. Debug jam 11 malam pas payroll Jumat gagal.</p>
 
-    <p>If the answer is a person on the team, the system has to be built at their level. Tools they can read. Logic they can follow. Documentation written in their language. If the answer is nobody, you are not building an asset, you are building a debt. And debt collects interest in production.</p>
+    <p>Kalau jawabannya orang di tim, sistemnya harus dibangun di level mereka. Tools yang bisa mereka baca. Logic yang bisa mereka ikutin. Dokumentasi yang ditulis pakai bahasa mereka. Kalau jawabannya ngga ada, kamu ngga lagi bangun aset, kamu lagi bangun utang. Dan utang nambah bunga di produksi.</p>
 
-    <p>We name the owner before we name the platform. That single rule kills more bad projects than any technical review.</p>
+    <p>Kami namain owner-nya sebelum kami namain platform-nya. Satu aturan itu doang yang nge-kill proyek jelek lebih banyak daripada technical review mana pun.</p>
 
     <!-- ====== PATTERN BLOCK ====== -->
     <aside class="pattern-block" aria-label="Three principles for automation that survives">
-      <div class="pattern-eyebrow">Three principles</div>
+      <div class="pattern-eyebrow">Tiga prinsip</div>
       <div class="pattern-list">
         <div class="pattern-item">
           <div class="n">01</div>
           <div>
-            <div class="lbl"><em>Name</em> the owner first.</div>
-            <p class="desc">Before the platform, before the workflow, before the API call. A real person on the team. Their name goes on the system documentation. They are present in every design conversation.</p>
+            <div class="lbl"><em>Namain</em> owner-nya duluan.</div>
+            <p class="desc">Sebelum platform, sebelum workflow, sebelum API call. Orang beneran di tim. Namanya masuk ke dokumentasi sistem. Mereka hadir di tiap percakapan desain.</p>
           </div>
         </div>
         <div class="pattern-item">
           <div class="n">02</div>
           <div>
-            <div class="lbl"><em>Build</em> at their reading level.</div>
-            <p class="desc">If the owner is a non-engineer, the workflows are visual, named in plain English, and short. If they need code to fix it, it is not their system. It is yours, and you are leaving.</p>
+            <div class="lbl"><em>Bangun</em> di reading level mereka.</div>
+            <p class="desc">Kalau ownernya non-engineer, workflownya visual, dinamain pakai bahasa yang jelas, dan pendek. Kalau mereka butuh code buat benerin, itu bukan sistem mereka. Itu sistem kamu, dan kamu lagi mau pergi.</p>
           </div>
         </div>
         <div class="pattern-item">
           <div class="n">03</div>
           <div>
-            <div class="lbl"><em>Hand</em> over the keys, not the screenshots.</div>
-            <p class="desc">A Loom is not handover. Real handover is the owner editing the live system, on their own laptop, while you watch. Twice. The second time without you saying a word.</p>
+            <div class="lbl"><em>Serahin</em> kuncinya, bukan screenshot-nya.</div>
+            <p class="desc">Loom bukan handover. Handover beneran itu owner-nya ngedit sistem live, di laptopnya sendiri, sementara kamu nonton. Dua kali. Yang kedua tanpa kamu ngomong sepatah kata pun.</p>
           </div>
         </div>
       </div>
     </aside>
 
-    <h2>What this looks like in <em>practice</em>.</h2>
+    <h2>Kayak apa ini dalam <em>praktek</em>.</h2>
 
-    <p>On a recent engagement, we replaced a six-figure custom-built CRM with a stack of off-the-shelf tools and one operations manager who now runs the whole thing herself. The original system was beautiful, performant, and completely inert because nobody on the team could touch it without filing a ticket.</p>
+    <p>Di engagement terakhir, kami gantiin CRM custom-built bernilai ratusan juta dengan stack tools off-the-shelf dan satu operations manager yang sekarang ngejalanin semuanya sendiri. Sistem aslinya cantik, performant, dan benar-benar inert karena ngga ada satu pun di tim yang bisa nyentuh tanpa filing ticket.</p>
 
-    <p>The replacement is uglier. It is also alive. She has added three new workflows in the last quarter without calling us. That is the success metric. Not the architecture, not the elegance, not the cost. <em>She added three workflows without calling us.</em></p>
+    <p>Penggantinya lebih jelek. Tapi hidup. Dia udah nambahin tiga workflow baru di kuartal terakhir tanpa nelpon kami. Itu success metric-nya. Bukan arsitekturnya, bukan eleganitasnya, bukan biayanya. <em>Dia nambahin tiga workflow tanpa nelpon kami.</em></p>
 
-    <p>If your operations team cannot edit your operations, you do not have an operations stack. You have a dependency, and the bill comes due in production.</p>
+    <p>Kalau tim operations kamu ngga bisa ngedit operasinya, kamu ngga punya operations stack. Kamu punya ketergantungan, dan tagihannya jatuh tempo di produksi.</p>
 
   </article>
 
@@ -1248,11 +1250,11 @@
         </svg>
       </div>
       <div class="author-meta">
-        <div class="author-tag">Written by</div>
+        <div class="author-tag">Ditulis oleh</div>
         <div class="author-name">Barrie Elsden</div>
-        <div class="author-role">Principal at Grand Vision Perspective</div>
-        <p class="author-bio">Twenty years across franchises, startups, hospitality, and growing companies on three continents. Based in Bali. Writing about the operating systems that let founder-led businesses scale.</p>
-        <a href="/insights/" class="author-cta">More from Field Notes</a>
+        <div class="author-role">Principal di Grand Vision Perspective</div>
+        <p class="author-bio">Dua dekade lintas franchise, startup, perhotelan, dan bisnis yang sedang tumbuh di tiga benua. Berbasis di Bali. Menulis tentang operating system yang bikin bisnis founder-led bisa scale.</p>
+        <a href="/id/insights/" class="author-cta">Field Notes lainnya</a>
       </div>
     </div>
   </section>
@@ -1261,23 +1263,23 @@
   <section class="related" aria-label="Related field notes">
     <div class="related-inner">
       <div class="related-head">
-        <h2>More <em>field notes</em>.</h2>
-        <span class="related-eyebrow">Keep reading</span>
+        <h2>Field notes <em>lainnya</em>.</h2>
+        <span class="related-eyebrow">Lanjut baca</span>
       </div>
       <div class="related-grid">
 
         <div class="related-card" aria-label="More notes in development" style="opacity:0.72">
-          <div class="card-num">In development</div>
-          <h3>More notes from the <em>operating-systems</em> field, weekly.</h3>
-          <div class="card-meta">Subscribe via contact <span class="dot">.</span> First drops late May</div>
-          <span class="card-link" style="opacity:0.7">Soon</span>
+          <div class="card-num">Sedang dikerjakan</div>
+          <h3>Notes lainnya dari field <em>operating systems</em>, mingguan.</h3>
+          <div class="card-meta">Daftar lewat contact <span class="dot">.</span> Rilis pertama akhir Mei</div>
+          <span class="card-link" style="opacity:0.7">Segera</span>
         </div>
 
-        <a href="/insights/" class="related-card">
-          <div class="card-num">Archive</div>
-          <h3>Every field note we have <em>published</em>.</h3>
-          <div class="card-meta">Index <span class="dot">.</span> Updated weekly</div>
-          <span class="card-link">Browse all</span>
+        <a href="/id/insights/" class="related-card">
+          <div class="card-num">Arsip</div>
+          <h3>Setiap field note yang sudah <em>dipublikasikan</em>.</h3>
+          <div class="card-meta">Indeks <span class="dot">.</span> Diupdate mingguan</div>
+          <span class="card-link">Lihat semua</span>
         </a>
 
       </div>
@@ -1288,17 +1290,17 @@
   <section class="cta-deep" aria-label="Book a strategy call">
     <div class="cta-glow" aria-hidden="true"></div>
     <div class="cta-inner">
-      <div class="cta-eyebrow">Next step</div>
-      <h2>Ready to fix what is <em>breaking</em> in your operations?</h2>
-      <p class="cta-lead">Thirty minutes. We will map the part of your business that is leaking time, name the system that should own it, and tell you whether you need us to build it or whether you can do it yourself.</p>
-      <a href="/contact/#book" class="cta-btn">Book a Strategy Call</a>
+      <div class="cta-eyebrow">Langkah berikutnya</div>
+      <h2>Siap benerin yang <em>rusak</em> di operasional Anda?</h2>
+      <p class="cta-lead">Tiga puluh menit. Kami petakan bagian bisnis yang lagi bocor waktunya, kasih nama sistem yang harusnya punya itu, dan kasih tau apakah Anda perlu kami yang bangun atau bisa kerjakan sendiri.</p>
+      <a href="/id/contact/#book" class="cta-btn">Jadwalkan Konsultasi</a>
     </div>
   </section>
 
   <!-- ====== FOOTER ====== -->
   <footer class="footer" role="contentinfo">
     <div class="footer-inner">
-      <a href="/" class="footer-brand" aria-label="Grand Vision Perspective Home">
+      <a href="/id/" class="footer-brand" aria-label="Grand Vision Perspective Beranda">
         <svg viewBox="0 0 80 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <circle cx="40" cy="10" r="2.6" fill="currentColor"/>
           <line x1="32" y1="22" x2="48" y2="22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
