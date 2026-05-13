@@ -683,7 +683,12 @@ p {
     top: var(--nav-height);
     inset-inline: 0;
     bottom: 0;
-    background: rgba(13, 13, 26, 0.98);
+    /* Explicit fill so the menu paints over the full viewport area, not
+       just the content height. Some Chromium versions collapse a flex
+       container to content-height when only top/bottom inset is set. */
+    height: calc(100dvh - var(--nav-height));
+    min-height: calc(100vh - var(--nav-height));
+    background: rgb(13, 13, 26);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     z-index: 999;
@@ -691,6 +696,7 @@ p {
     flex-direction: column;
     align-items: center;
     gap: 28px;
+    overflow-y: auto;
 }
 
 .nav-mobile.active {
