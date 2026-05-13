@@ -372,7 +372,9 @@ p {
     align-items: center;
     gap: 12px;
     font-family: var(--font-body);
-    font-size: 11px;
+    /* Bumped 11px to 12px so eyebrow stays legible on phones; the
+       0.22em letter-spacing was making 11px sub-comfortable below 480px. */
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
