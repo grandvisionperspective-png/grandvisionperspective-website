@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Grand Vision Perspective . Field Notes</title>
+    <link>https://grandvisionperspective.com/id/insights/</link>
+    <description>Esai pendek soal sistem operasional yang beneran jalan.</description>
+    <language>id</language>
+    <lastBuildDate>Wed, 13 May 2026 13:44:31 +0000</lastBuildDate>
+    <atom:link href="https://grandvisionperspective.com/id/insights/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Biaya asli back-office manual, dalam jam dan dalam turnover.</title>
+      <link>https://grandvisionperspective.com/id/insights/real-cost-of-manual-back-office/</link>
+      <guid isPermaLink="true">https://grandvisionperspective.com/id/insights/real-cost-of-manual-back-office/</guid>
+      <pubDate>Wed, 13 May 2026 08:00:00 +0000</pubDate>
+      <description><![CDATA[Rincian item per item soal berapa sebenernya biaya operasi spreadsheet buat bisnis yang lagi tumbuh. Jam, error, jurang turnover.]]></description>
+    </item>
+    <item>
+      <title>Kenapa bisnis founder-led butuh sistem operasional, bukan tools tambahan.</title>
+      <link>https://grandvisionperspective.com/id/insights/operating-systems-not-tools/</link>
+      <guid isPermaLink="true">https://grandvisionperspective.com/id/insights/operating-systems-not-tools/</guid>
+      <pubDate>Wed, 13 May 2026 08:00:00 +0000</pubDate>
+      <description><![CDATA[Beda antara nambah software dan ngebangun sistem yang jalan tanpa kamu.]]></description>
+    </item>
+    <item>
+      <title>Kenapa kebanyakan proyek otomatisasi diam-diam mati di produksi.</title>
+      <link>https://grandvisionperspective.com/id/insights/why-most-automation-projects-quietly-die-in-production/</link>
+      <guid isPermaLink="true">https://grandvisionperspective.com/id/insights/why-most-automation-projects-quietly-die-in-production/</guid>
+      <pubDate>Tue, 12 May 2026 08:00:00 +0000</pubDate>
+      <description><![CDATA[Dan satu pilihan arsitektur yang menentukan mana yang bertahan.]]></description>
+    </item>
+  </channel>
+</rss>

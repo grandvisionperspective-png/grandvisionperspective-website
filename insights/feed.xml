@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Grand Vision Perspective . Field Notes</title>
+    <link>https://grandvisionperspective.com/insights/</link>
+    <description>Short essays on the operating systems that actually run.</description>
+    <language>en</language>
+    <lastBuildDate>Wed, 13 May 2026 13:44:31 +0000</lastBuildDate>
+    <atom:link href="https://grandvisionperspective.com/insights/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>The real cost of a manual back office, in hours and in turnover.</title>
+      <link>https://grandvisionperspective.com/insights/real-cost-of-manual-back-office/</link>
+      <guid isPermaLink="true">https://grandvisionperspective.com/insights/real-cost-of-manual-back-office/</guid>
+      <pubDate>Wed, 13 May 2026 08:00:00 +0000</pubDate>
+      <description><![CDATA[A line-item breakdown of what spreadsheet operations actually cost a growing business. The hours, the errors, the turnover cliff.]]></description>
+    </item>
+    <item>
+      <title>Why founder-led companies need operating systems, not more tools.</title>
+      <link>https://grandvisionperspective.com/insights/operating-systems-not-tools/</link>
+      <guid isPermaLink="true">https://grandvisionperspective.com/insights/operating-systems-not-tools/</guid>
+      <pubDate>Wed, 13 May 2026 08:00:00 +0000</pubDate>
+      <description><![CDATA[The difference between adding software and building a system that runs without you.]]></description>
+    </item>
+    <item>
+      <title>Why most automation projects quietly die in production.</title>
+      <link>https://grandvisionperspective.com/insights/why-most-automation-projects-quietly-die-in-production/</link>
+      <guid isPermaLink="true">https://grandvisionperspective.com/insights/why-most-automation-projects-quietly-die-in-production/</guid>
+      <pubDate>Tue, 12 May 2026 08:00:00 +0000</pubDate>
+      <description><![CDATA[And the one architectural choice that decides which ones survive.]]></description>
+    </item>
+  </channel>
+</rss>
