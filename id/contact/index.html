@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontak | Grand Vision Perspective | Jadwalkan Konsultasi Strategi</title>
+    <title>Kontak | Konsultan Otomatisasi Bisnis Bali | Grand Vision Perspective</title>
     <meta name="description" content="Ceritakan tentang bisnis Anda, kami akan merespons dalam 24 jam. Jadwalkan konsultasi strategi 30 menit gratis untuk mengeksplorasi bagaimana kami dapat membantu.">
     <meta property="og:title" content="Kontak | Grand Vision Perspective">
     <meta property="og:description" content="Ceritakan tentang bisnis Anda, kami akan merespons dalam 24 jam.">
@@ -131,7 +131,9 @@
             width: 100%;
             padding: 13px 14px;
             font-family: var(--font-body);
-            font-size: 15px;
+            /* 16px is the iOS Safari floor; below it Safari zooms the
+               viewport on focus, which jolts mobile users mid-form. */
+            font-size: 16px;
             color: var(--ink);
             background: var(--paper);
             border: 1px solid rgba(26, 26, 46, 0.12);

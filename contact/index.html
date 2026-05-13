@@ -158,7 +158,9 @@
             width: 100%;
             padding: 13px 14px;
             font-family: var(--font-body);
-            font-size: 15px;
+            /* 16px is the iOS Safari floor; below it Safari zooms the
+               viewport on focus, which jolts mobile users mid-form. */
+            font-size: 16px;
             color: var(--ink);
             background: var(--paper);
             border: 1px solid rgba(26, 26, 46, 0.12);
