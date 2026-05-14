@@ -39,6 +39,24 @@
     <xhtml:link rel="alternate" hreflang="id" href="https://grandvisionperspective.com/id/services/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://grandvisionperspective.com/services/"/>
   </url>
+  <url>
+    <loc>https://grandvisionperspective.com/how-we-work/</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grandvisionperspective.com/how-we-work/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://grandvisionperspective.com/id/how-we-work/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grandvisionperspective.com/how-we-work/"/>
+  </url>
+  <url>
+    <loc>https://grandvisionperspective.com/id/how-we-work/</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grandvisionperspective.com/how-we-work/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://grandvisionperspective.com/id/how-we-work/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grandvisionperspective.com/how-we-work/"/>
+  </url>
 
   <url>
     <loc>https://grandvisionperspective.com/about/</loc>
