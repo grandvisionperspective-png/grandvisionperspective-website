@@ -897,7 +897,8 @@ p {
 .hero--dark .hero-lead,
 .hero--dark-image .hero-lead,
 .hero-home .hero-lead,
-.hero-services .hero-lead {
+.hero-services .hero-lead,
+.hero-howework .hero-lead {
     color: rgba(255, 255, 255, 0.78);
 }
 
