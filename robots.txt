@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /brand/applications/
+Disallow: /intake/
 
 Sitemap: https://grandvisionperspective.com/sitemap.xml

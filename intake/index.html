@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intake Questionnaire | Grand Vision Perspective</title>
+    <meta name="description" content="Pre-proposal intake questionnaire for Grand Vision Perspective engagements. Sent to qualified prospects after a strategy call.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://grandvisionperspective.com/intake/">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../assets/styles.css">
+    <style>
+        .intake-hero {
+            padding: 96px 0 48px;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%);
+        }
+        .intake-form {
+            padding: 32px 0 96px;
+            background: var(--paper);
+        }
+        .intake-form .container { max-width: 760px; }
+        .form-section {
+            background: var(--white, #fff);
+            border: 1px solid rgba(26, 26, 46, 0.06);
+            border-left: 3px solid var(--gold);
+            padding: 32px 36px;
+            margin-bottom: 28px;
+            border-radius: 4px;
+        }
+        .form-section-eyebrow {
+            font-family: var(--font-body);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .form-section-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 1px;
+            background: currentColor;
+            opacity: 0.55;
+        }
+        .form-section h2 {
+            font-family: var(--font-display);
+            font-size: clamp(22px, 2.6vw, 26px);
+            font-weight: 500;
+            color: var(--ink-heading);
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            margin-bottom: 6px;
+            font-variation-settings: "opsz" 48;
+        }
+        .form-section h2 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--gold);
+        }
+        .form-section .lead {
+            font-size: 14px;
+            color: var(--ink-muted);
+            margin-bottom: 22px;
+        }
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 22px;
+        }
+        .form-field label {
+            font-family: var(--font-body);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink-heading);
+            line-height: 1.4;
+        }
+        .form-field label .req { color: var(--gold); margin-left: 2px; }
+        .form-field label .help {
+            display: block;
+            margin-top: 4px;
+            font-weight: 400;
+            font-size: 12px;
+            color: var(--ink-muted);
+        }
+        .form-field input,
+        .form-field textarea,
+        .form-field select {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.55;
+            color: var(--ink);
+            background: var(--paper);
+            border: 1px solid rgba(26, 26, 46, 0.16);
+            border-radius: 4px;
+            padding: 12px 14px;
+            width: 100%;
+            transition: border-color 320ms var(--ease-out-q), background 320ms var(--ease-out-q);
+        }
+        .form-field input:focus,
+        .form-field textarea:focus,
+        .form-field select:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: var(--white, #fff);
+        }
+        .form-field textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .radio-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .radio-row label {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border: 1px solid rgba(26, 26, 46, 0.16);
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ink-muted);
+            cursor: pointer;
+            transition: all 320ms var(--ease-out-q);
+        }
+        .radio-row input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .radio-row input[type="radio"]:checked + span { color: var(--ink-heading); }
+        .radio-row label:has(input[type="radio"]:checked) {
+            border-color: var(--gold);
+            background: rgba(201, 168, 76, 0.08);
+            color: var(--ink-heading);
+        }
+        .form-submit {
+            text-align: center;
+            padding: 32px 0 0;
+        }
+        .btn-submit {
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--navy);
+            background: var(--gold);
+            border: none;
+            padding: 18px 36px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 320ms var(--ease-out-q), transform 320ms var(--ease-out-q);
+        }
+        .btn-submit:hover {
+            background: var(--gold-hi);
+            transform: translateY(-2px);
+        }
+        .form-note {
+            margin-top: 22px;
+            font-size: 12px;
+            color: var(--ink-subtle);
+            text-align: center;
+            line-height: 1.7;
+        }
+    </style>
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "7c1879c5815d4bb7b19ee52ce183f9ce"}'></script>
+</head>
+<body>
+
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/" class="nav-brand" aria-label="Grand Vision Perspective Home">
+                    <svg viewBox="0 0 80 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <circle cx="40" cy="10" r="2.6" fill="currentColor"/>
+                        <line x1="32" y1="22" x2="48" y2="22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                        <line x1="24" y1="32" x2="56" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="16" y1="42" x2="64" y2="42" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                        <line x1="6" y1="54" x2="74" y2="54" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                    </svg>
+                    <span class="wordmark">Grand Vision <em>Perspective</em></span>
+                </a>
+                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+        <div class="nav-mobile" role="menu">
+            <a href="/services/" role="menuitem">Services</a>
+            <a href="/how-we-work/" role="menuitem">Process</a>
+            <a href="/about/" role="menuitem">About</a>
+            <a href="/case-studies/" role="menuitem">Projects</a>
+            <a href="/insights/" role="menuitem">Insights</a>
+            <a href="/contact/" role="menuitem">Contact</a>
+        </div>
+    </nav>
+
+    <main id="content">
+
+    <section class="intake-hero">
+        <div class="container" style="max-width: 760px;">
+            <div class="reveal">
+                <span class="eyebrow">Intake</span>
+                <h1 style="margin-top: 12px; font-size: clamp(32px, 4.5vw, 44px); font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; color: var(--ink-heading); font-variation-settings: 'opsz' 144;">Before we draft your <em class="italic-display">proposal</em>.</h1>
+                <p class="lead" style="margin-top: 18px; font-size: 17px; line-height: 1.65; color: var(--ink-muted);">A short structured set of questions so we can write a proposal that actually fits your situation, not a template. About fifteen minutes to fill in. Everything you tell us is covered by the mutual NDA we discussed on the strategy call.</p>
+                <p style="margin-top: 14px; font-size: 14px; color: var(--ink-subtle);">If a question does not apply, leave it blank. If a question needs a long answer, type it long; we read everything carefully before we propose.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="intake-form">
+        <div class="container">
+            <form action="https://formsubmit.co/connect@grandvisionperspective.com" method="POST">
+                <input type="hidden" name="_subject" value="GVP Intake Submission">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="basic">
+                <input type="hidden" name="_next" value="https://grandvisionperspective.com/intake/thanks/">
+
+                <!-- ===== SECTION 1 ===== -->
+                <div class="form-section reveal">
+                    <span class="form-section-eyebrow">Section 1</span>
+                    <h2>About <em>you</em>.</h2>
+                    <p class="lead">Who you are and what your business does, briefly.</p>
+
+                    <div class="form-field">
+                        <label for="company_name">Company name <span class="req">*</span></label>
+                        <input type="text" id="company_name" name="company_name" autocomplete="organization" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="your_name">Your name <span class="req">*</span></label>
+                        <input type="text" id="your_name" name="your_name" autocomplete="name" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="your_role">Your role <span class="req">*</span><span class="help">Founder, CEO, COO, Head of Ops, whatever you actually go by.</span></label>
+                        <input type="text" id="your_role" name="your_role" autocomplete="organization-title" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="your_email">Email for replies <span class="req">*</span></label>
+                        <input type="email" id="your_email" name="your_email" autocomplete="email" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="business_description">What does your business actually do? <span class="req">*</span><span class="help">One or two sentences in your own words.</span></label>
+                        <textarea id="business_description" name="business_description" required></textarea>
+                    </div>
+                </div>
+
+                <!-- ===== SECTION 2 ===== -->
+                <div class="form-section reveal">
+                    <span class="form-section-eyebrow">Section 2</span>
+                    <h2>Team and <em>stage</em>.</h2>
+                    <p class="lead">Where the business is in its life right now.</p>
+
+                    <div class="form-field">
+                        <label>How many people are on the team today? <span class="req">*</span></label>
+                        <div class="radio-row">
+                            <label><input type="radio" name="team_size" value="1-5" required><span>1 to 5</span></label>
+                            <label><input type="radio" name="team_size" value="6-15"><span>6 to 15</span></label>
+                            <label><input type="radio" name="team_size" value="16-50"><span>16 to 50</span></label>
+                            <label><input type="radio" name="team_size" value="51-200"><span>51 to 200</span></label>
+                            <label><input type="radio" name="team_size" value="200+"><span>200+</span></label>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label>What stage best describes the business? <span class="req">*</span></label>
+                        <div class="radio-row">
+                            <label><input type="radio" name="stage" value="founder-run" required><span>Founder-run, day-to-day</span></label>
+                            <label><input type="radio" name="stage" value="founder-led"><span>Founder-led but stepping back</span></label>
+                            <label><input type="radio" name="stage" value="post-founder"><span>Post-founder, professional team</span></label>
+                            <label><input type="radio" name="stage" value="multi-entity"><span>Multi-entity / group</span></label>
+                            <label><input type="radio" name="stage" value="other"><span>Other</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== SECTION 3 ===== -->
+                <div class="form-section reveal">
+                    <span class="form-section-eyebrow">Section 3</span>
+                    <h2>The operational <em>reality</em>.</h2>
+                    <p class="lead">The honest version of what is actually happening today.</p>
+
+                    <div class="form-field">
+                        <label for="which_part">Which part of the business prompted you to reach out? <span class="req">*</span><span class="help">Be specific. The reconciliation that is always late, the report that nobody trusts, the launch that keeps slipping. We work better with the specific than the abstract.</span></label>
+                        <textarea id="which_part" name="which_part" required></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label for="current_tools">What tools does that part of the business currently run on? <span class="req">*</span><span class="help">List them. CRMs, accounting, scheduling, messaging, spreadsheets, custom apps, whatever is in use.</span></label>
+                        <textarea id="current_tools" name="current_tools" required></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label for="ownership">Who in your team owns this work today?<span class="help">By role and ideally by name. We want to know who we will be working with.</span></label>
+                        <textarea id="ownership" name="ownership"></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label for="how_long">How long has this been the situation?</label>
+                        <input type="text" id="how_long" name="how_long" placeholder="A few months / since we launched / always like this">
+                    </div>
+                </div>
+
+                <!-- ===== SECTION 4 ===== -->
+                <div class="form-section reveal">
+                    <span class="form-section-eyebrow">Section 4</span>
+                    <h2>What you have <em>tried</em>.</h2>
+                    <p class="lead">Helps us avoid repeating moves that did not work.</p>
+
+                    <div class="form-field">
+                        <label for="tried">What approaches have you tried to fix this so far?<span class="help">New software, new hires, a contractor, internal task force, ignored it. Whatever the honest list is.</span></label>
+                        <textarea id="tried" name="tried"></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label for="current_vendors">Are you currently working with any consultants or contractors on this?</label>
+                        <textarea id="current_vendors" name="current_vendors"></textarea>
+                    </div>
+                </div>
+
+                <!-- ===== SECTION 5 ===== -->
+                <div class="form-section reveal">
+                    <span class="form-section-eyebrow">Section 5</span>
+                    <h2>What good <em>looks like</em>.</h2>
+                    <p class="lead">Three short questions on outcome. Vital for shaping the proposal.</p>
+
+                    <div class="form-field">
+                        <label for="ninety_day">If we did this engagement well, what specifically would be different in 90 days? <span class="req">*</span></label>
+                        <textarea id="ninety_day" name="ninety_day" required></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label for="success_signal">What is one signal that would tell you we got it right? <span class="req">*</span><span class="help">A specific thing that would change in your week, your inbox, your reports.</span></label>
+                        <textarea id="success_signal" name="success_signal" required></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label for="not_lose">What do you NOT want to change or lose along the way?<span class="help">Culture, a person, a way of working, a brand value. Important guardrails for us.</span></label>
+                        <textarea id="not_lose" name="not_lose"></textarea>
+                    </div>
+                </div>
+
+                <!-- ===== SECTION 6 ===== -->
+                <div class="form-section reveal">
+                    <span class="form-section-eyebrow">Section 6</span>
+                    <h2>Practical <em>details</em>.</h2>
+                    <p class="lead">Timing, money, decision process.</p>
+
+                    <div class="form-field">
+                        <label for="start_date">When would you ideally want the engagement to start?</label>
+                        <input type="text" id="start_date" name="start_date" placeholder="Specific date, a month, ASAP, or after Y happens">
+                    </div>
+                    <div class="form-field">
+                        <label for="hard_deadlines">Are there any hard deadlines we should know about?<span class="help">An audit, board meeting, regulatory deadline, launch, anniversary. Anything that is not moving.</span></label>
+                        <textarea id="hard_deadlines" name="hard_deadlines"></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label for="decision_makers">Who else is involved in deciding to proceed?<span class="help">If we get to a proposal, who else needs to say yes?</span></label>
+                        <textarea id="decision_makers" name="decision_makers"></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label>Rough budget range for this engagement (USD)?</label>
+                        <div class="radio-row">
+                            <label><input type="radio" name="budget_range" value="under-10k"><span>Under 10K</span></label>
+                            <label><input type="radio" name="budget_range" value="10-25k"><span>10K to 25K</span></label>
+                            <label><input type="radio" name="budget_range" value="25-50k"><span>25K to 50K</span></label>
+                            <label><input type="radio" name="budget_range" value="50-100k"><span>50K to 100K</span></label>
+                            <label><input type="radio" name="budget_range" value="100k+"><span>100K+</span></label>
+                            <label><input type="radio" name="budget_range" value="unsure"><span>Not sure yet</span></label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== SECTION 7 ===== -->
+                <div class="form-section reveal">
+                    <span class="form-section-eyebrow">Section 7</span>
+                    <h2>Anything <em>else</em>.</h2>
+                    <p class="lead">Free space.</p>
+
+                    <div class="form-field">
+                        <label for="anything_else">Anything we should know before we draft the proposal?</label>
+                        <textarea id="anything_else" name="anything_else" style="min-height: 120px;"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-submit">
+                    <button type="submit" class="btn-submit">Send to Grand Vision Perspective</button>
+                    <p class="form-note">We read everything carefully and reply within two working days with the proposal or a note on why we are not the right fit.</p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-inner">
+                <a href="/" aria-label="Grand Vision Perspective Home">
+                    <img src="/brand/assets/horizontal-lockup-white.svg" alt="Grand Vision Perspective" class="footer-logo" width="160" height="32" style="height:32px;width:auto;">
+                </a>
+                <ul class="footer-links">
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/how-we-work/">How We Work</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/case-studies/">Projects</a></li>
+                    <li><a href="/insights/">Insights</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                    <li><a href="/media/">Media Kit</a></li>
+                    <li><a href="/privacy/">Privacy</a></li>
+                </ul>
+                <p class="footer-email"><a href="mailto:connect@grandvisionperspective.com">connect@grandvisionperspective.com</a></p>
+                <p class="footer-copy">&copy; 2026 Grand Vision Perspective</p>
+                <p class="footer-ritual">A GRAND VISION, EXECUTED PRECISELY <span class="footer-ritual-dot">.</span> 2023</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/app.js"></script>
+</body>
+</html>
