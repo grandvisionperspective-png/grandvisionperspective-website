@@ -685,10 +685,23 @@ p {
 .nav-toggle {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 5px;
+    min-width: 44px;
+    min-height: 44px;
     padding: 8px;
     background: none;
     border: none;
+}
+
+/* Hide the top-bar lang-toggle on mobile (the mobile drawer has its own).
+   Without this, .lang-toggle remains inline-flex inside .nav-inner and
+   pushes the hamburger past the viewport edge on narrow phones. */
+@media (max-width: 1023px) {
+    .nav-inner > .lang-toggle {
+        display: none;
+    }
 }
 
 .nav-toggle span {
