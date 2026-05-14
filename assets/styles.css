@@ -590,10 +590,11 @@ p {
     align-items: center;
     justify-content: space-between;
     height: var(--nav-height);
+    gap: 22px;
 }
 
 .nav-logo {
-    height: 32px;
+    height: 40px;
     width: auto;
     transition: opacity var(--duration-base) var(--ease);
 }
