@@ -258,6 +258,49 @@
             border-radius: 50%;
             background: var(--gold);
         }
+    
+        .faq-item {
+            background: var(--white);
+            border: 1px solid rgba(26, 26, 46, 0.06);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+            transition: border-color 0.32s var(--ease-out-q);
+        }
+        .faq-item[open] { border-color: var(--gold-border); }
+        .faq-item summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 18px 22px;
+            font-family: var(--font-display);
+            font-size: clamp(16px, 1.8vw, 19px);
+            font-weight: 500;
+            color: var(--ink-heading);
+            line-height: 1.35;
+            letter-spacing: -0.01em;
+            position: relative;
+            padding-right: 48px;
+            font-variation-settings: "opsz" 36;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after {
+            content: '+';
+            position: absolute;
+            right: 22px;
+            top: 18px;
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 300;
+            color: var(--gold);
+            transition: transform 0.32s var(--ease-out-q);
+        }
+        .faq-item[open] summary::after { content: '\2212'; }
+        .faq-item p {
+            padding: 0 22px 20px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--ink-muted);
+            margin: 0;
+        }
     </style>
     <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "7c1879c5815d4bb7b19ee52ce183f9ce"}'></script>
@@ -491,6 +534,7 @@
                     <li><a href="/id/insights/">Wawasan</a></li>
                     <li><a href="/id/contact/">Kontak</a></li>
                     <li><a href="/media/">Media Kit</a></li>
+                    <li><a href="/id/privacy/">Privasi</a></li>
                 </ul>
                 <p class="footer-email"><a href="mailto:connect@grandvisionperspective.com">connect@grandvisionperspective.com</a></p>
                 <p class="footer-copy">&copy; 2026 Grand Vision Perspective</p>

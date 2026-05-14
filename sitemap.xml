@@ -297,4 +297,23 @@
     <priority>0.6</priority>
   </url>
 
+
+  <url>
+    <loc>https://grandvisionperspective.com/privacy/</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grandvisionperspective.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://grandvisionperspective.com/id/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grandvisionperspective.com/privacy/"/>
+  </url>
+  <url>
+    <loc>https://grandvisionperspective.com/id/privacy/</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://grandvisionperspective.com/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://grandvisionperspective.com/id/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://grandvisionperspective.com/privacy/"/>
+  </url>
 </urlset>
