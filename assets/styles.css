@@ -704,6 +704,15 @@ p {
     }
 }
 
+/* On the smallest phones, hide just the wordmark text from the nav-brand
+   so the Vantage mark + hamburger fit comfortably inside the viewport.
+   The wordmark is still rendered in the footer of every page. */
+@media (max-width: 479px) {
+    .nav-brand .wordmark {
+        display: none;
+    }
+}
+
 .nav-toggle span {
     display: block;
     width: 22px;
