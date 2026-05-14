@@ -599,6 +599,39 @@ p {
     transition: opacity var(--duration-base) var(--ease);
 }
 
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--paper);
+    transition: opacity var(--duration-base) var(--ease);
+}
+.nav-brand:hover {
+    opacity: 0.85;
+}
+.nav-brand svg {
+    width: 36px;
+    height: 29px;
+    color: var(--gold);
+    display: block;
+    flex-shrink: 0;
+}
+.nav-brand .wordmark {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--paper);
+    line-height: 1;
+    font-variation-settings: "opsz" 36;
+    white-space: nowrap;
+}
+.nav-brand .wordmark em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+}
+
 .nav-logo:hover {
     opacity: 0.8;
 }
