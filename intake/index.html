@@ -232,6 +232,7 @@
                 <input type="hidden" name="_subject" value="GVP Intake Submission">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="basic">
+                <input type="hidden" name="_autoresponse" value="Hi, thanks for sending the intake questionnaire to Grand Vision Perspective. Your submission has been received and a copy is appended below for your records. Barrie will read it carefully and reply within two working days, either with the proposal or with an honest note on why we are not the right fit. If you want to add anything before he starts drafting, just reply to this email. Barrie">
                 <input type="hidden" name="_next" value="https://grandvisionperspective.com/intake/thanks/">
 
                 <!-- ===== SECTION 1 ===== -->
@@ -304,14 +305,6 @@
                         <label for="current_tools">What tools does that part of the business currently run on? <span class="req">*</span><span class="help">List them. CRMs, accounting, scheduling, messaging, spreadsheets, custom apps, whatever is in use.</span></label>
                         <textarea id="current_tools" name="current_tools" required></textarea>
                     </div>
-                    <div class="form-field">
-                        <label for="ownership">Who in your team owns this work today?<span class="help">By role and ideally by name. We want to know who we will be working with.</span></label>
-                        <textarea id="ownership" name="ownership"></textarea>
-                    </div>
-                    <div class="form-field">
-                        <label for="how_long">How long has this been the situation?</label>
-                        <input type="text" id="how_long" name="how_long" placeholder="A few months / since we launched / always like this">
-                    </div>
                 </div>
 
                 <!-- ===== SECTION 4 ===== -->
@@ -323,10 +316,6 @@
                     <div class="form-field">
                         <label for="tried">What approaches have you tried to fix this so far?<span class="help">New software, new hires, a contractor, internal task force, ignored it. Whatever the honest list is.</span></label>
                         <textarea id="tried" name="tried"></textarea>
-                    </div>
-                    <div class="form-field">
-                        <label for="current_vendors">Are you currently working with any consultants or contractors on this?</label>
-                        <textarea id="current_vendors" name="current_vendors"></textarea>
                     </div>
                 </div>
 
@@ -363,10 +352,6 @@
                     <div class="form-field">
                         <label for="hard_deadlines">Are there any hard deadlines we should know about?<span class="help">An audit, board meeting, regulatory deadline, launch, anniversary. Anything that is not moving.</span></label>
                         <textarea id="hard_deadlines" name="hard_deadlines"></textarea>
-                    </div>
-                    <div class="form-field">
-                        <label for="decision_makers">Who else is involved in deciding to proceed?<span class="help">If we get to a proposal, who else needs to say yes?</span></label>
-                        <textarea id="decision_makers" name="decision_makers"></textarea>
                     </div>
                     <div class="form-field">
                         <label>Rough budget range for this engagement (USD)?</label>
