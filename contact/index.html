@@ -364,9 +364,11 @@
                     <p class="form-intro">We read every enquiry personally. Tell us a bit about where you are today and what you are trying to solve.</p>
                     <form action="https://formsubmit.co/connect@grandvisionperspective.com" method="POST">
                         <input type="hidden" name="_subject" value="New enquiry from grandvisionperspective.com">
-                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_captcha" value="true">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_next" value="https://grandvisionperspective.com/contact/?sent=1">
+                        <!-- Spam honeypot: hidden from real users; bots that fill every field trip this and FormSubmit discards the submission. -->
+                        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" value="">
 
                         <div class="form-row">
                             <label class="form-label" for="name">Your name</label>
