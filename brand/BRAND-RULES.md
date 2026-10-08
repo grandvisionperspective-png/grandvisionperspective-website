@@ -4,11 +4,11 @@ Moved here from the public /media/ page in October 2026, when that page became t
 
 ## Representation and privacy
 
-1. **First name only.** The founder is "Barrie" externally. No surname on the public site, in press, partner briefs or any outward-facing material.
+1. **First name only.** Do not name the founder on the public site, in press, partner briefs or any outward-facing material. Use "our founder" or "the founder".
 2. **No address.** Public positioning is "Based in Bali. Clients across Europe, the US, and Asia." No city beyond Bali, no street address, no co-working space. The registered street address never appears on the site, including /terms/. Terms identify the seller as registered in Gianyar, Bali; full details go on invoices and are sent on request.
 3. **Projects are anonymised.** Describe the industry and the shape of the work. Never client names, logos or recognisable brand names. Founding-client case studies are anonymised too.
 4. **Contact by form or email only.** No phone number. Contact form or connect@grandvisionperspective.com.
-5. **No AI-generated faces.** Where people appear, they are real and named with consent. No photos of Barrie.
+5. **No AI-generated faces.** Where people appear, they are real and named with consent. No photos of the founder.
 
 ## Positioning (KBLI 70209)
 

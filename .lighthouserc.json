@@ -9,7 +9,7 @@
         "http://localhost/case-studies/",
         "http://localhost/contact/",
         "http://localhost/media/",
-        "http://localhost/barrie/"
+        "http://localhost/about/"
       ],
       "numberOfRuns": 1,
       "settings": {

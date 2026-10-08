@@ -24,7 +24,7 @@ Generated 2026-05-12.
     </td>
     <td>
       <div style="font-family: Fraunces, Georgia, serif; font-size: 16px;
-                   color: #1a1a2e; font-weight: 500;">Barrie</div>
+                   color: #1a1a2e; font-weight: 500;">Founder</div>
       <div style="font-family: Manrope, sans-serif; font-size: 10px;
                    color: #6b6b7b; letter-spacing: 0.18em;
                    text-transform: uppercase;">FOUNDER</div>
