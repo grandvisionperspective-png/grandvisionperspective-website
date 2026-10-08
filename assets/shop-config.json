@@ -1,0 +1,312 @@
+{
+    "_readme": "Single source of truth for the shop. Values from GVP-PRICE-01 (Researcher, 8 Oct 2026), adopted by the team. Launch defaults approved by Barrie on 8 Oct 2026: prices and cart ON for non-Indonesian buyers; IDR checkout OFF until the Bahasa terms are reviewed (Indonesian buyers are sent to book a call or request a quote). Products, prices (USD and IDR), display mode, discount rules and notes can all change here without touching code. No standalone digital-product SKUs: digital materials may only appear as included items inside a package. No was-prices, no countdowns. Schema is documented in the conversion-pass-2 brief.",
+    "flags": {
+        "pricesPublished": true,
+        "cartEnabled": true,
+        "idrCheckoutReady": false,
+        "priceMode": "exact",
+        "_note": "idrCheckoutReady stays false until /id/terms/ has passed Bahasa review. While false, buyers who choose Indonesia see IDR prices but are sent to book a call or request a quote instead of the order form."
+    },
+    "currencies": {
+        "default": "USD",
+        "secondary": "IDR",
+        "secondaryNote": "IDR shown at a fixed rate. Invoices are issued in IDR and show the rate used.",
+        "labels": {
+            "USD": "US$",
+            "IDR": "Rp"
+        },
+        "decimals": {
+            "USD": 0,
+            "IDR": 0
+        }
+    },
+    "fitCall": {
+        "label": "Not sure? Book a fit call",
+        "href": "/contact/#book"
+    },
+    "payment": {
+        "method": "invoice-bank-transfer",
+        "invoiceFrom": "PT Grand Vision Perspective",
+        "invoiceCurrency": "IDR",
+        "confirmationText": "We'll send an invoice from PT Grand Vision Perspective with payment details within 24 hours.",
+        "_note": "Launch payment: invoice from PT Grand Vision Perspective, paid by bank transfer in IDR to the company's Indonesian account. USD prices are for display only. Never name the bank on the site. No VAT/PPN line (non-PKP).",
+        "gateway": {
+            "enabled": false,
+            "provider": "xendit",
+            "methods": [
+                "card",
+                "qris",
+                "virtual_account"
+            ],
+            "paymentLinkUrl": "",
+            "label": "Pay online",
+            "_note": "Future gateway slot. Keep disabled until the PT account is approved and Legal/Accountant sign off."
+        },
+        "invoiceRequestUrl": "/contact/"
+    },
+    "products": [
+        {
+            "id": "operations-audit",
+            "enabled": true,
+            "name": "Operations Audit",
+            "summary": "A fixed-scope look at how your whole operation runs today, with a written report, a recommended scope, and a fixed price for implementation.",
+            "includes": [
+                "Usually a few days to two weeks",
+                "Written report and recommended scope",
+                "Fixed price for implementation",
+                "NDA both ways, signed before the audit starts",
+                "You keep the report, whether or not you continue with us",
+                "Paid in full up front"
+            ],
+            "detailUrl": "/operations-audit/",
+            "unit": "audit",
+            "unitPlural": "audits",
+            "prices": {
+                "USD": 2500,
+                "IDR": 45000000
+            },
+            "priceMode": "exact",
+            "maxQty": 1,
+            "monthly": false,
+            "inCart": true,
+            "requires": null,
+            "deliverables": [
+                "Written report",
+                "Recommended scope with a fixed implementation price",
+                "You keep the report"
+            ]
+        },
+        {
+            "id": "focus-audit",
+            "enabled": true,
+            "name": "Focus Audit",
+            "summary": "The same method applied to one workflow, for when you already know where the problem sits.",
+            "includes": [
+                "One workflow, about five working days",
+                "Written report",
+                "NDA both ways",
+                "Paid in full up front"
+            ],
+            "detailUrl": "/operations-audit/",
+            "unit": "audit",
+            "unitPlural": "audits",
+            "prices": {
+                "USD": 950,
+                "IDR": 17000000
+            },
+            "priceMode": "exact",
+            "maxQty": 1,
+            "monthly": false,
+            "inCart": true,
+            "requires": null,
+            "deliverables": [
+                "Written report",
+                "NDA both ways"
+            ]
+        },
+        {
+            "id": "advisory-block",
+            "enabled": true,
+            "name": "Strategic Advisory Block",
+            "summary": "Ten hours of senior advice on roadmaps, priorities, and vendor and tool choices, used as you need them.",
+            "includes": [
+                "10 hours, used within 60 days",
+                "Unused hours expire at day 60",
+                "Paid up front"
+            ],
+            "detailUrl": "/services/#strategic-advisory",
+            "unit": "block",
+            "unitPlural": "blocks",
+            "prices": {
+                "USD": 2000,
+                "IDR": 36000000
+            },
+            "priceMode": "exact",
+            "maxQty": 2,
+            "monthly": false,
+            "inCart": true,
+            "requires": null,
+            "deliverables": []
+        },
+        {
+            "id": "implementation-oversight",
+            "enabled": true,
+            "name": "Implementation Oversight",
+            "summary": "We lead the change the audit recommends, quoted at a fixed price from the audit scope before any work starts.",
+            "includes": [
+                "Fixed quote set in the audit report",
+                "Billed in milestones: 50% on signature, 25% at midpoint, 25% on handover",
+                "Days to months, depending on the work"
+            ],
+            "detailUrl": "/how-we-work/",
+            "unit": "project",
+            "unitPlural": "projects",
+            "prices": {
+                "USD": 3500,
+                "IDR": 63000000
+            },
+            "priceMode": "from",
+            "maxQty": 1,
+            "monthly": false,
+            "inCart": false,
+            "actions": [
+                {
+                    "label": "Start with the audit",
+                    "href": "/operations-audit/",
+                    "style": "primary"
+                },
+                {
+                    "label": "Request a quote",
+                    "href": "/contact/",
+                    "style": "secondary"
+                }
+            ],
+            "requires": null,
+            "deliverables": [
+                "Fixed price agreed before work starts",
+                "Training and documentation"
+            ]
+        },
+        {
+            "id": "oversight-monthly",
+            "enabled": false,
+            "name": "Implementation Oversight, monthly",
+            "summary": "Monthly oversight after a project. 3-month minimum, billed monthly in advance.",
+            "includes": [],
+            "detailUrl": "/how-we-work/",
+            "unit": "month",
+            "unitPlural": "months",
+            "prices": {
+                "USD": 2500,
+                "IDR": 45000000
+            },
+            "priceMode": "exact",
+            "maxQty": 12,
+            "monthly": true,
+            "inCart": false,
+            "requires": null,
+            "_note": "Held off the public page until the included hours are fixed (GVP-PRICE-01 open point 2). Keep enabled:false.",
+            "deliverables": []
+        }
+    ],
+    "catalogueNotes": [
+        {
+            "text": "Monthly oversight is available after a project.",
+            "linkLabel": "Book a call to talk it through",
+            "href": "/contact/#book"
+        }
+    ],
+    "discounts": {
+        "maxTotalPercent": 15,
+        "rules": [
+            {
+                "id": "founding-client",
+                "enabled": true,
+                "label": "Founding client offer (15% off the Operations Audit)",
+                "percent": 15,
+                "amount": {},
+                "appliesTo": [
+                    "operations-audit"
+                ],
+                "when": {
+                    "optIn": "anonymised-case-study",
+                    "endDate": "2026-12-31"
+                },
+                "optInLabel": "Founding client offer: take 15% off the Operations Audit in return for permission to publish an anonymised case study. We never name clients.",
+                "remaining": 3,
+                "showRemaining": false,
+                "remainingText": "{remaining} of 3 places left.",
+                "offerText": "Founding client offer: 15% off the Operations Audit for our first 3 clients, until 31 December 2026, in return for permission to publish an anonymised case study. We never name clients.",
+                "group": "one-discount-per-order",
+                "_note": "First 3 clients or until 31 Dec 2026, whichever comes first. Lower 'remaining' by hand after each founding sale; at 0 the offer disappears. showRemaining stays false unless the team decides otherwise. No countdowns."
+            },
+            {
+                "id": "bundle-audit-advisory",
+                "enabled": true,
+                "label": "Audit and advisory bundle (10% off the advisory block)",
+                "percent": 10,
+                "amount": {},
+                "appliesTo": [
+                    "advisory-block"
+                ],
+                "maxUnits": 2,
+                "when": {
+                    "allOf": [
+                        "operations-audit",
+                        "advisory-block"
+                    ]
+                },
+                "offerText": "Add a Strategic Advisory Block to an Operations Audit and the block is 10% off.",
+                "group": "one-discount-per-order",
+                "_note": "The only bundle. 10% off the block only. Max 2 bundle-priced blocks per client per quarter (maxUnits caps it per order; the quarterly limit is checked by hand when invoicing)."
+            },
+            {
+                "id": "oversight-prepay",
+                "enabled": false,
+                "label": "Three months paid up front (5% off)",
+                "percent": 5,
+                "amount": {},
+                "appliesTo": [
+                    "oversight-monthly"
+                ],
+                "when": {
+                    "paymentPlan": "full",
+                    "minUnits": 3
+                },
+                "group": "one-discount-per-order",
+                "_note": "Retainer only, held with the monthly product."
+            }
+        ],
+        "notes": [
+            {
+                "id": "audit-credit",
+                "enabled": true,
+                "appliesTo": [
+                    "operations-audit"
+                ],
+                "text": "Go ahead with an Implementation Oversight project of US$5,000 or more within 30 days of receiving your report and the full audit fee is credited against it. You keep the report either way. The credit does not combine with other offers."
+            },
+            {
+                "id": "focus-credit",
+                "enabled": true,
+                "appliesTo": [
+                    "focus-audit"
+                ],
+                "text": "Upgrade to a full Operations Audit within 14 days, or start an implementation project within 30 days, and the Focus Audit fee is credited against it."
+            },
+            {
+                "id": "guarantee",
+                "enabled": true,
+                "appliesTo": [
+                    "operations-audit"
+                ],
+                "text": "If the audit report identifies estimated annual time and cost savings, valued using the method stated in the report, below the audit fee paid, the client may claim a refund of 50% of the audit fee by written request within 14 days of report delivery. This guarantee does not apply where the client did not provide the access, data or staff time agreed in the engagement terms. One claim per client.",
+                "_note": "Legal's wording, verbatim (8 Oct 2026), plus 'One claim per client.' Shown only when pricesPublished is true.",
+                "inCatalogue": false
+            }
+        ]
+    },
+    "buyer": {
+        "defaultCountry": "",
+        "countries": [
+            {
+                "code": "ID",
+                "name": "Indonesia",
+                "currency": "IDR"
+            },
+            {
+                "code": "OTHER",
+                "name": "Another country",
+                "currency": "USD"
+            }
+        ],
+        "_note": "Indonesian buyers see IDR prices. Everyone else sees USD with the IDR reference. All invoices are issued in IDR."
+    },
+    "legal": {
+        "termsUrl": "/terms/",
+        "termsUrlID": "/id/terms/",
+        "agreeText": "By ordering you agree to the",
+        "agreeLinkLabel": "Terms of Sale"
+    },
+    "_deliverablesNote": "deliverables: 2 or 3 core items per package, only ones already promised on the site (written report, recommended scope, fixed implementation price, NDA, client keeps the report, training and documentation on implementation). Playbooks and toolkits are NOT listed until they exist (see brief2.md, 'to build, then add')."
+}

@@ -36,9 +36,7 @@
         document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => el.classList.add('visible'));
     }
 
-    // Stat numbers. The count-up animation was retired in the de-template
-    // pass (Oct 2026). Pages that still mark numbers up with data-target
-    // (currently /id/) get the final value rendered straight away.
+    // Stat numbers marked up with data-target are rendered as final values.
     // Locale follows the page's <html lang> so EN renders 27,715 and ID renders 27.715
     // regardless of the user's browser locale.
     const pageLocale = document.documentElement.lang === 'id' ? 'id-ID' : 'en-US';
@@ -51,4 +49,32 @@
         });
         el.textContent = (el.dataset.prefix || '') + value + (el.dataset.suffix || '');
     });
+
+    // Sticky mobile CTA on English pages. Hidden on pages that already are
+    // the conversion step (contact, intake, shop, privacy) and in Bahasa.
+    const path = window.location.pathname;
+    const skip = /^\/(contact|intake|shop|privacy|terms|scorecard)\b/.test(path) || document.documentElement.lang !== 'en';
+    if (!skip) {
+        const bar = document.createElement('div');
+        bar.className = 'sticky-cta';
+        bar.setAttribute('role', 'region');
+        bar.setAttribute('aria-label', 'Quick actions');
+        const call = document.createElement('a');
+        call.className = 'btn btn-primary';
+        call.href = '/contact/#book';
+        call.textContent = 'Book a Strategy Call';
+        bar.appendChild(call);
+        if (!/^\/operations-audit\b/.test(path)) {
+            const audit = document.createElement('a');
+            audit.className = 'btn btn-ghost-light';
+            audit.href = '/operations-audit/';
+            audit.textContent = 'Operations Audit';
+            bar.appendChild(audit);
+        }
+        document.body.appendChild(bar);
+        document.body.classList.add('has-sticky-cta');
+        const onScroll = () => bar.classList.toggle('is-visible', window.scrollY > 480);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+    }
 })();

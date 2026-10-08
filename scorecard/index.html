@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Operations Health Scorecard | Grand Vision Perspective</title>
+    <meta name="description" content="A free 3-minute operations scorecard for founder-led businesses. Eleven questions across five areas, with your score and weakest area shown straight away. No email needed.">
+    <meta property="og:title" content="Free Operations Health Scorecard | Grand Vision Perspective">
+    <meta property="og:description" content="A free 3-minute operations scorecard for founder-led businesses. Eleven questions across five areas, with your score and weakest area shown straight away. No email needed.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://grandvisionperspective.com/scorecard/">
+    <meta property="og:image" content="https://grandvisionperspective.com/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://grandvisionperspective.com/images/og-image.png">
+    <meta name="twitter:title" content="Free Operations Health Scorecard | Grand Vision Perspective">
+    <meta name="twitter:description" content="A free 3-minute operations scorecard for founder-led businesses. Eleven questions across five areas, with your score and weakest area shown straight away. No email needed.">
+    <link rel="canonical" href="https://grandvisionperspective.com/scorecard/">
+    <link rel="alternate" hreflang="en" href="https://grandvisionperspective.com/scorecard/">
+    <link rel="alternate" hreflang="x-default" href="https://grandvisionperspective.com/scorecard/">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="64x64" href="/images/favicon-64x64.png">
+    <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#1a1a2e">
+    <link rel="manifest" href="/images/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#1a1a2e">
+    <meta name="msapplication-TileImage" content="/images/mstile-150x150.png">
+    <meta name="msapplication-config" content="/images/browserconfig.xml">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/styles.css">
+    <style>
+        .sc-hero { padding: 72px 0 56px; }
+        .sc-hero h1 { font-size: clamp(36px, 5vw, 56px); line-height: 1.06; letter-spacing: -0.025em; font-weight: 500; margin-bottom: 18px; max-width: 16ch; }
+        .sc-hero .hero-lead { max-width: 620px; }
+        .sc-meta { margin-top: 18px; font-size: 14px; color: rgba(255,255,255,0.65); }
+        .sc-wrap { max-width: 780px; }
+        .sc-q { border: 0; padding: 28px 0; border-top: 1px solid rgba(26,26,46,0.12); }
+        .sc-q legend { font-family: var(--font-display); font-size: clamp(19px, 2vw, 22px); color: var(--ink-heading); line-height: 1.35; margin-bottom: 4px; padding: 0; }
+        .sc-q .sc-dim { display: block; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 8px; font-family: var(--font-body); }
+        .sc-q .sc-hint { font-size: 14px; color: var(--ink-muted); margin-bottom: 10px; }
+        .sc-opt { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; margin-top: 8px; border: 1px solid rgba(26,26,46,0.16); border-radius: var(--radius-sm); cursor: pointer; background: var(--white); line-height: 1.5; }
+        .sc-opt:hover { border-color: var(--ink-heading); }
+        .sc-opt input { margin-top: 4px; accent-color: var(--navy); }
+        .sc-opt:has(input:checked) { border-color: var(--navy); background: var(--cream); }
+        .sc-progress { position: sticky; top: var(--nav-height); z-index: 5; background: var(--paper); padding: 12px 0; font-size: 14px; color: var(--ink-muted); border-bottom: 1px solid rgba(26,26,46,0.08); }
+        .sc-bar { height: 3px; background: rgba(26,26,46,0.1); margin-top: 6px; }
+        .sc-bar span { display: block; height: 100%; width: 0; background: var(--gold-hover); transition: width .25s; }
+        .sc-submit { margin-top: 28px; }
+        .sc-result { padding: 40px 0 0; }
+        .sc-result:focus { outline: none; }
+        .sc-score { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+        .sc-score strong { font-family: var(--font-display); font-weight: 400; font-size: clamp(72px, 10vw, 120px); line-height: 0.9; color: var(--ink-heading); font-variant-numeric: lining-nums; letter-spacing: -0.03em; }
+        .sc-score span { font-size: 18px; color: var(--ink-muted); }
+        .sc-band { font-size: 20px; font-weight: 600; color: var(--ink-heading); margin-top: 8px; }
+        .sc-dims { margin-top: 28px; }
+        .sc-dims li { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; padding: 12px 0; border-top: 1px solid rgba(26,26,46,0.12); }
+        .sc-dims li:last-child { border-bottom: 1px solid rgba(26,26,46,0.12); }
+        .sc-dims .meter { grid-column: 1 / -1; height: 6px; background: rgba(26,26,46,0.08); border-radius: 3px; overflow: hidden; }
+        .sc-dims .meter span { display: block; height: 100%; background: var(--navy); }
+        .sc-dims li.is-weak .meter span { background: var(--gold-hover); }
+        .sc-dims li.is-weak strong::after { content: ' (weak area)'; font-weight: 500; color: #7a5a12; font-size: 14px; }
+        .sc-weakest { margin-top: 28px; padding: 22px; background: var(--cream); border-radius: var(--radius-sm); }
+        .sc-weakest h3 { font-size: 20px; margin-bottom: 6px; }
+        .sc-next { margin-top: 28px; padding: 26px 22px; border: 1px solid rgba(26,26,46,0.2); border-radius: var(--radius-sm); }
+        .sc-next h3 { font-size: 24px; margin-bottom: 8px; }
+        .sc-next .sheet-actions { grid-template-columns: 1fr; max-width: 380px; }
+        .sc-email { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(26,26,46,0.12); }
+        .sc-email form { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+        .sc-email input[type=email] { flex: 1 1 260px; font: inherit; padding: 11px 12px; border: 1px solid rgba(26,26,46,0.25); border-radius: var(--radius-sm); }
+        .sc-small { font-size: 13px; color: var(--ink-muted); margin-top: 8px; }
+        @media (min-width: 768px) { .sc-next { padding: 32px; } }
+    </style>
+</head>
+<body>
+
+    <!-- ==== NAV ==== -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="/" class="nav-brand" aria-label="Grand Vision Perspective Home">
+                    <svg viewBox="0 0 80 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <circle cx="40" cy="10" r="2.6" fill="currentColor"/>
+                        <line x1="32" y1="22" x2="48" y2="22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                        <line x1="24" y1="32" x2="56" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="16" y1="42" x2="64" y2="42" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                        <line x1="6" y1="54" x2="74" y2="54" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                    </svg>
+                    <span class="wordmark">Grand Vision <em>Perspective</em></span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/how-we-work/">Process</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/case-studies/">Projects</a></li>
+                    <li><a href="/insights/">Insights</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                </ul>
+                <div class="lang-toggle" role="group" aria-label="Language">
+                    <a href="/" class="lang-btn lang-btn--active" lang="en" aria-current="true">EN</a>
+                    <span class="lang-divider" aria-hidden="true">·</span>
+                    <a href="/id/" class="lang-btn" lang="id" hreflang="id">ID</a>
+                </div>
+                <div class="nav-cta">
+                    <a href="/contact/#book" class="btn btn-primary btn-sm">Book a Strategy Call</a>
+                </div>
+                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        <div class="nav-mobile" role="menu">
+            <a href="/services/" role="menuitem">Services</a>
+            <a href="/how-we-work/" role="menuitem">Process</a>
+            <a href="/about/" role="menuitem">About</a>
+            <a href="/case-studies/" role="menuitem">Projects</a>
+            <a href="/insights/" role="menuitem">Insights</a>
+            <a href="/contact/" role="menuitem">Contact</a>
+            <a href="/contact/#book" class="btn btn-primary" role="menuitem">Book a Strategy Call</a>
+            <div class="lang-toggle" role="group" aria-label="Language">
+                <a href="/" class="lang-btn lang-btn--active" lang="en" aria-current="true">EN</a>
+                <span class="lang-divider" aria-hidden="true">·</span>
+                <a href="/id/" class="lang-btn" lang="id" hreflang="id">ID</a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="content">
+
+    <section class="hero hero--grid sc-hero">
+        <div class="container">
+            <div class="reveal">
+                <span class="label">Operations Health Scorecard</span>
+                <h1>Where is your business <em>losing time</em>?</h1>
+                <p class="hero-lead">Eleven questions about how the business runs day to day. Pick the description closest to a normal week, not your best one. You get your score and your weakest area straight away, on this page.</p>
+                <p class="sc-meta">About 3 minutes. Free. No email needed. Your answers stay in your browser unless you choose to send them.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section--paper" style="padding-top: 0;">
+        <div class="container sc-wrap">
+            <div class="sc-progress" aria-hidden="true"><span data-sc-count>0 of 11 answered</span><div class="sc-bar"><span data-sc-bar></span></div></div>
+            <form data-sc-form novalidate>
+
+                    <fieldset class="sc-q">
+                        <legend><span class="sc-dim">1 of 11 &middot; About the business</span>How many companies, sites or locations does the business run?</legend>
+                        
+                        <label class="sc-opt"><input type="radio" name="sites" value="0" required> <span>One</span></label>
+                        <label class="sc-opt"><input type="radio" name="sites" value="1" required> <span>Two or three</span></label>
+                        <label class="sc-opt"><input type="radio" name="sites" value="2" required> <span>Four or more</span></label>
+                    </fieldset>
+                    <fieldset class="sc-q">
+                        <legend><span class="sc-dim">2 of 11 &middot; Documentation and procedures</span>A new hire starts on Monday. How do they learn the job?</legend>
+                        
+                        <label class="sc-opt"><input type="radio" name="doc1" value="0" required> <span>They shadow whoever has time and pick it up as they go.</span></label>
+                        <label class="sc-opt"><input type="radio" name="doc1" value="1" required> <span>There are some notes and old documents, but most of it lives in people's heads.</span></label>
+                        <label class="sc-opt"><input type="radio" name="doc1" value="2" required> <span>The main tasks are written down, though some guides are out of date.</span></label>
+                        <label class="sc-opt"><input type="radio" name="doc1" value="3" required> <span>There are current written procedures for the core tasks, and someone owns keeping them up to date.</span></label>
+                    </fieldset>
+                    <fieldset class="sc-q">
+                        <legend><span class="sc-dim">3 of 11 &middot; Documentation and procedures</span>Someone key is off sick for a week. What happens to their work?</legend>
+                        
+                        <label class="sc-opt"><input type="radio" name="doc2" value="0" required> <span>It mostly waits until they are back.</span></label>
+                        <label class="sc-opt"><input type="radio" name="doc2" value="1" required> <span>Others cover the urgent parts, with a lot of messages to the person who is off.</span></label>
+                        <label class="sc-opt"><input type="radio" name="doc2" value="2" required> <span>Others can cover most of it using notes and shared files.</span></label>
+                        <label class="sc-opt"><input type="radio" name="doc2" value="3" required> <span>Others pick it up from documented steps, and little is missed.</span></label>
+                    </fieldset>
+                    <fieldset class="sc-q">
+                        <legend><span class="sc-dim">4 of 11 &middot; Reporting and visibility</span>How do you find out how last month went?</legend>
+                        
+                        <label class="sc-opt"><input type="radio" name="rep1" value="0" required> <span>I wait for the accountant, often weeks later, or go by the bank balance.</span></label>
+                        <label class="sc-opt"><input type="radio" name="rep1" value="1" required> <span>Someone pulls numbers together by hand when I ask, and it takes days.</span></label>
+                        <label class="sc-opt"><input type="radio" name="rep1" value="2" required> <span>There is a monthly report, but it takes real effort to produce and often arrives late.</span></label>
+                        <label class="sc-opt"><input type="radio" name="rep1" value="3" required> <span>I see the key numbers on a set day each month, in the same format, without chasing.</span></label>
+                    </fieldset>
+                    <fieldset class="sc-q">
+                        <legend><span class="sc-dim">5 of 11 &middot; Reporting and visibility</span>You ask two people for the same number, such as revenue or open orders. What happens?</legend>
+                        
+                        <label class="sc-opt"><input type="radio" name="rep2" value="0" required> <span>I get two different answers, and nobody is sure which is right.</span></label>
+                        <label class="sc-opt"><input type="radio" name="rep2" value="1" required> <span>The answers end up close, after some back and forth.</span></label>
+                        <label class="sc-opt"><input type="radio" name="rep2" value="2" required> <span>Usually the same answer, because most people use the same spreadsheet or system.</span></label>
+                        <label class="sc-opt"><input type="radio" name="rep2" value="3" required> <span>Always the same answer, because there is one agreed source for each number.</span></label>
+                    </fieldset>
+                    <fieldset class="sc-q">
+                        <legend><span class="sc-dim">6 of 11 &middot; Manual admin load</span>How much of the team's week goes on copying information between tools, chasing approvals or re-typing data?</legend>
+                        
+                        <label class="sc-opt"><input type="radio" name="adm1" value="0" required> <span>It feels like most of it.</span></label>
+                        <label class="sc-opt"><input type="radio" name="adm1" value="1" required> <span>A large share: several hours each, every week.</span></label>
+                        <label class="sc-opt"><input type="radio" name="adm1" value="2" required> <span>Some, mostly at month end or in busy periods.</span></label>
+                        <label class="sc-opt"><input type="radio" name="adm1" value="3" required> <span>Very little. Routine handoffs happen without anyone re-typing.</span></label>
+                    </fieldset>
+                    <fieldset class="sc-q">
+                        <legend><span class="sc-dim">7 of 11 &middot; Manual admin load</span>An invoice, order or booking comes in. How does it move through the business?</legend>
+                        
+                        <label class="sc-opt"><input type="radio" name="adm2" value="0" required> <span>By email and memory. Things get missed.</span></label>
+                        <label class="sc-opt"><input type="radio" name="adm2" value="1" required> <span>Through a mix of spreadsheets and messages, checked by hand.</span></label>
+                        <label class="sc-opt"><input type="radio" name="adm2" value="2" required> <span>Through a set process, with a few manual steps that slow it down.</span></label>
+                        <label class="sc-opt"><input type="radio" name="adm2" value="3" required> <span>Through a clear process where each step has an owner and nothing waits on re-entry.</span></label>
+                    </fieldset>
+                    <fieldset class="sc-q">
+                        <legend><span class="sc-dim">8 of 11 &middot; Owner dependency</span>If the founder or owner stepped away for two weeks, what would happen?</legend>
+                        
+                        <label class="sc-opt"><input type="radio" name="own1" value="0" required> <span>Important decisions and approvals would stop.</span></label>
+                        <label class="sc-opt"><input type="radio" name="own1" value="1" required> <span>The business would run, but the owner would be on the phone every day.</span></label>
+                        <label class="sc-opt"><input type="radio" name="own1" value="2" required> <span>The team would handle most things and keep a short list for the owner's return.</span></label>
+                        <label class="sc-opt"><input type="radio" name="own1" value="3" required> <span>The business would run normally. The team knows what it can decide.</span></label>
+                    </fieldset>
+                    <fieldset class="sc-q">
+                        <legend><span class="sc-dim">9 of 11 &middot; Owner dependency</span>How many decisions reach the owner that someone else could make?</legend>
+                        
+                        <label class="sc-opt"><input type="radio" name="own2" value="0" required> <span>Most of them. The owner is the bottleneck.</span></label>
+                        <label class="sc-opt"><input type="radio" name="own2" value="1" required> <span>Many, because nobody else has the information or the authority.</span></label>
+                        <label class="sc-opt"><input type="radio" name="own2" value="2" required> <span>Some, mainly unusual cases.</span></label>
+                        <label class="sc-opt"><input type="radio" name="own2" value="3" required> <span>Few. Who decides what is clear and written down.</span></label>
+                    </fieldset>
+                    <fieldset class="sc-q">
+                        <legend><span class="sc-dim">10 of 11 &middot; Consistency across sites and teams</span>Do your sites, entities or teams do the same task the same way?</legend>
+                        <p class="sc-hint">If you run a single site, think of teams or shifts.</p>
+                        <label class="sc-opt"><input type="radio" name="con1" value="0" required> <span>Each one does it its own way.</span></label>
+                        <label class="sc-opt"><input type="radio" name="con1" value="1" required> <span>Roughly the same, with local workarounds nobody has written down.</span></label>
+                        <label class="sc-opt"><input type="radio" name="con1" value="2" required> <span>Mostly the same, with known differences.</span></label>
+                        <label class="sc-opt"><input type="radio" name="con1" value="3" required> <span>Yes. They share procedures, and any differences are deliberate and documented.</span></label>
+                    </fieldset>
+                    <fieldset class="sc-q">
+                        <legend><span class="sc-dim">11 of 11 &middot; Consistency across sites and teams</span>How easy is it to compare performance across sites, entities or teams?</legend>
+                        <p class="sc-hint">If you run a single site, think of teams or shifts.</p>
+                        <label class="sc-opt"><input type="radio" name="con2" value="0" required> <span>We cannot really compare them.</span></label>
+                        <label class="sc-opt"><input type="radio" name="con2" value="1" required> <span>Possible, but it means rebuilding the numbers by hand.</span></label>
+                        <label class="sc-opt"><input type="radio" name="con2" value="2" required> <span>Possible each month, with some manual tidying.</span></label>
+                        <label class="sc-opt"><input type="radio" name="con2" value="3" required> <span>Easy. Everyone reports the same measures in the same format.</span></label>
+                    </fieldset>
+                <div class="sc-submit">
+                    <button class="btn btn-primary" type="submit">See my score</button>
+                    <p class="sc-small" data-sc-missing hidden>Please answer every question to see your score.</p>
+                </div>
+            </form>
+
+            <div class="sc-result" data-sc-result hidden tabindex="-1" aria-live="polite">
+                <span class="label">Your result</span>
+                <div class="sc-score"><strong data-sc-score></strong><span>out of 100</span></div>
+                <p class="sc-band" data-sc-band></p>
+                <p class="sc-small">This is a self-assessment based on your answers, not a comparison with other businesses.</p>
+                <ul class="sc-dims" data-sc-dims></ul>
+                <div class="sc-weakest">
+                    <h3 data-sc-weakest-title></h3>
+                    <p data-sc-weakest-text></p>
+                </div>
+                <div class="sc-next">
+                    <span class="label" style="margin-bottom: 8px;">Recommended next step</span>
+                    <h3 data-sc-next-title></h3>
+                    <p data-sc-next-text></p>
+                    <div class="sheet-actions" data-sc-actions></div>
+                </div>
+                <div class="sc-email">
+                    <h3 style="font-size: 20px;">Want the full breakdown by email?</h3>
+                    <p class="sc-small" style="font-size: 15px;">We send your answers and scores through our contact form, and a copy comes to your inbox. No newsletter.</p>
+                    <form action="https://formsubmit.co/connect@grandvisionperspective.com" method="POST" data-sc-email>
+                        <input type="hidden" name="_subject" value="Operations Health Scorecard breakdown">
+                        <input type="hidden" name="_captcha" value="true">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://grandvisionperspective.com/scorecard/?sent=1">
+                        <input type="hidden" name="_autoresponse" value="">
+                        <input type="hidden" name="scorecard_breakdown" value="">
+                        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" value="">
+                        <label class="visually-hidden" for="sc-email">Your email</label>
+                        <input id="sc-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required>
+                        <button class="btn btn-secondary" type="submit">Email me the breakdown</button>
+                    </form>
+                </div>
+                <p style="margin-top: 24px;"><button class="text-link" type="button" data-sc-restart>Start again</button></p>
+            </div>
+            <p class="sc-small" data-sc-sent hidden style="font-size: 15px; margin-top: 24px;"><strong>Sent. Thank you.</strong> A copy of your breakdown should reach your inbox shortly.</p>
+        </div>
+    </section>
+
+    <script id="sc-data" type="application/json">[{"id": "sites", "dim": null, "q": "How many companies, sites or locations does the business run?", "opts": ["One", "Two or three", "Four or more"]}, {"id": "doc1", "dim": "documentation", "q": "A new hire starts on Monday. How do they learn the job?", "opts": ["They shadow whoever has time and pick it up as they go.", "There are some notes and old documents, but most of it lives in people's heads.", "The main tasks are written down, though some guides are out of date.", "There are current written procedures for the core tasks, and someone owns keeping them up to date."]}, {"id": "doc2", "dim": "documentation", "q": "Someone key is off sick for a week. What happens to their work?", "opts": ["It mostly waits until they are back.", "Others cover the urgent parts, with a lot of messages to the person who is off.", "Others can cover most of it using notes and shared files.", "Others pick it up from documented steps, and little is missed."]}, {"id": "rep1", "dim": "reporting", "q": "How do you find out how last month went?", "opts": ["I wait for the accountant, often weeks later, or go by the bank balance.", "Someone pulls numbers together by hand when I ask, and it takes days.", "There is a monthly report, but it takes real effort to produce and often arrives late.", "I see the key numbers on a set day each month, in the same format, without chasing."]}, {"id": "rep2", "dim": "reporting", "q": "You ask two people for the same number, such as revenue or open orders. What happens?", "opts": ["I get two different answers, and nobody is sure which is right.", "The answers end up close, after some back and forth.", "Usually the same answer, because most people use the same spreadsheet or system.", "Always the same answer, because there is one agreed source for each number."]}, {"id": "adm1", "dim": "admin", "q": "How much of the team's week goes on copying information between tools, chasing approvals or re-typing data?", "opts": ["It feels like most of it.", "A large share: several hours each, every week.", "Some, mostly at month end or in busy periods.", "Very little. Routine handoffs happen without anyone re-typing."]}, {"id": "adm2", "dim": "admin", "q": "An invoice, order or booking comes in. How does it move through the business?", "opts": ["By email and memory. Things get missed.", "Through a mix of spreadsheets and messages, checked by hand.", "Through a set process, with a few manual steps that slow it down.", "Through a clear process where each step has an owner and nothing waits on re-entry."]}, {"id": "own1", "dim": "owner", "q": "If the founder or owner stepped away for two weeks, what would happen?", "opts": ["Important decisions and approvals would stop.", "The business would run, but the owner would be on the phone every day.", "The team would handle most things and keep a short list for the owner's return.", "The business would run normally. The team knows what it can decide."]}, {"id": "own2", "dim": "owner", "q": "How many decisions reach the owner that someone else could make?", "opts": ["Most of them. The owner is the bottleneck.", "Many, because nobody else has the information or the authority.", "Some, mainly unusual cases.", "Few. Who decides what is clear and written down."]}, {"id": "con1", "dim": "consistency", "q": "Do your sites, entities or teams do the same task the same way?", "hint": "If you run a single site, think of teams or shifts.", "opts": ["Each one does it its own way.", "Roughly the same, with local workarounds nobody has written down.", "Mostly the same, with known differences.", "Yes. They share procedures, and any differences are deliberate and documented."]}, {"id": "con2", "dim": "consistency", "q": "How easy is it to compare performance across sites, entities or teams?", "hint": "If you run a single site, think of teams or shifts.", "opts": ["We cannot really compare them.", "Possible, but it means rebuilding the numbers by hand.", "Possible each month, with some manual tidying.", "Easy. Everyone reports the same measures in the same format."]}]</script>
+
+        </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-inner">
+                <a href="/" aria-label="Grand Vision Perspective Home">
+                    <img src="/brand/assets/horizontal-lockup-white.svg" alt="Grand Vision Perspective" class="footer-logo" width="160" height="32" style="height:32px;width:auto;">
+                </a>
+                <ul class="footer-links">
+                    <li><a href="/services/">Services</a></li>
+                    <li><a href="/operations-audit/">Operations Audit</a></li>
+                    <li><a href="/scorecard/">Free Scorecard</a></li>
+                    <li><a href="/how-we-work/">Process</a></li>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/case-studies/">Projects</a></li>
+                    <li><a href="/insights/">Insights</a></li>
+                    <li><a href="/contact/">Contact</a></li>
+                    <li><a href="/company-profile/">Company Profile</a></li>
+                    <li><a href="/privacy/">Privacy</a></li>
+                </ul>
+                <p class="footer-email"><a href="mailto:connect@grandvisionperspective.com">connect@grandvisionperspective.com</a></p>
+                <p class="footer-copy">&copy; 2026 Grand Vision Perspective</p>
+                <p class="footer-ritual">A GRAND VISION, EXECUTED PRECISELY <span class="footer-ritual-dot">.</span> 2023</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/shop.js" defer></script>
+    <script src="/assets/scorecard.js" defer></script>
+    <script src="/assets/app.js"></script>
+</body>
+</html>
