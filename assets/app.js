@@ -37,7 +37,7 @@
     }
 
     // Stat numbers marked up with data-target are rendered as final values.
-    // Locale follows the page's <html lang> so EN renders 27,715 and ID renders 27.715
+    // Locale follows the page's <html lang> (en-US or id-ID) for digit grouping,
     // regardless of the user's browser locale.
     const pageLocale = document.documentElement.lang === 'id' ? 'id-ID' : 'en-US';
     document.querySelectorAll('[data-target]').forEach((el) => {

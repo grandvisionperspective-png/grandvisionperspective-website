@@ -4,8 +4,8 @@ Moved here from the public /media/ page in October 2026, when that page became t
 
 ## Representation and privacy
 
-1. **First name only.** Do not name the founder on the public site, in press, partner briefs or any outward-facing material. Use "our founder" or "the founder".
-2. **No address.** Public positioning is "Based in Bali. Clients across Europe, the US, and Asia." No city beyond Bali, no street address, no co-working space. The registered street address never appears on the site, including /terms/. Terms identify the seller as registered in Gianyar, Bali; full details go on invoices and are sent on request.
+1. **No founder name.** Do not name the founder (first name or surname) on the public site, in press, partner briefs or any outward-facing material. Use "our founder" or "the founder".
+2. **No address.** Public positioning is "Based in Bali, registered in Indonesia." Do not describe where clients are based or which sectors they come from (Legal GVP-CLAIM-PROOF-01). No city beyond Bali, no street address, no co-working space. The registered street address never appears on the site, including /terms/. Terms identify the seller as registered in Gianyar, Bali; full details go on invoices and are sent on request.
 3. **Projects are anonymised.** Describe the industry and the shape of the work. Never client names, logos or recognisable brand names. Founding-client case studies are anonymised too.
 4. **Contact by form or email only.** No phone number. Contact form or connect@grandvisionperspective.com.
 5. **No AI-generated faces.** Where people appear, they are real and named with consent. No photos of the founder.
@@ -51,7 +51,7 @@ Pairings for legible text: Gold on Navy, Navy on Paper, Navy on Cream, Navy on G
 
 ## Copy
 
-British English. No em or en dashes. No invented facts, numbers, clients or quotes. Testimonials are quoted as published.
+British English. No em or en dashes. No invented facts, numbers, clients or quotes. No client-result numbers or client stories without a held basis and the client's written approval. No testimonials unless the giver's identity, contact details and written permission are on file (Legal GVP-CLAIM-PROOF-01). Use designed, redesigned, mapped, specified, oversaw implementation, verified or handed over for client work; never built or build (KBLI 70209).
 
 ## Prices: IDR only
 
