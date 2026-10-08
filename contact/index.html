@@ -385,12 +385,12 @@
                             <input class="form-input" type="text" id="business" name="business" placeholder="e.g. Hospitality group, SaaS product, professional services..." required>
                         </div>
                         <div class="form-row">
-                            <label class="form-label" for="business_address">Business address <span data-quote-optional>(optional; needed for a quote in another currency)</span></label>
+                            <label class="form-label" for="business_address">Business address <span data-quote-optional>(optional; needed for an overseas written quote)</span></label>
                             <textarea class="form-textarea" id="business_address" name="business_address" rows="3" style="min-height: 0;"></textarea>
                         </div>
                         <div class="form-row" data-quote-only hidden>
-                            <label class="form-label" for="quote_currency">Which currency should the quote be in?</label>
-                            <input class="form-input" type="text" id="quote_currency" name="quote_currency" placeholder="e.g. euro, Singapore dollar">
+                            <label class="form-label" for="quote_currency">Anything your finance team needs on the quote? (The IDR amount is binding.)</label>
+                            <input class="form-input" type="text" id="quote_currency" name="quote_currency" placeholder="e.g. a reference figure for our records, PO number">
                         </div>
                         <div class="form-row">
                             <label class="form-label" for="challenge">What is your biggest operational challenge right now?</label>
@@ -477,8 +477,8 @@
             if (new URLSearchParams(window.location.search).get('quote') !== 'currency') return;
             const form = document.getElementById('enquiry');
             if (!form) return;
-            form.querySelector('[name="_subject"]').value = 'Quote request in another currency from grandvisionperspective.com';
-            form.querySelector('[name="quote_request"]').value = 'Quote in another currency (business address outside Indonesia)';
+            form.querySelector('[name="_subject"]').value = 'Overseas written quote request from grandvisionperspective.com';
+            form.querySelector('[name="quote_request"]').value = 'Overseas written quote (business address outside Indonesia)';
             const addr = document.getElementById('business_address');
             addr.required = true;
             const opt = form.querySelector('[data-quote-optional]');

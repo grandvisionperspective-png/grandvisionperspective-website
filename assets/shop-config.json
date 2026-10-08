@@ -26,7 +26,7 @@
         "invoiceFrom": "PT Grand Vision Perspective",
         "invoiceCurrency": "IDR",
         "confirmationText": "We'll send an invoice from PT Grand Vision Perspective with payment details within 24 hours.",
-        "_note": "Launch payment: invoice from PT Grand Vision Perspective in IDR, paid by bank transfer to the company's Indonesian account. Never name the bank on the site. No VAT/PPN line (non-PKP). Clients outside Indonesia may ask for a quote in their own currency, confirmed on the invoice (offline, never on the site).",
+        "_note": "Launch payment: invoice from PT Grand Vision Perspective in IDR, paid by bank transfer to the company's Indonesian account. Never name the bank on the site. No VAT/PPN line (non-PKP). Clients whose business address is outside Indonesia may ask for a written quote with a rounded foreign-currency reference at the BI JISDOR rate for the quote date; the IDR amount is binding and every invoice is in IDR (offline, never on the site).",
         "gateway": {
             "enabled": false,
             "provider": "xendit",
@@ -264,7 +264,7 @@
                 "appliesTo": [
                     "focus-audit"
                 ],
-                "text": "Upgrade to a full Operations Audit within 14 days, or start an implementation project within 30 days, and the Focus Audit fee is credited against it."
+                "text": "Book a full Operations Audit within 30 days and the Focus Audit fee is credited against it. The credit does not apply to projects, retainers or advisory work."
             },
             {
                 "id": "guarantee",
