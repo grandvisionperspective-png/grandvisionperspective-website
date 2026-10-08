@@ -97,6 +97,18 @@
             box-shadow: 0 10px 32px rgba(0, 0, 0, 0.3);
         }
 
+        .hero-mark {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 30% 30%, #1d3557 0%, #0b1a2e 100%);
+            color: var(--gold-hi, #d9b85c);
+            font-family: var(--font-display, Georgia, serif);
+            font-size: 72px;
+            line-height: 1;
+            letter-spacing: 0.02em;
+        }
+
         .hero-barrie h1 {
             color: var(--white);
             font-size: clamp(36px, 5.5vw, 60px);
@@ -414,7 +426,7 @@
         <div class="hero-atmosphere" aria-hidden="true"></div>
         <div class="container">
             <div class="hero-barrie-inner reveal">
-                <img src="../images/founder.jpg" alt="Barrie, Principal at Grand Vision Perspective" class="hero-photo" width="200" height="200">
+                <div class="hero-photo hero-mark" aria-hidden="true">B</div>
                 <div>
                     <span class="eyebrow" style="color: var(--gold-hi);">Grand Vision Perspective</span>
                     <h1>Barrie</h1>

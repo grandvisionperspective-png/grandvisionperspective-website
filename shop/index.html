@@ -10,11 +10,11 @@
     <meta property="og:description" content="Fixed-fee services from Grand Vision Perspective, starting with the Operations Audit. Order online and receive an invoice with payment details.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://grandvisionperspective.com/shop/">
-    <meta property="og:image" content="https://grandvisionperspective.com/images/og-image.png">
+    <meta property="og:image" content="https://grandvisionperspective.com/images/og/og-shop-en.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://grandvisionperspective.com/images/og-image.png">
+    <meta name="twitter:image" content="https://grandvisionperspective.com/images/og/og-shop-en.png">
     <meta name="twitter:title" content="Services and Fees | Grand Vision Perspective">
     <meta name="twitter:description" content="Fixed-fee services from Grand Vision Perspective, starting with the Operations Audit. Order online and receive an invoice with payment details.">
     <link rel="canonical" href="https://grandvisionperspective.com/shop/">
@@ -120,6 +120,13 @@
                 <span class="label">Services and fees</span>
                 <h1>Start with the audit, <em>then choose</em> how much help you want.</h1>
                 <p class="hero-lead">Every engagement has a fixed fee for a fixed scope, agreed in writing before any work starts. Order online and we send an invoice with payment details.</p>
+                <ol class="buy-path" aria-label="How buying works">
+                    <li><strong>Choose</strong> a fixed-fee service below. Most clients start with the Operations Audit.</li>
+                    <li><strong>Send the order request.</strong> Nothing is charged at this step.</li>
+                    <li><strong>Receive an invoice in IDR</strong> from PT Grand Vision Perspective within 24 hours.</li>
+                    <li><strong>Pay by bank transfer.</strong> We confirm the start date in writing.</li>
+                </ol>
+                <p class="hero-lead overseas-route" style="font-size: 15px; margin-top: 14px;"><a class="text-link" href="/contact/?quote=currency#enquiry">Clients outside Indonesia: request a written quote.</a><br><a class="text-link" href="/contact/#book">Book a 30-minute call; we confirm your price in writing</a></p>
             </div>
         </div>
     </section>
@@ -149,12 +156,11 @@
                                 <div>
                                     <label for="cart-country">Where is your business based?</label>
                                     <select id="cart-country" name="buyer_country" data-cart-country required></select>
-                                    <p class="sheet-note" style="margin-top:6px;">Businesses in Indonesia are priced and pay in rupiah. Everyone else pays in US dollars.</p>
+                                    <p class="sheet-note" style="margin-top:6px;">Prices are in Indonesian rupiah. Clients outside Indonesia can ask for a written quote; the IDR amount is binding.</p>
                                 </div>
                             </div>
                             <ul data-cart-lines></ul>
                             <dl class="cart-sums" data-cart-sums></dl>
-                            <p class="sheet-note" data-cart-fx hidden></p>
                             <div class="cart-options">
                                 <div data-cart-optins></div>
                                 <p class="sheet-note">One offer per order. If more than one applies, the order uses the one that saves you most.</p>
@@ -167,8 +173,8 @@
                             </div>
                             <input type="hidden" name="currency" value="">
                             <input type="hidden" name="buyer_country_name" value="">
-                            <div class="cart-idr-blocked" data-cart-idr-blocked hidden>
-                                <p><strong>Ordering in rupiah online opens soon.</strong> Book a call or request a quote and we will send you a quote and the terms in IDR.</p>
+                            <div class="cart-idr-blocked" data-cart-offline hidden>
+                                <p data-cart-offline-text>Orders from businesses based in Indonesia are confirmed offline with bilingual engagement terms. Book a call or request a quote and we will send them to you.</p>
                                 <div class="sheet-actions">
                                     <a class="btn btn-primary" href="/contact/#book">Book a call</a>
                                     <a class="btn btn-secondary" href="/contact/">Request a quote</a>
@@ -187,11 +193,14 @@
                                 <div><label for="o-email">Email</label><input id="o-email" type="email" name="email" autocomplete="email" required></div>
                                 <div><label for="o-company">Legal or company name</label><input id="o-company" type="text" name="legal_name" autocomplete="organization" required></div>
                                 <div><label for="o-address">Billing address</label><textarea id="o-address" name="billing_address" autocomplete="street-address" rows="3" required></textarea></div>
+                                <div><label class="choice"><input type="checkbox" name="business_address_same" value="yes" checked data-same-address> My business address is the same as the billing address</label></div>
+                                <div data-business-address hidden><label for="o-business-address">Business address</label><textarea id="o-business-address" name="business_address" autocomplete="off" rows="3"></textarea></div>
                                 <div><label for="o-tax">Tax ID (optional; NPWP for Indonesian companies)</label><input id="o-tax" type="text" name="tax_id" autocomplete="off"></div>
                                 <div><label for="o-notes">Anything we should know? (optional)</label><textarea id="o-notes" name="notes"></textarea></div>
                                 <p class="cart-final" data-cart-final></p>
                                 <p class="sheet-note" data-cart-terms></p>
                                 <button class="btn btn-primary" type="submit" style="width:100%;">Send order request</button>
+                                <p class="sheet-note">Invoiced in IDR. If you pay from an account in another currency, your bank converts the amount and may add a fee.</p>
                                 <p class="sheet-note">Nothing is charged now. We'll send an invoice from PT Grand Vision Perspective with payment details within 24 hours.</p>
                             </div>
                         </form>
@@ -228,7 +237,6 @@
         </div>
     </footer>
 
-    <script src="/assets/shop.js" defer></script>
     <script src="/assets/shop.js" defer></script>
     <script src="/assets/app.js"></script>
 </body>

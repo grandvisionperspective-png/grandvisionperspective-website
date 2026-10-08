@@ -9,11 +9,11 @@
     <meta property="og:description" content="A free 3-minute operations scorecard for founder-led businesses. Eleven questions across five areas, with your score and weakest area shown straight away. No email needed.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://grandvisionperspective.com/scorecard/">
-    <meta property="og:image" content="https://grandvisionperspective.com/images/og-image.png">
+    <meta property="og:image" content="https://grandvisionperspective.com/images/og/og-scorecard-en.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://grandvisionperspective.com/images/og-image.png">
+    <meta name="twitter:image" content="https://grandvisionperspective.com/images/og/og-scorecard-en.png">
     <meta name="twitter:title" content="Free Operations Health Scorecard | Grand Vision Perspective">
     <meta name="twitter:description" content="A free 3-minute operations scorecard for founder-led businesses. Eleven questions across five areas, with your score and weakest area shown straight away. No email needed.">
     <link rel="canonical" href="https://grandvisionperspective.com/scorecard/">
@@ -74,6 +74,14 @@
         .sc-email { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(26,26,46,0.12); }
         .sc-email form { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
         .sc-email input[type=email] { flex: 1 1 260px; font: inherit; padding: 11px 12px; border: 1px solid rgba(26,26,46,0.25); border-radius: var(--radius-sm); }
+        .sc-book { margin-top: 28px; padding: 30px 24px; background: var(--navy); color: rgba(255,255,255,0.86); border-radius: var(--radius-sm); }
+        .sc-book h3 { font-size: clamp(22px, 2.6vw, 28px); color: #fff; margin-bottom: 8px; }
+        .sc-book p { max-width: 560px; color: rgba(255,255,255,0.82); }
+        .sc-book-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+        .sc-book .sc-book-note { font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 16px; }
+        .sc-consent { flex: 1 1 100%; display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--ink-muted); line-height: 1.5; }
+        .sc-consent input { margin-top: 4px; accent-color: var(--navy); }
+        @media (min-width: 768px) { .sc-book { padding: 36px 32px; } }
         .sc-small { font-size: 13px; color: var(--ink-muted); margin-top: 8px; }
         @media (min-width: 768px) { .sc-next { padding: 32px; } }
     </style>
@@ -142,6 +150,7 @@
                 <h1>Where is your business <em>losing time</em>?</h1>
                 <p class="hero-lead">Eleven questions about how the business runs day to day. Pick the description closest to a normal week, not your best one. You get your score and your weakest area straight away, on this page.</p>
                 <p class="sc-meta">About 3 minutes. Free. No email needed. Your answers stay in your browser unless you choose to send them.</p>
+                <p style="margin-top: 22px;"><a class="btn btn-primary" href="#sc-start">Start the scorecard</a></p>
             </div>
         </div>
     </section>
@@ -149,7 +158,7 @@
     <section class="section section--paper" style="padding-top: 0;">
         <div class="container sc-wrap">
             <div class="sc-progress" aria-hidden="true"><span data-sc-count>0 of 11 answered</span><div class="sc-bar"><span data-sc-bar></span></div></div>
-            <form data-sc-form novalidate>
+            <form data-sc-form novalidate id="sc-start">
 
                     <fieldset class="sc-q">
                         <legend><span class="sc-dim">1 of 11 &middot; About the business</span>How many companies, sites or locations does the business run?</legend>
@@ -248,7 +257,7 @@
                 <span class="label">Your result</span>
                 <div class="sc-score"><strong data-sc-score></strong><span>out of 100</span></div>
                 <p class="sc-band" data-sc-band></p>
-                <p class="sc-small">This is a self-assessment based on your answers, not a comparison with other businesses.</p>
+                <p class="sc-small">This score is a free preliminary indicator based on your answers, not an assessment, and not a comparison with other businesses.</p>
                 <ul class="sc-dims" data-sc-dims></ul>
                 <div class="sc-weakest">
                     <h3 data-sc-weakest-title></h3>
@@ -259,21 +268,41 @@
                     <h3 data-sc-next-title></h3>
                     <p data-sc-next-text></p>
                     <div class="sheet-actions" data-sc-actions></div>
+                    <p class="sc-small" style="margin-top: 14px;"><a class="text-link" href="/contact/?quote=currency#enquiry">Clients outside Indonesia: request a written quote.</a></p>
+                </div>
+                <div class="sc-book">
+                    <h3>Talk your result through in 30 minutes</h3>
+                    <p>Bring this score to a free call. We tell you plainly what we would fix first, and whether an Operations Audit is the right next step. If there is no fit, we say so.</p>
+                    <div class="sc-book-actions">
+                        <a class="btn btn-primary" href="/contact/#book" data-sc-book>Book a 30-minute call</a>
+                        <a class="btn btn-ghost-light" href="/operations-audit/">See the Operations Audit</a>
+                    </div>
+                    <p class="sc-book-note" data-sc-price-note>The Operations Audit is a fixed fee of IDR 45 million, confirmed in writing before you pay. You keep the report.</p>
                 </div>
                 <div class="sc-email">
-                    <h3 style="font-size: 20px;">Want the full breakdown by email?</h3>
-                    <p class="sc-small" style="font-size: 15px;">We send your answers and scores through our contact form, and a copy comes to your inbox. No newsletter.</p>
+                    <h3 style="font-size: 20px;">Optional: email me a copy of my result</h3>
+                    <p class="sc-small" style="font-size: 15px;">Your score, the breakdown by area and your answers, sent to your inbox. You do not need to share an email to see or use your result.</p>
                     <form action="https://formsubmit.co/connect@grandvisionperspective.com" method="POST" data-sc-email>
-                        <input type="hidden" name="_subject" value="Operations Health Scorecard breakdown">
+                        <input type="hidden" name="_subject" value="Scorecard result">
                         <input type="hidden" name="_captcha" value="true">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_next" value="https://grandvisionperspective.com/scorecard/?sent=1">
                         <input type="hidden" name="_autoresponse" value="">
+                        <input type="hidden" name="overall_score" value="">
+                        <input type="hidden" name="band" value="">
+                        <input type="hidden" name="weakest_area" value="">
+                        <input type="hidden" name="score_documentation" value="">
+                        <input type="hidden" name="score_reporting" value="">
+                        <input type="hidden" name="score_admin" value="">
+                        <input type="hidden" name="score_owner" value="">
+                        <input type="hidden" name="score_consistency" value="">
+                        <input type="hidden" name="suggested_next_step" value="">
                         <input type="hidden" name="scorecard_breakdown" value="">
                         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" value="">
-                        <label class="visually-hidden" for="sc-email">Your email</label>
+                        <label class="visually-hidden" for="sc-email">Your email (optional)</label>
                         <input id="sc-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required>
-                        <button class="btn btn-secondary" type="submit">Email me the breakdown</button>
+                        <label class="sc-consent"><input type="checkbox" name="consent" value="Yes: send my scorecard result to this address" required> <span>Send my result to this address. I understand my answers and scores also go to Grand Vision Perspective, who will reply only if I ask. No newsletter, and nothing is shared. See our <a class="text-link" href="/privacy/">privacy notice</a>.</span></label>
+                        <button class="btn btn-secondary" type="submit">Email me my result</button>
                     </form>
                 </div>
                 <p style="margin-top: 24px;"><button class="text-link" type="button" data-sc-restart>Start again</button></p>
@@ -311,7 +340,6 @@
         </div>
     </footer>
 
-    <script src="/assets/shop.js" defer></script>
     <script src="/assets/scorecard.js" defer></script>
     <script src="/assets/app.js"></script>
 </body>

@@ -1,24 +1,21 @@
 {
-    "_readme": "Single source of truth for the shop. Values from GVP-PRICE-01 (Researcher, 8 Oct 2026), adopted by the team. Launch defaults approved by Barrie on 8 Oct 2026: prices and cart ON for non-Indonesian buyers; IDR checkout OFF until the Bahasa terms are reviewed (Indonesian buyers are sent to book a call or request a quote). Products, prices (USD and IDR), display mode, discount rules and notes can all change here without touching code. No standalone digital-product SKUs: digital materials may only appear as included items inside a package. No was-prices, no countdowns. Schema is documented in the conversion-pass-2 brief.",
+    "_readme": "Single source of truth for the shop. Values from GVP-PRICE-01 (Researcher, 8 Oct 2026), IDR column, adopted by the team. IDR ONLY: Bank Indonesia bans dual quotation (PBI 17/3/2015 art. 11, SEBI 17/11/DKSP), so no other currency may be shown, stored for display or toggled on public pages. Launch defaults approved by Barrie on 8 Oct 2026: prices and cart ON for clients outside Indonesia; clients based in Indonesia are confirmed offline with bilingual engagement terms until the Indonesian terms are published. No standalone digital-product SKUs: digital materials may only appear as included items inside a package. No was-prices, no countdowns. Schema is documented in the conversion-pass-2 brief.",
     "flags": {
         "pricesPublished": true,
         "cartEnabled": true,
-        "idrCheckoutReady": false,
+        "indonesiaCheckoutReady": false,
         "priceMode": "exact",
-        "_note": "idrCheckoutReady stays false until /id/terms/ has passed Bahasa review. While false, buyers who choose Indonesia see IDR prices but are sent to book a call or request a quote instead of the order form."
+        "_note": "indonesiaCheckoutReady stays false until the Indonesian terms (/id/terms/) are reviewed and published. While false, buyers based in Indonesia see the same IDR prices but are asked to book a call or request a quote, and their order is confirmed offline with bilingual engagement terms."
     },
     "currencies": {
-        "default": "USD",
-        "secondary": "IDR",
-        "secondaryNote": "IDR shown at a fixed rate. Invoices are issued in IDR and show the rate used.",
+        "default": "IDR",
         "labels": {
-            "USD": "US$",
             "IDR": "Rp"
         },
         "decimals": {
-            "USD": 0,
             "IDR": 0
-        }
+        },
+        "_note": "IDR only. English pages show amounts as the invoice states them: \"IDR 20 million\", \"IDR 12.5 million\", \"IDR 2.4 billion\", falling back to \"IDR 12,345,678\". Bahasa pages show Rp20.000.000. Do not add a second currency."
     },
     "fitCall": {
         "label": "Not sure? Book a fit call",
@@ -29,10 +26,10 @@
         "invoiceFrom": "PT Grand Vision Perspective",
         "invoiceCurrency": "IDR",
         "confirmationText": "We'll send an invoice from PT Grand Vision Perspective with payment details within 24 hours.",
-        "_note": "Launch payment: invoice from PT Grand Vision Perspective, paid by bank transfer in IDR to the company's Indonesian account. USD prices are for display only. Never name the bank on the site. No VAT/PPN line (non-PKP).",
+        "_note": "Launch payment: invoice from PT Grand Vision Perspective in IDR, paid by bank transfer to the company's Indonesian account. Never name the bank on the site. No VAT/PPN line (non-PKP). Clients whose business address is outside Indonesia may ask for a written quote with a rounded foreign-currency reference at the BI JISDOR rate for the quote date; the IDR amount is binding and every invoice is in IDR (offline, never on the site).",
         "gateway": {
             "enabled": false,
-            "provider": "xendit",
+            "provider": "midtrans",
             "methods": [
                 "card",
                 "qris",
@@ -40,7 +37,7 @@
             ],
             "paymentLinkUrl": "",
             "label": "Pay online",
-            "_note": "Future gateway slot. Keep disabled until the PT account is approved and Legal/Accountant sign off."
+            "_note": "Future gateway slot. Planned provider: Midtrans. Keep enabled false and paymentLinkUrl empty until the PT account is approved and Legal and the Accountant sign off."
         },
         "invoiceRequestUrl": "/contact/"
     },
@@ -62,7 +59,6 @@
             "unit": "audit",
             "unitPlural": "audits",
             "prices": {
-                "USD": 2500,
                 "IDR": 45000000
             },
             "priceMode": "exact",
@@ -91,7 +87,6 @@
             "unit": "audit",
             "unitPlural": "audits",
             "prices": {
-                "USD": 950,
                 "IDR": 17000000
             },
             "priceMode": "exact",
@@ -118,7 +113,6 @@
             "unit": "block",
             "unitPlural": "blocks",
             "prices": {
-                "USD": 2000,
                 "IDR": 36000000
             },
             "priceMode": "exact",
@@ -142,7 +136,6 @@
             "unit": "project",
             "unitPlural": "projects",
             "prices": {
-                "USD": 3500,
                 "IDR": 63000000
             },
             "priceMode": "from",
@@ -177,7 +170,6 @@
             "unit": "month",
             "unitPlural": "months",
             "prices": {
-                "USD": 2500,
                 "IDR": 45000000
             },
             "priceMode": "exact",
@@ -202,7 +194,7 @@
             {
                 "id": "founding-client",
                 "enabled": true,
-                "label": "Founding client offer (15% off the Operations Audit)",
+                "label": "Founding client price (15% off the Operations Audit)",
                 "percent": 15,
                 "amount": {},
                 "appliesTo": [
@@ -212,13 +204,16 @@
                     "optIn": "anonymised-case-study",
                     "endDate": "2026-12-31"
                 },
-                "optInLabel": "Founding client offer: take 15% off the Operations Audit in return for permission to publish an anonymised case study. We never name clients.",
+                "optInLabel": "Founding client price: IDR 38,250,000 (15% off the standard IDR 45,000,000 audit fee) for our first 3 audit clients or until 31 Dec 2026, whichever comes first. Not combined with other discounts. In return for permission to publish an anonymised case study. We never name clients.",
                 "remaining": 3,
-                "showRemaining": false,
-                "remainingText": "{remaining} of 3 places left.",
-                "offerText": "Founding client offer: 15% off the Operations Audit for our first 3 clients, until 31 December 2026, in return for permission to publish an anonymised case study. We never name clients.",
+                "offerText": "Founding client price: IDR 38,250,000 (15% off the standard IDR 45,000,000 audit fee) for our first 3 audit clients or until 31 Dec 2026, whichever comes first. Not combined with other discounts.",
+                "offerTextId": "Harga klien pendiri: Rp38.250.000 (diskon 15% dari biaya audit standar Rp45.000.000) untuk 3 klien audit pertama kami atau sampai 31 Des 2026, mana yang lebih dulu. Tidak dapat digabung dengan diskon lain.",
+                "conditionsText": "Conditions apply.",
+                "conditionsHref": "/terms/#offers",
+                "conditionsTextId": "Syarat dan ketentuan berlaku.",
+                "conditionsHrefId": "/terms/#offers",
                 "group": "one-discount-per-order",
-                "_note": "First 3 clients or until 31 Dec 2026, whichever comes first. Lower 'remaining' by hand after each founding sale; at 0 the offer disappears. showRemaining stays false unless the team decides otherwise. No countdowns."
+                "_note": "Legal rulings 8 Oct 2026 13:50 WITA (UU 8/1999 art. 9 and 10) and round 2 (box wording, Conditions apply link). Discount, not a credit. Price: IDR 45,000,000 less 15% = IDR 38,250,000 (Rp38.250.000 on Bahasa pages). Limits: first 3 audit clients or until 31 Dec 2026, whichever comes first (when.endDate 2026-12-31). Not combined with other discounts (group one-discount-per-order). 'remaining' is the real count of founding places, never shown publicly: lower it by hand after each founding sale; at 0 the offer and the box disappear. Take the box down after 31 Dec 2026 even if places remain. No countdown, no places-left text, no strikethrough or was-price styling. offerTextId and conditionsTextId are the Bahasa copy [BAHASA REVIEW NEEDED]; the Bahasa link goes to /terms/ while /id/terms/ is a placeholder."
             },
             {
                 "id": "bundle-audit-advisory",
@@ -264,7 +259,7 @@
                 "appliesTo": [
                     "operations-audit"
                 ],
-                "text": "Go ahead with an Implementation Oversight project of US$5,000 or more within 30 days of receiving your report and the full audit fee is credited against it. You keep the report either way. The credit does not combine with other offers."
+                "text": "Go ahead with an Implementation Oversight project of IDR 90 million or more within 30 days of receiving your report and the full audit fee is credited against it. You keep the report either way. The credit does not combine with other offers."
             },
             {
                 "id": "focus-credit",
@@ -272,7 +267,7 @@
                 "appliesTo": [
                     "focus-audit"
                 ],
-                "text": "Upgrade to a full Operations Audit within 14 days, or start an implementation project within 30 days, and the Focus Audit fee is credited against it."
+                "text": "Book a full Operations Audit within 30 days and the Focus Audit fee is credited against it. The credit does not apply to projects, retainers or advisory work."
             },
             {
                 "id": "guarantee",
@@ -292,15 +287,16 @@
             {
                 "code": "ID",
                 "name": "Indonesia",
-                "currency": "IDR"
+                "offlineConfirmation": true
             },
             {
                 "code": "OTHER",
                 "name": "Another country",
-                "currency": "USD"
+                "offlineConfirmation": false
             }
         ],
-        "_note": "Indonesian buyers see IDR prices. Everyone else sees USD with the IDR reference. All invoices are issued in IDR."
+        "offlineText": "Orders from businesses based in Indonesia are confirmed offline with bilingual engagement terms. Book a call or request a quote and we will send them to you.",
+        "_note": "Country no longer changes the currency (IDR only). It only decides whether the order is confirmed offline (Indonesia, until indonesiaCheckoutReady) or sent as an online order request."
     },
     "legal": {
         "termsUrl": "/terms/",

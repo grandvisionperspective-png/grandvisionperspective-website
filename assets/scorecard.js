@@ -22,12 +22,18 @@
     const WEAK_BELOW = 50;
 
     let shop = null;
-    fetch('/assets/shop-config.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : null)).then((c) => { shop = c; }).catch(() => {});
+    fetch('/assets/shop-config.json', { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : null)).then((c) => {
+        shop = c;
+        // The fee line under the booking panel only shows while prices are published.
+        const note = document.querySelector('[data-sc-price-note]');
+        if (note && !(c && c.flags && c.flags.pricesPublished)) note.hidden = true;
+    }).catch(() => {});
 
     const buyable = (id) => {
         if (!shop || !shop.flags || !shop.flags.pricesPublished || !shop.flags.cartEnabled) return false;
         const p = (shop.products || []).find((x) => x.id === id && x.enabled !== false);
-        return !!(p && p.inCart && p.prices && typeof p.prices.USD === 'number');
+        const cur = (shop.currencies && shop.currencies.default) || 'IDR';
+        return !!(p && p.inCart && p.prices && typeof p.prices[cur] === 'number');
     };
 
     // Progress
@@ -123,7 +129,6 @@
         } else {
             t.textContent = 'A free strategy call';
             p.textContent = 'Nothing is under serious strain. If there is still something you would like to run better, a 30-minute call is the quickest way to find out whether we can help. If there is no fit, we say so.';
-            actions.appendChild(btn('Book a free strategy call', 'btn btn-primary', bookHref(r)));
         }
 
         // Breakdown for the optional email.
@@ -134,8 +139,16 @@
         lines.push('', 'Suggested next step: ' + t.textContent, '', 'Grand Vision Perspective, connect@grandvisionperspective.com');
         const text = lines.join('\n');
         const ef = $('[data-sc-email]');
-        ef.querySelector('[name="scorecard_breakdown"]').value = text;
-        ef.querySelector('[name="_autoresponse"]').value = 'Thank you for using the Operations Health Scorecard. Here is your breakdown.\n\n' + text;
+        const setField = (name, value) => { const f = ef.querySelector('[name="' + name + '"]'); if (f) f.value = value; };
+        setField('scorecard_breakdown', text);
+        setField('overall_score', r.overall + ' / 100');
+        setField('band', r.band);
+        setField('weakest_area', r.weakest.name);
+        r.dims.forEach((d) => setField('score_' + d.key, d.score + ' / 100' + (d.weak ? ' (weak area)' : '')));
+        setField('suggested_next_step', t.textContent);
+        setField('_autoresponse', 'Thank you for using the Operations Health Scorecard. Here is your result.\n\n' + text + '\n\nTo talk it through, book a 30-minute call: https://grandvisionperspective.com/contact/#book');
+        const book = $('[data-sc-book]');
+        if (book) book.setAttribute('href', bookHref(r));
 
         try { localStorage.setItem(RESULT_KEY, JSON.stringify({ score: r.overall, band: r.band, weakest: r.weakest.name, weakAreas: r.dims.filter((d) => d.weak).map((d) => d.name), route: r.route })); } catch (e) { /* ignore */ }
 

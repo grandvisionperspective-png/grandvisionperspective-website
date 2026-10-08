@@ -362,12 +362,13 @@
                 <div class="contact-form reveal">
                     <h2 class="form-title">Tell us about <em>your business</em>.</h2>
                     <p class="form-intro">We read every enquiry personally. Tell us a bit about where you are today and what you are trying to solve.</p>
-                    <form action="https://formsubmit.co/connect@grandvisionperspective.com" method="POST">
+                    <form id="enquiry" action="https://formsubmit.co/connect@grandvisionperspective.com" method="POST">
                         <input type="hidden" name="_subject" value="New enquiry from grandvisionperspective.com">
                         <input type="hidden" name="_captcha" value="true">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_next" value="https://grandvisionperspective.com/contact/?sent=1">
                         <input type="hidden" name="scorecard_result" value="">
+                        <input type="hidden" name="quote_request" value="">
                         <!-- Spam honeypot: hidden from real users; bots that fill every field trip this and FormSubmit discards the submission. -->
                         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" value="">
 
@@ -382,6 +383,14 @@
                         <div class="form-row">
                             <label class="form-label" for="business">What does your business do?</label>
                             <input class="form-input" type="text" id="business" name="business" placeholder="e.g. Hospitality group, SaaS product, professional services..." required>
+                        </div>
+                        <div class="form-row">
+                            <label class="form-label" for="business_address">Business address <span data-quote-optional>(optional; needed for an overseas written quote)</span></label>
+                            <textarea class="form-textarea" id="business_address" name="business_address" rows="3" style="min-height: 0;"></textarea>
+                        </div>
+                        <div class="form-row" data-quote-only hidden>
+                            <label class="form-label" for="quote_currency">Anything your finance team needs on the quote? (The IDR amount is binding.)</label>
+                            <input class="form-input" type="text" id="quote_currency" name="quote_currency" placeholder="e.g. a reference figure for our records, PO number">
                         </div>
                         <div class="form-row">
                             <label class="form-label" for="challenge">What is your biggest operational challenge right now?</label>
@@ -462,6 +471,20 @@
 
     <script src="../assets/app.js"></script>
     <script>
+        // Quote in another currency (?quote=currency): business address required,
+        // currency asked for, subject marked. No figures are ever shown here.
+        (() => {
+            if (new URLSearchParams(window.location.search).get('quote') !== 'currency') return;
+            const form = document.getElementById('enquiry');
+            if (!form) return;
+            form.querySelector('[name="_subject"]').value = 'Overseas written quote request from grandvisionperspective.com';
+            form.querySelector('[name="quote_request"]').value = 'Overseas written quote (business address outside Indonesia)';
+            const addr = document.getElementById('business_address');
+            addr.required = true;
+            const opt = form.querySelector('[data-quote-optional]');
+            if (opt) opt.textContent = '(outside Indonesia)';
+            form.querySelectorAll('[data-quote-only]').forEach((n) => { n.hidden = false; });
+        })();
         // Carries an Operations Health Scorecard result into the enquiry.
         (() => {
             const q = new URLSearchParams(window.location.search);

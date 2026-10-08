@@ -4,7 +4,7 @@
 
 If you discover a security vulnerability, please **DO NOT** file a public issue.
 
-Instead, email **barrie@regenesispod.com** with:
+Instead, email **connect@grandvisionperspective.com** with:
 - A description of the vulnerability
 - Steps to reproduce
 - Potential impact

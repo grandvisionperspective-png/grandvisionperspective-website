@@ -2185,7 +2185,7 @@ p {
     font-size: 16px;
 }
 .cart-qty button:disabled { opacity: 0.35; cursor: not-allowed; }
-.cart-line-total { font-weight: 600; color: var(--ink-heading); }
+.cart-line-total { font-weight: 600; color: var(--ink-heading); white-space: nowrap; }
 .cart-remove { font-size: 13px; color: var(--ink-muted); text-decoration: underline; justify-self: end; }
 .cart-sums { margin-top: 12px; border-top: 1px solid rgba(26, 26, 46, 0.2); padding-top: 12px; }
 .cart-sums div { display: flex; justify-content: space-between; padding: 4px 0; }
@@ -2241,7 +2241,7 @@ p {
     .cart-line { grid-template-columns: 1fr auto auto auto; }
 }
 .cart-sec { display: block; font-size: 12px; font-weight: 500; color: var(--ink-muted); }
-.cart-sums dd { text-align: right; }
+.cart-sums dd { text-align: right; white-space: nowrap; }
 .fit-call { font-size: 14px; }
 .sheet-actions .fit-call { justify-self: center; }
 .product-note { font-size: 14px; margin-top: 10px; color: var(--ink) !important; }
@@ -2263,3 +2263,12 @@ p {
 
 /* Keep the plus sign upright: the italic Fraunces "+" reads as a slash. */
 .team-stat__number em { font-style: normal; }
+
+/* CONVERT-01: how-buying-works path (shop) and audit proof line */
+.buy-path { list-style: none; counter-reset: buy; margin: 26px 0 0; padding: 0; max-width: 620px; display: grid; gap: 10px; }
+.buy-path li { counter-increment: buy; position: relative; padding-left: 40px; font-size: 16px; line-height: 1.55; color: rgba(255, 255, 255, 0.8); }
+.buy-path li::before { content: counter(buy); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.35); font-size: 13px; line-height: 24px; text-align: center; color: #fff; }
+.buy-path strong { color: #fff; font-weight: 600; }
+.audit-proof { margin-top: 22px; max-width: 560px; font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.78); }
+.audit-proof strong { color: #fff; font-weight: 600; }
+.audit-proof a { color: var(--gold-hi); text-decoration: underline; text-underline-offset: 3px; }
