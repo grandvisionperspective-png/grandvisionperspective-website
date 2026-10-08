@@ -1,6 +1,6 @@
 # GVP Social + Banner Asset Library
 
-Generated 2026-05-12 from the locked Vantage mark.
+Generated 2026-05-12 from the Vantage mark.
 
 ## Profile pictures (1:1)
 
@@ -16,8 +16,17 @@ Generated 2026-05-12 from the locked Vantage mark.
 - facebook-cover.png : Facebook page cover photo (820 x 312)
 - youtube-banner.png : YouTube channel banner (2560 x 1440)
 
-All banners use the locked Fraunces + Manrope type stack, navy gradient surface,
-and the italic-gold tagline / footer ritual.
+All banners use the Fraunces + Manrope type stack, navy gradient surface,
+and an italic-gold line.
+
+**Status (Oct 2026): the banner PNGs are out of date.** The LinkedIn personal
+banner, Twitter/X header and YouTube banner carry the old tagline "We build
+systems that let people be people", which no longer matches the site's
+management and operations positioning. Do not use them for new profiles until
+they are regenerated. The proposed replacement tagline is "We design operations
+that let people be people" (awaiting Barrie's approval). The Facebook cover and
+YouTube banner also show "2026" after the sign-off line, where the site uses the
+founding year, 2023.
 
 ## Share image (separate)
 
