@@ -34,7 +34,6 @@
     <meta name="theme-color" content="#1a1a2e">
     <link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" as="image" href="images/bg-dashboard.png">
     <link rel="stylesheet" href="assets/styles.css">
     <script type="application/ld+json">
     {
@@ -50,369 +49,422 @@
     }
     </script>
     <style>
-        /* Page-specific CSS that extends the shared system */
-        /* Cinematic dark hero. Layers (top to bottom):
-           1. Linear overlay (lighter than before so bg-dashboard atmosphere reads)
-           2. Multi-radial gold + slate atmospheres for cinematic depth
-           3. Vignette darkening at edges for editorial focus
-           4. bg-dashboard image creating the textural underlayer */
-        .hero-home {
-            min-height: 640px;
-            display: flex;
-            align-items: center;
-            background:
-                radial-gradient(ellipse 70% 70% at 28% 55%, rgba(201, 168, 76, 0.18) 0%, transparent 55%),
-                radial-gradient(ellipse 80% 60% at 80% 30%, rgba(91, 122, 140, 0.18) 0%, transparent 55%),
-                radial-gradient(ellipse 100% 100% at 50% 50%, transparent 30%, rgba(13, 13, 26, 0.45) 100%),
-                linear-gradient(135deg, rgba(26, 26, 46, 0.62) 0%, rgba(13, 13, 26, 0.82) 100%),
-                url('images/bg-dashboard.png') center/cover no-repeat;
-            position: relative;
+        /* Homepage. Editorial, document-like layout: one gold-italic accent
+           (hero only), no repeated card rows, no count-up stats.
+           Texture comes from a fine grid and the shared paper grain, not
+           from radial glows or photography. */
+
+        /* Small plain label used sparingly (hero, offer, story). */
+        .label {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+            margin-bottom: 16px;
         }
 
-        /* Bottom seam fade to navy-deep so the hero blends into the next section. */
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0, 0, 0, 0);
+            white-space: nowrap; border: 0;
+        }
+
+        /* ---- Hero ---- */
+        .hero-home {
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 40px 40px,
+                linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px) 0 0 / 40px 40px,
+                var(--navy);
+            color: var(--white);
+            padding: 72px 0 80px;
+        }
+
         .hero-home::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, transparent 78%, var(--navy-deep) 100%);
             pointer-events: none;
+            background: linear-gradient(90deg, var(--navy) 0%, rgba(26, 26, 46, 0.55) 55%, rgba(26, 26, 46, 0.2) 100%);
             z-index: 0;
         }
 
-        /* Top-edge gold aurora streak (subtle, cinematic).
-           A wide blurred gold horizontal band that drifts slowly. */
-        .hero-home::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -10%;
-            right: -10%;
-            height: 220px;
-            background: linear-gradient(180deg,
-                rgba(201, 168, 76, 0.16) 0%,
-                rgba(201, 168, 76, 0.04) 50%,
-                transparent 100%);
-            filter: blur(30px);
-            pointer-events: none;
-            opacity: 0.7;
-            z-index: 0;
-            animation: hero-aurora-drift 10s ease-in-out infinite;
+        .hero-home > .container { position: relative; z-index: 1; }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            align-items: center;
         }
 
-        @keyframes hero-aurora-drift {
-            0%, 100% { opacity: 0.55; transform: translateX(0); }
-            50%      { opacity: 0.85; transform: translateX(40px); }
-        }
+        .hero-home .hero-inner { max-width: 680px; }
 
-        @media (prefers-reduced-motion: reduce) {
-            .hero-home::before { animation: none; }
-        }
-
-        .hero-home .hero-inner {
-            position: relative;
-            z-index: 2;
-            padding: 48px 0;
-        }
+        .hero-home .label { color: var(--gold-hi); }
 
         .hero-home h1 {
             color: var(--white);
-            font-size: clamp(40px, 6vw, 72px);
-            line-height: 1.02;
-            letter-spacing: -0.03em;
-            margin-bottom: 28px;
-            font-weight: 600;
-            max-width: 920px;
-        }
-
-        .hero-home h1 em {
-            font-style: italic;
-            font-weight: 400;
-            color: var(--gold-hi);
+            font-size: clamp(38px, 5.4vw, 64px);
+            line-height: 1.06;
+            letter-spacing: -0.025em;
+            font-weight: 500;
+            margin-bottom: 24px;
         }
 
         .hero-home .hero-lead {
-            max-width: 560px;
+            max-width: 580px;
+            margin-bottom: 32px;
+        }
+
+        .hero-note {
+            margin-top: 14px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .hero-locations {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 580px;
+        }
+
+        .hero-diagram {
+            display: none;
+            color: var(--gold);
+        }
+
+        .hero-diagram figcaption {
+            margin-top: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* ---- Problems: two-column statement ---- */
+        .problems {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        .problems h2 { max-width: 420px; }
+
+        .problems-close {
+            margin-top: 20px;
+            color: var(--ink-muted);
+            max-width: 400px;
+        }
+
+        .problem-list li {
+            padding: 24px 0;
+            border-top: 1px solid rgba(26, 26, 46, 0.12);
+        }
+
+        .problem-list li:last-child { border-bottom: 1px solid rgba(26, 26, 46, 0.12); }
+
+        .problem-list h3 {
+            font-size: 21px;
+            margin-bottom: 6px;
+        }
+
+        .problem-list p { color: var(--ink-muted); }
+
+        /* ---- Offer: a proposal-sheet panel ---- */
+        .offer {
+            background: var(--paper);
+            border: 1px solid rgba(26, 26, 46, 0.18);
+            border-radius: var(--radius-sm);
+            padding: 28px 20px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        #operations-audit { scroll-margin-top: calc(var(--nav-height) + 16px); }
+
+        .offer h2 { margin-bottom: 16px; }
+
+        .offer-copy p { margin-bottom: 16px; }
+
+        .offer-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px 24px;
+            margin-top: 24px;
+        }
+
+        .text-link {
+            font-weight: 600;
+            color: var(--ink-heading);
+            text-decoration: underline;
+            text-decoration-color: var(--gold);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+        }
+
+        .text-link:hover { color: var(--gold-hover); }
+
+        .offer-note {
+            margin-top: 14px;
+            font-size: 14px;
+            color: var(--ink-muted);
+        }
+
+        .offer-spec div {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2px;
+            padding: 14px 0;
+            border-top: 1px dashed rgba(26, 26, 46, 0.2);
+        }
+
+        .offer-spec div:first-child { border-top: 0; padding-top: 0; }
+
+        .offer-spec dt {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+        }
+
+        .offer-spec dd {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--ink-heading);
+        }
+
+        /* ---- Services: full-width stacked rows ---- */
+        .services-head {
+            max-width: 760px;
             margin-bottom: 40px;
         }
 
-        .hero-home .hero-locations {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 44px;
-            font-size: 12px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.45);
-        }
+        .services-head h2 { margin-bottom: 16px; }
 
-        .hero-home .hero-locations::before {
-            content: '';
-            display: inline-block;
-            width: 32px;
-            height: 1px;
-            background: var(--gold);
-        }
-
-        /* Stats band */
-        .stats-band {
-            padding: 64px 0;
-            background: var(--cream);
-            border-top: 1px solid var(--cream-deep);
-            border-bottom: 1px solid var(--cream-deep);
-        }
-
-        /* Problems cards. Wave 9 cinematic treatment ported in:
-           gradient paper bg, gold left-rule hairline, locked --ease-out-q
-           on hover, --shadow-cinematic. */
-        .problem-card {
-            position: relative;
-            background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%);
-            padding: 36px 30px 32px;
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(26, 26, 46, 0.06);
-            box-shadow: var(--shadow-sm);
-            transition: box-shadow 0.45s var(--ease-out-q),
-                        transform 0.45s var(--ease-out-q),
-                        border-color 0.45s var(--ease-out-q);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        .problem-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
-        }
-
-        .problem-card:hover {
-            box-shadow: var(--shadow-cinematic);
-            transform: translateY(-4px);
-            border-color: var(--gold-border);
-        }
-
-        .problem-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            background: var(--gold-tint);
-            border: 1px solid var(--gold-border);
-            border-radius: var(--radius-sm);
-            margin-bottom: 20px;
-            color: var(--gold);
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: 20px;
-        }
-
-        .problem-card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: var(--ink-heading);
-        }
-
-        .problem-card p {
-            font-size: 15px;
-            color: var(--ink-muted);
-            line-height: 1.7;
-        }
-
-        /* Service cards. Wave 9 cinematic: gradient paper bg, vertical
-           gold left-rule (replaces the old horizontal top sliver), locked
-           --ease-out-q on hover, --shadow-cinematic. */
-        .service-card {
-            background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%);
-            padding: 36px 32px 32px;
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(26, 26, 46, 0.06);
-            box-shadow: var(--shadow-sm);
-            transition: box-shadow 0.45s var(--ease-out-q),
-                        transform 0.45s var(--ease-out-q),
-                        border-color 0.45s var(--ease-out-q);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
-        }
-
-        .service-card:hover {
-            box-shadow: var(--shadow-cinematic);
-            transform: translateY(-4px);
-            border-color: var(--gold-border);
-        }
-
-        .service-card h3 {
-            font-size: 22px;
-            margin-bottom: 12px;
-            color: var(--ink-heading);
-        }
-
-        .service-card p {
-            font-size: 15px;
-            color: var(--ink-muted);
-            line-height: 1.7;
-            margin-bottom: 24px;
-            flex-grow: 1;
-        }
-
-        .service-card a {
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            color: var(--gold);
-            text-transform: uppercase;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: gap 0.35s var(--ease-out-q), color 0.35s var(--ease-out-q);
-        }
-
-        .service-card a::after {
-            content: '→';
-        }
-
-        .service-card a:hover {
-            color: var(--gold-hover);
+        .service-row {
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 10px;
+            padding: 28px 0;
+            border-top: 1px solid rgba(26, 26, 46, 0.12);
         }
 
-        /* Process steps */
-        .process-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 28px;
-            position: relative;
-        }
+        .service-row:last-child { border-bottom: 1px solid rgba(26, 26, 46, 0.12); }
 
-        /* Process steps. Wave 9 cinematic treatment + locked --ease-out-q. */
-        .process-step {
-            position: relative;
-            padding: 36px 30px 34px;
-            background: linear-gradient(180deg, var(--white) 0%, #fbfaf5 100%);
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(26, 26, 46, 0.06);
-            box-shadow: var(--shadow-sm);
-            transition: box-shadow 0.45s var(--ease-out-q),
-                        transform 0.45s var(--ease-out-q),
-                        border-color 0.45s var(--ease-out-q);
-            overflow: hidden;
-        }
-        .process-step::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--gold) 0%, transparent 100%);
-        }
-        .process-step:hover {
-            box-shadow: var(--shadow-cinematic);
-            transform: translateY(-4px);
-            border-color: var(--gold-border);
-        }
+        .service-row h3 { font-size: clamp(22px, 2.4vw, 28px); }
 
-        .process-step-number {
-            display: inline-block;
-            font-family: var(--font-display);
+        .service-row p { color: var(--ink-muted); max-width: 620px; }
+
+        .service-row a {
+            font-size: 14px;
             font-weight: 600;
-            font-size: 48px;
-            color: var(--gold);
-            line-height: 1;
-            margin-bottom: 16px;
-            opacity: 0.9;
+            color: var(--ink-heading);
+            text-decoration: underline;
+            text-decoration-color: var(--gold);
+            text-underline-offset: 4px;
+            justify-self: start;
+            white-space: nowrap;
         }
 
-        .process-step h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-        }
+        .service-row a:hover { color: var(--gold-hover); }
 
-        .process-step p {
-            font-size: 15px;
-            color: var(--ink-muted);
-            line-height: 1.7;
-        }
+        /* ---- Story + evidence (the only results section) ---- */
+        .story-head { max-width: 760px; margin-bottom: 40px; }
 
-        /* Featured results. Wave 24: now sitting on section--navy (dark
-           intercut for page rhythm). Italic Fraunces stat numerals in
-           gold-hi (locked palette pair on dark surfaces), body copy on
-           soft white-alpha. */
-        .result-item {
+        .section--navy .label { color: rgba(255, 255, 255, 0.6); }
+
+        .story {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 16px;
-            padding: 36px 0;
-            border-bottom: 1px solid rgba(201, 168, 76, 0.18);
-            align-items: center;
+            gap: 32px;
+            padding-bottom: 48px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
         }
 
-        .result-item:last-child {
-            border-bottom: none;
-        }
-
-        .result-stat {
+        .big-stat {
             font-family: var(--font-display);
-            font-style: italic;
-            font-size: clamp(40px, 5.5vw, 64px);
-            font-weight: 400;
+            font-style: normal;
+            font-weight: 500;
+            font-size: clamp(72px, 10vw, 120px);
+            line-height: 0.95;
+            letter-spacing: -0.03em;
             color: var(--gold-hi);
-            line-height: 1;
-            letter-spacing: -0.025em;
+            font-variant-numeric: lining-nums;
             font-variation-settings: "opsz" 144;
         }
 
-        .result-item p {
+        .big-stat-label {
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.75);
             font-size: 16px;
-            line-height: 1.75;
-            color: rgba(253, 252, 248, 0.82);
         }
 
-        /* About teaser */
-        .about-teaser {
-            max-width: 760px;
+        .story-steps { display: grid; gap: 24px; }
+
+        .story-steps h3 {
+            font-family: var(--font-body);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold-hi);
+            margin-bottom: 6px;
         }
 
-        .about-teaser p {
-            font-size: 17px;
-            line-height: 1.8;
-            color: var(--ink);
-            margin-bottom: 24px;
+        .story-steps p { color: rgba(255, 255, 255, 0.85); }
+
+        .more-results-title {
+            font-size: 20px;
+            margin: 40px 0 8px;
         }
 
-        /* Final CTA */
-        .final-cta {
+        .result-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .result-num {
+            font-family: var(--font-display);
+            font-style: normal;
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 1.1;
+            color: var(--white);
+            font-variant-numeric: lining-nums tabular-nums;
+        }
+
+        .result-row p { color: rgba(255, 255, 255, 0.75); font-size: 15px; }
+
+        .section--navy .btn-secondary {
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .section--navy .btn-secondary:hover {
+            background: var(--white);
+            color: var(--ink-heading);
+        }
+
+        /* ---- Process: timeline ---- */
+        .timeline {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            counter-reset: step;
+            position: relative;
+        }
+
+        .timeline li {
+            position: relative;
+            padding: 0 0 32px 40px;
+            counter-increment: step;
+        }
+
+        .timeline li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 1px solid var(--ink-heading);
+            background: var(--cream-deep);
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 24px;
             text-align: center;
+            color: var(--ink-heading);
+            z-index: 1;
         }
 
-        .final-cta h2 {
-            margin-bottom: 20px;
+        .timeline li::after {
+            content: '';
+            position: absolute;
+            left: 13px;
+            top: 26px;
+            bottom: 0;
+            width: 1px;
+            background: rgba(26, 26, 46, 0.25);
         }
 
-        .final-cta .lead {
-            margin: 0 auto 40px;
-            color: rgba(255, 255, 255, 0.65);
+        .timeline li:last-child::after { display: none; }
+
+        .timeline h3 { font-size: 21px; margin-bottom: 4px; }
+
+        .timeline-meta {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #6e561a;
+            margin-bottom: 8px;
         }
 
+        .timeline p { color: var(--ink-muted); font-size: 15px; }
+
+        .timeline-after {
+            margin-top: 8px;
+            color: var(--ink-muted);
+        }
+
+        /* ---- About teaser ---- */
+        .about-teaser { max-width: 760px; }
+        .about-teaser h2 { margin-bottom: 24px; }
+        .about-teaser p { font-size: 17px; line-height: 1.8; margin-bottom: 20px; }
+
+        /* ---- Testimonials: side-by-side, left aligned ---- */
+        .quotes {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 32px;
+        }
+
+        .quote {
+            border-top: 1px solid rgba(26, 26, 46, 0.18);
+            padding-top: 24px;
+        }
+
+        .quote blockquote p {
+            font-family: var(--font-display);
+            font-size: clamp(18px, 1.8vw, 21px);
+            line-height: 1.55;
+            color: var(--ink-heading);
+            font-variation-settings: "opsz" 24;
+        }
+
+        .quote figcaption {
+            margin-top: 16px;
+            font-size: 14px;
+            color: var(--ink-muted);
+        }
+
+        .quote figcaption strong { color: var(--ink-heading); font-weight: 600; }
+
+        .quotes-caption {
+            margin-top: 32px;
+            font-size: 14px;
+            color: var(--ink-muted);
+            max-width: 640px;
+        }
+
+        /* ---- Final CTA ---- */
+        .final-cta { text-align: center; }
+        .final-cta h2 { margin-bottom: 20px; }
+        .final-cta .lead { margin: 0 auto 36px; color: rgba(255, 255, 255, 0.7); }
         .final-cta-actions {
             display: flex;
             flex-wrap: wrap;
@@ -420,39 +472,37 @@
             gap: 14px;
             margin-bottom: 28px;
         }
-
-        .final-cta-email {
-            font-size: 13px;
-            letter-spacing: 0.5px;
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .final-cta-email a {
-            color: var(--gold);
-        }
-
-        .final-cta-email a:hover {
-            color: var(--gold-hi);
-        }
+        .final-cta-email { font-size: 14px; color: rgba(255, 255, 255, 0.55); }
+        .final-cta-email a { color: var(--gold-hi); }
 
         @media (min-width: 768px) {
-            .hero-home {
-                min-height: 720px;
-            }
-            .process-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .offer { padding: 48px; }
+            .offer-spec div { grid-template-columns: 128px 1fr; gap: 16px; }
+            .service-row {
+                grid-template-columns: minmax(240px, 1fr) 2fr auto;
                 gap: 32px;
+                align-items: baseline;
             }
-            .result-item {
-                grid-template-columns: 240px 1fr;
-                gap: 48px;
-                padding: 40px 0;
-            }
+            .result-row { grid-template-columns: 160px 1fr; gap: 32px; align-items: baseline; }
+            .quotes { grid-template-columns: 1fr 1fr; gap: 48px; }
         }
 
-        @media (min-width: 1024px) {
-            .hero-home h1 {
-                font-size: clamp(48px, 6.5vw, 76px);
+        @media (min-width: 960px) {
+            .hero-home { padding: 104px 0 112px; }
+            .hero-grid { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 56px; }
+            .hero-diagram { display: block; }
+            .problems { grid-template-columns: 5fr 7fr; gap: 64px; }
+            .offer { grid-template-columns: 6fr 5fr; gap: 56px; }
+            .story { grid-template-columns: 4fr 7fr; gap: 64px; }
+            .timeline { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+            .timeline li { padding: 44px 0 0 0; }
+            .timeline li::after {
+                left: 26px;
+                right: -32px;
+                top: 13px;
+                bottom: auto;
+                width: auto;
+                height: 1px;
             }
         }
     </style>
@@ -518,41 +568,51 @@
 
     <!-- ==== HERO ==== -->
     <section class="hero hero-home">
-        <div class="hero-atmosphere hero-atmosphere--with-blob hero-atmosphere--dual" aria-hidden="true"></div>
         <div class="container">
-            <div class="hero-inner reveal">
-                <span class="eyebrow" style="color: var(--gold-hi);">Management &amp; Operations Consultancy</span>
-                <h1>Operations that run smoothly, <em>so you can focus</em> on growing the business.</h1>
-                <p class="hero-lead">Practical management and operations consulting for businesses that have outgrown spreadsheets and manual follow-ups. We map how the work really flows, design a better way to run it, and oversee implementation through to handover, so your team can focus on the work only people can do.</p>
-                <div class="hero-actions">
-                    <a href="/contact/#book" class="btn btn-primary">Book a Strategy Call</a>
-                    <a href="/case-studies/" class="btn btn-ghost-light btn-arrow">See our work</a>
+            <div class="hero-grid">
+                <div class="hero-inner reveal">
+                    <span class="label">Management &amp; Operations Consultancy</span>
+                    <h1>Operations that run smoothly, <em>so you can focus</em> on growing the business.</h1>
+                    <p class="hero-lead">Practical management and operations consulting for businesses that have outgrown spreadsheets and manual follow-ups. We map how the work really flows, design a better way to run it, and oversee implementation through to handover, so your team can focus on the work only people can do.</p>
+                    <div class="hero-actions">
+                        <a href="/contact/#book" class="btn btn-primary">Book a Strategy Call</a>
+                        <a href="/case-studies/" class="btn btn-ghost-light btn-arrow">See our work</a>
+                    </div>
+                    <p class="hero-note">Free, 30 minutes, no pitch deck.</p>
+                    <p class="hero-locations">Based in Bali, registered in Indonesia. Clients across Europe, the US, and Asia.</p>
                 </div>
-                <div class="hero-locations">Based in Bali, registered in Indonesia. Clients across Europe, the US, and Asia.</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==== STATS BAND ==== -->
-    <section class="stats-band">
-        <div class="container">
-            <div class="stats stats--4 reveal-stagger">
-                <div class="stat">
-                    <span class="stat-number" data-target="90" data-suffix="%">0</span>
-                    <span class="stat-label">Less manual finance admin, through process redesign</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number" data-target="27715">0</span>
-                    <span class="stat-label">Files organised across 16 cloud drives</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number" data-target="15" data-suffix="+">0</span>
-                    <span class="stat-label">Hours reclaimed per week</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number" data-target="88">0</span>
-                    <span class="stat-label">Workflows audited and brought under control</span>
-                </div>
+                <figure class="hero-diagram" aria-hidden="true">
+                    <svg viewBox="0 0 440 320" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <g stroke-width="1.4" opacity="0.7">
+                            <path d="M22 92 C78 40 124 204 62 212 C14 218 40 122 108 130 C168 138 92 248 150 240 C198 233 152 92 122 102 C92 112 132 190 196 162 L226 160"/>
+                            <path d="M30 244 C72 284 142 122 92 90 C52 66 58 182 128 190 C176 196 172 122 202 150 L226 160"/>
+                            <path d="M18 168 C70 120 112 282 168 214 C196 180 150 150 226 160"/>
+                            <path d="M58 52 C120 60 70 150 140 150 C176 150 186 170 226 160" stroke-dasharray="3 5"/>
+                        </g>
+                        <g fill="currentColor" stroke="none" opacity="0.85">
+                            <circle cx="62" cy="212" r="3"/>
+                            <circle cx="108" cy="130" r="3"/>
+                            <circle cx="150" cy="240" r="3"/>
+                            <circle cx="92" cy="90" r="3"/>
+                            <circle cx="30" cy="244" r="3"/>
+                            <circle cx="22" cy="92" r="3"/>
+                            <circle cx="232" cy="160" r="5"/>
+                        </g>
+                        <g stroke-width="2">
+                            <path d="M238 160 C282 160 290 96 330 96 L418 96"/>
+                            <path d="M238 160 C276 160 292 138 330 138 L418 138"/>
+                            <path d="M238 160 C276 160 292 182 330 182 L418 182"/>
+                            <path d="M238 160 C282 160 290 224 330 224 L418 224"/>
+                        </g>
+                        <g stroke-width="2">
+                            <path d="M418 90 L418 102"/>
+                            <path d="M418 132 L418 144"/>
+                            <path d="M418 176 L418 188"/>
+                            <path d="M418 218 L418 230"/>
+                        </g>
+                    </svg>
+                    <figcaption><span>How it runs today</span><span>How it should run</span></figcaption>
+                </figure>
             </div>
         </div>
     </section>
@@ -560,83 +620,121 @@
     <!-- ==== PROBLEMS ==== -->
     <section class="section section--paper">
         <div class="container">
-            <div class="section-header reveal">
-                <span class="eyebrow">The problems we solve</span>
-                <h2>If any of these sound familiar, <em>we should talk</em>.</h2>
-                <span class="gold-rule"></span>
+            <div class="problems reveal">
+                <div>
+                    <h2>Signs the business has outgrown the way it runs.</h2>
+                    <p class="problems-close">The fix rarely starts with a new tool. It starts with a clear map of how the work actually moves.</p>
+                </div>
+                <ul class="problem-list">
+                    <li>
+                        <h3>Too much is still done by hand.</h3>
+                        <p>Your team spends hours on tasks that should take minutes. Spreadsheets, copy-paste, and manual follow-ups are draining your capacity.</p>
+                    </li>
+                    <li>
+                        <h3>Your tools disagree with each other.</h3>
+                        <p>Your CRM, finance, and project tools all hold different versions of the truth. Nothing is connected, nothing is synced.</p>
+                    </li>
+                    <li>
+                        <h3>Growth the back office cannot absorb.</h3>
+                        <p>Revenue is climbing, but the back office runs on workarounds. Scaling feels impossible without more headcount.</p>
+                    </li>
+                </ul>
             </div>
-            <div class="card-grid card-grid--3 reveal-stagger">
-                <div class="problem-card">
-                    <span class="problem-icon">01</span>
-                    <h3>Drowning in manual processes</h3>
-                    <p>Your team spends hours on tasks that should take minutes. Spreadsheets, copy-paste, and manual follow-ups are draining your capacity.</p>
+        </div>
+    </section>
+
+    <!-- ==== ENTRY OFFER ==== -->
+    <section class="section section--cream" id="operations-audit">
+        <div class="container">
+            <div class="offer reveal">
+                <div class="offer-copy">
+                    <span class="label">Where to start</span>
+                    <h2>Start with an Operations Audit.</h2>
+                    <p>A fixed-scope look at how your business runs today. We map how work moves between your people and tools, find where time is being lost, and write down what should change and in what order.</p>
+                    <p>Every engagement starts here, so nothing is priced before it is scoped.</p>
+                    <div class="offer-actions">
+                        <a href="/contact/#book" class="btn btn-primary">Book a Strategy Call</a>
+                        <a href="/how-we-work/" class="text-link">How the audit works</a>
+                    </div>
+                    <p class="offer-note">The call is free and takes 30 minutes. If there is a fit, we propose the audit in writing.</p>
                 </div>
-                <div class="problem-card">
-                    <span class="problem-icon">02</span>
-                    <h3>Systems that don't talk to each other</h3>
-                    <p>Your CRM, finance, and project tools all hold different versions of the truth. Nothing is connected, nothing is synced.</p>
-                </div>
-                <div class="problem-card">
-                    <span class="problem-icon">03</span>
-                    <h3>Growing but operations can't keep up</h3>
-                    <p>Revenue is climbing but your back-office is held together with duct tape. Scaling feels impossible without more headcount.</p>
-                </div>
+                <dl class="offer-spec">
+                    <div><dt>Fee</dt><dd>Fixed scope, fixed fee, quoted after a short call.</dd></div>
+                    <div><dt>Time</dt><dd>Usually a few days to two weeks.</dd></div>
+                    <div><dt>You receive</dt><dd>A written report, a recommended scope, and a fixed price for implementation.</dd></div>
+                    <div><dt>Confidentiality</dt><dd>NDA both ways, signed before the audit starts.</dd></div>
+                    <div><dt>Afterwards</dt><dd>You keep the report, whether or not you continue with us.</dd></div>
+                </dl>
             </div>
         </div>
     </section>
 
     <!-- ==== SERVICES ==== -->
-    <section class="section section--cream">
+    <section class="section section--paper">
         <div class="container">
-            <div class="section-header reveal">
-                <span class="eyebrow">What we do</span>
-                <h2>Three services, one outcome: <em>operations that actually run</em>.</h2>
-                <span class="gold-rule"></span>
+            <div class="services-head reveal">
+                <h2>We work on how the business runs, not only the tools it runs on.</h2>
                 <p class="lead">We help you see how your business runs today, decide how it should run, and make sure the change sticks. Most engagements focus on back-office operations, CRM and workflow design, and management reporting processes. Where automation helps, we use it as a method, not as a product.</p>
             </div>
-            <div class="card-grid card-grid--3 reveal-stagger">
-                <div class="service-card">
+            <div class="reveal">
+                <div class="service-row">
                     <h3>Management &amp; Operations Consulting</h3>
                     <p>Operational audits, process mapping, and a clear redesign of how work moves through your business: sales pipeline, approvals, back office, and management reporting. One source of truth, not five spreadsheets.</p>
-                    <a href="/services/#management-ops">Explore</a>
+                    <a href="/services/#management-ops">Explore<span class="visually-hidden"> Management &amp; Operations Consulting</span></a>
                 </div>
-                <div class="service-card">
+                <div class="service-row">
                     <h3>Strategic Advisory</h3>
                     <p>Roadmaps, priorities, and hands-on guidance for founders and operators. We find where friction is costing you time and money, and show you how to remove it.</p>
-                    <a href="/services/#strategic-advisory">Explore</a>
+                    <a href="/services/#strategic-advisory">Explore<span class="visually-hidden"> Strategic Advisory</span></a>
                 </div>
-                <div class="service-card">
+                <div class="service-row">
                     <h3>Implementation Oversight</h3>
                     <p>We turn the plan into a working reality: a phased implementation plan, coordination with your team and chosen vendors, and automation where it genuinely removes repetitive steps. Training and documentation included.</p>
-                    <a href="/services/#implementation-oversight">Explore</a>
+                    <a href="/services/#implementation-oversight">Explore<span class="visually-hidden"> Implementation Oversight</span></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ==== FEATURED RESULTS ==== -->
+    <!-- ==== CLIENT RESULT + EVIDENCE ==== -->
     <section class="section section--navy">
         <div class="container">
-            <div class="section-header reveal">
-                <span class="eyebrow">What we have delivered</span>
-                <h2>Specific numbers, <em>real businesses</em>.</h2>
-                <span class="gold-rule"></span>
+            <div class="story-head reveal">
+                <span class="label">Client result</span>
+                <h2>A hospitality group with too much finance admin done by hand.</h2>
             </div>
-            <div class="reveal-stagger">
-                <div class="result-item">
-                    <div class="result-stat">90%</div>
-                    <p>Reduction in manual finance admin for a hospitality group. We redesigned how transactions, reconciliation handoffs, and management reports flowed across multiple entities, then oversaw the implementation. Bookkeeping and tax stayed with the group's accountant.</p>
+            <div class="story reveal">
+                <div>
+                    <div class="big-stat">90%</div>
+                    <p class="big-stat-label">less manual finance admin, through process redesign</p>
                 </div>
-                <div class="result-item">
-                    <div class="result-stat">27,715</div>
+                <div class="story-steps">
+                    <div>
+                        <h3>The problem</h3>
+                        <p>Several entities, and a lot of manual finance admin between them: transactions, reconciliation handoffs, and management reports.</p>
+                    </div>
+                    <div>
+                        <h3>What we changed</h3>
+                        <p>We redesigned how transactions, reconciliation handoffs, and management reports flowed across the entities, then oversaw the implementation.</p>
+                    </div>
+                    <div>
+                        <h3>The result</h3>
+                        <p>Manual finance admin fell by 90%. Bookkeeping and tax stayed with the group's accountant.</p>
+                    </div>
+                </div>
+            </div>
+            <h3 class="more-results-title">Other results from client work</h3>
+            <div class="reveal">
+                <div class="result-row">
+                    <div class="result-num">27,715</div>
                     <p>Files organised across 16 cloud drives. A full review of how the team stores and finds information: deduplication, a new structure, and simple rules that keep it clean.</p>
                 </div>
-                <div class="result-item">
-                    <div class="result-stat">15+</div>
+                <div class="result-row">
+                    <div class="result-num">15+</div>
                     <p>Hours reclaimed per week for a growing services business, through process redesign across sales, finance admin, and operations, with automation used where it removed repetitive steps.</p>
                 </div>
-                <div class="result-item">
-                    <div class="result-stat">88</div>
+                <div class="result-row">
+                    <div class="result-num">88</div>
                     <p>Workflows audited on a client's live automation platform and brought under proper change control and error monitoring. Zero downtime during the remediation.</p>
                 </div>
             </div>
@@ -650,27 +748,26 @@
     <section class="section section--cream-deep">
         <div class="container">
             <div class="section-header reveal">
-                <span class="eyebrow">How we work</span>
-                <h2>Three steps to <em>better operations</em>.</h2>
-                <span class="gold-rule"></span>
+                <h2>What happens after you get in touch.</h2>
             </div>
-            <div class="process-grid reveal-stagger">
-                <div class="process-step">
-                    <span class="process-step-number">01</span>
-                    <h3>Tell us about your business</h3>
-                    <p>Book a free strategy call. We listen, ask the right questions, and identify where the biggest gains are hiding.</p>
-                </div>
-                <div class="process-step">
-                    <span class="process-step-number">02</span>
-                    <h3>We design the plan</h3>
-                    <p>We map how the work flows today and design how it should run, with a clear roadmap, a realistic timeline, and transparent fixed pricing. No surprises.</p>
-                </div>
-                <div class="process-step">
-                    <span class="process-step-number">03</span>
-                    <h3>We oversee implementation and hand over</h3>
-                    <p>We coordinate the changes with your team (and your vendors where needed), check everything works in practice, train your people, and hand over documentation. You get operations that run, not a half-finished project.</p>
-                </div>
-            </div>
+            <ol class="timeline reveal">
+                <li>
+                    <h3>Strategy call</h3>
+                    <span class="timeline-meta">30 minutes, free</span>
+                    <p>We listen, ask the right questions, and tell you plainly whether we can help. If there is no fit, we say so.</p>
+                </li>
+                <li>
+                    <h3>Operations Audit</h3>
+                    <span class="timeline-meta">Fixed fee, usually a few days to two weeks</span>
+                    <p>We map how the work flows today and design how it should run, with a clear roadmap, a realistic timeline, and a fixed price for implementation.</p>
+                </li>
+                <li>
+                    <h3>Implementation and handover</h3>
+                    <span class="timeline-meta">Days to months, scoped from the audit</span>
+                    <p>We coordinate the changes with your team (and your vendors where needed), check everything works in practice, train your people, and hand over documentation.</p>
+                </li>
+            </ol>
+            <p class="timeline-after reveal">After handover, an optional monthly care package is available. <a href="/how-we-work/" class="text-link">See how we work</a></p>
         </div>
     </section>
 
@@ -678,9 +775,7 @@
     <section class="section section--paper">
         <div class="container">
             <div class="about-teaser reveal">
-                <span class="eyebrow">Who we are</span>
-                <h2>We believe systems should <em>serve people</em>, not the other way around.</h2>
-                <span class="gold-rule"></span>
+                <h2>We believe systems should serve people, not the other way around.</h2>
                 <p>Grand Vision Perspective was founded with two decades of experience across franchises, startups, corporates, hospitality, construction, and conscious projects around the world. In every environment, the same pattern kept showing up: broken systems putting unnecessary pressure on good people. We exist to fix that.</p>
                 <p>Based in Bali and registered in Indonesia, working with businesses across Indonesia, Asia, and internationally.</p>
                 <div style="margin-top: 28px;">
@@ -691,22 +786,20 @@
     </section>
 
     <!-- ==== TESTIMONIALS ==== -->
-    <section class="section section--cream-deep">
+    <section class="section section--cream">
         <div class="container">
-            <div class="section-header section-header--center reveal">
-                <span class="eyebrow">Client voices</span>
-                <h2>What our <em>clients say</em>.</h2>
-                <span class="gold-rule gold-rule--center"></span>
+            <h2 class="reveal">What clients say.</h2>
+            <div class="quotes reveal">
+                <figure class="quote">
+                    <blockquote><p>&ldquo;They came in, looked at our entire operation, and within weeks everything just worked. Invoicing, reporting, client tracking, all automatic. My team went from firefighting every day to actually enjoying their jobs. I genuinely did not think it was possible to change that fast.&rdquo;</p></blockquote>
+                    <figcaption><strong>James</strong>, Managing Director, Hospitality Group</figcaption>
+                </figure>
+                <figure class="quote">
+                    <blockquote><p>&ldquo;Three companies, three sets of books, three different stories every Monday. Now I open one dashboard and I know exactly where each entity stands. The first time my finance team handed me a consolidated P and L without two weeks of compilation, I actually paused. I hadn't seen the business that clearly in years.&rdquo;</p></blockquote>
+                    <figcaption><strong>Bayu</strong>, Co-founder, hospitality and F&amp;B group, Jakarta</figcaption>
+                </figure>
             </div>
-            <div class="testimonial reveal">
-                <p class="testimonial-quote">They came in, looked at our entire operation, and within weeks everything just worked. Invoicing, reporting, client tracking, all automatic. My team went from firefighting every day to actually enjoying their jobs. I genuinely did not think it was possible to change that fast.</p>
-                <p class="testimonial-attribution">James &middot; Managing Director, Hospitality Group</p>
-            </div>
-            <div class="testimonial reveal" style="margin-top: 40px;">
-                <p class="testimonial-quote">Three companies, three sets of books, three different stories every Monday. Now I open one dashboard and I know exactly where each entity stands. The first time my finance team handed me a consolidated P and L without two weeks of compilation, I actually paused. I hadn't seen the business that clearly in years.</p>
-                <p class="testimonial-attribution">Bayu &middot; Co-founder, hospitality and F&amp;B group, Jakarta</p>
-            </div>
-            <p class="lead" style="max-width: 640px; margin: 36px auto 0; text-align: center; font-size: 15px; color: var(--ink-muted, #5a5a5a);">GVP advises on operations and process design. Bookkeeping and tax are handled by each client's own accountant.</p>
+            <p class="quotes-caption">GVP advises on operations and process design. Bookkeeping and tax are handled by each client's own accountant.</p>
         </div>
     </section>
 
@@ -714,11 +807,11 @@
     <section class="section section--deep">
         <div class="container">
             <div class="final-cta reveal">
-                <h2>Ready to make your operations <em>easier to run</em>?</h2>
+                <h2>Ready to make your operations easier to run?</h2>
                 <p class="lead" style="max-width: 560px;">Book a free strategy call. Thirty minutes, no pitch deck, just a real conversation about what is broken and what it would take to fix it.</p>
                 <div class="final-cta-actions">
                     <a href="/contact/#book" class="btn btn-primary">Book a Strategy Call</a>
-                    <a href="/services/" class="btn btn-ghost-light">Explore services</a>
+                    <a href="#operations-audit" class="btn btn-ghost-light">About the Operations Audit</a>
                 </div>
                 <p class="final-cta-email">Or email <a href="mailto:connect@grandvisionperspective.com">connect@grandvisionperspective.com</a></p>
             </div>

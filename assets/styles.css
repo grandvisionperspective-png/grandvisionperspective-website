@@ -204,6 +204,10 @@ ul, ol {
     /* Cinematic shadows (deep, multi-layer) */
     --shadow-deep: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
     --shadow-cinematic: 0 30px 60px -12px rgba(0, 0, 0, 0.45), 0 12px 24px -8px rgba(0, 0, 0, 0.3);
+
+    /* Fine drafting grid for dark surfaces (replaces most radial glows). */
+    --grid-fine-x: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    --grid-fine-y: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
 
@@ -283,25 +287,30 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Brand signature: italic-gold emphasis inside display contexts.
    Per docs/brand/03-visual-system.md, italic Fraunces in Gold (or
-   Gold Hi on dark surfaces) is the locked GVP visual signature. */
+   Gold Hi on dark surfaces) is the locked GVP visual signature.
+   De-template pass (Oct 2026): the gold accent is reserved for H1 / hero
+   so it lands once per page. Emphasis in H2, H3 and leads stays italic
+   but takes the surrounding text colour. */
 h1 em, h2 em, h3 em, .hero em, .lead em, .display em {
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 400;
+    color: inherit;
+}
+
+h1 em, .hero h1 em, .display em {
     color: var(--gold);
 }
 
 /* Dark surfaces use Gold Hi for stronger contrast against Navy */
-.section--navy h1 em, .section--navy h2 em, .section--navy h3 em,
-.section--deep h1 em, .section--deep h2 em, .section--deep h3 em,
-.hero h1 em, .hero h2 em, .media-hero h1 em {
+.section--navy h1 em, .section--deep h1 em,
+.hero h1 em, .media-hero h1 em {
     color: var(--gold-hi);
 }
 
-/* Gentle gold-glow pulse on hero italic accents (signature motion). */
-.hero h1 em, .media-hero h1 em {
-    animation: gold-glow 4s ease-in-out infinite;
-}
+/* The pulsing gold glow on hero accents was retired in the de-template
+   pass: a static accent reads as considered, a glowing one as generated.
+   Keyframes kept so any page that still references them does not break. */
 
 /* Wave 16 amp: italic-gold accents now carry a permanent soft halo
    plus a stronger midpoint flare. The brand signature lands harder. */
@@ -310,11 +319,6 @@ h1 em, h2 em, h3 em, .hero em, .lead em, .display em {
     50%      { text-shadow: 0 0 36px rgba(224, 192, 106, 0.65), 0 0 88px rgba(224, 192, 106, 0.28); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .hero h1 em, .media-hero h1 em {
-        animation: none;
-    }
-}
 
 /* H1: editorial display level. Opsz 96 pulls Fraunces toward its display
    cut for sharper editorial weight. Letterspacing locked tight. */
@@ -364,9 +368,9 @@ p {
     max-width: 680px;
 }
 
-/* Eyebrow: caption-scale caps with a hairline rule prefix.
-   The hairline (via ::before) is the canvas-spec editorial signature.
-   For places where the leading rule is unwanted, use .eyebrow--bare. */
+/* Eyebrow: caption-scale caps. The leading hairline rule is now opt-in
+   (.eyebrow--rule) because repeating it above every heading was one of
+   the template tells. .eyebrow--bare is kept for backwards compatibility. */
 .eyebrow {
     display: inline-flex;
     align-items: center;
@@ -383,7 +387,7 @@ p {
     line-height: 1.4;
 }
 
-.eyebrow::before {
+.eyebrow--rule::before {
     content: '';
     display: inline-block;
     flex-shrink: 0;
@@ -419,12 +423,14 @@ p {
    marketing rhythm (48 x 3 gold bar). --hair variant is the canvas-spec
    editorial hairline for cinematic moments. */
 .gold-rule {
+    /* De-template pass: the short gold underline under every heading is
+       retired. The element stays as an invisible spacer so existing
+       section headers keep their vertical rhythm. */
     display: block;
     width: 48px;
-    height: 3px;
-    background: var(--gold);
-    border-radius: 2px;
-    margin: 0 0 28px;
+    height: 0;
+    background: none;
+    margin: 0 0 20px;
 }
 
 .gold-rule--center {
@@ -434,6 +440,7 @@ p {
 .gold-rule--hair {
     width: 80px;
     height: 1px;
+    margin-bottom: 28px;
     background: var(--gold);
     border-radius: 0;
     opacity: 0.6;
@@ -790,8 +797,9 @@ p {
 
 .hero--dark {
     background:
-        radial-gradient(ellipse 60% 50% at 50% 30%, rgba(201, 168, 76, 0.12) 0%, transparent 60%),
-        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(91, 122, 140, 0.10) 0%, transparent 50%),
+        var(--grid-fine-y) 0 0 / 40px 40px,
+        var(--grid-fine-x) 0 0 / 40px 40px,
+        radial-gradient(ellipse 60% 50% at 50% 30%, rgba(201, 168, 76, 0.05) 0%, transparent 60%),
         linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, #1f1f33 100%);
     color: var(--white);
 }
@@ -805,9 +813,8 @@ p {
     height: 720px;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.18) 0%, transparent 60%);
+    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.06) 0%, transparent 60%);
     filter: blur(40px);
-    animation: ambient-pulse 6s ease-in-out infinite;
     z-index: 0;
 }
 
@@ -839,9 +846,8 @@ p {
     height: 720px;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.14) 0%, transparent 60%);
+    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.06) 0%, transparent 60%);
     filter: blur(50px);
-    animation: ambient-pulse 6s ease-in-out infinite;
     z-index: 0;
 }
 
@@ -858,7 +864,7 @@ p {
 
 .hero--cream {
     background:
-        radial-gradient(ellipse 60% 50% at 100% 0%, rgba(201, 168, 76, 0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 50% at 100% 0%, rgba(201, 168, 76, 0.05) 0%, transparent 55%),
         radial-gradient(ellipse 70% 50% at 0% 100%, rgba(235, 231, 220, 0.45) 0%, transparent 50%),
         linear-gradient(180deg, var(--cream) 0%, var(--paper) 100%);
     color: var(--ink-heading);
@@ -871,7 +877,7 @@ p {
     right: -10%;
     width: 70%;
     height: 130%;
-    background: radial-gradient(ellipse at top right, rgba(201, 168, 76, 0.12) 0%, transparent 55%);
+    background: radial-gradient(ellipse at top right, rgba(201, 168, 76, 0.05) 0%, transparent 55%);
     pointer-events: none;
     z-index: 0;
 }
@@ -1012,7 +1018,7 @@ p {
    reads as distinct surfaces, not a continuous beige wash. */
 .section--cream {
     background:
-        radial-gradient(ellipse 70% 50% at 100% 30%, rgba(201, 168, 76, 0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 100% 30%, rgba(201, 168, 76, 0.04) 0%, transparent 55%),
         radial-gradient(ellipse 60% 60% at 0% 100%, rgba(235, 231, 220, 0.5) 0%, transparent 55%),
         var(--cream);
 }
@@ -1033,9 +1039,9 @@ p {
    gold + slate radials for the magic the canvases promised. */
 .section--navy {
     background:
-        radial-gradient(ellipse 60% 50% at 20% 30%, rgba(201, 168, 76, 0.16) 0%, transparent 60%),
-        radial-gradient(ellipse 70% 60% at 80% 70%, rgba(91, 122, 140, 0.18) 0%, transparent 60%),
-        radial-gradient(ellipse 100% 100% at 50% 50%, transparent 50%, rgba(13, 13, 26, 0.35) 100%),
+        var(--grid-fine-y) 0 0 / 40px 40px,
+        var(--grid-fine-x) 0 0 / 40px 40px,
+        radial-gradient(ellipse 70% 60% at 80% 70%, rgba(91, 122, 140, 0.08) 0%, transparent 60%),
         linear-gradient(180deg, var(--navy) 0%, #1f1f33 100%);
     color: rgba(255, 255, 255, 0.85);
     overflow: hidden;
@@ -1058,9 +1064,9 @@ p {
    content density (headline + lead + buttons) earns the section height. */
 .section--deep {
     background:
-        radial-gradient(ellipse 70% 80% at 50% 50%, rgba(201, 168, 76, 0.22) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 0% 0%, rgba(91, 122, 140, 0.16) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 100% 100%, rgba(201, 168, 76, 0.12) 0%, transparent 55%),
+        var(--grid-fine-y) 0 0 / 40px 40px,
+        var(--grid-fine-x) 0 0 / 40px 40px,
+        radial-gradient(ellipse 70% 80% at 50% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 60%),
         linear-gradient(180deg, #15151c 0%, var(--navy-deep) 50%, var(--navy) 100%);
     color: rgba(255, 255, 255, 0.85);
     overflow: hidden;
@@ -1077,10 +1083,9 @@ p {
     width: 700px;
     height: 700px;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.16) 0%, transparent 60%);
+    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
     filter: blur(60px);
     pointer-events: none;
-    animation: ambient-pulse 8s ease-in-out infinite;
     z-index: 0;
 }
 
@@ -1256,6 +1261,7 @@ p {
     letter-spacing: -0.025em;
     margin-bottom: 8px;
     font-variation-settings: "opsz" 96;
+    font-variant-numeric: lining-nums;
 }
 
 .section--navy .stat-number,
@@ -1574,9 +1580,7 @@ p {
     position: relative;
     border-top: 1px solid rgba(201, 168, 76, 0.28);
     background:
-        radial-gradient(ellipse 70% 80% at 50% 0%, rgba(201, 168, 76, 0.28) 0%, transparent 65%),
-        radial-gradient(ellipse 80% 60% at 100% 100%, rgba(91, 122, 140, 0.14) 0%, transparent 50%),
-        radial-gradient(ellipse 40% 40% at 0% 50%, rgba(201, 168, 76, 0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 80% at 50% 0%, rgba(201, 168, 76, 0.07) 0%, transparent 65%),
         linear-gradient(180deg, var(--navy-deep) 0%, #08080b 100%);
     padding: 64px 0 48px;
     color: var(--ink-subtle);
@@ -1603,11 +1607,10 @@ p {
     width: 800px;
     height: 400px;
     transform: translateX(-50%);
-    background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.22) 0%, transparent 65%);
+    background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.06) 0%, transparent 65%);
     filter: blur(30px);
     pointer-events: none;
     z-index: 0;
-    animation: ambient-pulse-slow 10s ease-in-out infinite;
 }
 
 @keyframes ambient-pulse-slow {
@@ -1740,9 +1743,8 @@ p {
     width: 820px;
     height: 820px;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.32) 0%, rgba(201, 168, 76, 0.08) 35%, transparent 65%);
+    background: radial-gradient(circle at center, rgba(201, 168, 76, 0.08) 0%, rgba(201, 168, 76, 0.02) 35%, transparent 65%);
     filter: blur(50px);
-    animation: ambient-pulse 6s ease-in-out infinite;
     mix-blend-mode: normal;
 }
 
@@ -1755,10 +1757,8 @@ p {
     top: 18%;
     width: 580px;
     height: 580px;
-    background: radial-gradient(circle at center, rgba(91, 122, 140, 0.22) 0%, transparent 60%);
+    background: radial-gradient(circle at center, rgba(91, 122, 140, 0.08) 0%, transparent 60%);
     filter: blur(60px);
-    animation: ambient-pulse 8s ease-in-out infinite;
-    animation-delay: 1.5s;
     mix-blend-mode: normal;
     pointer-events: none;
 }
