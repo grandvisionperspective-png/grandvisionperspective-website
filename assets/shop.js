@@ -191,6 +191,9 @@
         if (pageLang({}).indexOf('id') === 0 && rule.offerTextId) return rule.offerTextId;
         return rule.offerText || rule.label;
     };
+    // Note and opt-in copy also follow the page language (Bahasa text only where the config has it).
+    const noteText = (n) => (pageLang({}).indexOf('id') === 0 && n.textId) || n.text;
+    const optInText = (x) => (pageLang({}).indexOf('id') === 0 && x.optInLabelId) || x.optInLabel || x.label;
     // Fill an offer box: plain text plus an optional "Conditions apply." link to the terms.
     const fillOffer = (n, rule) => {
         const isId = pageLang({}).indexOf('id') === 0;
@@ -243,7 +246,7 @@
         $$('[data-shop-note]').forEach((n) => {
             const note = notes(cfg).find((x) => x.id === n.getAttribute('data-shop-note'));
             const ok = f.pricesPublished && note && note.enabled && note.text;
-            if (ok) n.textContent = note.text;
+            if (ok) n.textContent = noteText(note);
             show(n, !!ok);
         });
 
@@ -280,7 +283,7 @@
                 p.includes.forEach((i) => ul.appendChild(el('li', {}, i)));
                 body.appendChild(ul);
             }
-            if (f.pricesPublished) notes(cfg).filter((n) => n.enabled && n.inCatalogue !== false && (n.appliesTo || []).includes(p.id)).forEach((n) => body.appendChild(el('p', { class: 'product-note' }, n.text)));
+            if (f.pricesPublished) notes(cfg).filter((n) => n.enabled && n.inCatalogue !== false && (n.appliesTo || []).includes(p.id)).forEach((n) => body.appendChild(el('p', { class: 'product-note' }, noteText(n))));
             if (f.pricesPublished) rules(cfg).filter((r) => ruleLive(r) && Array.isArray(r.appliesTo) && r.appliesTo[0] === p.id && r.offerText).forEach((r) => body.appendChild(fillOffer(el('p', { class: 'sheet-offer' }), r)));
             row.appendChild(body);
             const act = el('div', { class: 'product-actions' });
@@ -369,13 +372,13 @@
                 if (cb.checked) cart.optIns.push(x.when.optIn);
                 saveCart(cart); rerender();
             });
-            lab.append(cb, el('span', {}, x.optInLabel || x.label));
+            lab.append(cb, el('span', {}, optInText(x)));
             optWrap.appendChild(lab);
         });
         // Information notes (credits) for products in the order.
         const noteWrap = $('[data-cart-notes]', root);
         noteWrap.textContent = '';
-        notes(cfg).filter((n) => n.enabled && (n.appliesTo || []).some((id) => r.lines.some((l) => l.id === id))).forEach((n) => noteWrap.appendChild(el('p', { class: 'sheet-note' }, n.text)));
+        notes(cfg).filter((n) => n.enabled && (n.appliesTo || []).some((id) => r.lines.some((l) => l.id === id))).forEach((n) => noteWrap.appendChild(el('p', { class: 'sheet-note' }, noteText(n))));
 
         const planWrap = $('[data-cart-plan]', root);
         show(planWrap, r.hasMonthly);
