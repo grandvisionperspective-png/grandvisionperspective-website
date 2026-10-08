@@ -35,6 +35,7 @@
     <link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/assets/fonts/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/styles.css">
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "7c1879c5815d4bb7b19ee52ce183f9ce"}'></script>
     <style>
         .shop-hero { padding: 64px 0 56px; }
         .shop-hero h1 { font-size: clamp(34px, 4.6vw, 52px); line-height: 1.08; letter-spacing: -0.02em; font-weight: 500; margin-bottom: 16px; }
@@ -184,7 +185,9 @@
                                 <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" value="">
                                 <div><label for="o-name">Your name</label><input id="o-name" type="text" name="name" autocomplete="name" required></div>
                                 <div><label for="o-email">Email</label><input id="o-email" type="email" name="email" autocomplete="email" required></div>
-                                <div><label for="o-company">Company name</label><input id="o-company" type="text" name="company" autocomplete="organization" required></div>
+                                <div><label for="o-company">Legal or company name</label><input id="o-company" type="text" name="legal_name" autocomplete="organization" required></div>
+                                <div><label for="o-address">Billing address</label><textarea id="o-address" name="billing_address" autocomplete="street-address" rows="3" required></textarea></div>
+                                <div><label for="o-tax">Tax ID (optional; NPWP for Indonesian companies)</label><input id="o-tax" type="text" name="tax_id" autocomplete="off"></div>
                                 <div><label for="o-notes">Anything we should know? (optional)</label><textarea id="o-notes" name="notes"></textarea></div>
                                 <p class="cart-final" data-cart-final></p>
                                 <p class="sheet-note" data-cart-terms></p>

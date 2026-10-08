@@ -2251,3 +2251,15 @@ p {
 .cart-options label.optin { align-items: flex-start; font-size: 14px; }
 .cart-options label.optin input { margin-top: 4px; }
 .cart-options select { margin-top: 2px; }
+
+/* Light cards inside dark sections keep dark text and links. */
+.sheet .text-link,
+.hero--grid .sheet .text-link,
+.section--navy .sheet .text-link,
+.section--deep .sheet .text-link { color: var(--ink-heading); }
+.sheet .text-link:hover { color: var(--gold-hover); }
+.sheet .label,
+.hero--grid .sheet .label { color: var(--ink-muted); }
+
+/* Keep the plus sign upright: the italic Fraunces "+" reads as a slash. */
+.team-stat__number em { font-style: normal; }
