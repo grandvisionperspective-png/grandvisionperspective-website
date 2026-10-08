@@ -52,3 +52,7 @@ Pairings for legible text: Gold on Navy, Navy on Paper, Navy on Cream, Navy on G
 ## Copy
 
 British English. No em or en dashes. No invented facts, numbers, clients or quotes. Testimonials are quoted as published.
+
+## Prices: IDR only
+
+Bank Indonesia bans dual quotation (PBI 17/3/2015 art. 11, SEBI 17/11/DKSP part II). Every public page, file and structured-data block shows prices in Indonesian rupiah only, formatted Rp45.000.000. No prices in any other currency, no currency pairs, no currency toggles or converters, and no approximate foreign-currency notes. Clients outside Indonesia may ask for a quote in their own currency, confirmed on the invoice, never on the site.

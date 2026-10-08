@@ -27,7 +27,8 @@
     const buyable = (id) => {
         if (!shop || !shop.flags || !shop.flags.pricesPublished || !shop.flags.cartEnabled) return false;
         const p = (shop.products || []).find((x) => x.id === id && x.enabled !== false);
-        return !!(p && p.inCart && p.prices && typeof p.prices.USD === 'number');
+        const cur = (shop.currencies && shop.currencies.default) || 'IDR';
+        return !!(p && p.inCart && p.prices && typeof p.prices[cur] === 'number');
     };
 
     // Progress

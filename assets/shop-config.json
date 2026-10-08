@@ -1,24 +1,21 @@
 {
-    "_readme": "Single source of truth for the shop. Values from GVP-PRICE-01 (Researcher, 8 Oct 2026), adopted by the team. Launch defaults approved by Barrie on 8 Oct 2026: prices and cart ON for non-Indonesian buyers; IDR checkout OFF until the Bahasa terms are reviewed (Indonesian buyers are sent to book a call or request a quote). Products, prices (USD and IDR), display mode, discount rules and notes can all change here without touching code. No standalone digital-product SKUs: digital materials may only appear as included items inside a package. No was-prices, no countdowns. Schema is documented in the conversion-pass-2 brief.",
+    "_readme": "Single source of truth for the shop. Values from GVP-PRICE-01 (Researcher, 8 Oct 2026), IDR column, adopted by the team. IDR ONLY: Bank Indonesia bans dual quotation (PBI 17/3/2015 art. 11, SEBI 17/11/DKSP), so no other currency may be shown, stored for display or toggled on public pages. Launch defaults approved by Barrie on 8 Oct 2026: prices and cart ON for clients outside Indonesia; clients based in Indonesia are confirmed offline with bilingual engagement terms until the Indonesian terms are published. No standalone digital-product SKUs: digital materials may only appear as included items inside a package. No was-prices, no countdowns. Schema is documented in the conversion-pass-2 brief.",
     "flags": {
         "pricesPublished": true,
         "cartEnabled": true,
-        "idrCheckoutReady": false,
+        "indonesiaCheckoutReady": false,
         "priceMode": "exact",
-        "_note": "idrCheckoutReady stays false until /id/terms/ has passed Bahasa review. While false, buyers who choose Indonesia see IDR prices but are sent to book a call or request a quote instead of the order form."
+        "_note": "indonesiaCheckoutReady stays false until the Indonesian terms (/id/terms/) are reviewed and published. While false, buyers based in Indonesia see the same IDR prices but are asked to book a call or request a quote, and their order is confirmed offline with bilingual engagement terms."
     },
     "currencies": {
-        "default": "USD",
-        "secondary": "IDR",
-        "secondaryNote": "IDR shown at a fixed rate. Invoices are issued in IDR and show the rate used.",
+        "default": "IDR",
         "labels": {
-            "USD": "US$",
             "IDR": "Rp"
         },
         "decimals": {
-            "USD": 0,
             "IDR": 0
-        }
+        },
+        "_note": "IDR only. Format: Rp45.000.000 (id-ID grouping). Do not add a second currency."
     },
     "fitCall": {
         "label": "Not sure? Book a fit call",
@@ -29,7 +26,7 @@
         "invoiceFrom": "PT Grand Vision Perspective",
         "invoiceCurrency": "IDR",
         "confirmationText": "We'll send an invoice from PT Grand Vision Perspective with payment details within 24 hours.",
-        "_note": "Launch payment: invoice from PT Grand Vision Perspective, paid by bank transfer in IDR to the company's Indonesian account. USD prices are for display only. Never name the bank on the site. No VAT/PPN line (non-PKP).",
+        "_note": "Launch payment: invoice from PT Grand Vision Perspective in IDR, paid by bank transfer to the company's Indonesian account. Never name the bank on the site. No VAT/PPN line (non-PKP). Clients outside Indonesia may ask for a quote in their own currency, confirmed on the invoice (offline, never on the site).",
         "gateway": {
             "enabled": false,
             "provider": "xendit",
@@ -62,7 +59,6 @@
             "unit": "audit",
             "unitPlural": "audits",
             "prices": {
-                "USD": 2500,
                 "IDR": 45000000
             },
             "priceMode": "exact",
@@ -91,7 +87,6 @@
             "unit": "audit",
             "unitPlural": "audits",
             "prices": {
-                "USD": 950,
                 "IDR": 17000000
             },
             "priceMode": "exact",
@@ -118,7 +113,6 @@
             "unit": "block",
             "unitPlural": "blocks",
             "prices": {
-                "USD": 2000,
                 "IDR": 36000000
             },
             "priceMode": "exact",
@@ -142,7 +136,6 @@
             "unit": "project",
             "unitPlural": "projects",
             "prices": {
-                "USD": 3500,
                 "IDR": 63000000
             },
             "priceMode": "from",
@@ -177,7 +170,6 @@
             "unit": "month",
             "unitPlural": "months",
             "prices": {
-                "USD": 2500,
                 "IDR": 45000000
             },
             "priceMode": "exact",
@@ -264,7 +256,7 @@
                 "appliesTo": [
                     "operations-audit"
                 ],
-                "text": "Go ahead with an Implementation Oversight project of US$5,000 or more within 30 days of receiving your report and the full audit fee is credited against it. You keep the report either way. The credit does not combine with other offers."
+                "text": "Go ahead with an Implementation Oversight project of Rp90.000.000 or more within 30 days of receiving your report and the full audit fee is credited against it. You keep the report either way. The credit does not combine with other offers."
             },
             {
                 "id": "focus-credit",
@@ -292,15 +284,16 @@
             {
                 "code": "ID",
                 "name": "Indonesia",
-                "currency": "IDR"
+                "offlineConfirmation": true
             },
             {
                 "code": "OTHER",
                 "name": "Another country",
-                "currency": "USD"
+                "offlineConfirmation": false
             }
         ],
-        "_note": "Indonesian buyers see IDR prices. Everyone else sees USD with the IDR reference. All invoices are issued in IDR."
+        "offlineText": "Orders from businesses based in Indonesia are confirmed offline with bilingual engagement terms. Book a call or request a quote and we will send them to you.",
+        "_note": "Country no longer changes the currency (IDR only). It only decides whether the order is confirmed offline (Indonesia, until indonesiaCheckoutReady) or sent as an online order request."
     },
     "legal": {
         "termsUrl": "/terms/",

@@ -13,8 +13,7 @@
     /* ---------- Pure engine (also exported for tests) ---------- */
 
     const byId = (cfg, id) => (cfg.products || []).find((p) => p.id === id && p.enabled !== false);
-    const baseCur = (cfg) => (cfg.currencies && cfg.currencies.default) || 'USD';
-    const secCur = (cfg) => (cfg.currencies && cfg.currencies.secondary) || null;
+    const baseCur = (cfg) => (cfg.currencies && cfg.currencies.default) || 'IDR';
     const priceMode = (cfg, p) => p.priceMode || (cfg.flags && cfg.flags.priceMode) || 'exact';
     const unitPrice = (p, cur) => {
         const v = p && p.prices ? p.prices[cur] : null;
@@ -114,28 +113,27 @@
         return { currency: cur, plan: cart.plan || 'instalments', lines, subtotal, discounts, discountTotal: roundTo(cfg, cur, discountTotal), total: roundTo(cfg, cur, subtotal - discountTotal), hasMonthly: lines.some((l) => l.monthly && l.qty > 1) };
     };
 
-    const summaryText = (cfg, r, r2, ref, country) => {
-        const sec = (fn) => (r2 ? ' (' + fn(r2) + ')' : '');
-        const inv = (cfg.payment && cfg.payment.invoiceCurrency) || r.currency;
-        const out = ['Order reference: ' + ref, 'Buyer country: ' + (country || 'Not chosen'), 'Prices shown in: ' + r.currency, 'Invoice currency: ' + inv, ''];
-        r.lines.forEach((l, i) => out.push(l.name + ' x ' + l.qty + ' ' + l.unit + ' = ' + format(cfg, r.currency, l.lineTotal) + sec((x) => format(cfg, x.currency, x.lines[i].lineTotal))));
-        out.push('', 'Subtotal: ' + format(cfg, r.currency, r.subtotal) + sec((x) => format(cfg, x.currency, x.subtotal)));
-        r.discounts.forEach((d, i) => out.push(d.label + ': -' + format(cfg, r.currency, Math.abs(d.amount)) + sec((x) => format(cfg, x.currency, Math.abs((x.discounts[i] || { amount: 0 }).amount)))));
-        out.push('Total: ' + format(cfg, r.currency, r.total) + sec((x) => format(cfg, x.currency, x.total)));
-        if (r2 && cfg.currencies.secondaryNote) out.push(cfg.currencies.secondaryNote);
+    const summaryText = (cfg, r, ref, country) => {
+        const out = ['Order reference: ' + ref, 'Buyer country: ' + (country || 'Not chosen'), 'Currency: ' + r.currency, ''];
+        r.lines.forEach((l, i) => out.push(l.name + ' x ' + l.qty + ' ' + l.unit + ' = ' + format(cfg, r.currency, l.lineTotal) ));
+        out.push('', 'Subtotal: ' + format(cfg, r.currency, r.subtotal) );
+        r.discounts.forEach((d, i) => out.push(d.label + ': -' + format(cfg, r.currency, Math.abs(d.amount)) ));
+        out.push('Total: ' + format(cfg, r.currency, r.total) );
         try { const sc = JSON.parse(localStorage.getItem('gvp-scorecard-v1')); if (sc && typeof sc.score === 'number') out.push('', 'Operations Health Scorecard: ' + sc.score + ' / 100, weakest area: ' + sc.weakest); } catch (e) { /* ignore */ }
         if (r.hasMonthly) out.push('Payment plan: ' + (r.plan === 'full' ? 'pay all months up front' : 'monthly'));
         return out.join('\n');
     };
 
-    // Indonesian buyers are priced and pay in IDR; everyone else pays in the
-    // base currency (USD) with the secondary (IDR) shown as a reference.
-    const buyerCurrency = (cfg, cart) => {
+    // Prices are shown in one currency only (IDR; Bank Indonesia bans dual
+    // quotation). The buyer's country never changes the currency. It only
+    // decides whether the order is confirmed offline (see buyerOffline).
+    const buyerCurrency = (cfg) => baseCur(cfg);
+    const buyerOffline = (cfg, cart) => {
         const c = ((cfg.buyer && cfg.buyer.countries) || []).find((x) => x.code === cart.country);
-        return (c && c.currency) || baseCur(cfg);
+        return !!(c && c.offlineConfirmation && !(cfg.flags && cfg.flags.indonesiaCheckoutReady));
     };
 
-    const engine = { buyerCurrency, compute, format, isBuyable, priceMode, unitPrice, summaryText, byId, ruleLive };
+    const engine = { buyerCurrency, buyerOffline, compute, format, isBuyable, priceMode, unitPrice, summaryText, byId, ruleLive };
     if (typeof module !== 'undefined' && module.exports) { module.exports = engine; return; }
     window.GVPShop = engine;
 
@@ -162,17 +160,12 @@
     const saveCart = (cart) => { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) { /* storage off */ } };
     const cartCount = (cart) => Object.keys(cart.items).filter((k) => cart.items[k] > 0).length;
 
-    const priceLabel = (cfg, p, cart) => {
-        const from = priceMode(cfg, p) === 'from' ? 'From ' : '';
-        if (cart && buyerCurrency(cfg, cart) !== baseCur(cfg)) {
-            const vb = unitPrice(p, buyerCurrency(cfg, cart));
-            if (vb !== null) return from + format(cfg, buyerCurrency(cfg, cart), vb) + (p.monthly ? ' per ' + p.unit : '');
-        }
+    const priceLabel = (cfg, p) => {
         const v = unitPrice(p, baseCur(cfg));
         if (v === null) return null;
-        const s = secCur(cfg) && unitPrice(p, secCur(cfg)) !== null ? ' (' + format(cfg, secCur(cfg), unitPrice(p, secCur(cfg))) + ')' : '';
-        return from + format(cfg, baseCur(cfg), v) + (p.monthly ? ' per ' + p.unit : '') + s;
+        return (priceMode(cfg, p) === 'from' ? 'From ' : '') + format(cfg, baseCur(cfg), v) + (p.monthly ? ' per ' + p.unit : '');
     };
+
 
     const offerText = (rule) => {
         let t = rule.offerText || rule.label;
@@ -197,12 +190,6 @@
             const label = f.pricesPublished && p ? priceLabel(cfg, p, cart) : null;
             if (label) { n.textContent = label; show(n, true); } else { show(n, false); }
         });
-        $$('[data-secondary-note]').forEach((n) => {
-            const on = f.pricesPublished && secCur(cfg) && cfg.currencies.secondaryNote;
-            if (on) n.textContent = cfg.currencies.secondaryNote;
-            show(n, !!on);
-        });
-
         // Direct pay button: only without the cart, with an exact price, an
         // enabled company payment link, and while no opt-in offer could change the amount.
         $$('[data-buy-direct]').forEach((n) => {
@@ -294,16 +281,13 @@
 
     /* ----- /shop/ cart + order request ----- */
     const renderCart = (cfg, cart, root, rerender) => {
-        const cur = buyerCurrency(cfg, cart);
+        const cur = buyerCurrency(cfg);
         const r = compute(cfg, cart, cur);
-        const r2 = cur === baseCur(cfg) && secCur(cfg) ? compute(cfg, cart, secCur(cfg)) : null;
-        const usable2 = r2 && r2.lines.length === r.lines.length ? r2 : null;
-        const idrBlocked = cur !== baseCur(cfg) && !(cfg.flags && cfg.flags.idrCheckoutReady);
+        const offline = buyerOffline(cfg, cart);
         const list = $('[data-cart-lines]', root);
         list.textContent = '';
         show($('[data-cart-empty]', root), !r.lines.length);
         show($('[data-cart-filled]', root), !!r.lines.length);
-        const sec = (v) => (usable2 ? el('span', { class: 'cart-sec' }, format(cfg, usable2.currency, v)) : null);
 
         r.lines.forEach((l, i) => {
             const p = byId(cfg, l.id);
@@ -325,7 +309,6 @@
             }
             li.appendChild(qty);
             const tot = el('span', { class: 'cart-line-total' }, format(cfg, r.currency, l.lineTotal));
-            if (usable2) tot.appendChild(sec(usable2.lines[i].lineTotal));
             li.appendChild(tot);
             const rm = el('button', { type: 'button', class: 'cart-remove' }, 'Remove');
             rm.addEventListener('click', () => { delete cart.items[l.id]; saveCart(cart); rerender(); });
@@ -335,18 +318,15 @@
 
         const sums = $('[data-cart-sums]', root);
         sums.textContent = '';
-        const addSum = (label, value, value2, cls) => {
+        const addSum = (label, value, cls) => {
             const d = el('div', { class: cls || '' });
             const dd = el('dd', {}, value);
-            if (value2 !== null && value2 !== undefined && usable2) dd.appendChild(sec(value2));
             d.append(el('dt', {}, label), dd);
             sums.appendChild(d);
         };
-        addSum('Subtotal', format(cfg, r.currency, r.subtotal), usable2 && usable2.subtotal, '');
-        r.discounts.forEach((d, i) => addSum(d.label, '\u2212' + format(cfg, r.currency, Math.abs(d.amount)), usable2 && usable2.discounts[i] ? Math.abs(usable2.discounts[i].amount) : null, 'is-discount'));
-        addSum('Total', format(cfg, r.currency, r.total), usable2 && usable2.total, 'is-total');
-        const fx = $('[data-cart-fx]', root);
-        if (fx) { show(fx, !!(usable2 && cfg.currencies.secondaryNote)); fx.textContent = cfg.currencies.secondaryNote || ''; }
+        addSum('Subtotal', format(cfg, r.currency, r.subtotal), '');
+        r.discounts.forEach((d) => addSum(d.label, '\u2212' + format(cfg, r.currency, Math.abs(d.amount)), 'is-discount'));
+        addSum('Total', format(cfg, r.currency, r.total), 'is-total');
 
         // Opt-in offers (founding client) for products in the order.
         const optWrap = $('[data-cart-optins]', root);
@@ -386,29 +366,31 @@
             countrySel.value = cart.country || '';
             countrySel.onchange = () => { cart.country = countrySel.value; saveCart(cart); rerender(); };
         }
-        $('[name="currency"]', root).value = cur + ' shown; invoice in ' + ((cfg.payment && cfg.payment.invoiceCurrency) || cur);
+        $('[name="currency"]', root).value = cur;
         const c = ((cfg.buyer && cfg.buyer.countries) || []).find((x) => x.code === cart.country);
         $('[name="buyer_country_name"]', root).value = c ? c.name : 'Not chosen';
 
         // Final price, shown right above the send button.
         const fin = $('[data-cart-final]', root);
-        if (fin) fin.textContent = 'Total to pay: ' + format(cfg, r.currency, r.total) + (usable2 ? ' (' + format(cfg, usable2.currency, usable2.total) + ' reference; ' + (cfg.currencies.secondaryNote || '') + ')' : '') + (r.discounts.length ? ', including the discount shown above.' : '.');
+        if (fin) fin.textContent = 'Total to pay: ' + format(cfg, r.currency, r.total) + (r.discounts.length ? ', including the discount shown above.' : '.');
 
         // Terms link follows the buyer's language.
         const terms = $('[data-cart-terms]', root);
         if (terms && cfg.legal) {
             terms.textContent = '';
             terms.append((cfg.legal.agreeText || 'By ordering you agree to the') + ' ');
-            terms.appendChild(el('a', { class: 'text-link', href: cur === 'IDR' && cfg.legal.termsUrlID ? cfg.legal.termsUrlID : cfg.legal.termsUrl, target: '_blank', rel: 'noopener' }, cfg.legal.agreeLinkLabel || 'Terms of Sale'));
+            terms.appendChild(el('a', { class: 'text-link', href: cfg.legal.termsUrl, target: '_blank', rel: 'noopener' }, cfg.legal.agreeLinkLabel || 'Terms of Sale'));
             terms.append('.');
         }
-        show($('[data-cart-checkout]', root), !idrBlocked);
-        show($('[data-cart-idr-blocked]', root), idrBlocked);
+        show($('[data-cart-checkout]', root), !offline);
+        const off = $('[data-cart-offline]', root);
+        if (off) { const t = $('[data-cart-offline-text]', off); if (t && cfg.buyer && cfg.buyer.offlineText) t.textContent = cfg.buyer.offlineText; }
+        show(off, offline);
 
         const ref = root.getAttribute('data-ref');
         $('[name="order_reference"]', root).value = ref;
-        $('[name="order_summary"]', root).value = summaryText(cfg, r, usable2, ref, c ? c.name : '');
-        $('[name="order_total"]', root).value = format(cfg, r.currency, r.total) + (usable2 ? ' (' + format(cfg, usable2.currency, usable2.total) + ')' : '');
+        $('[name="order_summary"]', root).value = summaryText(cfg, r, ref, c ? c.name : '');
+        $('[name="order_total"]', root).value = format(cfg, r.currency, r.total);
         $('[name="_subject"]', root).value = 'Order request ' + ref + ' (' + format(cfg, r.currency, r.total) + ')';
         root._result = r;
     };
@@ -433,7 +415,7 @@
             const form = $('form', cartRoot);
             if (form) form.addEventListener('submit', (e) => {
                 const r = cartRoot._result;
-                if (!r || !r.lines.length || (buyerCurrency(cfg, cart) !== baseCur(cfg) && !cfg.flags.idrCheckoutReady)) { e.preventDefault(); return; }
+                if (!r || !r.lines.length || buyerOffline(cfg, cart)) { e.preventDefault(); return; }
                 try { sessionStorage.setItem(ORDER_KEY, JSON.stringify({ ref: cartRoot.getAttribute('data-ref'), total: r.total, currency: r.currency, summary: $('[name="order_summary"]', cartRoot).value })); } catch (err) { /* ignore */ }
             });
         }
@@ -462,7 +444,7 @@
         .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
         .then((cfg) => {
             cfg.flags = cfg.flags || {};
-            cfg.currencies = cfg.currencies || { default: 'USD', labels: { USD: 'US$' }, decimals: { USD: 0 } };
+            cfg.currencies = cfg.currencies || { default: 'IDR', labels: { IDR: 'Rp' }, decimals: { IDR: 0 } };
             cfg.payment = cfg.payment || {};
             const cart = loadCart();
             wireGeneric(cfg, cart);
