@@ -191,6 +191,15 @@
         if (pageLang({}).indexOf('id') === 0 && rule.offerTextId) return rule.offerTextId;
         return rule.offerText || rule.label;
     };
+    // Fill an offer box: plain text plus an optional "Conditions apply." link to the terms.
+    const fillOffer = (n, rule) => {
+        const isId = pageLang({}).indexOf('id') === 0;
+        const text = (isId && rule.conditionsTextId) || rule.conditionsText;
+        const href = (isId && rule.conditionsHrefId) || rule.conditionsHref;
+        n.textContent = offerText(rule);
+        if (text && href) { n.append(' '); n.appendChild(el('a', { class: 'text-link', href }, text)); }
+        return n;
+    };
 
     const addFitCall = (cfg, parent) => {
         if (!cfg.fitCall) return;
@@ -241,7 +250,7 @@
         $$('[data-shop-offer]').forEach((n) => {
             const rule = rules(cfg).find((r) => r.id === n.getAttribute('data-shop-offer'));
             const ok = f.pricesPublished && ruleLive(rule);
-            if (ok) n.textContent = offerText(rule);
+            if (ok) fillOffer(n, rule);
             show(n, !!ok);
         });
 
@@ -272,7 +281,7 @@
                 body.appendChild(ul);
             }
             if (f.pricesPublished) notes(cfg).filter((n) => n.enabled && n.inCatalogue !== false && (n.appliesTo || []).includes(p.id)).forEach((n) => body.appendChild(el('p', { class: 'product-note' }, n.text)));
-            if (f.pricesPublished) rules(cfg).filter((r) => ruleLive(r) && Array.isArray(r.appliesTo) && r.appliesTo[0] === p.id && r.offerText).forEach((r) => body.appendChild(el('p', { class: 'sheet-offer' }, offerText(r))));
+            if (f.pricesPublished) rules(cfg).filter((r) => ruleLive(r) && Array.isArray(r.appliesTo) && r.appliesTo[0] === p.id && r.offerText).forEach((r) => body.appendChild(fillOffer(el('p', { class: 'sheet-offer' }), r)));
             row.appendChild(body);
             const act = el('div', { class: 'product-actions' });
             if (isBuyable(cfg, p) && !(p.requires && !cart.items[p.requires])) {

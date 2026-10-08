@@ -204,12 +204,16 @@
                     "optIn": "anonymised-case-study",
                     "endDate": "2026-12-31"
                 },
-                "optInLabel": "Founding client price: 15% off the Operations Audit, IDR 38,250,000 instead of IDR 45,000,000, for our first 3 audit clients or until 31 Dec 2026, whichever comes first, in return for permission to publish an anonymised case study. Not combined with other discounts. We never name clients.",
+                "optInLabel": "Founding client price: IDR 38,250,000 (15% off the standard IDR 45,000,000 audit fee) for our first 3 audit clients or until 31 Dec 2026, whichever comes first. Not combined with other discounts. In return for permission to publish an anonymised case study. We never name clients.",
                 "remaining": 3,
-                "offerText": "Founding client price: 15% off the Operations Audit, IDR 38,250,000 instead of IDR 45,000,000, for our first 3 audit clients or until 31 Dec 2026, whichever comes first. Not combined with other discounts.",
-                "offerTextId": "Harga klien pendiri: diskon 15% untuk Operations Audit, Rp38.250.000, bukan Rp45.000.000, untuk 3 klien audit pertama kami atau sampai 31 Des 2026, mana yang lebih dulu. Tidak dapat digabung dengan diskon lain.",
+                "offerText": "Founding client price: IDR 38,250,000 (15% off the standard IDR 45,000,000 audit fee) for our first 3 audit clients or until 31 Dec 2026, whichever comes first. Not combined with other discounts.",
+                "offerTextId": "Harga klien pendiri: Rp38.250.000 (diskon 15% dari biaya audit standar Rp45.000.000) untuk 3 klien audit pertama kami atau sampai 31 Des 2026, mana yang lebih dulu. Tidak dapat digabung dengan diskon lain.",
+                "conditionsText": "Conditions apply.",
+                "conditionsHref": "/terms/#offers",
+                "conditionsTextId": "Syarat dan ketentuan berlaku.",
+                "conditionsHrefId": "/terms/#offers",
                 "group": "one-discount-per-order",
-                "_note": "Legal ruling 8 Oct 2026 13:50 WITA (UU 8/1999 art. 9 and 10). Discount, not a credit. Price: IDR 45,000,000 less 15% = IDR 38,250,000 (Rp38.250.000 on Bahasa pages). Limits: first 3 audit clients or until 31 Dec 2026, whichever comes first (when.endDate 2026-12-31). Not combined with other discounts (group one-discount-per-order). 'remaining' is the real count of founding places, never shown publicly: lower it by hand after each founding sale; at 0 the offer and the box disappear. Take the box down after 31 Dec 2026 even if places remain. No countdown and no places-left text. offerTextId is the Bahasa copy [BAHASA REVIEW NEEDED]."
+                "_note": "Legal rulings 8 Oct 2026 13:50 WITA (UU 8/1999 art. 9 and 10) and round 2 (box wording, Conditions apply link). Discount, not a credit. Price: IDR 45,000,000 less 15% = IDR 38,250,000 (Rp38.250.000 on Bahasa pages). Limits: first 3 audit clients or until 31 Dec 2026, whichever comes first (when.endDate 2026-12-31). Not combined with other discounts (group one-discount-per-order). 'remaining' is the real count of founding places, never shown publicly: lower it by hand after each founding sale; at 0 the offer and the box disappear. Take the box down after 31 Dec 2026 even if places remain. No countdown, no places-left text, no strikethrough or was-price styling. offerTextId and conditionsTextId are the Bahasa copy [BAHASA REVIEW NEEDED]; the Bahasa link goes to /terms/ while /id/terms/ is a placeholder."
             },
             {
                 "id": "bundle-audit-advisory",
