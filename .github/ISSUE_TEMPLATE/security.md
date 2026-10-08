@@ -8,7 +8,7 @@ assignees: ''
 
 ⚠️ **STOP: DO NOT FILE PUBLIC SECURITY ISSUES** ⚠️
 
-If you have found a security vulnerability, please email **barrie@regenesispod.com** directly.
+If you have found a security vulnerability, please email **connect@grandvisionperspective.com** directly.
 
 See SECURITY.md for our security disclosure policy.
 
