@@ -29,7 +29,7 @@
         "_note": "Launch payment: invoice from PT Grand Vision Perspective in IDR, paid by bank transfer to the company's Indonesian account. Never name the bank on the site. No VAT/PPN line (non-PKP). Clients whose business address is outside Indonesia may ask for a written quote with a rounded foreign-currency reference at the BI JISDOR rate for the quote date; the IDR amount is binding and every invoice is in IDR (offline, never on the site).",
         "gateway": {
             "enabled": false,
-            "provider": "xendit",
+            "provider": "midtrans",
             "methods": [
                 "card",
                 "qris",
@@ -37,7 +37,7 @@
             ],
             "paymentLinkUrl": "",
             "label": "Pay online",
-            "_note": "Future gateway slot. Keep disabled until the PT account is approved and Legal/Accountant sign off."
+            "_note": "Future gateway slot. Planned provider: Midtrans. Keep enabled false and paymentLinkUrl empty until the PT account is approved and Legal and the Accountant sign off."
         },
         "invoiceRequestUrl": "/contact/"
     },
