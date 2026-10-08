@@ -63,7 +63,7 @@
         return [];
     };
 
-    // Offer is live: enabled, has a value, places left (if counted), not past its end date.
+    // Offer is live: enabled, has a value, internal count above 0 (if counted, never shown), not past its end date.
     const ruleLive = (rule) => {
         if (!rule || !rule.enabled) return false;
         if (!((typeof rule.percent === 'number' && rule.percent > 0) || (rule.amount && Object.keys(rule.amount).some((k) => rule.amount[k] > 0)))) return false;
@@ -186,10 +186,10 @@
     };
 
 
+    // Offer copy follows the page language. No places-left or countdown text is ever added.
     const offerText = (rule) => {
-        let t = rule.offerText || rule.label;
-        if (rule.showRemaining && typeof rule.remaining === 'number' && rule.remainingText) t += ' ' + rule.remainingText.replace('{remaining}', rule.remaining);
-        return t;
+        if (pageLang({}).indexOf('id') === 0 && rule.offerTextId) return rule.offerTextId;
+        return rule.offerText || rule.label;
     };
 
     const addFitCall = (cfg, parent) => {
