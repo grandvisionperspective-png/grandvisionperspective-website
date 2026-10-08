@@ -15,7 +15,7 @@ Moved here from the public /media/ page in October 2026, when that page became t
 - Management and operations consultancy: strategic advisory, operations audits, implementation oversight.
 - Automation is a method, never the product. No software-build, IT, bookkeeping or tax implications. Bookkeeping and tax stay with each client's accountant.
 - No standalone digital-product SKUs on the GVP site. ClearlyPlannedStudio stays fully separate, with no links either way.
-- Tagline (proposed, Oct 2026): "We design operations that let people be people." Retired: "We build systems that let people be people."
+- Tagline (approved, Oct 2026): "We design operations that let people be people." Retired: "We build systems that let people be people."
 
 ## Logo
 

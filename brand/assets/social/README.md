@@ -23,8 +23,8 @@ and an italic-gold line.
 banner, Twitter/X header and YouTube banner carry the old tagline "We build
 systems that let people be people", which no longer matches the site's
 management and operations positioning. Do not use them for new profiles until
-they are regenerated. The proposed replacement tagline is "We design operations
-that let people be people" (awaiting Barrie's approval). The Facebook cover and
+they are regenerated. The approved replacement tagline is "We design operations
+that let people be people". The Facebook cover and
 YouTube banner also show "2026" after the sign-off line, where the site uses the
 founding year, 2023.
 
