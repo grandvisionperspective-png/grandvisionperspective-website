@@ -74,6 +74,14 @@
         .sc-email { margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(26,26,46,0.12); }
         .sc-email form { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
         .sc-email input[type=email] { flex: 1 1 260px; font: inherit; padding: 11px 12px; border: 1px solid rgba(26,26,46,0.25); border-radius: var(--radius-sm); }
+        .sc-book { margin-top: 28px; padding: 30px 24px; background: var(--navy); color: rgba(255,255,255,0.86); border-radius: var(--radius-sm); }
+        .sc-book h3 { font-size: clamp(22px, 2.6vw, 28px); color: #fff; margin-bottom: 8px; }
+        .sc-book p { max-width: 560px; }
+        .sc-book-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+        .sc-book-note { font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 16px; }
+        .sc-consent { flex: 1 1 100%; display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--ink-muted); line-height: 1.5; }
+        .sc-consent input { margin-top: 4px; accent-color: var(--navy); }
+        @media (min-width: 768px) { .sc-book { padding: 36px 32px; } }
         .sc-small { font-size: 13px; color: var(--ink-muted); margin-top: 8px; }
         @media (min-width: 768px) { .sc-next { padding: 32px; } }
     </style>
@@ -260,22 +268,40 @@
                     <p data-sc-next-text></p>
                     <div class="sheet-actions" data-sc-actions></div>
                     <p class="sc-small" style="margin-top: 14px;"><a class="text-link" href="/contact/?quote=currency#enquiry">Clients outside Indonesia: request a written quote.</a></p>
-                    <p class="sc-small" style="margin-top: 6px;"><a class="text-link" href="/contact/#book">Book a 30-minute call; we confirm your price in writing</a></p>
+                </div>
+                <div class="sc-book">
+                    <h3>Talk your result through in 30 minutes</h3>
+                    <p>Bring this score to a free call. We tell you plainly what we would fix first, and whether an Operations Audit is the right next step. If there is no fit, we say so.</p>
+                    <div class="sc-book-actions">
+                        <a class="btn btn-primary" href="/contact/#book" data-sc-book>Book a 30-minute call</a>
+                        <a class="btn btn-ghost-light" href="/operations-audit/">See the Operations Audit</a>
+                    </div>
+                    <p class="sc-book-note" data-sc-price-note>The Operations Audit is a fixed fee of IDR 45 million, confirmed in writing before you pay. You keep the report.</p>
                 </div>
                 <div class="sc-email">
-                    <h3 style="font-size: 20px;">Want the full breakdown by email?</h3>
-                    <p class="sc-small" style="font-size: 15px;">We send your answers and scores through our contact form, and a copy comes to your inbox. No newsletter.</p>
+                    <h3 style="font-size: 20px;">Optional: email me a copy of my result</h3>
+                    <p class="sc-small" style="font-size: 15px;">Your score, the breakdown by area and your answers, sent to your inbox. You do not need to share an email to see or use your result.</p>
                     <form action="https://formsubmit.co/connect@grandvisionperspective.com" method="POST" data-sc-email>
-                        <input type="hidden" name="_subject" value="Operations Health Scorecard breakdown">
+                        <input type="hidden" name="_subject" value="Scorecard result">
                         <input type="hidden" name="_captcha" value="true">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_next" value="https://grandvisionperspective.com/scorecard/?sent=1">
                         <input type="hidden" name="_autoresponse" value="">
+                        <input type="hidden" name="overall_score" value="">
+                        <input type="hidden" name="band" value="">
+                        <input type="hidden" name="weakest_area" value="">
+                        <input type="hidden" name="score_documentation" value="">
+                        <input type="hidden" name="score_reporting" value="">
+                        <input type="hidden" name="score_admin" value="">
+                        <input type="hidden" name="score_owner" value="">
+                        <input type="hidden" name="score_consistency" value="">
+                        <input type="hidden" name="suggested_next_step" value="">
                         <input type="hidden" name="scorecard_breakdown" value="">
                         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" value="">
-                        <label class="visually-hidden" for="sc-email">Your email</label>
+                        <label class="visually-hidden" for="sc-email">Your email (optional)</label>
                         <input id="sc-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required>
-                        <button class="btn btn-secondary" type="submit">Email me the breakdown</button>
+                        <label class="sc-consent"><input type="checkbox" name="consent" value="Yes: send my scorecard result to this address" required> <span>Send my result to this address. I understand my answers and scores also go to Grand Vision Perspective, who will reply only if I ask. No newsletter, and nothing is shared. See our <a class="text-link" href="/privacy/">privacy notice</a>.</span></label>
+                        <button class="btn btn-secondary" type="submit">Email me my result</button>
                     </form>
                 </div>
                 <p style="margin-top: 24px;"><button class="text-link" type="button" data-sc-restart>Start again</button></p>
