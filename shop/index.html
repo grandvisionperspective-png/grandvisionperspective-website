@@ -120,7 +120,7 @@
                 <span class="label">Services and fees</span>
                 <h1>Start with the audit, <em>then choose</em> how much help you want.</h1>
                 <p class="hero-lead">Every engagement has a fixed fee for a fixed scope, agreed in writing before any work starts. Order online and we send an invoice with payment details.</p>
-                <p class="hero-lead" style="font-size: 15px; margin-top: 14px;"><a class="text-link" href="#order">Clients outside Indonesia: request a quote in your currency.</a></p>
+                <p class="hero-lead overseas-route" style="font-size: 15px; margin-top: 14px;"><a class="text-link" href="/contact/?quote=currency#enquiry">Clients outside Indonesia: request a quote in your currency.</a><br><a class="text-link" href="/contact/#book">Book a 30-minute call; we confirm your price in your currency in writing</a></p>
             </div>
         </div>
     </section>
@@ -187,11 +187,14 @@
                                 <div><label for="o-email">Email</label><input id="o-email" type="email" name="email" autocomplete="email" required></div>
                                 <div><label for="o-company">Legal or company name</label><input id="o-company" type="text" name="legal_name" autocomplete="organization" required></div>
                                 <div><label for="o-address">Billing address</label><textarea id="o-address" name="billing_address" autocomplete="street-address" rows="3" required></textarea></div>
+                                <div><label class="choice"><input type="checkbox" name="business_address_same" value="yes" checked data-same-address> My business address is the same as the billing address</label></div>
+                                <div data-business-address hidden><label for="o-business-address">Business address</label><textarea id="o-business-address" name="business_address" autocomplete="off" rows="3"></textarea></div>
                                 <div><label for="o-tax">Tax ID (optional; NPWP for Indonesian companies)</label><input id="o-tax" type="text" name="tax_id" autocomplete="off"></div>
                                 <div><label for="o-notes">Anything we should know? (optional)</label><textarea id="o-notes" name="notes"></textarea></div>
                                 <p class="cart-final" data-cart-final></p>
                                 <p class="sheet-note" data-cart-terms></p>
                                 <button class="btn btn-primary" type="submit" style="width:100%;">Send order request</button>
+                                <p class="sheet-note">Invoiced in IDR. If you pay from an account in another currency, your bank converts the amount and may add a fee.</p>
                                 <p class="sheet-note">Nothing is charged now. We'll send an invoice from PT Grand Vision Perspective with payment details within 24 hours.</p>
                             </div>
                         </form>
@@ -228,7 +231,6 @@
         </div>
     </footer>
 
-    <script src="/assets/shop.js" defer></script>
     <script src="/assets/shop.js" defer></script>
     <script src="/assets/app.js"></script>
 </body>

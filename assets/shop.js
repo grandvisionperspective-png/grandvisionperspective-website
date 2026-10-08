@@ -31,10 +31,29 @@
 
     const decimals = (cfg, cur) => (cfg.currencies && cfg.currencies.decimals && cfg.currencies.decimals[cur]) || 0;
     const roundTo = (cfg, cur, v) => { const f = Math.pow(10, decimals(cfg, cur)); return Math.round(v * f) / f; };
+    // Amounts read the way the invoice states them.
+    // English pages: whole millions ("IDR 20 million"), up to two decimals
+    // ("IDR 12.5 million"), billions ("IDR 2.4 billion"); anything that does not
+    // round cleanly to two decimals is grouped in full ("IDR 12,345,678").
+    // Bahasa pages (<html lang="id">): "Rp20.000.000".
+    const pageLang = (cfg) => String(cfg._lang || (typeof document !== 'undefined' && document.documentElement.lang) || 'en').toLowerCase();
+    const scaled = (v, unit) => {
+        const h = Math.round(v / unit * 100);
+        return h * unit / 100 === v ? (h / 100).toLocaleString('en-GB', { maximumFractionDigits: 2 }) : null;
+    };
+    const formatWords = (v) => {
+        const n = Math.round(Math.abs(v));
+        const sign = v < 0 ? '-' : '';
+        let s = null;
+        if (n >= 1e9) s = scaled(n, 1e9) && scaled(n, 1e9) + ' billion';
+        else if (n >= 1e6) s = scaled(n, 1e6) && scaled(n, 1e6) + ' million';
+        return sign + 'IDR ' + (s || n.toLocaleString('en-GB', { maximumFractionDigits: 0 }));
+    };
     const format = (cfg, cur, v) => {
-        const labels = (cfg.currencies && cfg.currencies.labels) || {};
         const d = decimals(cfg, cur);
-        return (labels[cur] || cur + ' ') + Number(v).toLocaleString(cur === 'IDR' ? 'id-ID' : 'en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+        if (cur === 'IDR' && pageLang(cfg).indexOf('id') !== 0) return formatWords(v);
+        const labels = (cfg.currencies && cfg.currencies.labels) || {};
+        return (labels[cur] || cur + ' ') + Number(v).toLocaleString(cur === 'IDR' ? 'id-ID' : 'en-GB', { minimumFractionDigits: d, maximumFractionDigits: d });
     };
 
     const scopeLines = (lines, appliesTo) => {
@@ -133,7 +152,7 @@
         return !!(c && c.offlineConfirmation && !(cfg.flags && cfg.flags.indonesiaCheckoutReady));
     };
 
-    const engine = { buyerCurrency, buyerOffline, compute, format, isBuyable, priceMode, unitPrice, summaryText, byId, ruleLive };
+    const engine = { formatWords, buyerCurrency, buyerOffline, compute, format, isBuyable, priceMode, unitPrice, summaryText, byId, ruleLive };
     if (typeof module !== 'undefined' && module.exports) { module.exports = engine; return; }
     window.GVPShop = engine;
 
@@ -413,6 +432,14 @@
             show(cartRoot, !!(f.cartEnabled && f.pricesPublished));
             cartRoot.setAttribute('data-ref', newRef());
             const form = $('form', cartRoot);
+            // Business address: same as billing by default, otherwise required.
+            const same = $('[data-same-address]', cartRoot);
+            const bizWrap = $('[data-business-address]', cartRoot);
+            if (same && bizWrap) {
+                const sync = () => { show(bizWrap, !same.checked); const t = $('textarea', bizWrap); if (t) t.required = !same.checked; };
+                same.addEventListener('change', sync);
+                sync();
+            }
             if (form) form.addEventListener('submit', (e) => {
                 const r = cartRoot._result;
                 if (!r || !r.lines.length || buyerOffline(cfg, cart)) { e.preventDefault(); return; }

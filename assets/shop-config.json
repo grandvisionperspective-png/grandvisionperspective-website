@@ -15,7 +15,7 @@
         "decimals": {
             "IDR": 0
         },
-        "_note": "IDR only. Format: Rp45.000.000 (id-ID grouping). Do not add a second currency."
+        "_note": "IDR only. English pages show amounts as the invoice states them: \"IDR 20 million\", \"IDR 12.5 million\", \"IDR 2.4 billion\", falling back to \"IDR 12,345,678\". Bahasa pages show Rp20.000.000. Do not add a second currency."
     },
     "fitCall": {
         "label": "Not sure? Book a fit call",
@@ -256,7 +256,7 @@
                 "appliesTo": [
                     "operations-audit"
                 ],
-                "text": "Go ahead with an Implementation Oversight project of Rp90.000.000 or more within 30 days of receiving your report and the full audit fee is credited against it. You keep the report either way. The credit does not combine with other offers."
+                "text": "Go ahead with an Implementation Oversight project of IDR 90 million or more within 30 days of receiving your report and the full audit fee is credited against it. You keep the report either way. The credit does not combine with other offers."
             },
             {
                 "id": "focus-credit",
