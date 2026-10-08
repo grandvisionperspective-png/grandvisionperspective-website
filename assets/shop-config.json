@@ -87,7 +87,7 @@
             "unit": "audit",
             "unitPlural": "audits",
             "prices": {
-                "IDR": 17000000
+                "IDR": 17500000
             },
             "priceMode": "exact",
             "maxQty": 1,
