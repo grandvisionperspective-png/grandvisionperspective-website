@@ -2263,3 +2263,12 @@ p {
 
 /* Keep the plus sign upright: the italic Fraunces "+" reads as a slash. */
 .team-stat__number em { font-style: normal; }
+
+/* CONVERT-01: how-buying-works path (shop) and audit proof line */
+.buy-path { list-style: none; counter-reset: buy; margin: 26px 0 0; padding: 0; max-width: 620px; display: grid; gap: 10px; }
+.buy-path li { counter-increment: buy; position: relative; padding-left: 40px; font-size: 16px; line-height: 1.55; color: rgba(255, 255, 255, 0.8); }
+.buy-path li::before { content: counter(buy); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.35); font-size: 13px; line-height: 24px; text-align: center; color: #fff; }
+.buy-path strong { color: #fff; font-weight: 600; }
+.audit-proof { margin-top: 22px; max-width: 560px; font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.78); }
+.audit-proof strong { color: #fff; font-weight: 600; }
+.audit-proof a { color: var(--gold-hi); text-decoration: underline; text-underline-offset: 3px; }
