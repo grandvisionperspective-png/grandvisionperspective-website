@@ -271,17 +271,6 @@
                 "text": "Book a full Operations Audit within 30 days and the Focus Audit fee is credited against it. The credit does not apply to projects, retainers or advisory work."
             },
             {
-                "id": "guarantee",
-                "enabled": true,
-                "appliesTo": [
-                    "operations-audit"
-                ],
-                "text": "Operations Audit guarantee. Before the audit starts, we agree with you in writing how annual time and cost savings will be estimated. If the savings estimate in your report, using that method, is lower than the audit fee you paid, you can ask for 50% of the audit fee back. Send a written request to connect@grandvisionperspective.com within 14 days of receiving the report. We refund within 14 days of receiving a valid request, in IDR, to the account the payment came from. The guarantee does not apply if you did not provide the access, data or staff time agreed in writing for the audit. One claim per client business. This guarantee is in addition to your rights under the law.",
-                "textId": "Jaminan Operations Audit. Sebelum audit dimulai, kami menyepakati secara tertulis dengan Anda cara memperkirakan penghematan waktu dan biaya tahunan. Jika perkiraan penghematan dalam laporan Anda, dengan metode tersebut, lebih rendah daripada biaya audit yang Anda bayar, Anda dapat meminta pengembalian 50% dari biaya audit. Kirim permintaan tertulis ke connect@grandvisionperspective.com dalam 14 hari sejak menerima laporan. Kami mengembalikan dana dalam 14 hari sejak menerima permintaan yang sah, dalam Rupiah, ke rekening asal pembayaran. Jaminan ini tidak berlaku jika Anda tidak memberikan akses, data, atau waktu staf yang disepakati secara tertulis untuk audit. Satu klaim per usaha klien. Jaminan ini merupakan tambahan atas hak Anda menurut hukum.",
-                "_note": "Legal GVP-PRICE-LEGAL-01 (c), 8 Oct 2026: text and textId verbatim. textId is Legal's Bahasa draft [BAHASA REVIEW NEEDED], used on lang=id pages. Shown only when pricesPublished is true. Only allowed marketing label: '50% refund guarantee, conditions apply' / 'Jaminan pengembalian 50%, syarat berlaku', linked to the terms. Terms section 8 is unchanged (Legal's pro-rata alternative is the founder's decision).",
-                "inCatalogue": false
-            },
-            {
                 "id": "retainer-terms",
                 "enabled": false,
                 "appliesTo": [
