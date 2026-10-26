@@ -300,6 +300,12 @@
                         <input type="hidden" name="score_consistency" value="">
                         <input type="hidden" name="suggested_next_step" value="">
                         <input type="hidden" name="scorecard_breakdown" value="">
+                        <!-- Source attribution (GVP-SCORECARD-SRC-01): first-party, cookieless. Filled by scorecard.js from the landing URL and referrer; 'direct' when absent. -->
+                        <input type="hidden" name="utm_source" value="direct">
+                        <input type="hidden" name="utm_medium" value="direct">
+                        <input type="hidden" name="utm_campaign" value="direct">
+                        <input type="hidden" name="utm_content" value="direct">
+                        <input type="hidden" name="referrer" value="direct">
                         <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" value="">
                         <label class="visually-hidden" for="sc-email">Your email (optional)</label>
                         <input id="sc-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required>
