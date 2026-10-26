@@ -175,5 +175,29 @@
     });
 
     if (/[?&]sent=1/.test(window.location.search)) $('[data-sc-sent]').hidden = false;
+
+    /* Source attribution (GVP-SCORECARD-SRC-01). First-party, cookieless, no
+       third party: read the UTM tags and the referrer from this landing, keep
+       them in sessionStorage so the first touch survives navigation within the
+       site and the FormSubmit redirect, and carry them into the result email.
+       Empty values become 'direct'. */
+    (() => {
+        const ATTR_KEY = 'gvp-scorecard-attr-v1';
+        const KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'referrer'];
+        let stored = {};
+        try { stored = JSON.parse(sessionStorage.getItem(ATTR_KEY) || '{}') || {}; } catch (e) { stored = {}; }
+        const params = new URLSearchParams(window.location.search);
+        const clean = (v) => (v && String(v).trim()) ? String(v).trim().slice(0, 300) : '';
+        const attr = {};
+        KEYS.forEach((k) => {
+            const seen = clean(stored[k]) && stored[k] !== 'direct' ? stored[k] : '';
+            const now = k === 'referrer' ? clean(document.referrer) : clean(params.get(k));
+            attr[k] = seen || now || 'direct';
+        });
+        try { sessionStorage.setItem(ATTR_KEY, JSON.stringify(attr)); } catch (e) { /* ignore */ }
+        const ef = $('[data-sc-email]');
+        if (ef) KEYS.forEach((k) => { const f = ef.querySelector('[name="' + k + '"]'); if (f) f.value = attr[k]; });
+    })();
+
     update();
 })();
